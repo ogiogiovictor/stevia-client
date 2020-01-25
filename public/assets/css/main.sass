@@ -1,0 +1,6073 @@
+/* General Style */
+
+*
+    :box-sizing border-box
+
+p, h1, h2, h3, h4, h5, h6, a
+    :margin 0
+    :padding 0
+    
+html, body 
+    :margin 0
+    :padding 0
+
+body
+    &.onboard_pages
+        background-color: #f2f2f2
+
+.text-center
+    text-align: center
+
+.text-right
+    text-align: right
+
+.whole_page_wrapper
+    transition: .4s
+
+/* Margins */
+
+.mt-24
+    margin-top: 24px !important
+.ml_3
+    margin-left: 1rem
+
+.mr_auto
+    margin-right: auto
+.ml_auto
+    margin-left: auto
+
+/* /Margins */
+
+/* Variables */
+
+// Colors
+    --default_black: #303037
+    --default_red: #EF4B4B
+    $default_red: #EF4B4B
+
+/* Fonts */
+
+@font-face 
+  font-family: circular
+  src: url("../utils/fonts/Circular/CircularStd-Book.otf")
+
+
+@font-face 
+  font-family: nunito
+  src: url("../utils/fonts/Nunito/Nunito-SemiBold.ttf")
+
+h1, h2, h3, h4, h5, h6
+    font-family: circular
+    color: var(--default_black)
+
+p, span
+    font-family: nunito
+    color: var(--default_black)
+
+/* /Fonts */
+
+/* Scrobar Style */
+
+::-webkit-scrollbar
+    background: transparent
+    width: 4px
+    height: 4px
+  
+::-webkit-scrollbar-thumb 
+    /* background-color: #1ba01f53 */
+    background-color: rgba(239, 75, 75, 0.442)
+    border-radius: 20px
+  
+::-webkit-scrollbar-thumb:hover 
+    background-color: rgba(0, 0, 0, 0.3)
+  
+
+/* /Colors */
+
+/* Flex displays */
+
+/* Flex Rows */
+        
+.flex_r
+    :display flex
+    :flex-direction row
+
+.flex_r_wrap
+    :display flex
+    :flex-flow row wrap
+    :align-items center
+
+.flex_r_wrap_align_center
+    :display flex
+    :flex-flow row wrap
+    :align-items center
+
+.flex_r_j_between
+    :display flex
+    flex-direction: row
+    justify-content: space-between
+
+.flex_r_j_center
+    :display flex
+    flex-direction: row
+    justify-content: center
+
+.flex_r_a_center
+    :display flex
+    flex-direction: row
+    align-items: center
+
+.flex_r_a_end
+    :display flex
+    flex-direction: row
+    align-items: flex-end
+
+.flex_r_j_between_align_center
+    :display flex
+    :flex-direction row
+    :justify-content space-between
+    :align-items center
+
+.flex_r_wrap_j_between_align_center
+    :display flex
+    :flex-flow row wrap
+    :justify-content space-between
+    :align-items center
+        
+.flex_r_j_center_align_center
+    :display flex
+    :flex-direction row
+    :justify-content center
+    :align-items center
+
+.flex_r_j_end_align_center
+    :display flex
+    :flex-direction row
+    :justify-content flex-end
+    :align-items center
+
+
+/* /Flex Rows */
+
+/* Flex col */ 
+
+.flex_c
+    :display flex
+    :flex-direction column  
+
+.flex_c_j_between
+    :display flex
+    flex-direction: column
+    justify-content: space-between 
+
+.flex_c_align_center
+    :display flex
+    flex-direction: column
+    align-items: center
+    justify-content: center
+
+/* /Flex col */
+
+
+/* End of Flex Displays */
+
+/* Site Widths 
+
+.full_row
+    :width 100%
+    :clear both
+
+.site_center1
+    :width 80%
+    :margin 0 auto
+    @media only screen and ( max-width: 1295px )
+        width: 85%
+    @media only screen and ( max-width: 1063px )
+        width: 90%
+        
+.site_center2
+    :width 75%
+    :margin 0 auto
+    @media only screen and ( max-width: 1295px )
+        width: 80%
+    @media only screen and ( max-width: 1063px )
+        width: 85%
+    @media only screen and ( max-width: 860px )
+        width: 90%
+/* End of Site widths
+
+/* Buttons
+
+button
+    :border none
+    border-radius: 3px
+    font-size: 14px
+    line-height: 16px
+    letter-spacing: 1.5px
+    text-transform: uppercase
+    text-align: center
+    padding:
+        left: 30px
+        right: 30px
+    height: 44px
+    color: #ffffff
+    cursor: pointer
+    transition: .5s
+
+    &:focus
+        :outline none
+    
+    &:active
+        transform: translateY(5px)
+
+    &.red_btn
+        background-color: #EF4B4B
+        &:hover
+            background-color: #da2f2f  
+    
+    &.black_btn
+        background-color: #303037
+        &:hover
+            background-color: #1b1b20
+    
+    &.grey_btn
+        background-color: #E3E3E3
+        color: #737373
+        &:hover
+            background-color: #d8d0d0
+
+    &.full_width_btn
+        width: 100%
+
+    &.cancel_btn
+        text-transform: capitalize
+        background-color: #E3E3E3
+        color: #303037        
+        font-family: circular
+        font-size: 16px
+        line-height: 19px
+
+/* End of Buttons
+
+/* Links style
+
+.rubber_effect_link
+    transition: .3s
+    font-family: Nunito
+    font-style: normal
+    font-weight: 600
+    font-size: 14px
+    line-height: 20px
+    color: #EF4B4B
+
+    &:hover
+        text-decoration: none
+        letter-spacing: .2px
+
+/* End of Links style
+
+
+/* Form ELements
+
+input, select 
+
+    &:focus
+        outline: 0
+
+.search_select 
+    appearance: none
+    font-family: nunito
+    font-style: normal
+    font-weight: 600
+    font-size: 14px
+    line-height: 20px
+    color: var(--default_black)
+    background: url(../utils/images/18.png)
+        repeat: no-repeat
+        position: 92% center
+    width: 100%    
+    border: 1px solid #E3E3E3
+    padding: 10px
+    background-color: #ffffff
+
+
+.common_input_wrapper // 1
+    margin: 
+        top: 7px
+        bottom: 7px
+    width: 100%
+
+    input, textarea
+        border: 1px solid #E3E3E3
+        border-radius: 4px
+        background-color: #fff
+        box-shadow: 0px 0px 7px rgba(0, 0, 0, 0.1)
+        width: 100%
+        padding: 15px
+        resize: none
+        transition: .6s
+
+        &:focus
+            outline: none
+            border-color: #EF4B4B
+
+        &::placeholder
+            font-family: nunito
+            font-style: normal
+            font-weight: 600
+            font-size: 16px
+            line-height: 23px
+            color: #989898
+    
+    label
+        font-family: nunito
+        font-style: normal
+        font-weight: 600
+        font-size: 16px
+        line-height: 23px
+        text-align: center
+        color: #989898
+
+
+.common_input_wrapper_2 // 2
+    margin: 
+        top: 7px
+        bottom: 7px
+    width: 100%
+
+    input, textarea, select
+        border: 1px solid #E3E3E3
+        border-radius: 4px
+        background-color: #fff
+        width: 100%
+        padding: 15px
+        resize: none
+        transition: .6s
+
+        &:focus
+            outline: none
+            border-color: #EF4B4B
+
+        &::placeholder
+            font-family: nunito
+            font-style: normal
+            font-weight: 600
+            font-size: 16px
+            line-height: 23px
+            color: #989898
+    
+    label
+        font-family: nunito
+        font-style: normal
+        font-weight: 600
+        font-size: 16px
+        line-height: 23px
+        color: #989898
+        transition: .6s
+        background-color: #fff
+        padding: 0 10px
+
+        transform: translate(15px, 47px)
+
+    select
+        font-family: nunito
+        font-style: normal
+        font-weight: 600
+        font-size: 16px
+        line-height: 23px
+        color: #989898
+
+    
+.common_input_wrapper_with_icon // 3
+    margin: 
+        top: 7px
+        bottom: 7px
+    width: 100%
+    border: 1px solid #E3E3E3
+    border-radius: 4px
+    background-color: #fff
+    transition: .6s
+    overflow: hidden
+
+    display: flex
+    flex-direction: row
+    align-items: center
+
+    &:hover
+        // border-color: #EF4B4B
+
+    &:focus
+        outline: none
+        border-color: #EF4B4B        
+
+    .input_div
+        width: 90%
+
+        input
+            border: none
+            border-radius: 4px
+            width: 100%
+            padding: 15px
+            transition: .6s        
+
+            &::placeholder
+                font-family: nunito
+                font-style: normal
+                font-weight: 600
+                font-size: 16px
+                line-height: 23px
+                color: #989898
+
+        label
+            font-family: nunito
+            font-style: normal
+            font-weight: 600
+            font-size: 16px
+            line-height: 23px
+            text-align: center
+            color: #989898
+            display: none
+ 
+    .icon_div
+        width: 10%
+        text-align: center
+        cursor: pointer
+        i
+            color: #989898
+
+
+/* End of --- Form ELements
+
+/* End of General Style */
+/* Mobile side menu
+.sideMenu_div
+    width: 300px
+    height: 100vh
+    overflow-y: auto
+    // background-color: green
+    // transform: translateX(300px)
+    position: fixed
+    top: 0
+    right: -300px
+    transition: .4s
+    padding: 25px 20px 30px 20px
+    background:
+        image: url('../utils/images/68.png')
+        repeat: no-repeat
+        position: top left
+        size: 100% 100%
+    .close_btn
+        i
+            font-size: 30px
+            color: #EF4B4B
+            cursor: pointer
+/* Site Header Style
+
+.site_header    
+    background:
+        :image url("../utils/images/1.png")      
+        size: auto 100%
+        position: top right
+        repeat: no-repeat
+    // height: 700px
+    // overflow: auto
+    :padding
+        bottom: 100px
+    // border-bottom: 3px solid green
+
+.site_header_4_courses    
+    background-color: #ffffff        
+    // overflow: auto
+    :padding
+        bottom: 100px
+    // border-bottom: 3px solid green
+
+.site_header_4_coaches
+    background:
+        image: url("../utils/images/coachHeader.png")
+        position: top right
+        size: auto 100%
+        repeat: no-repeat
+    :padding
+        bottom: 100px
+
+.plain_site_header
+    background-color: #fff
+    :padding
+        bottom: 100px
+
+.top_nav_div
+    padding: 30px 0
+
+.site_logo_div    
+    img
+        height: 28px
+        width: 100px
+.top_nav_right
+    @media only screen and ( max-width: 969px )
+        display: none
+.top_nav_links
+    margin:
+        right: 50px
+    @media only screen and ( max-width: 998px )
+        margin-right: 25px        
+
+    div
+        padding: 0 12px
+
+        a
+            font-size: 16px
+            line-height: 19px
+            :font-weight 500
+            color: #141414
+            :transition .4s
+
+            &:hover
+                color: #EF4B4B
+                text-decoration: none
+            &.active
+                color: #EF4B4B
+
+.mobile_nav_toggler
+    width: 35px
+    cursor: pointer
+    display: none
+    transition: .4s
+    .bars
+        width: 100%
+        height: 4px
+        background-color: #EF4B4B
+        &:nth-child(2)
+            margin: 6px 0
+    .bars_index
+        background-color: #fff
+    @media only screen and ( max-width: 969px )
+        display: block
+
+.top_nav_links_mobile
+    margin: 20px 0
+    &>div
+        margin: 15px 0
+        text-align: center        
+
+
+.header_desc_wrapper
+    :background
+        :image url("../utils/images/8.png")
+        :repeat no-repeat
+        :position 90px 35px
+    padding: 20px 0
+    margin-top: 70px
+    @media only screen and ( max-width: 1036px )
+        background-position: 5% 35px        
+
+    .header_desc_div
+        :width 90%
+        :margin
+            :left auto
+        @media only screen and ( max-width: 1295px )
+            width: calc(100% - 7.5%)
+        @media only screen and ( max-width: 1063px )
+            width: 95%
+
+.header_desc_left
+    h4
+        font-size: 32px
+        line-height: 37px
+        color: #303037
+        margin:
+            bottom: 20px
+        @media only screen and ( max-width: 1222px )
+            &>br
+                display: none
+        @media only screen and ( max-width: 940px )
+            font-size: 25px
+    p
+        font-style: normal
+        font-weight: 600
+        font-size: 18px
+        line-height: 31px
+        color: var(--default_black)
+        :margin
+            bottom: 35px
+        @media only screen and ( max-width: 1212px )
+            &>br
+                display: none
+        @media only screen and ( max-width: 940px )
+            font-size: 15px
+.header_desc_right
+    img
+        @media only screen and ( max-width: 940px )
+            width: 552px
+            height: 339px
+
+        
+
+
+
+/* /Site Header Style
+
+/* General section style */
+
+[class*="_section_wrapper_div"]
+    padding: 100px 0
+
+/* /General section style */
+
+/* Second section Style
+
+.second_section_wrapper_div
+    background-color: #F8FAFE
+
+.second_section_header
+    h5
+        font-size: 32px
+        line-height: 37px
+        text-align: center
+        color: var(--default_black)
+        margin:
+            bottom: 25px
+    p        
+.stevia_benefits
+    :margin
+        top: 80px
+    &>div
+        :text-align center
+        :width 30.33%
+        :transition .7s
+        :padding 15px
+        img
+            transition: .5s linear        
+        &:hover
+            box-shadow: 0 0 20px rgba(113, 146, 210, 0.204464)
+            img
+                transform: rotate(20deg)
+        h6
+            text-transform: capitalize
+            margin: 20px 0
+            color: var(--default_black)
+            font-size: 18px
+            line-height: 31px        
+        p
+            font-style: normal
+            font-weight: normal
+            font-size: 16px
+            line-height: 23px
+            color: var(--default_black)
+
+/* /Second section Style
+
+/* Third section Style */
+
+.third_section_wrapper_div
+    .how_it_works_left_side
+        :color var(--default_black)
+        padding-right: 40px
+        h4
+            font-size: 32px
+            line-height: 34px        
+        p
+            font-style: normal
+            font-weight: 600
+            font-size: 18px
+            line-height: 31px
+            &.first_child
+                margin: 25px 0
+
+    .how_it_works_right_side
+        background: 
+            image: url("../utils/images/16.png")
+            position: 65% 82%
+            size: 140px 140px
+            repeat: no-repeat
+        &>.steps_right_side
+            :margin
+                right: 25px
+            div
+                :margin
+                    bottom: 25px
+        div[class*="how_it_work_step_"]
+            background: #FFFFFF
+            box-shadow: 0px 0px 24px rgba(113, 146, 210, 0.204464)
+            border-radius: 5px
+            width: 225px
+            // height: 215px
+            overflow: auto
+            padding: 30px 20px
+            transition: box-shadow .3s linear
+            &:hover
+                box-shadow: none
+            span
+                font-size: 14px
+                line-height: 30px
+                padding: 4px 28px
+                border-radius: 16.5px
+                &.step_one_txt
+                    background-color: #FBEEE6
+                    color: #FA9957
+                &.step_two_txt
+                    background-color: #FEF3E1
+                    color: #FEAC21                
+                &.step_three_txt
+                    background-color: #FFE3E3
+                    color: #EF4B4B
+            h4
+                font-size: 16px
+                line-height: 30px
+                color: val(--default_black)
+                margin: 10px 0 13px            
+            p
+                font-style: normal
+                font-weight: normal
+                font-size: 14px
+                line-height: 20px
+                color: val(--default_black)
+/* /Third section Style */
+/* Fourth section Style */
+.fourth_section_wrapper_div
+    background-color: #F8FAFE
+.courses_navigator
+    border-bottom: 1px solid #E3E3E3
+    margin: 40px 0 35px
+    .courses_navigator_link
+        margin: 0 20px
+        padding: 12px 19px
+        cursor: pointer
+        transition: .4s
+        position: relative
+        span
+            font-size: 16px
+            line-height: 19px
+            transition: .2s linear
+        &::after
+            content: ""
+            position: absolute
+            width: 100%
+            bottom: 0
+            left: 0
+            height: 0
+            background-color: #EF4B4B
+            transition: .2s linear
+        &:hover::after
+            height: 3px
+        &:hover            
+            span
+                color: #EF4B4B
+
+    .active_courses_navigator_link
+        &::after
+            height: 3px        
+        span
+            color: #EF4B4B                
+
+.coaches_wrapper_div
+    display: grid
+    grid-template-columns: 31.3333% 31.3333% 31.3333%
+    grid-gap: 35px 3%
+    margin-bottom: 40px
+    @media only screen and ( min-width: 1295px ) and (max-width: 1353px)
+        grid-template-columns: 32.3333% 32.3333% 32.3333%
+        grid-gap: 25px 1.5%
+    @media only screen and ( max-width: 1268px )
+        grid-template-columns: 48% 48%
+        grid-gap: 40px 4%
+        
+
+    .each_coach
+        background: #FFFFFF
+        box-shadow: 0px 0px 24px rgba(86, 86, 86, 0.15)
+        border-radius: 5px     
+
+        .coach_image
+            width: 37%
+            // height: 320px
+
+            img
+                width: 100%
+                height: 100%
+
+        .coach_features
+            width: 63%
+            padding: 35px 20px
+            display: flex
+            flex-direction: column
+            justify-content: space-between
+
+            .coach_name
+
+                h5
+                    font-size: 18px
+                    line-height: 21px
+                    color: var(--default_black)
+
+            .star_rating
+                color: #EF4B4B
+
+        
+        .coach_features_middle
+            margin: 30px 0
+
+            p
+                color: var(--default_black)
+                font-style: normal
+                // font-weight: 600
+                font-size: 14px
+                line-height: 20px
+
+
+                &.specialty_txt
+                    font-style: normal
+                    font-weight: 600
+                    font-size: 14px
+                    line-height: 20px
+                    color: #989898
+                    margin-bottom: 10px
+
+        .coach_features_bottom
+
+            a
+                font-style: normal
+                font-weight: 600
+                font-size: 14px
+                line-height: 20px
+                color: #989898
+                transition: .5s
+
+                &:hover
+                    text-decoration: none
+                    color: #656565
+    
+.featured_course_wrapper
+    display: none
+    /* /Fourth section Style */
+
+/* Sixth section Style */
+
+.sixth_section_wrapper_div
+    background:
+        image: url(../utils/images/11.png)
+        size: cover
+        position: 100% 100%
+        repeat: no-repeat
+    padding: 60px 20px
+
+    h5
+        font-size: 32px
+        line-height: 37px
+        color: #FFFFFF
+        margin:
+            bottom: 20px
+        
+/* /Sixth section Style */
+
+/* footer section Style */
+
+.footer_section
+    padding: 40px 0
+    background-color: #fff
+.copy_right
+    @media only screen and ( max-width: 1216px )
+        margin-top: 50px
+    p
+        color: var(--default_black)
+        font-size: 16px
+        line-height: 26px
+.footer_social_icons 
+    i
+        color: #EF4B4B
+        padding: 20px
+        background-color: #d8d8d8
+        margin-left: 15px
+
+.footer_wrapper
+    @media only screen and ( max-width: 1216px )
+        flex-direction: column-reverse
+    .footer_links
+        @media only screen and ( max-width: 877px )
+            flex-direction: column-reverse
+            justify-content: center
+    
+    .footer_social_icons
+        @media only screen and ( max-width: 877px )
+            margin-bottom: 30px
+    
+                
+        
+/* /footer section Style */
+
+/* Fifth section Style */
+.fifth_side_header
+    margin:
+        bottom: 35px
+    h5
+        font-size: 32px
+        line-height: 37px
+
+.job_opnenings_wrapper_scroll
+    padding: 10px 0 50px
+    overflow-x: scroll
+    &::-webkit-scrollbar
+        display: none
+.job_opnenings_wrapper
+    // display: grid
+    // grid-template-columns: auto auto auto
+    // grid-gap: 25px 25px
+    // width: 2000px
+
+    &>div
+        background: #FFFFFF
+        border: 1px solid rgba(21, 24, 39, 0.0784255)
+        box-sizing: border-box
+        box-shadow: 0px 10px 24px rgba(21, 24, 39, 0.07)
+        border-radius: 5px
+        padding: 25px 20px
+        margin-right: 25px
+        width: 382px
+        float: left
+
+        .job_logo
+            margin-right: 20px
+
+        .desc_header
+
+            h5
+                font-size: 18px
+                line-height: 21px
+
+        .desc_texts
+            margin: 30px 0
+            // padding-left: 30px
+
+            p
+                font-family: nunito
+                font-style: normal
+                font-weight: normal
+                font-size: 14px
+                line-height: 20px
+
+        .desc_footer
+
+            a
+                font-family: circular
+                font-size: 14px
+                line-height: 23px
+                text-transform: uppercase
+                color: var(--default_black)
+                transition: .4s
+
+                &:hover
+                    text-decoration: none
+                    color: #787878
+
+.job_Opening_button
+    margin-top: 45px
+
+    div
+        width: 15px
+        height: 15px
+        border-radius: 50%
+        background-color: rgba(125, 139, 155, 0.663625)
+        margin: 0 9px
+        cursor: pointer
+        transition: .2s
+
+        &:hover 
+            background-color: rgba(76, 85, 95, 0.664)
+
+        &.checked
+            background-color: #EF4B4B
+            transform: scale(1.05)
+
+/* Fifth section Style */
+
+
+// *******************************
+// *******************************
+    
+
+/* Courses Page Style */
+
+.courses_section_wrapper_div
+    background-color: #F2F2F2
+
+    .courses_section_header_txt
+        h4
+            font-family: circular
+            font-size: 32px
+            line-height: 37px
+
+.course_search_n_category
+    background: #FFFFFF
+    border: 1px solid #E3E3E3
+    padding: 18px 25px
+    margin: 35px 0 30px
+
+
+    .course_search
+        width: 40%
+        // padding: 
+        //     left: 10px
+        //     right: 10px
+        background: #FFFFFF
+        box-shadow: 0px 0px 5px rgba(21, 24, 39, 0.176491)
+
+        input
+            width: 98%
+            padding: 10px 0 10px 10px
+            border: none
+
+            font-family: nunito
+            font-style: normal
+            font-weight: normal
+            font-size: 14px
+            color: #989898
+
+            &:focus
+                outline: none
+            
+            &::placeholder
+                font-family: nunito
+                font-style: normal
+                font-weight: normal
+                font-size: 14px
+                color: #989898
+
+        button
+            background-color: transparent
+            border: none
+            color: #151827
+            font-size: 12px
+            width: 2%
+
+    .course_category
+        width: 30%
+
+        .select_wrapper
+            width: 50%
+
+.courses_wrapper_div
+    display: grid
+    grid-template-columns: 31.3333% 31.3333% 31.3333%
+    grid-gap: 30px 3%
+
+    .each_course
+        background: #FFFFFF
+        border-radius: 5px
+        padding: 35px 25px
+        transition: .3s
+
+        &:hover
+            box-shadow: 0px 5px 24px rgba(21, 24, 39, 0.0705037)
+
+        .lecturer
+
+            p
+                font-family: nunito
+                font-style: italic
+                font-weight: normal
+                font-size: 14px
+                line-height: 20px
+
+        .price_tag_icon
+
+            i
+                color: #EF4B4B
+                margin-right: 9px
+
+        .course_amount
+
+            p
+                font-family: nunito
+                font-style: normal
+                font-weight: normal
+                font-size: 14px
+                line-height: 20px
+
+        .course_image_wrapper
+        
+        .course_icon_n_name
+            margin: 30px 0
+
+        .course_image
+
+            height: 80px
+            width: 80px
+            border-radius: 50%
+
+            img
+                height: 100%
+                width: 100%
+                border-radius: 50%
+
+        .course_name
+            padding-left: 15px
+
+        .course_description
+            margin-bottom: 30px
+
+            p
+                font-family: Nunito
+                font-style: normal
+                font-weight: normal
+                font-size: 14px
+                line-height: 20px
+
+.pagination_div
+    border-top: 0.7px solid #E3E3E3
+    margin-top: 65px
+
+    div
+        padding: 20px 22px
+        text-align: center
+        border:
+            left: 0.7px solid #E3E3E3
+            right: 0.7px solid #E3E3E3
+        
+        &:first-child
+            border-left: none
+
+        &:last-child
+            border-right: none
+
+        a
+            font-family: nunito
+            font-style: normal
+            font-weight: normal
+            font-size: 16px
+            line-height: 22px
+            color: #EF4B4B
+            transition: .4s
+
+            &:hover
+                color: #880c0c  
+                text-decoration: none          
+
+        &.active
+
+            a
+                color: #989898
+                      
+    
+/* /Courses Section Style */
+
+/* Coaches Section Style
+
+.coaches_category
+    // display: grid
+    // grid-template-columns: 120px 140px 120px 90px
+    // grid
+    display: flex
+    flex-flow: row wrap
+    
+
+    .specialization
+        width: 140px
+
+    .ratings
+        width: 120px
+    
+    .cost
+        width: 90px
+
+/* /Coaches Section Style
+
+// Contact Page Style
+
+.contact_section_wrapper_div
+    background-color: #F8FAFE
+
+.contact_page_header
+    text-align: center
+    margin-top: 80px
+
+    h3
+        font-family: circular
+        font-size: 32px
+        line-height: 37px
+        text-align: center
+        color: var(--default-black)
+        margin-bottom: 20px
+
+    p
+        font-family: Nunito
+        font-style: normal
+        font-weight: 600
+        font-size: 18px
+        line-height: 31px
+
+.contact_wrapper
+    display: grid
+    grid-template-columns: calc(50% - 35px) calc(50% - 35px)
+    grid-column-gap: 70px
+    align-items: center
+
+    .contact_form
+        background: #FFFFFF
+        box-shadow: 0px 0px 7px rgba(0, 0, 0, 0.1)
+        border-radius: 4px
+        // height: 600px
+
+        .contact_form_header
+            padding: 25px 40px            
+            border-bottom: 0.7px solid #E3E3E3            
+
+            p
+                font-family: circular
+                font-size: 18px
+                line-height: 21px
+                color: var(--default_black)
+
+        .form_part
+            padding: 20px 40px 60px
+
+
+    .contact_details
+        // background: #FFFFFF
+        // box-shadow: 0px 0px 7px rgba(0, 0, 0, 0.1)
+        // border-radius: 4px
+        // height: 200px
+
+        .quick_answer
+            border-bottom: 1px solid #E3E3E3
+            padding-bottom: 60px
+
+            h2
+                font-family: circular
+                font-size: 32px
+                line-height: 37px
+                margin-bottom: 20px
+
+            p
+                font-size: 16px
+                line-height: 30px
+                display: flex
+                flex-direction: row
+                align-items: center
+
+                i
+                    margin-right: 12px
+
+        .contact_details
+            padding-top: 60px
+
+            h2
+                font-family: circular
+                font-size: 32px
+                line-height: 37px
+                margin-bottom: 20px
+
+            p
+                font-family: nunito
+                font-style: normal
+                font-weight: 600
+                font-size: 14px
+                line-height: 20px
+
+                span
+                    color: #EF4B4B
+
+
+.send_msg_btn
+    margin:
+        top: 40px
+        bottom: 60px
+
+.update_awareness
+
+    p        
+        font-family: nunito
+        font-style: normal
+        font-weight: 600
+        font-size: 14px
+        line-height: 20px
+
+
+
+// /Contact Page Style
+
+// Jobs Page Style
+
+.jobs_page_header
+    background:
+        image: linear-gradient(rgba(0, 0, 0, 0.62347),rgba(0, 0, 0, 0.62347)), url("../utils/images/job.png")
+        repeat: no-repeat
+        position: center center
+        size: cover
+    padding: 200px 200px
+    text-align: center
+
+    h4
+        font-size: 32px
+        line-height: 37px
+        color: #FFFFFF
+        margin-bottom: 30px
+
+    p
+        font-style: normal
+        font-weight: 600
+        font-size: 18px
+        line-height: 30px
+        color: #FFFFFF
+
+.search_course_wrapper
+    background-color: #F8FAFE
+
+.search_course_input_wrapper
+    width: 40%
+    margin: 0 auto    
+    box-shadow: 0px 0px 24px rgba(21, 24, 39, 0.176491)
+    height: 62px
+    border-radius: 3px
+    transform: translateY(-31px)
+    background-color: #fff
+
+    // display: 
+    // grid-template-columns: 80% 20%
+
+    .search_input
+        // background: #FFFFFF
+        height: 100%
+        width: 70%
+        input
+            width: 100%
+            height: 100%
+            padding: 10px 20px
+            font-family: nunito
+            font-style: normal
+            font-weight: normal
+            font-size: 14px
+            line-height: 20px
+            color: #989898
+            border: none
+
+            &::placeholder
+                font-family: nunito
+                font-style: normal
+                font-weight: normal
+                font-size: 14px
+                line-height: 20px
+                color: #989898
+
+    .search_button
+        // width: 25%
+        height: 100%
+        button
+            // width: 100%
+            height: 100%
+            border-radius: 0 3px 3px 0
+            background-color: #EF4B4B
+            position: relative
+
+            &::before
+                position: absolute
+                content: ""
+                width: 0px
+                height: 0px
+                top: 50%
+                left: 50%
+                background-color: #da2f2f7a 
+                border-radius: 50%
+
+                transition: .3s                
+
+            &:hover::before
+                border-radius: inherit
+                width: 100%
+                height: 100%
+                top: 0
+                left: 0
+            
+            &:active
+                transform: translateY(0)
+            
+.jobs_section_wrapper_div
+    background-color: #F8FAFE
+
+.course_n_category_wrapper
+    display: grid
+    grid-template-columns: 24% 73%
+    grid-column-gap: 3%
+
+    &>div        
+
+    [class*='_header']
+
+        h6
+            font-size: 18px
+            line-height: 21px
+        i
+            display: none
+
+    .jobs_header
+
+        h4
+            font-size: 32px
+            line-height: 37px
+
+    div[class*="options_"]
+        padding: 30px 0
+        border-bottom: 1px solid #E3E3E3
+        margin-bottom: 30px
+
+        &::last-child
+            border-bottom: none
+
+        input[type="checkbox"]
+            display: none
+
+        input[type="checkbox"] + label
+            display: block
+            cursor: pointer
+
+            &::before
+                content: "\2713"
+                border: 1px solid #EF4B4B
+                border-radius: 2px
+                display: inline-block
+                // width: 1em
+                // height: 1em
+                vertical-align: bottom
+                margin-right: 20px
+                color: transparent
+                transition: .3s
+                padding:
+                    left: 5px
+                    right: 5px
+
+        input[type="checkbox"]:checked + label::before
+            background-color: #EF4B4B
+            color: #fff
+            
+        input[type=checkbox] + label:active:before
+            transform: scale(0.5) 
+
+.job_desc_wrapper
+    display: flex
+    flex-direction: column
+    justify-content: space-between
+ 
+.all_jobs
+    display: grid
+    grid-template-columns: 48% 48%
+    grid-gap: 30px 4%
+    padding:
+        top: 40px
+        bottom: 60px
+
+    &>div
+        background: #FFFFFF
+        border: 1px solid rgba(21, 24, 39, 0.0784255)
+        box-shadow: 0px 10px 24px rgba(21, 24, 39, 0.07)
+        border-radius: 5px
+        padding: 25px 20px
+        transition: .3s
+
+        &:hover
+            box-shadow: 0px 20px 24px rgba(21, 24, 39, 0.07)            
+
+        .job_logo
+            margin-right: 20px
+
+        .desc_header
+            h5
+                font-size: 18px
+                line-height: 21px
+
+        .desc_texts
+            margin: 30px 0
+            // padding-left: 30px
+            p
+                font-family: nunito
+                font-style: normal
+                font-weight: normal
+                font-size: 14px
+                line-height: 20px
+
+        .desc_footer
+            a
+                font-family: circular
+                font-size: 14px
+                line-height: 23px
+                text-transform: uppercase
+                color: var(--default_black)
+                transition: .4s
+                &:hover
+                    text-decoration: none
+                    color: #787878
+        
+.subscribe_section_wrapper_div
+    background-color: #ffffff
+    border-bottom: 1px solid #E3E3E3
+
+    .subscribe_header
+
+        h4
+            font-size: 32px
+            line-height: 37px
+
+        p
+            font-style: normal
+            font-weight: 600
+            font-size: 18px
+            line-height: 31px
+            margin:
+                top: 25px
+                bottom: 40px
+
+.subscribe_input_wrapper
+    width: 50%
+    margin: 0 auto
+    box-shadow: 0px 0px 24px rgba(21, 24, 39, 0.176491)
+    height: 62px
+    border-radius: 3px
+
+    // display: grid
+    // grid-template-columns: 80% 20%
+
+    .subscribe_input
+        width: 70%
+        background: #FFFFFF
+        height: 100%
+        input
+            width: 100%
+            height: 100%
+            padding: 10px 20px
+            font-family: nunito
+            font-style: normal
+            font-weight: normal
+            font-size: 14px
+            line-height: 20px
+            color: #989898
+            border: none
+
+            &::placeholder
+                font-family: nunito
+                font-style: normal
+                font-weight: normal
+                font-size: 14px
+                line-height: 20px
+                color: #989898
+
+    .subscribe_button
+        height: 100%
+
+        button
+            // width: 100%
+            height: 100%
+            border-radius: 0 3px 3px 0
+            background-color: #303037
+            text-align: center
+            position: relative
+
+            &::before
+                position: absolute
+                content: ""
+                width: 0px
+                height: 0px
+                top: 50%
+                left: 50%
+                background-color: #41414162
+                border-radius: 50%
+
+                transition: .3s                
+
+            &:hover::before
+                border-radius: inherit
+                width: 100%
+                height: 100%
+                top: 0
+                left: 0
+                
+                
+                // background-color: #1b1b20
+            
+            &:active
+                transform: translateY(0)
+
+// Jobs Page Style
+
+// Job Details Page Style
+
+.jobDescription_section_wrapper_div
+    background-color: #F8FAFE
+
+    .job_desc_header_wrapper
+        border-bottom: 1px solid #E3E3E3
+
+    .header_content_wrapper
+        padding:
+            bottom: 30px
+        
+        .back_to_job_link
+            // width: 20%
+            
+            a
+                font-family: circular
+                font-size: 16px
+                line-height: 30px
+                color: #EF4B4B
+
+                &:hover
+                    text-decoration: none
+
+        .job_title
+            // padding-left: 50px
+
+            h4
+                font-size: 32px
+                line-height: 37px
+
+        .posted_day
+
+            p
+                font-style: normal
+                font-weight: normal
+                font-size: 16px
+                line-height: 23px
+
+
+    .job_description_content
+
+        .job_location
+            width: 20%
+            padding-top: 40px
+            padding-right: 20px
+
+            .comp_name_n_location
+
+                p
+                    font-style: normal
+                    font-weight: 600
+                    font-size: 16px
+                    line-height: 23px
+                    margin-bottom: 20px
+
+                    i
+                        margin-right: 20px
+                        font-size: 18px
+
+            .expiry_date
+                margin: 30px 0
+
+                h6
+                    font-size: 16px
+                    line-height: 30px
+                    margin-bottom: 2px
+
+                p
+                    font-style: normal
+                    font-weight: 600
+                    font-size: 13px
+                    line-height: 23px
+                
+            .social_share
+
+                i
+                    font-size: 22px
+                    cursor: pointer
+
+                    &:nth-child(2)
+                        margin: 0 10px
+
+                h6
+                    font-size: 16px
+                    line-height: 30px
+                    margin-bottom: 8px
+            
+            .share_btn
+                margin: 40px 0
+
+            .save_later
+
+                h6
+                    font-size: 14px
+                    line-height: 16px
+                    display: flex
+                    flex-direction: row
+                    align-items: center
+
+                    i
+                        color: #EF4B4B
+                        margin-right: 10px
+                        font-size: 22px
+                        cursor: pointer
+   
+            
+        .main_job_desc
+            width: 80%
+            border-left: 1px solid #E3E3E3
+            padding: 40px 0 0 50px
+
+            div.header
+                margin-bottom: 20px
+
+                h6
+                    font-size: 18px
+                    line-height: 21px
+
+            &>div
+                margin-bottom: 50px
+
+        .description_content
+
+            p
+                font-style: normal
+                font-weight: normal
+                font-size: 16px
+                line-height: 23px
+                text-align: justify
+                margin-bottom: 25px
+
+        .responsibility_content
+
+            &>div
+                margin-bottom: 20px
+                
+                p
+                    font-style: normal
+                    font-weight: normal
+                    font-size: 16px
+                    line-height: 28px
+
+                img
+                    margin-right: 16px
+
+.recommendation_header
+    margin:
+        top: 70px
+        bottom: 35px
+
+    h3
+        font-size: 32px
+        line-height: 37px
+
+
+
+// /Job Details Page Style
+
+/* START of post a job style */
+
+.post_a_job_page_wrapper
+    background-color: #F2F2F2
+
+    .left_side
+        width: 40%
+        height: 100vh
+        background-color:  #EF4B4B
+        padding: 5vh 0 12vh
+        position: fixed
+
+        .left_side_content_div
+            width: 75%
+            margin:
+                left: auto
+                right: auto
+
+            .bottom
+                .bottom_header
+                    h4
+                        font-size: 30px
+                        line-height: 35px
+                        color: #FFFFFF
+                        margin-bottom: 50px
+                .bottom_list
+                    p
+                        font-style: normal
+                        font-weight: 600
+                        font-size: 18px
+                        // line-height: 50px
+                        color: #FFFFFF
+                        margin-bottom: 25px
+                    img
+                        margin-right: 15px
+
+    .right_side
+        width: 60%
+        margin-left: 40%        
+
+        .right_side_header
+            padding: 25px 50px
+            p
+                margin-right: 30px
+                font-size: 16px
+                line-height: 30px
+                color: #989898
+            img
+                width: 80px
+                height: 20px
+                // display: none
+
+
+        .right_side_content
+            height: calc( 100vh - 93px )
+
+            .getting_started
+                width: 70%
+
+                h4
+                    font-size: 32px
+                    line-height: 37px
+                    
+                p
+                    font-size: 18px
+                    line-height: 21px
+                    margin: 20px 0 45px
+
+                .next_button
+                    margin-top: 28px
+
+
+/* END of post a job style */
+
+/* START of coach details page */
+
+.blur_header
+
+    background:
+        image: linear-gradient(rgba(0, 0, 0, 0.727737),rgba(0, 0, 0, 0.727737)), url("../utils/images/20.png")
+        repeat: no-repeat
+        position: center center
+        size: cover
+    height: 390px
+
+.coach_details_wrapper
+    background-color: #F2F2F2
+    height: 420px
+
+
+.coach_details_container
+    background: #FFFFFF
+    box-shadow: 0px 7px 24px rgba(0, 0, 0, 0.15)
+    border-radius: 5px
+    // padding: 40px
+
+    transform: translateY(-220px)
+
+    .coach_image
+        width: 33%
+
+        img
+            width: 100%
+            height: 100%
+
+    .coach_details_div
+        width: 67%
+        // height: 300px
+        // background-color: red
+        padding: 70px 60px
+
+        .coach_details_div_top
+            padding-bottom: 20px
+            border-bottom: 1px solid #E3E3E3
+
+            .text
+
+                h4
+                    font-size: 32px
+                    line-height: 37px
+
+            .star
+
+                i
+                    color: #EF4B4B
+                    margin-top: 10px
+                    
+
+        .coach_summary
+
+            .coach_summary_n_specialization
+                width: 75%
+                border-right: 1px solid #E3E3E3
+                padding:
+                    top: 30px
+                    right: 30px
+
+                .summary
+
+                    p
+                        font-style: normal
+                        font-weight: normal
+                        font-size: 16px
+                        line-height: 25px
+
+                .specialization
+                    margin-top: 30px
+
+                    .header
+                        margin-bottom: 10px
+
+                        h6
+                            font-size: 16px
+                            line-height: 30px
+
+                    .spec_list
+                        
+                        p
+                            font-style: normal
+                            font-weight: normal
+                            font-size: 16px
+                            line-height: 23px
+
+            .coach_social
+                width: 25%
+                padding:
+                    top: 30px
+                    left: 30px
+                
+                .video
+                    width: 100%
+                    // height: 100px
+
+                .socials
+                    margin-top: 38px
+
+                    .text
+                        margin-bottom: 10px
+
+                        h6
+                            font-size: 16px
+                            line-height: 30px
+
+                    .social_links
+                        
+                        i
+                            font-size: 23px
+
+                            &:nth-child(2)
+                                margin: 0 10px 0
+
+
+
+        .book_button
+            margin-top: 35px
+            
+
+.about_coach_section
+    background-color: #f2f2f2
+    // padding-bottom: 100px
+
+.more_about_coach
+
+    .Header
+        margin-bottom: 15px
+
+        h3
+            font-size: 32px
+            line-height: 37px
+
+    .the_description
+        margin-bottom: 40px
+
+        p
+            font-style: normal
+            font-weight: normal
+            font-size: 16px
+            line-height: 25px
+
+    .coach_certifications
+
+        .header
+            margin-bottom: 10px
+
+            h6
+                font-size: 18px
+                line-height: 21px
+
+        .certs
+
+            p
+                font-style: normal
+                font-weight: normal
+                font-size: 16px
+                line-height: 25px
+
+.review_section_wrapper_div
+    background-color: #f2f2f2
+
+    h4
+        font-size: 32px
+        line-height: 37px
+        text-align: center
+        margin-bottom: 20px
+    
+    p
+        font-style: normal
+        font-weight: 600
+        font-size: 18px
+        line-height: 31px
+
+.review_lists
+    overflow-x: scroll
+    padding: 40px 0
+    &::-webkit-scrollbar
+        display: none
+    .list_container
+        // width: 3000px
+        
+    .each_review
+        width: 500px
+        float: left
+        padding: 30px
+        background: #FFFFFF
+        box-shadow: 0px 7px 24px rgba(0, 0, 0, 0.15)
+        border-radius: 5px
+        margin-left: 40px
+        // mix-blend-mode: normal
+        // opacity: 0.4
+        .review_text
+            margin-bottom: 24px
+            p
+                font-style: italic
+                font-weight: normal
+                font-size: 16px
+                line-height: 25px
+        .image_n_name
+            img
+                width: 60px
+                height: 60px
+                border-radius: 50%
+                margin-right: 20px
+            p
+                font-family: circular
+                font-size: 18px
+                line-height: 21px
+            span
+                font-family: Nunito
+                font-style: normal
+                font-weight: normal
+                font-size: 14px
+                line-height: 20px
+                color: #303037
+
+
+
+/* END of coach details page */
+
+
+/* Coach Landing page Style */
+
+.coach_landing_page_header
+    background:
+        image: linear-gradient(90deg, #232323 0%, rgba(237, 137, 137, 0.0001) 100%), url("../utils/images/24.png")
+        repeat: no-repeat
+        position: center center
+        size: cover
+    padding: 150px 0 300px
+
+    .text
+
+        h4
+            font-size: 32px
+            line-height: 37px
+            color: #FFFFFF
+            margin-bottom: 20px
+
+        p
+            font-style: normal
+            font-weight: 600
+            font-size: 18px
+            line-height: 31px
+            color: #FFFFFF
+
+.benefits_section
+    background-color: #f2f2f2
+    height: 280px
+
+.benefits_wrapper
+    background-color: #303037
+    border-radius: 5px
+    padding: 60px 60px 90px
+    transform: translateY(-180px)
+
+    .header
+        margin-bottom: 60px
+
+        h3
+            font-size: 32px
+            line-height: 37px
+            text-align: center
+            color: #FFFFFF
+
+    .coach_benefits_wrapper
+        display: grid
+        grid-template-columns: auto auto auto
+        grid-column-gap: 50px
+
+        .each_benefit
+
+            .benefit_text
+                margin-top: 60px
+                text-align: center
+
+                p
+                    font-style: normal
+                    font-weight: normal
+                    font-size: 16px
+                    line-height: 25px
+                    color: #FFFFFF
+
+
+.want_to_be_a_coach_wrapper
+    padding: 70px 0
+
+    .want_to_be_a_coach_div
+        width: 61%
+        margin: 0 auto
+        padding: 35px 35px
+        background:
+            image: url("../utils/images/re.png")
+
+        .text
+            width: 38%
+
+            h5
+                font-family: nunito
+                font-style: normal
+                font-weight: 600
+                font-size: 25px
+                line-height: 41px
+                color: #ffffff
+                
+        .arrow
+            // width: 20%
+
+
+/* /Coach Landing page Style */
+
+/* Post a job login page styles AND student sign in page */ 
+
+.post_a_job_login
+    // height: 100vh
+    padding: 80px 0
+
+    .form_wrapper
+        width: 33%        
+        background: #FFFFFF
+        box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.15)
+        padding: 35px 40px
+
+        .login_text
+            margin: 40px 0 10px
+
+            h3
+                font-size: 32px
+                line-height: 37px
+                margin-bottom: 3px
+
+            p
+                font-size: 18px
+                line-height: 21px
+
+        .login_button
+            margin-top: 30px
+
+.forget_password_link
+
+    a
+        font-family: nunito
+        font-style: normal
+        font-weight: 600
+        font-size: 14px
+        line-height: 20px
+        color: #EF4B4B
+
+        &:hover
+            text-decoration: none
+
+.below_form
+    width: 20%
+    border-top: 1px solid #E3E3E3
+    padding: 20px 0
+    margin-top: 40px
+
+    p
+        font-style: normal
+        font-weight: normal
+        font-size: 14px
+        line-height: 20px
+
+        a
+            font-family: Nunito
+            font-style: normal
+            font-weight: 600
+            font-size: 14px
+            line-height: 20px
+            color: #EF4B4B
+            margin-left: 10px
+
+            &:hover
+                text-decoration: none
+
+/* /Post a job login page styles */
+
+/* Post a job sign up page styles */
+
+.post_a_job_signup
+    // height: 125vh
+    // padding: 500px 0
+
+    .form_wrapper
+        width: 35%        
+        background: #FFFFFF
+        box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.15)
+        padding: 35px 65px
+        margin: 70px auto 0px
+
+        .login_text
+            margin: 40px 0 10px
+
+            h3
+                font-size: 32px
+                line-height: 37px
+                margin-bottom: 3px
+
+            p
+                font-size: 18px
+                line-height: 21px
+
+        .login_button
+            margin-top: 30px
+
+.forget_password_link
+
+    a
+        font-family: nunito
+        font-style: normal
+        font-weight: 600
+        font-size: 14px
+        line-height: 20px
+        color: #EF4B4B
+
+        &:hover
+            text-decoration: none
+
+.below_form
+    width: 20%
+    border-top: 1px solid #E3E3E3
+    padding: 20px 0
+    margin: 40px auto 100px
+
+    p
+        font-style: normal
+        font-weight: normal
+        font-size: 14px
+        line-height: 20px
+
+        a
+            font-family: Nunito
+            font-style: normal
+            font-weight: 600
+            font-size: 14px
+            line-height: 20px
+            color: #EF4B4B
+            margin-left: 10px
+
+            &:hover
+                text-decoration: none
+
+.site_terms
+    margin-top: 30px
+
+    p
+        font-style: normal
+        font-weight: 600
+        font-size: 16px
+        line-height: 23px
+        color: #989898
+
+/* /Post a job sign up styles */
+
+/* Recruiters Success page */
+
+.recruiters_success
+    height: 100vh
+
+    .success_div
+        // width: 35%
+        
+    &>div
+        text-align: center
+
+    .success_text
+        margin: 30px 0
+    
+    .success_btn
+        margin-top: 40px
+
+
+/* Recruiters Success page */
+
+/* Post a job form page */
+
+.post-a-job-nav
+    border-bottom: 1px solid #E3E3E3
+    padding: 12px 40px
+    .username
+        span
+            padding: 16px
+            border-radius: 50%
+            background-color: #FFE3E3
+            
+            font-family: circular
+            font-size: 14px
+            line-height: 16px
+            color: #EF4B4B
+            margin-right: 15px
+            text-transform: uppercase
+
+        h6
+            font-size: 16px
+            line-height: 30px
+            text-transform: capitalize
+
+.instruction
+    margin: 80px 0 65px
+
+    h5
+        font-size: 32px
+        line-height: 37px
+        margin-bottom: 15px
+
+    p
+        font-size: 18px
+        line-height: 21px
+        font-family: circular
+
+.form_section_wrapper
+    padding-bottom: 55px
+
+    .form_div
+        width: 48%
+        margin: 0 auto
+        padding: 35px 25px
+        background: #FFFFFF
+        box-shadow: 0px 1px 7px rgba(86, 86, 86, 0.15)
+        border-radius: 5px
+
+        .form_header
+            border-bottom: 1px solid #E3E3E3
+            padding-bottom: 15px
+
+            h5
+                font-size: 25px
+                line-height: 29px
+        
+        &>div
+            &:not(.form_header)
+                margin-top: 30px
+
+    .job_type
+        .title
+            margin-bottom: 10px
+
+            p
+                font-style: normal
+                font-weight: 600
+                font-size: 18px
+                line-height: 30px
+            
+        .job_type_options
+            
+            &>div
+                margin-right: 20px
+                background: #FFFFFF
+                border: 1px solid #E3E3E3
+                box-sizing: border-box
+                border-radius: 3px
+                padding: 7px 20px
+                cursor: pointer
+                transition: .4s
+                margin-bottom: 15px
+
+                &.active
+                    background: #EFF7F1
+                    border: 0.8px solid #75B07B
+                    box-shadow: 0px 0px 15px rgba(117, 176, 123, 0.26)
+
+                p
+                    font-style: normal
+                    font-weight: normal
+                    font-size: 14px
+                    line-height: 20px
+                    color: #989898
+  
+    .application_mode
+
+        .title  
+            margin-bottom: 10px                            
+
+            p
+                font-style: normal
+                font-weight: 600
+                font-size: 18px
+                line-height: 30px
+
+        .app_mode_grid
+            display: grid
+            grid-template-columns: auto auto
+            grid-column-gap: 25px
+
+            div[class*="_option"]
+                position: relative
+
+                input[type="radio"]
+                    display: none
+                
+                label
+                    cursor: pointer
+                    display: flex
+                    align-items: center
+                    justify-content: flex-start
+                    padding-left: 40px
+
+                    font-family: nunito
+                    font-style: normal
+                    font-weight: 600
+                    font-size: 16px                    
+
+                span
+                    display: block
+                    position: absolute
+                    
+                    border: 1px solid #EF4B4B
+
+                    width: 20px
+                    height: 20px
+                    border-radius: 50%
+                    top: 0
+                    left: 0
+                    
+                    display: flex
+                    align-items: center
+                    justify-content: center
+                    transition: transform .2s ease-in-out
+
+                    &::before
+                        content: ""
+                        border-radius: 50%
+                        display: inline-block
+                        width: 9px
+                        height: 9px
+                        background-color: #EF4B4B
+                        position: absolute
+                        margin-right: 20px
+                        transition: .3s
+                        transform: scale(0)                        
+
+                input[type="radio"]:checked ~ span::before
+                    transform: scale(1)
+
+                label
+                    &:active
+                        &>span
+                            transform: scale(0.8)
+
+    .job_description
+        margin-bottom: 10px
+
+        .title
+            p
+                font-style: normal
+                font-weight: 600
+                font-size: 18px
+                line-height: 30px
+
+    .form_buttons
+
+        button
+            margin: 0 10px
+
+.need_help
+    padding: 30px 0
+    border-top: 1px solid #E3E3E3
+    width: 40%
+    margin: 0px auto 100px
+
+    
+    h2
+        font-size: 32px
+        line-height: 37px
+    
+    p
+        font-style: normal
+        font-weight: 600
+        font-size: 18px
+        line-height: 31px
+        margin: 30px 0
+
+    
+
+.grid_item_two
+    display: grid
+    grid-template-columns: calc( 50% - 12.5px) calc( 50% - 12.5px)
+    grid-column-gap: 25px
+
+.pl-40
+    padding-left: 40px
+
+.search_select2 
+    background-position: 98% center
+
+/* Post a job form page */
+
+/* Student sign up page */
+
+.stud_signup_form_wrapper
+    width: 35%        
+    background: #FFFFFF
+    box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.15)
+    padding: 35px 0
+    margin: 70px auto 0px
+
+    .login_text
+        padding:
+            left: 50px
+            right: 50px
+        margin: 40px 0 10px
+
+        h3
+            font-size: 32px
+            line-height: 37px
+            margin-bottom: 3px
+
+        p
+            font-size: 18px
+            line-height: 21px
+
+        .login_button
+            margin-top: 30px
+
+    .logo_div
+        padding:
+            left: 50px
+            right: 50px
+
+    .basic_info_header
+        border-bottom: 1px solid #E3E3E3
+        padding: 25px 50px 15px
+
+        p
+            font-family: circular
+            font-size: 18px
+            line-height: 21px
+
+    .password_instruction
+        margin:
+            top: 20px
+            bottom: 20px
+
+        p
+            font-style: normal
+            font-weight: 600
+            font-size: 16px
+            line-height: 23px
+            color: #989898
+   
+.px-50
+    padding:
+        left: 50px
+        right: 50px
+
+.mx-50
+    margin:
+        left: 50px
+        right: 50px
+
+.other_infos
+    display: grid
+    grid-template-columns: auto auto
+    grid-column-gap: 25px
+
+    .common_input_wrapper_2
+        margin:
+            top: 0
+            bottom: 0
+
+
+/* /Student sign up page */
+
+/* ======================Start of DASHBOARD Style=================== */
+.dashboard_center
+    width: 90%
+    margin: 0 auto
+
+aside.side_nav
+    width: 20%
+    height: 100vh
+    position: fixed
+    background: #FFFFFF
+    box-shadow: 2px 0px 4px rgba(0, 0, 0, 0.1)
+    transition: .4s
+    z-index: 9999
+    overflow-y: scroll
+
+    .logo_div
+        padding: 25px 10px 30px 40px
+        margin-bottom: 70px
+    .close_sideNav        
+        cursor: pointer
+        display: none
+        i
+            font-size: 30px
+            color: #EF4B4B
+
+    .side_nav_wrapper
+        width: 87%
+
+        a
+            display: block
+            font-size: 19px
+            padding: 20px 5px 20px 40px
+            font-family: circular
+            color: #303037            
+            border-radius: 0px 30px 30px 0px
+            border-left: 4px solid transparent
+            transition: .3s
+
+            &:hover
+                color: #EF4B4B
+                text-decoration: none
+
+            i
+                margin-right: 15px
+                font-size: 20px
+
+            &.active
+                color: #EF4B4B
+                text-decoration: none
+                background-color: rgba(239, 75, 75, 0.15)
+                border-left-color: #EF4B4B
+
+
+
+section.dashboard_body
+    width: 80%
+    margin-left: auto
+
+    /* Overview page style */
+    .top_nav
+        border: 1px solid #E3E3E3
+
+        .left_side
+            padding: 13px 0
+            a
+                font-family: circular
+                font-size: 16px
+                line-height: 30px
+                color: #989898
+                transition: .3s
+                margin-right: 20px
+                i
+                    margin-right: 8px
+                &:hover
+                    color: #818080
+                    text-decoration: none
+                    
+            h4
+                font-size: 32px
+
+        .right_side
+
+            .bell
+                padding: 25px 20px
+                border-right: 1px solid #E3E3E3
+
+                i
+                    color: #989898
+                    font-size: 24px
+
+            .username
+                padding-left: 20px
+                span
+                    padding: 16px
+                    border-radius: 50%
+                    background-color: #FFE3E3
+                    
+                    font-family: circular
+                    font-size: 14px 
+                    line-height: 16px
+                    color: #EF4B4B
+                    margin-right: 15px
+                    text-transform: uppercase
+
+                h6
+                    font-size: 16px
+                    line-height: 30px
+                    text-transform: capitalize
+
+    .overview_cards
+        margin: 100px 0 60px
+
+        .cards_wrapper
+            display: grid
+            grid-template-columns: 31.3333% 31.3333% 31.3333%
+            grid-column-gap: 3%
+
+            &>div
+                background: #FFFFFF
+                box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.07)
+                border-radius: 5px
+                padding: 20px
+
+                .left
+
+                    h6
+                        font-size: 16px
+                        line-height: 30px
+                        color: #989898
+                        margin-bottom: 10px
+                    
+                    h2
+                        font-size: 32px
+                        line-height: 37px
+                    
+
+    .appointments_part
+        padding-bottom: 120px
+
+        .top
+            margin-bottom: 20px
+
+            .left
+                h4
+                    font-size: 25px
+                    line-height: 29px
+
+            .right
+                span
+                    background-color: #FFE3E3
+                    border-radius: 22.5px
+                    padding: 11px 28px
+                    font-family: circular
+                    font-size: 14px
+                    line-height: 16px
+                    color: #FB7474
+                    cursor: pointer
+                    transition: .3s
+
+                    &:nth-child(2)
+                        margin: 0 15px
+
+                    &:hover
+                        background-color: #f8cdcd
+                        
+                    &.active
+                        background-color: #FB7474
+                        color: #fff
+                        
+        .appointment_container
+            background: #FFFFFF
+            box-shadow: 0px 1px 7px rgba(86, 86, 86, 0.15)
+            border-radius: 5px
+            height: 400px
+
+            .empty_content
+                p
+                    font-family: circular
+                    font-size: 16px
+                    line-height: 30px
+                    color: #989898
+                    margin-top: 20px
+    /* /Overview page style */
+
+/* Student dashboard Courses page style */
+.student_dashboard_courses_top
+    margin: 100px 0 20px
+    .top
+        .left
+
+            span
+                background-color: #FFE3E3
+                border-radius: 22.5px
+                padding: 11px 28px
+                font-family: circular
+                font-size: 14px
+                line-height: 16px
+                color: #FB7474
+                cursor: pointer
+                transition: .3s
+                
+                &:nth-child(2)
+                    margin: 0 15px
+
+                &:hover
+                    background-color: #f8cdcd
+                        
+                &.active
+                    background-color: #FB7474
+                    color: #fff
+
+        .right
+            width: 50%
+
+            .search_input
+                width: 60%
+                padding: 
+                    left: 10px
+                background: #FFFFFF
+                box-shadow: 0px 0px 5px rgba(21, 24, 39, 0.176491)
+
+                input
+                    width: 98%
+                    padding: 10px 0 10px 10px
+                    border: none
+
+                    font-family: nunito
+                    font-style: normal
+                    font-weight: normal
+                    font-size: 14px
+                    color: #989898
+
+                    &:focus
+                        outline: none
+                    
+                    &::placeholder
+                        font-family: nunito
+                        font-style: normal
+                        font-weight: normal
+                        font-size: 14px
+                        color: #989898
+                
+                button
+                    background-color: transparent
+                    border: none
+                    color: #151827
+                    font-size: 12px
+                    width: 2%
+
+            .coach_select
+                width: 25%
+                margin:
+                    left: 11px
+                    right: 11px
+            
+            .cost_select
+                width: 15%
+
+.course_list_section
+    padding-bottom: 120px
+
+.course_list_n_pagination_wrapper
+    background: #FFFFFF
+    box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.15)
+    border-radius: 5px
+
+    .pagination
+        border-top: 0.7px solid #E3E3E3
+
+        &>div
+            padding: 15px
+            border:                
+                right: 0.7px solid #E3E3E3
+            
+            a
+                color:#EF4B4B
+                font-family: nunito
+                font-style: normal
+                font-weight: normal
+                font-size: 16px
+                line-height: 22px
+                transition: .3s
+                
+                &:hover                    
+                    color: #989898  
+                    text-decoration: none   
+
+                &.active
+                    color: #989898       
+
+        &:nth-child(:last-child)
+            border: none
+            
+.course_list_wrapper    
+    padding: 30px
+    
+    display: grid
+    grid-template-columns: 31.3333% 31.3333% 31.3333%
+    grid-gap: 30px 3%
+
+    .each_course
+        background: #FFFFFF
+        border-radius: 5px
+        padding: 35px 25px
+        transition: .3s
+        box-shadow: 0px 0px 24px rgba(86, 86, 86, 0.15)
+        &:hover
+            box-shadow: 0px 0px 14px rgba(86, 86, 86, 0.15)
+
+        .lecturer
+
+            p
+                font-family: nunito
+                font-style: italic
+                font-weight: normal
+                font-size: 14px
+                line-height: 20px
+
+        .price_tag_icon
+
+            i
+                color: #EF4B4B
+                margin-right: 9px
+
+        .course_amount
+
+            p
+                font-family: nunito
+                font-style: normal
+                font-weight: normal
+                font-size: 14px
+                line-height: 20px
+
+        .course_image_wrapper
+        
+        .course_icon_n_name
+            margin: 30px 0
+
+        .course_image
+
+            height: 80px
+            width: 80px
+            border-radius: 50%
+
+            img
+                height: 100%
+                width: 100%
+                border-radius: 50%
+
+        .course_name
+            padding-left: 30px
+
+        .course_description
+            margin-bottom: 10px
+
+            p
+                font-family: Nunito
+                font-style: normal
+                font-weight: normal
+                font-size: 14px
+                line-height: 20px
+            
+        .seats_left
+            margin-bottom: 25px
+
+            .stud_images
+                img
+                    display: inline-block
+                    width: 38px
+                    height: 38px
+                    border-radius: 50%
+                    border: 2px solid #61ABFF
+                    float: left
+
+                img:nth-child(2)
+                    transform: translateX(-15px)
+                img:nth-child(3)
+                    transform: translateX(-30px)
+                img:nth-child(4)
+                    transform: translateX(-45px)
+                img:nth-child(5)
+                    transform: translateX(-60px)
+                        
+
+            p
+                font-style: normal
+                font-weight: 600
+                font-size: 14px
+                line-height: 19px
+                color: #EF4B4B
+
+
+/* /Student dashboard Courses page style */
+/* student dashboard coaches page style */
+.student_dashboard_coaches_top
+    margin: 100px 0 20px
+
+    .search_input
+        width: 35%
+        padding: 
+            left: 10px
+        background: #FFFFFF
+        box-shadow: 0px 0px 5px rgba(21, 24, 39, 0.176491)
+
+        input
+            width: 98%
+            padding: 10px 0 10px 10px
+            border: none
+
+            font-family: nunito
+            font-style: normal
+            font-weight: normal
+            font-size: 14px
+            color: #989898
+
+            &:focus
+                outline: none
+            
+            &::placeholder
+                font-family: nunito
+                font-style: normal
+                font-weight: normal
+                font-size: 14px
+                color: #989898
+        
+        button
+            background-color: transparent
+            border: none
+            color: #151827
+            font-size: 12px
+            width: 2%
+
+    .right
+        width: 30%
+        .ratings_select
+            width: 30%
+            margin:
+                left: 11px
+                right: 11px
+        
+        .cost_select
+            width: 22%
+
+        .Specialization_select
+            width: 48%
+        
+.coaches_list_wrapper    
+    padding: 40px
+    
+    display: grid
+    grid-template-columns: 48% 48%
+    grid-gap: 35px 4%
+
+    &>div
+        background: #FFFFFF
+        box-shadow: 0px 0px 24px rgba(86, 86, 86, 0.15)
+        border-radius: 5px
+
+        .coach_image
+            width: 40%
+            // height: 320px
+            img
+                width: 100%
+                height: 100%
+        .coach_features
+            width: 60%
+            padding: 35px 20px
+            .coach_name
+                h5
+                    font-size: 18px
+                    line-height: 21px
+                    color: var(--default_black)
+            .star_rating
+                color: #EF4B4B
+
+        
+        .coach_features_middle
+            margin: 30px 0
+
+            p
+                color: var(--default_black)
+                font-style: normal
+                // font-weight: 600
+                font-size: 14px
+                line-height: 20px
+
+
+                &.specialty_txt
+                    font-style: normal
+                    font-weight: 600
+                    font-size: 14px
+                    line-height: 20px
+                    color: #989898
+                    margin-bottom: 10px
+
+        .coach_features_bottom
+
+            .bottom_link
+                margin-bottom: 25px
+
+            a
+                font-style: normal
+                font-weight: 600
+                font-size: 14px
+                line-height: 20px
+                color: #989898
+                transition: .5s
+
+                &:hover
+                    text-decoration: none
+                    color: #656565
+
+/* /student dashboard coaches page style */
+/* student dashboard Settings page style */
+.settings_navigator
+    border:
+        top: 1px solid #E3E3E3
+        bottom: 1px solid #E3E3E3
+    margin: 100px 0 20px
+
+    .settings_navigator_link
+        // margin: 0 20px
+        padding: 12px 25px
+        cursor: pointer
+        position: relative
+
+        span
+            font-family: circular
+            font-size: 16px
+            line-height: 30px
+            color: #989898
+            transition: .3s ease-in-out
+
+        &::after
+            content: ""
+            position: absolute
+            width: 100%
+            bottom: 0
+            left: 0
+            height: 0
+            background-color: #EF4B4B
+            transition: .3s ease-in-out
+
+        &:hover::after
+            height: 4px
+
+        &:hover
+            
+            span
+                color: #303037
+
+    .active_settings_navigator_link
+
+        &::after
+            height: 4px
+        
+        span
+            color: #303037
+
+.profile_details_section
+    // display: none
+    padding: 25px 0 100px
+    .profile_details
+        display: grid
+        grid-template-columns: calc(50% - 20px) calc(50% - 20px)
+        grid-column-gap: 40px
+
+        &>div
+            background: #FFFFFF
+            box-shadow: 0px 1px 7px rgba(86, 86, 86, 0.15)
+            border-radius: 5px
+            padding: 40px 30px
+
+.each_student_sett_header
+    margin-bottom: 15px
+    p
+        font-family: circular
+        font-size: 18px
+        line-height: 21px
+        margin-bottom: 15px
+    span
+        font-family: nunito
+        font-style: normal
+        font-weight: normal
+        font-size: 16px
+        line-height: 23px
+        color: #989898
+
+.image_change_div
+    margin: 20px 0 0px
+    .image
+        width: 75px
+        height: 75px
+        border-radius: 50%
+        margin-right: 24px
+        img
+            width: 100%
+            height: 100%
+            border-radius: 50%
+    .link
+        a
+            font-family: circular
+            font-size: 16px
+            line-height: 30px
+            color: #EF4B4B
+            transition: .3s ease-in-out
+            &:hover
+                color: #e04040
+                text-decoration: none
+                letter-spacing: .4px
+
+.setings_form_wrapper    
+
+    .common_input_wrapper_2
+        margin-top: -8px
+        margin-bottom: -8px
+
+    .button
+        margin-top: 40px
+
+.other_information_section
+    display: none
+    padding: 25px 0 100px
+    .profile_details
+        display: grid
+        grid-template-columns: calc(50% - 20px)
+        grid-column-gap: 40px
+
+        &>div
+            background: #FFFFFF
+            box-shadow: 0px 1px 7px rgba(86, 86, 86, 0.15)
+            border-radius: 5px
+            padding: 40px 30px
+
+    .cols-2
+        display: grid
+        grid-template-columns: calc(50% - 10px) calc(50% - 10px)
+        grid-column-gap: 20px
+
+        margin-top: -8px
+        margin-bottom: -8px
+
+        .common_input_wrapper_2
+            margin-top: 0
+            margin-bottom: 0
+
+.notification_section
+    padding: 25px 0 100px
+    display: none
+    .profile_details
+        display: grid
+        grid-template-columns: 100%
+
+        &>div
+            background: #FFFFFF
+            box-shadow: 0px 1px 7px rgba(86, 86, 86, 0.15)
+            border-radius: 5px
+            padding: 40px 30px
+
+    .notification_option
+        margin-top: 40px
+        &>div
+            margin-bottom: 25px
+        .notification_label
+            p
+                font-family: circular
+                font-size: 18px
+                line-height: 21px
+                margin-bottom: 15px
+            span
+                font-family: nunito
+                font-style: normal
+                font-weight: normal
+                font-size: 16px
+                line-height: 23px
+                color: #989898
+
+        .radio_option
+            margin-right: 25px
+            input[type="radio"]
+                display: none
+            label
+                display: flex
+                flex-direction: row
+                span
+                    width: 20px
+                    height: 20px
+                    border-radius: 2px
+                    border: 1px solid #EF4B4B                    
+                    display: flex
+                    align-items: center
+                    justify-content: center
+                    cursor: pointer
+                    transition: .3s
+
+                    &::after
+                        content: "\2713"
+                        color: #fff
+
+            input[type="radio"]:checked + span
+                background-color: #EF4B4B
+
+/* /student dashboard Settings page style */
+/* Pending Appointment Page style */
+.pending_appointment_container
+    background: #FFFFFF
+    box-shadow: 0px 1px 7px rgba(86, 86, 86, 0.15)
+    border-radius: 5px
+    padding: 40px 30px
+    display: grid
+    grid-template-columns: 31.33333% 31.33333% 31.33333%
+    grid-gap: 30px 3%
+
+    &>div
+        background: #FFFFFF
+        box-shadow: 0px 0px 24px rgba(86, 86, 86, 0.156988)
+        border-radius: 5px
+
+        .card_body
+            padding: 30px 20px
+            border-bottom: 1px solid #E3E3E3
+            .image
+                width: 60px
+                height: 60px
+                border-radius: 50%
+                background: #D8D8D8
+                box-shadow: 0px 2px 9px #FFE3E3
+                margin-right: 15px
+                img
+                    width: 100%
+                    height: 100%
+                    border-radius: 50%
+            .name
+                h4
+                    font-size: 18px
+                    line-height: 21px
+                    color: #EF4B4B
+                    margin-bottom: 2px
+                p
+                    font-style: normal
+                    font-weight: normal
+                    font-size: 14px
+                    line-height: 20px
+            .note
+                margin: 20px 0
+                h6
+                    font-family: nunito
+                    font-style: normal
+                    font-weight: 800
+                    font-size: 17px
+                    line-height: 20px
+                    margin-bottom: 5px
+                p
+                    font-family: nunito
+                    font-style: normal
+                    font-weight: 600
+                    font-size: 14px
+                    line-height: 20px
+            .channel
+                margin-bottom: 20px
+                h4
+                    font-family: nunito
+                    font-style: normal
+                    font-weight: 800
+                    font-size: 20px
+                    line-height: 20px
+                    margin-bottom: 5px
+                p
+                    font-family: nunito
+                    font-style: normal
+                    font-weight: 600
+                    font-size: 15px
+                    line-height: 20px
+            .date_top
+                margin-bottom: 10px
+                i
+                    padding-right: 10px
+                    color:  #989898
+                span
+                    font-family: nunito
+                    font-style: normal
+                    font-weight: normal
+                    font-size: 14px
+                    line-height: 20px
+            .date_bottom
+                i
+                    padding-right: 10px
+                    color:  #989898
+                span
+                    font-family: nunito
+                    font-style: normal
+                    font-weight: normal
+                    font-size: 14px
+                    line-height: 20px
+
+
+        .card_footer
+            padding: 12px 20px
+            i
+                padding-right: 10px
+                color:  #989898
+            a
+                font-family: nunito
+                font-style: normal
+                font-weight: 600
+                font-size: 14px
+                line-height: 19px
+                color: #EF4B4B
+                transition: .3s ease-in-out
+                &:hover
+                    text-decoration: none
+                    color: #e03b3b
+
+/* /Pending Appointment Page style */
+/* Ongoing Appointment Page style */
+.ongoing_card_footer
+    padding: 12px 20px
+    a                
+        background: #F0F7F2
+        border-radius: 14px
+        padding: 7px 25px
+        font-family: nunito
+        font-style: normal
+        font-weight: 600
+        font-size: 14px
+        line-height: 19px
+        color: #75B07B
+        transition: .3s ease-in-out
+        &:hover
+            background: #daf0e0
+            text-decoration: none
+
+.appointment-complete-modal
+    position: fixed
+    background-color: rgba(0, 0, 0, 0.103311)
+    top: 0
+    right: 0
+    bottom: 0
+    left: 0
+    z-index: 999
+    visibility: hidden
+    opacity: 0
+    pointer-events: none
+    transition: all 0.3s
+    &:target 
+        visibility: visible
+        opacity: 1
+        pointer-events: auto
+    &>div
+        width: 45%
+        margin: 0 auto
+        position: absolute
+        top: 50%
+        left: 50%
+        transform: translate(-50%, -50%)
+
+        background: #FFFFFF
+        box-shadow: 0px 12px 15px rgba(0, 0, 0, 0.266772)
+        border-radius: 5px
+        padding: 40px 35px
+
+    .head
+        h4
+            font-size: 32px
+            line-height: 37px
+            margin-bottom: 10px
+        p
+            font-style: normal
+            font-weight: 600
+            font-size: 18px
+            line-height: 30px
+            color: #989898
+    
+    .experience_question
+        margin: 50px 0 30px
+        h6
+            font-size: 18px
+            ine-height: 21px
+
+    .footer_button
+        margin-top: 20px
+        &>div
+            margin-left: 12px
+
+/* /Ongoing Appointment Page style */
+/* Ongoing course page style */
+.ongoing_course_list_wrapper    
+    padding: 30px
+    
+    display: grid
+    grid-template-columns: 31.3333% 31.3333% 31.3333%
+    grid-gap: 30px 3%
+
+    .each_course
+        background: #FFFFFF
+        border-radius: 5px
+        padding: 35px 25px 0
+        transition: .3s
+        box-shadow: 0px 0px 24px rgba(86, 86, 86, 0.15)
+        &:hover
+            box-shadow: 0px 0px 14px rgba(86, 86, 86, 0.15)
+
+        .lecturer
+
+            p
+                font-family: nunito
+                font-style: italic
+                font-weight: normal
+                font-size: 14px
+                line-height: 20px
+
+        .price_tag_icon
+
+            i
+                color: #EF4B4B
+                margin-right: 9px
+
+        .course_amount
+
+            p
+                font-family: nunito
+                font-style: normal
+                font-weight: normal
+                font-size: 14px
+                line-height: 20px
+
+        .course_image_wrapper
+        
+        .course_icon_n_name
+            margin: 30px 0
+
+        .course_image
+
+            height: 80px
+            width: 80px
+            border-radius: 50%
+
+            img
+                height: 100%
+                width: 100%
+                border-radius: 50%
+
+        .course_name
+            padding-left: 30px
+
+        .course_description
+            margin-bottom: 10px
+
+            p
+                font-family: Nunito
+                font-style: normal
+                font-weight: normal
+                font-size: 14px
+                line-height: 20px
+            
+        .seats_left
+            margin-bottom: 25px
+
+            .stud_images
+
+                img
+                    display: inline-block
+                    width: 38px
+                    height: 38px
+                    border-radius: 50%
+                    border: 2px solid #61ABFF
+                    float: left
+
+                img:nth-child(2)
+                    transform: translateX(-15px)
+                img:nth-child(3)
+                    transform: translateX(-30px)
+                img:nth-child(4)
+                    transform: translateX(-45px)
+                img:nth-child(5)
+                    transform: translateX(-60px)
+                        
+
+            p
+                font-style: normal
+                font-weight: 600
+                font-size: 14px
+                line-height: 19px
+                color: #EF4B4B
+
+.ongoing_course_card_footer
+    padding: 12px 20px
+    border-top: 1px solid #E3E3E3
+    a                
+        background: #F0F7F2
+        border-radius: 14px
+        padding: 7px 25px
+        font-family: nunito
+        font-style: normal
+        font-weight: 600
+        font-size: 14px
+        line-height: 19px
+        color: #75B07B
+        transition: .3s ease-in-out
+        &:hover
+            background: #daf0e0
+            text-decoration: none
+
+.course-complete-modal
+    position: fixed
+    background-color: rgba(0, 0, 0, 0.103311)
+    top: 0
+    right: 0
+    bottom: 0
+    left: 0
+    z-index: 999
+    visibility: hidden
+    opacity: 0
+    pointer-events: none
+    transition: all 0.3s
+    &:target 
+        visibility: visible
+        opacity: 1
+        pointer-events: auto
+    &>div
+        width: 45%
+        margin: 0 auto
+        position: absolute
+        top: 50%
+        left: 50%
+        transform: translate(-50%, -50%)
+
+        background: #FFFFFF
+        box-shadow: 0px 12px 15px rgba(0, 0, 0, 0.266772)
+        border-radius: 5px
+        padding: 40px 35px
+
+    .head
+        h4
+            font-size: 32px
+            line-height: 37px
+            margin-bottom: 10px
+        p
+            font-style: normal
+            font-weight: 600
+            font-size: 18px
+            line-height: 30px
+            color: #989898
+    
+    .experience_question
+        margin: 50px 0 10px
+        h6
+            font-size: 18px
+            ine-height: 21px
+    .Ratings
+        margin: 0 0 30px
+        i
+            color: #EF4B4B
+            cursor: pointer
+
+    .footer_button
+        margin-top: 20px
+        &>div
+            margin-left: 12px
+
+/* /Ongoing course page style */
+/* Student dashboard coaches details page style */
+.coach_box_details_container
+    background: #FFFFFF
+    box-shadow: 0px 7px 24px rgba(0, 0, 0, 0.15)
+    border-radius: 5px
+    margin-top: 70px
+
+    .coach_image
+        width: 33%
+        img
+            width: 100%
+            height: 100%
+
+    .coach_details_div
+        width: 67%
+        padding: 70px 60px
+        .coach_details_div_top
+            padding-bottom: 20px
+            border-bottom: 1px solid #E3E3E3
+
+            .text
+                h4
+                    font-size: 32px
+                    line-height: 37px
+            .star
+                i
+                    color: #EF4B4B
+                    margin-top: 10px                   
+
+        .coach_summary
+            .coach_summary_n_specialization
+                width: 75%
+                border-right: 1px solid #E3E3E3
+                padding:
+                    top: 30px
+                    right: 30px
+                .summary
+                    p
+                        font-style: normal
+                        font-weight: normal
+                        font-size: 16px
+                        line-height: 25px
+
+                .specialization
+                    margin-top: 30px
+                    .header
+                        margin-bottom: 10px
+                        h6
+                            font-size: 16px
+                            line-height: 30px
+
+                    .spec_list                        
+                        p
+                            font-style: normal
+                            font-weight: normal
+                            font-size: 16px
+                            line-height: 23px
+
+            .coach_social
+                width: 25%
+                padding:
+                    top: 30px
+                    left: 30px                
+                .video
+                    width: 100%
+                    height: 100px
+                .socials
+                    margin-top: 38px
+                    .text
+                        margin-bottom: 10px
+                        h6
+                            font-size: 16px
+                            line-height: 30px
+                    .social_links                        
+                        i
+                            font-size: 23px
+                            &:nth-child(2)
+                                margin: 0 10px 0
+
+        .book_button
+            margin-top: 35px
+     
+.about_coach_section
+    background-color: #f2f2f2
+    // padding-bottom: 100px
+
+._more_about_coach
+    margin: 70px 0 70px
+
+    .Header
+        margin-bottom: 15px
+
+        h3
+            font-size: 32px
+            line-height: 37px
+
+    .the_description
+        margin-bottom: 40px
+
+        p
+            font-style: normal
+            font-weight: normal
+            font-size: 16px
+            line-height: 25px
+
+    .coach_certifications
+
+        .header
+            margin-bottom: 10px
+
+            h6
+                font-size: 18px
+                line-height: 21px
+
+        .certs
+
+            p
+                font-style: normal
+                font-weight: normal
+                font-size: 16px
+                line-height: 25px
+
+.course_from_coach_head
+    margin-bottom: 25px
+    h4
+        font-size: 32px
+        ine-height: 37px
+.course_from_coach_section
+    .course_list_wrapper   
+        background: #FFFFFF
+        box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.15)
+        border-radius: 5px 
+        padding: 30px
+        
+        display: grid
+        grid-template-columns: 31.3333% 31.3333% 31.3333%
+        grid-gap: 30px 3%
+
+        .each_course
+            background: #FFFFFF
+            border-radius: 5px
+            padding: 35px 25px
+            transition: .3s
+            box-shadow: 0px 0px 24px rgba(86, 86, 86, 0.15)
+            &:hover
+                box-shadow: 0px 0px 14px rgba(86, 86, 86, 0.15)
+
+            .lecturer
+
+                p
+                    font-family: nunito
+                    font-style: italic
+                    font-weight: normal
+                    font-size: 14px
+                    line-height: 20px
+
+            .price_tag_icon
+
+                i
+                    color: #EF4B4B
+                    margin-right: 9px
+
+            .course_amount
+
+                p
+                    font-family: nunito
+                    font-style: normal
+                    font-weight: normal
+                    font-size: 14px
+                    line-height: 20px
+
+            .course_image_wrapper
+            
+            .course_icon_n_name
+                margin: 30px 0
+
+            .course_image
+
+                height: 80px
+                width: 80px
+                border-radius: 50%
+
+                img
+                    height: 100%
+                    width: 100%
+                    border-radius: 50%
+
+            .course_name
+                padding-left: 30px
+
+            .course_description
+                margin-bottom: 10px
+
+                p
+                    font-family: Nunito
+                    font-style: normal
+                    font-weight: normal
+                    font-size: 14px
+                    line-height: 20px
+                
+            .seats_left
+                margin-bottom: 25px
+
+                .stud_images
+
+                    img
+                        display: inline-block
+                        width: 38px
+                        height: 38px
+                        border-radius: 50%
+                        border: 2px solid #61ABFF
+                        float: left
+
+                    img:nth-child(2)
+                        transform: translateX(-15px)
+                    img:nth-child(3)
+                        transform: translateX(-30px)
+                    img:nth-child(4)
+                        transform: translateX(-45px)
+                    img:nth-child(5)
+                        transform: translateX(-60px)
+                            
+
+                p
+                    font-style: normal
+                    font-weight: 600
+                    font-size: 14px
+                    line-height: 19px
+                    color: #EF4B4B
+
+
+/* /Student dashboard coaches details page style */
+/* Coach Overview page style */
+
+.coach_overview_cards
+        margin: 100px 0 60px
+
+        .cards_wrapper
+            display: grid
+            grid-template-columns: 23% 23% 23% 23%
+            grid-column-gap: 2.6666%
+
+            &>div
+                background: #FFFFFF
+                box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.07)
+                border-radius: 5px
+                padding: 20px
+
+                .left
+
+                    h6
+                        font-size: 16px
+                        line-height: 30px
+                        color: #989898
+                        margin-bottom: 10px
+                    
+                    h2
+                        font-size: 32px
+                        line-height: 37px
+                        span
+                            font-family: circular 
+                            font-size: 14px 
+                            line-height: 30px 
+                            color: #989898 
+                        sup
+                            font-family: circular
+                            font-size: 15px
+                            line-height: 18px
+                            color: #303037
+
+.appointments_top_part
+    margin-bottom: 60px
+    .top
+        margin-bottom: 20px
+        h4
+            font-size: 25px
+            ine-height: 29px
+
+.appointments_sortType_n_category
+    .left
+        span
+            background-color: #FFE3E3
+            border-radius: 22.5px
+            padding: 11px 28px
+            font-family: circular
+            font-size: 14px
+            line-height: 16px
+            color: #FB7474
+            cursor: pointer
+            transition: .3s
+
+            &:nth-child(2)
+                margin: 0 15px
+
+            &:hover
+                background-color: #f8cdcd
+                
+            &.active
+                background-color: #FB7474
+                color: #fff
+            
+    .right
+        width: 20%
+        .text
+            margin-right: 9px
+        p
+            font-style: normal
+            font-weight: bold
+            font-size: 14px
+            line-height: 20px
+            color: #989898
+        .input
+            width: 50%
+
+.appointment_card_footer
+    border-top: 1px solid #E3E3E3
+    padding: 12px 20px
+    a                
+        background: #F0F7F2
+        border-radius: 14px
+        padding: 7px 25px
+        font-family: nunito
+        font-style: normal
+        font-weight: 600
+        font-size: 14px
+        line-height: 19px
+        color: #75B07B
+        transition: .3s ease-in-out
+        &:hover
+            background: #daf0e0
+            text-decoration: none
+
+        &.reschedule
+            background-color: #FFE3E3
+            color: #EF4B4B
+            margin-left: 10px
+            &:hover
+                text-decoration: none
+                background-color: #f5d0d0
+
+/* Coach Overview page style */
+/* Coach Dashboard Courses */
+.coach_dashboard_courses_top
+    margin: 100px 0 20px
+    .create_course_btn_div
+        margin-bottom: 20px
+    .top
+        .left
+            span
+                background-color: #FFE3E3
+                border-radius: 22.5px
+                padding: 11px 28px
+                font-family: circular
+                font-size: 14px
+                line-height: 16px
+                color: #FB7474
+                cursor: pointer
+                transition: .3s
+                
+                &:nth-child(2)
+                    margin: 0 15px
+
+                &:hover
+                    background-color: #f8cdcd
+                        
+                &.active
+                    background-color: #FB7474
+                    color: #fff
+
+        .right
+            width: 50%
+            // background-color: red
+            .search_input
+                width: 65%
+                padding: 
+                    left: 5px
+                    right: 0
+                background: #FFFFFF
+                box-shadow: 0px 0px 5px rgba(21, 24, 39, 0.176491)
+
+                input
+                    width: 98%
+                    padding: 10px 0 10px 10px
+                    border: none
+
+                    font-family: nunito
+                    font-style: normal
+                    font-weight: normal
+                    font-size: 14px
+                    color: #989898
+
+                    &:focus
+                        outline: none
+                    
+                    &::placeholder
+                        font-family: nunito
+                        font-style: normal
+                        font-weight: normal
+                        font-size: 14px
+                        color: #989898
+                
+                button
+                    background-color: transparent
+                    border: none
+                    color: #151827
+                    font-size: 12px
+                    width: 2%
+            .sort_text
+                margin: 0 15px
+
+            .coach_select
+                width: 25%
+                margin:
+                    left: 11px
+                    right: 11px
+            
+            .cost_select
+                width: 15%
+
+/* /Coach Dashboard Courses */
+/* Course enrolled student page */
+.course_banner_wrapper
+    margin-top: 80px
+    background: #FFFFFF
+    box-shadow: 0px 1px 7px rgba(86, 86, 86, 0.15)
+    border-radius: 5px
+    .image
+        width: 20%
+        img
+            width: 100%
+            height: 100%
+    .details
+        width: 80%
+        padding: 40px 30px 0 50px
+        .title
+            padding-bottom: 20px
+            border-bottom: 1px solid #E3E3E3
+            p
+                font-family: circular
+                font-size: 18px
+                line-height: 21px
+        .Description_n_price
+            .description
+                width: 75%
+                border-right: 1px solid #E3E3E3
+                .top
+                    padding: 10px 20px 25px 0
+                    p
+                        font-style: normal
+                        font-weight: normal
+                        font-size: 14px
+                        line-height: 20px
+                   
+                .image_n_seat
+                    width: 70%
+                    display: block
+                    padding-bottom: 30px
+
+                    .stud_images
+
+                        img
+                            display: inline-block
+                            width: 38px
+                            height: 38px
+                            border-radius: 50%
+                            border: 2px solid #61ABFF
+                            float: left
+
+                        img:nth-child(2)
+                            transform: translateX(-15px)
+                        img:nth-child(3)
+                            transform: translateX(-30px)
+                        img:nth-child(4)
+                            transform: translateX(-45px)
+                        img:nth-child(5)
+                            transform: translateX(-60px)
+                                
+
+                    p
+                        font-style: normal
+                        font-weight: 600
+                        font-size: 14px
+                        line-height: 19px
+                        color: #EF4B4B
+
+            .price
+                width: 25%
+                padding: 10px 10px 0 20px
+                h6
+                    font-size: 16px
+                    line-height: 30px
+                    margin-bottom: 1px
+                p
+                    font-style: normal
+                    font-weight: normal
+                    font-size: 16px
+                    line-height: 23px
+
+.enrolled_student
+    margin: 50px 0 100px
+    .top_text
+        margin-bottom: 25px
+        h4
+            font-size: 25px
+            line-height: 29px
+
+.enrolledStudent_list_n_pagination_wrapper
+    background: #FFFFFF
+    box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.15)
+    border-radius: 5px
+
+    .pagination
+        border-top: 0.7px solid #E3E3E3
+
+        &>div
+            padding: 15px
+            border:                
+                right: 0.7px solid #E3E3E3
+            
+            a
+                color:#EF4B4B
+                font-family: nunito
+                font-style: normal
+                font-weight: normal
+                font-size: 16px
+                line-height: 22px
+                transition: .3s
+                
+                &:hover                    
+                    color: #989898  
+                    text-decoration: none   
+
+                &.active
+                    color: #989898       
+
+        &:nth-child(:last-child)
+            border: none
+            
+.student_list_wrapper    
+    padding: 30px
+    
+    display: grid
+    grid-template-columns: 31.3333% 31.3333% 31.3333%
+    grid-gap: 30px 3%
+    .each_student
+        background: #FFFFFF
+        box-shadow: 0px 0px 24px rgba(86, 86, 86, 0.15)
+        border-radius: 5px
+        .top
+            padding: 20px
+            .stud_image
+                margin-right: 20px
+                img
+                    display: inline-block
+                    width: 50px
+                    height: 50px
+                    border-radius: 50%
+                    border: 2px solid #61ABFF
+            .name_n_email
+                p
+                    font-style: normal
+                    font-weight: 600
+                    font-size: 16px
+                    line-height: 22px
+                span
+                    font-family: nunito
+                    font-style: normal
+                    font-weight: normal
+                    font-size: 14px
+                    line-height: 19px
+                    color: #989898
+             
+        .bottom
+            padding: 12px 20px
+            a                
+                background: #F0F7F2
+                border-radius: 14px
+                padding: 7px 25px
+                font-family: nunito
+                font-style: normal
+                font-weight: 600
+                font-size: 14px
+                line-height: 19px
+                color: #75B07B
+                transition: .3s ease-in-out
+                &:hover
+                    background: #daf0e0
+                    text-decoration: none
+
+                &.reschedule
+                    background-color: #FFE3E3
+                    color: #EF4B4B
+                    margin-left: 10px
+                    &:hover
+                        text-decoration: none
+                        background-color: #f5d0d0
+
+/* /Course enrolled student page */
+/* Coach Dashboard create course page */
+.create_course_form_section
+    margin-top: 80px
+    padding-bottom: 100px
+    .create_course_form
+        background: #FFFFFF
+        border-radius: 5px
+        padding: 50px 40px 70px
+    .service_section       
+        .header
+            margin-bottom: 20px
+            p
+                font-style: normal
+                font-weight: 600
+                font-size: 18px
+                line-height: 30px
+        .servive_type            
+            .servive_type_options
+                
+                &>div
+                    margin: 0 20px 20px 0
+                    background: #FFFFFF
+                    border: 1px solid #E3E3E3
+                    box-sizing: border-box
+                    border-radius: 3px
+                    padding: 7px 20px
+                    cursor: pointer
+                    transition: .4s
+
+                    &.active
+                        background: #EFF7F1
+                        border: 0.8px solid #75B07B
+                        box-shadow: 0px 0px 15px rgba(117, 176, 123, 0.26)
+
+                    p
+                        font-style: normal
+                        font-weight: normal
+                        font-size: 14px
+                        line-height: 20px
+                        color: #989898
+        
+    .about_the_course
+        margin-top: 20px
+        .header
+            margin-bottom: 20px
+            p
+                font-style: normal
+                font-weight: 600
+                font-size: 18px
+                line-height: 30px
+        .common_input_wrapper_2
+            margin: 12px 0 12px
+        .form_buttons
+            margin-top: 40px
+            button
+                margin-left: 15px
+        .cols-2
+            display: grid
+            grid-template-columns: 48% 48%
+            grid-column-gap: 4%
+        .date_n_time
+            .left
+                width: 40%
+            .right
+                width: 50%
+                .time
+                    width: 50%
+                .to
+                    width: 50%
+                    margin-left: 20px
+            .label
+                margin-right: 20px
+                p
+                    font-style: normal
+                    font-weight: 600
+                    font-size: 18px
+                    line-height: 30px
+
+/* /Coach Dashboard create course page */
+/* Coach dashboard services */
+.add_service_button
+    margin: 70px 0 30px
+
+.added_services_wrapper
+    background: #ffffff
+    box-shadow: 0px 1px 7px rgba(86, 86, 86, 0.15)#ffffff
+    border-radius: 5px#ffffff
+    padding: 30px
+
+    display: grid
+    grid-template-columns: 31.3333% 31.3333% 31.3333%
+    grid-gap: 30px 3%
+    .each_service
+        background: #ffffff
+        box-shadow: 0px 0px 24px rgba(86, 86, 86, 0.15)
+        border-radius: 5px
+        border: 0.7px solid #E3E3E3
+        .top
+            padding: 15px
+            .left
+                width: 95%
+                text-align: center
+                p
+                    font-style: normal
+                    font-weight: 600
+                    font-size: 16px
+                    line-height: 22px
+                span
+                    font-family: Nunito
+                    font-style: normal
+                    font-weight: 600
+                    font-size: 16px
+                    line-height: 22px
+                    color: #989898
+            .right
+                width: 5%
+                text-align: right
+                span
+                    color: #989898
+                    font-size: 23px
+        .bottom
+            border-top: 1px solid #E3E3E3
+            &>div
+                width: 50%
+                padding: 15px 5px 15px 18px
+                span
+                    font-family: nunito
+                    font-style: normal
+                    font-weight: normal
+                    font-size: 14px
+                    line-height: 19px
+                    color: #989898                    
+                p
+                    font-family: nunito
+                    font-style: normal
+                    font-weight: 600
+                    font-size: 14px
+                    line-height: 19px
+                    margin-top: 5px
+            .left
+                border-right: 1px solid #E3E3E3
+
+.add-service-modal
+    position: fixed
+    background-color: rgba(0, 0, 0, 0.103311)
+    top: 0
+    right: 0
+    bottom: 0
+    left: 0
+    z-index: 999
+    visibility: hidden
+    opacity: 0
+    pointer-events: none
+    transition: all 0.3s
+    &:target 
+        visibility: visible
+        opacity: 1
+        pointer-events: auto
+    &>div
+        width: 45%
+        margin: 0 auto
+        position: absolute
+        top: 50%
+        left: 50%
+        transform: translate(-50%, -50%)
+
+        background: #FFFFFF
+        box-shadow: 0px 12px 15px rgba(0, 0, 0, 0.266772)
+        border-radius: 5px
+        padding: 40px 35px
+
+    .head
+        margin-bottom: 30px
+        h4
+            font-size: 32px
+            line-height: 37px
+            margin-bottom: 10px
+        p
+            font-style: normal
+            font-weight: 600
+            font-size: 18px
+            line-height: 30px
+            color: #989898
+    .common_input_wrapper_2
+        margin: 12px 0
+    .comm_channel
+        margin-top: 15px
+    .footer_button
+        margin-top: 20px
+        &>div
+            margin-left: 12px
+    .cols-2
+        display: grid
+        grid-template-columns: 48% 48%
+        grid-column-gap: 4%
+
+    .comm_channel       
+        .header
+            margin-bottom: 12px
+            p
+                font-style: normal
+                font-weight: 600
+                font-size: 18px
+                line-height: 30px
+        .comm_channel_type            
+            .comm_channel_options
+                
+                &>div
+                    margin: 0 20px 20px 0
+                    background: #FFFFFF
+                    border: 1px solid #E3E3E3
+                    box-sizing: border-box
+                    border-radius: 3px
+                    padding: 7px 20px
+                    cursor: pointer
+                    transition: .4s
+
+                    &.active
+                        background: #EFF7F1
+                        border: 0.8px solid #75B07B
+                        box-shadow: 0px 0px 15px rgba(117, 176, 123, 0.26)
+
+                    p
+                        font-style: normal
+                        font-weight: normal
+                        font-size: 14px
+                        line-height: 20px
+                        color: #989898
+    
+
+/* Coach dashboard services */    
+/* Coach Dashboard settlement */
+.settlement_card_wrapper
+    margin: 80px 0 0
+    
+    .card_wrapper
+        box-shadow: 0px 1px 7px rgba(86, 86, 86, 0.15)
+        border-radius: 5px
+
+        display: grid
+        grid-template-columns: 25% 25% 25% 25%
+        .card
+            background-color: #fff
+            padding: 25px
+            border-right: .7px solid #E3E3E3
+            &:last-child
+                border-right: none
+            
+            h6
+                font-size: 16px
+                line-height: 30px
+                color: #989898
+                margin-bottom: 10px
+            
+            h2
+                font-size: 32px
+                line-height: 37px
+                span
+                    font-family: circular 
+                    font-size: 14px 
+                    line-height: 30px 
+                    color: #989898 
+                sup
+                    font-family: circular
+                    font-size: 15px
+                    line-height: 18px
+                    color: #303037
+
+.account_details_wrapper
+    margin: 50px 0 50px
+    .account_details
+        display: grid
+        grid-template-columns: 48% 48%
+        grid-column-gap: 4%
+        &>div                              
+            background: #FFFFFF
+            box-shadow: 0px 1px 7px rgba(86, 86, 86, 0.15)
+            border-radius: 5px
+            padding: 35px
+        .left
+            .top
+                p
+                    font-family: circular
+                    font-size: 16px
+                    line-height: 28px
+                    color: #989898
+            .middle
+                margin: 30px 0
+                h2
+                    font-size: 32px
+                    line-height: 37px
+                    span
+                        font-family: circular 
+                        font-size: 14px 
+                        line-height: 30px 
+                        color: #989898 
+                    sup
+                        font-family: circular
+                        font-size: 15px
+                        line-height: 18px
+                        color: #303037
+            .down
+                .button_wrapper
+                    width: 85%
+                    margin: 0 auto
+        .right
+            .top
+                p
+                    font-family: circular
+                    font-size: 16px
+                    line-height: 28px
+                    color: #989898
+            .middle
+                margin: 15px 0
+                p
+                    font-family: circular
+                    font-size: 16px
+                    line-height: 28px
+                    color: #818181
+                    span
+                        font-weight: bold
+                        font-size: 18px
+                        color: #303037
+            .down
+                a
+                    font-family: circular
+                    font-size: 16px
+                    line-height: 28px
+                    color: #EF4B4B
+                    transition: .3s
+                    &:hover
+                        text-decoration: none
+                        color: #fc8888
+
+.table_div_wrapper
+    padding-bottom: 100px
+    .table_div
+        background: #FFFFFF
+        box-shadow: 0px 1px 7px rgba(86, 86, 86, 0.15)
+        border-radius: 5px
+
+        table
+            width: 100%
+            table-layout: fixed
+            th, td
+                text-align: center
+                padding: 20px 5px            
+            th
+                font-family: circular
+                font-size: 18px
+                line-height: 21px
+                color: #303037
+            td
+                font-family: nunito
+                font-style: normal
+                font-weight: normal
+                font-size: 16px
+                line-height: 23px
+                color: #303037
+            tbody
+                tr
+                    border-top: 1px solid #CDD9F0
+                    td
+                        &.pending_status
+                            span
+                                background: #FFE3E3
+                                border-radius: 15px
+                                font-style: normal
+                                font-weight: normal
+                                font-size: 12px
+                                line-height: 16px
+                                text-align: center
+                                color: #EF4B4B
+                                padding: 10px 25px
+                                cursor: pointer
+                                transition: .3s
+                                &:hover
+                                    background: #f7d2d2
+                        &.active_status
+                            span
+                                background: #F0F7F2
+                                border-radius: 15px
+                                font-style: normal
+                                font-weight: normal
+                                font-size: 12px
+                                line-height: 16px
+                                text-align: center
+                                color: #75B07B
+                                padding: 10px 25px
+                                cursor: pointer
+                                transition: .3s
+                                &:hover
+                                    background: #ccf5d7
+                   
+
+/* /Coach Dashboard settlement */
+/* Coach dashboard settings (Copied from student dashboard Settings page style section ) */
+.availability_section
+    .profile_details
+        padding: 50px 40px
+        background: #FFFFFF
+        box-shadow: 0px 1px 7px rgba(86, 86, 86, 0.15)
+        border-radius: 5px
+        .top_part
+            padding-bottom: 20px
+            border-bottom: 1px solid #E3E3E3
+            .header
+                margin-bottom: 15px
+                p                    
+                    font-family: circular
+                    font-size: 18px
+                    line-height: 21px
+            .time_zone
+                .left
+                    p
+                        font-family: circular
+                        font-size: 18px
+                        line-height: 21px
+                .right
+                    width: 35%
+        .bottom_part
+            padding-top: 20px
+            .top
+                .left
+                    p
+                        font-family: circular
+                        font-size: 18px
+                        line-height: 21px
+                .right
+                    width: 45%
+                    .from, .to
+                        width: 47%
+                    .to
+                        p
+                            margin: 0 20px
+                            font-family: nunito
+                            font-style: normal
+                            font-weight: normal
+                            font-size: 16px
+                            line-height: 30px
+            .week_days
+                margin-top: 40px
+                input[type="checkbox"]
+                    display: none
+                input[type="checkbox"] + label
+                    font-family: circular
+                    font-size: 18px
+                    line-height: 21px
+                    display: flex
+                    flex-direction: row
+                    align-items: center
+                    cursor: pointer
+                    &::before
+                        content: "\2713"
+                        width: 24px
+                        height: 24px
+                        display: flex
+                        flex-direction: row
+                        align-items: center
+                        justify-content: center
+                        color: #fff
+                        background-color: transparent
+                        border: 1px solid #EF4B4B
+                        border-radius: 2px
+                        transition: .3s
+                        margin-right: 10px
+                input[type="checkbox"]:checked + label::before
+                    background-color: #EF4B4B                        
+
+.notification_section2
+    padding: 25px 0 100px
+    .profile_details
+        display: grid
+        grid-template-columns: 100%
+
+        &>div
+            background: #FFFFFF
+            box-shadow: 0px 1px 7px rgba(86, 86, 86, 0.15)
+            border-radius: 5px
+            padding: 40px 30px
+
+    .notification_option
+        margin-top: 40px
+        &>div
+            margin-bottom: 25px
+        .notification_label
+            p
+                font-family: circular
+                font-size: 18px
+                line-height: 21px
+                margin-bottom: 15px
+            span
+                font-family: nunito
+                font-style: normal
+                font-weight: normal
+                font-size: 16px
+                line-height: 23px
+                color: #989898
+
+        .radio_option
+            margin-right: 25px
+            input[type="radio"]
+                display: none
+            label
+                display: flex
+                flex-direction: row
+                span
+                    width: 20px
+                    height: 20px
+                    border-radius: 2px
+                    border: 1px solid #EF4B4B                    
+                    display: flex
+                    align-items: center
+                    justify-content: center
+                    cursor: pointer
+                    transition: .3s
+
+                    &::after
+                        content: "\2713"
+                        color: #fff
+
+            input[type="radio"]:checked + span
+                background-color: #EF4B4B
+
+.avail_n_notif
+    display: none             
+/* /Coach dashboard settings */
+/* Admin overview page style */
+.admin_overview_cards
+        margin: 80px 0 80px
+
+        .cards_wrapper
+            display: grid
+            grid-template-columns: 23% 23% 23% 23%
+            grid-column-gap: 2.6666%
+
+            &>div
+                background: #FFFFFF
+                box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.07)
+                border-radius: 5px
+                padding: 20px
+
+                .left
+
+                    h6
+                        font-size: 16px
+                        line-height: 30px
+                        color: #989898
+                        margin-bottom: 10px
+                    
+                    h2
+                        font-size: 32px
+                        line-height: 37px
+                        span
+                            font-family: circular 
+                            font-size: 14px 
+                            line-height: 30px 
+                            color: #989898 
+                        sup
+                            font-family: circular
+                            font-size: 15px
+                            line-height: 18px
+                            color: #303037
+
+.history_n_stream_section
+.history_n_stream
+    .recent_payment
+        width: 70%
+        padding: 0 30px 80px 0
+        border-right: 1px solid #E3E3E3
+        .header
+            margin-bottom: 14px
+            h5
+                font-size: 25px
+                line-height: 29px
+        .table_div
+            width: 100%
+            background: #FFFFFF
+            box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.07)
+            border-radius: 5px
+            table
+                width: 100%
+                table-layout: fixed
+                th, td
+                    padding: 20px 15px            
+                th
+                    font-family: circular
+                    font-size: 18px
+                    line-height: 21px
+                    color: #303037
+                td
+                    font-family: nunito
+                    font-style: normal
+                    font-weight: normal
+                    font-size: 16px
+                    line-height: 23px
+                    color: #303037
+                tbody
+                    tr
+                        border-top: 1px solid #CDD9F0
+                        
+    .activity_strem
+        width: 30%
+        padding: 0 0 50px 30px
+        .header
+            margin-bottom: 14px
+            h5
+                font-size: 25px
+                line-height: 29px
+        .each_activity
+            padding: 20px 0
+            border-bottom: 1px solid #E3E3E3
+            &:last-child
+                border-bottom: none
+            .image
+                width: 40px
+                height: 40px
+                border-radius: 50%
+                margin-right: 15px
+                img
+                    width: 100%
+                    height: 100%
+                    border-radius: 50%
+            .activity
+                p
+                    font-style: normal
+                    font-weight: 600
+                    font-size: 14px
+                    line-height: 20px
+                .red
+                    color: #EF4B4B
+                .green
+                    color: green
+
+/* Admin overview page style */
+/* Admin coaches page style */
+.admin_dashboard_coaches_top
+    margin: 70px 0 20px
+
+    .search_input
+        width: 35%
+        padding: 
+            left: 10px
+        background: #FFFFFF
+        box-shadow: 0px 0px 5px rgba(21, 24, 39, 0.176491)
+
+        input
+            width: 98%
+            padding: 10px 0 10px 10px
+            border: none
+
+            font-family: nunito
+            font-style: normal
+            font-weight: normal
+            font-size: 14px
+            color: #989898
+
+            &:focus
+                outline: none
+            
+            &::placeholder
+                font-family: nunito
+                font-style: normal
+                font-weight: normal
+                font-size: 14px
+                color: #989898
+        
+        button
+            background-color: transparent
+            border: none
+            color: #151827
+            font-size: 12px
+            width: 2%
+
+    .right
+        width: 30%
+        .sort_text
+            margin-right: 16px
+            p
+                font-style: normal
+                font-weight: bold
+                font-size: 14px
+                line-height: 20px
+                color: #989898
+        
+        .sort_type
+            width: 30%
+
+.table_div_section
+    padding-bottom: 100px 
+.table_div
+    background: #FFFFFF
+    box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.07)
+    border-radius: 5px
+    table
+        width: 100%
+        // table-layout: auto
+        th, td
+            padding: 20px 15px            
+        th
+            font-family: circular
+            font-size: 18px
+            line-height: 21px
+            color: #303037
+        td
+            font-family: nunito
+            font-style: normal
+            font-weight: normal
+            font-size: 16px
+            line-height: 23px
+            color: #303037
+        tbody
+            tr   
+                border-top: 1px solid #CDD9F0
+                td
+                    font-family: nunito
+                    font-style: normal
+                    font-weight: normal
+                    font-size: 16px
+                    line-height: 23px
+                    color: #303037
+                td.recipient
+                    img
+                        width: 30px
+                        height: 30px
+                        border-radius: 50%
+                        margin-right: 10px
+                    span
+                        font-family: nunito
+                        font-style: normal
+                        font-weight: normal
+                        font-size: 16px
+                        line-height: 23px
+                        color: #303037
+                td.rating
+                    color: #989898
+                        
+                td.action
+                    position: relative
+                    text-align: right
+                    i                        
+                        cursor: pointer
+                .action_dropdown
+                    position: absolute
+                    top: 0
+                    right: 60px
+                    background: #FFFFFF
+                    box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.1)
+                    border-radius: 2px
+                    text-align: left
+                    z-index: 999999999 
+                    width: 200px
+                    display: none
+                    a
+                        padding: 15px 20px
+                        border-bottom: 1px solid rgba(227, 227, 227, 0.568428)
+                        font-family: circular
+                        font-size: 14px
+                        line-height: 16px
+                        color: #303037
+                        display: block
+                        transition: .3s  
+                        &:last-child
+                            border-bottom: none
+                        &:hover
+                            text-decoration: none
+                            color: #8d8d8d   
+                        &.delete
+                            color: #EF4B4B
+                            &:hover
+                                color: #ee8e8e                         
+
+    .pagination
+        border-top: 0.7px solid #E3E3E3
+
+        &>div
+            padding: 15px
+            border:                
+                right: 0.7px solid #E3E3E3
+            
+            a
+                color:#EF4B4B
+                font-family: nunito
+                font-style: normal
+                font-weight: normal
+                font-size: 16px
+                line-height: 22px
+                transition: .3s
+                
+                &:hover                    
+                    color: #989898  
+                    text-decoration: none   
+
+                &.active
+                    color: #989898       
+
+        &:nth-child(:last-child)
+            border: none
+     
+/* /Admin coaches page style */
+/* Admin coach details page style */
+.name_n_speciality_section
+    margin: 80px 0 30px
+.name_n_speciality
+    &>img
+        width: 115px
+        height: 115px
+        border-radius: 50%
+    &>div
+        .name_rate
+            padding: 0 65px 0 40px
+            border-right: 1px solid #E3E3E3
+            .name
+                margin-bottom: 10px
+                h4
+                    font-size: 32px
+                    line-height: 37px
+                    margin-bottom: 4px
+                p
+                    font-family: circular
+                    font-size: 16px
+                    line-height: 19px
+                    color: #989898
+            .rate
+                i
+                    color: #EF4B4B
+        .speciality
+            padding: 0 75px 0 65px
+            h6
+                font-size: 16px
+                line-height: 30px
+            p
+                font-style: normal
+                font-weight: normal
+                font-size: 16px
+                line-height: 23px
+        .dots
+            i
+                color: #989898
+                font-size: 25px
+
+.coach_details_navigator
+    border:
+        top: 1px solid #E3E3E3
+        bottom: 1px solid #E3E3E3
+    margin: 0px 0 20px
+
+    .settings_navigator_link
+        // margin: 0 20px
+        padding: 12px 25px
+        cursor: pointer
+        position: relative
+
+        span
+            font-family: circular
+            font-size: 16px
+            line-height: 30px
+            color: #989898
+            transition: .3s ease-in-out
+
+        &::after
+            content: ""
+            position: absolute
+            width: 100%
+            bottom: 0
+            left: 0
+            height: 0
+            background-color: #EF4B4B
+            transition: .3s ease-in-out
+
+        &:hover::after
+            height: 4px
+
+        &:hover
+            
+            span
+                color: #303037
+
+    .active_settings_navigator_link
+
+        &::after
+            height: 4px
+        
+        span
+            color: #303037
+
+.personal_course_list_section
+    padding-bottom: 120px
+
+.personal_course_list_section_n_pagination_wrapper
+    background: #FFFFFF
+    box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.15)
+    border-radius: 5px
+
+.course_list_wrapper    
+    padding: 30px
+    
+    display: grid
+    grid-template-columns: 31.3333% 31.3333% 31.3333%
+    grid-gap: 30px 3%
+
+    .each_course
+        background: #FFFFFF
+        border-radius: 5px
+        padding: 35px 25px
+        transition: .3s
+        box-shadow: 0px 0px 24px rgba(86, 86, 86, 0.15)
+        &:hover
+            box-shadow: 0px 0px 14px rgba(86, 86, 86, 0.15)
+
+        .lecturer
+
+            p
+                font-family: nunito
+                font-style: italic
+                font-weight: normal
+                font-size: 14px
+                line-height: 20px
+
+        .price_tag_icon
+
+            i
+                color: #EF4B4B
+                margin-right: 9px
+
+        .course_amount
+
+            p
+                font-family: nunito
+                font-style: normal
+                font-weight: normal
+                font-size: 14px
+                line-height: 20px
+
+        .course_image_wrapper
+        
+        .course_icon_n_name
+            margin: 30px 0
+
+        .course_image
+
+            height: 80px
+            width: 80px
+            border-radius: 50%
+
+            img
+                height: 100%
+                width: 100%
+                border-radius: 50%
+
+        .course_name
+            padding-left: 30px
+
+        .course_description
+            margin-bottom: 10px
+
+            p
+                font-family: Nunito
+                font-style: normal
+                font-weight: normal
+                font-size: 14px
+                line-height: 20px
+            
+        .seats_left
+            margin-bottom: 25px
+
+            .stud_images
+                img
+                    display: inline-block
+                    width: 38px
+                    height: 38px
+                    border-radius: 50%
+                    border: 2px solid #61ABFF
+                    float: left
+
+                img:nth-child(2)
+                    transform: translateX(-15px)
+                img:nth-child(3)
+                    transform: translateX(-30px)
+                img:nth-child(4)
+                    transform: translateX(-45px)
+                img:nth-child(5)
+                    transform: translateX(-60px)
+                        
+
+            p
+                font-style: normal
+                font-weight: 600
+                font-size: 14px
+                line-height: 19px
+                color: #EF4B4B
+
+.personal_appointment_section
+    padding-bottom: 120px
+    display: none
+.personal_appointment_container
+    background: #FFFFFF
+    box-shadow: 0px 1px 7px rgba(86, 86, 86, 0.15)
+    border-radius: 5px
+    padding: 40px 30px
+    display: grid
+    grid-template-columns: 31.33333% 31.33333% 31.33333%
+    grid-gap: 30px 2%
+
+    &>div
+        background: #FFFFFF
+        box-shadow: 0px 0px 24px rgba(86, 86, 86, 0.156988)
+        border-radius: 5px
+
+        .card_body
+            padding: 30px 20px
+            .image
+                width: 60px
+                height: 60px
+                border-radius: 50%
+                background: #D8D8D8
+                box-shadow: 0px 2px 9px #FFE3E3
+                margin-right: 15px
+                img
+                    width: 100%
+                    height: 100%
+                    border-radius: 50%
+            .name
+                h4
+                    font-size: 18px
+                    line-height: 21px
+                    color: #EF4B4B
+                    margin-bottom: 2px
+                p
+                    font-style: normal
+                    font-weight: normal
+                    font-size: 14px
+                    line-height: 20px
+            .note
+                margin: 20px 0
+                h6
+                    font-family: nunito
+                    font-style: normal
+                    font-weight: 800
+                    font-size: 17px
+                    line-height: 20px
+                    margin-bottom: 5px
+                p
+                    font-family: nunito
+                    font-style: normal
+                    font-weight: 600
+                    font-size: 14px
+                    line-height: 20px
+            .channel
+                margin-bottom: 20px
+                h4
+                    font-family: nunito
+                    font-style: normal
+                    font-weight: 800
+                    font-size: 20px
+                    line-height: 20px
+                    margin-bottom: 5px
+                p
+                    font-family: nunito
+                    font-style: normal
+                    font-weight: 600
+                    font-size: 15px
+                    line-height: 20px
+            .date_top
+                margin-bottom: 10px
+                i
+                    padding-right: 10px
+                    color:  #989898
+                span
+                    font-family: nunito
+                    font-style: normal
+                    font-weight: normal
+                    font-size: 14px
+                    line-height: 20px
+            .date_bottom
+                i
+                    padding-right: 10px
+                    color:  #989898
+                span
+                    font-family: nunito
+                    font-style: normal
+                    font-weight: normal
+                    font-size: 14px
+                    line-height: 20px
+
+
+        .card_footer
+            padding: 12px 20px
+            i
+                padding-right: 10px
+                color:  #989898
+            a
+                font-family: nunito
+                font-style: normal
+                font-weight: 600
+                font-size: 14px
+                line-height: 19px
+                color: #EF4B4B
+                transition: .3s ease-in-out
+                &:hover
+                    text-decoration: none
+                    color: #e03b3b
+
+
+/* /Admin coach details page style */
+/* Admin student details page style */
+.name_n_qualification_section
+    margin: 80px 0 30px
+.name_n_qualification
+    &>img
+        width: 115px
+        height: 115px
+        border-radius: 50%
+    &>div
+        .name_rate
+            padding: 0 55px 0 40px            
+            .name
+                margin-bottom: 10px
+                h4
+                    font-size: 32px
+                    line-height: 37px
+                    margin-bottom: 4px
+                p
+                    font-family: circular
+                    font-size: 16px
+                    line-height: 19px
+                    color: #989898
+            
+        .job_title
+            padding: 0 55px 0 55px
+            border:
+                right: 1px solid #E3E3E3
+                left: 1px solid #E3E3E3
+            h6
+                font-size: 16px
+                line-height: 30px
+            p
+                font-style: normal
+                font-weight: normal
+                font-size: 16px
+                line-height: 23px
+        .qualification
+            padding: 0 5px 0 55px
+            i
+                color: #989898
+                font-size: 25px
+
+.admin_services_wrapper
+    background: #ffffff
+    box-shadow: 0px 1px 7px rgba(86, 86, 86, 0.15)#ffffff
+    border-radius: 5px#ffffff
+    padding: 30px
+
+    display: grid
+    grid-template-columns: 31.3333% 31.3333% 31.3333%
+    grid-gap: 30px 3%
+    .each_service
+        background: #ffffff
+        box-shadow: 0px 0px 24px rgba(86, 86, 86, 0.15)
+        border-radius: 5px
+        border: 0.7px solid #E3E3E3
+        .top
+            padding: 15px
+            .left
+                width: 95%
+                text-align: center
+                p
+                    font-style: normal
+                    font-weight: 600
+                    font-size: 16px
+                    line-height: 22px
+                span
+                    font-family: Nunito
+                    font-style: normal
+                    font-weight: 600
+                    font-size: 16px
+                    line-height: 22px
+                    color: #989898
+            .right
+                width: 5%
+                text-align: right
+                span
+                    color: #989898
+                    font-size: 23px
+        .bottom
+            border-top: 1px solid #E3E3E3
+            &>div
+                width: 50%
+                padding: 15px 5px 15px 18px
+                span
+                    font-family: nunito
+                    font-style: normal
+                    font-weight: normal
+                    font-size: 14px
+                    line-height: 19px
+                    color: #989898                    
+                p
+                    font-family: nunito
+                    font-style: normal
+                    font-weight: 600
+                    font-size: 14px
+                    line-height: 19px
+                    margin-top: 5px
+            .left
+                border-right: 1px solid #E3E3E3
+
+.add-service-modal
+    position: fixed
+    background-color: rgba(0, 0, 0, 0.103311)
+    top: 0
+    right: 0
+    bottom: 0
+    left: 0
+    z-index: 999
+    visibility: hidden
+    opacity: 0
+    pointer-events: none
+    transition: all 0.3s
+    &:target 
+        visibility: visible
+        opacity: 1
+        pointer-events: auto
+    &>div
+        width: 45%
+        margin: 0 auto
+        position: absolute
+        top: 50%
+        left: 50%
+        transform: translate(-50%, -50%)
+
+        background: #FFFFFF
+        box-shadow: 0px 12px 15px rgba(0, 0, 0, 0.266772)
+        border-radius: 5px
+        padding: 40px 35px
+
+    .head
+        margin-bottom: 30px
+        h4
+            font-size: 32px
+            line-height: 37px
+            margin-bottom: 10px
+        p
+            font-style: normal
+            font-weight: 600
+            font-size: 18px
+            line-height: 30px
+            color: #989898
+    .common_input_wrapper_2
+        margin: 12px 0
+    .comm_channel
+        margin-top: 15px
+    .footer_button
+        margin-top: 20px
+        &>div
+            margin-left: 12px
+    .cols-2
+        display: grid
+        grid-template-columns: 48% 48%
+        grid-column-gap: 4%
+
+    .comm_channel       
+        .header
+            margin-bottom: 12px
+            p
+                font-style: normal
+                font-weight: 600
+                font-size: 18px
+                line-height: 30px
+        .comm_channel_type            
+            .comm_channel_options
+                
+                &>div
+                    margin: 0 20px 20px 0
+                    background: #FFFFFF
+                    border: 1px solid #E3E3E3
+                    box-sizing: border-box
+                    border-radius: 3px
+                    padding: 7px 20px
+                    cursor: pointer
+                    transition: .4s
+
+                    &.active
+                        background: #EFF7F1
+                        border: 0.8px solid #75B07B
+                        box-shadow: 0px 0px 15px rgba(117, 176, 123, 0.26)
+
+                    p
+                        font-style: normal
+                        font-weight: normal
+                        font-size: 14px
+                        line-height: 20px
+                        color: #989898
+ 
+/* /Admin student details page style */
+/* Admin transaction page style */
+.transaction_card_wrapper
+    // margin: 80px 0 0
+    
+    .card_wrapper
+        box-shadow: 0px 1px 7px rgba(86, 86, 86, 0.15)
+        border-radius: 5px
+
+        display: grid
+        grid-template-columns: 25% 25% 25% 25%
+        .card
+            background-color: #fff
+            padding: 25px
+            border-right: .7px solid #E3E3E3
+            &:last-child
+                border-right: none
+            
+            h6
+                font-size: 16px
+                line-height: 30px
+                color: #989898
+                margin-bottom: 10px
+            
+            h2
+                font-size: 32px
+                line-height: 37px
+                span
+                    font-family: circular 
+                    font-size: 14px 
+                    line-height: 30px 
+                    color: #989898 
+                sup
+                    font-family: circular
+                    font-size: 15px
+                    line-height: 18px
+                    color: #303037
+
+.transaction_table_div_wrapper
+    padding-bottom: 100px
+    margin-top: 50px
+    .header
+        margin-bottom: 15px
+        h5
+            font-size: 25px
+            line-height: 29px
+    .table_div
+        background: #FFFFFF
+        box-shadow: 0px 1px 7px rgba(86, 86, 86, 0.15)
+        border-radius: 5px
+
+        table
+            width: 100%
+            // table-layout: fixed
+            th, td
+                text-align: center
+                padding: 20px 5px            
+            th
+                font-family: circular
+                font-size: 18px
+                line-height: 21px
+                color: #303037
+            td
+                font-family: nunito
+                font-style: normal
+                font-weight: normal
+                font-size: 16px
+                line-height: 23px
+                color: #303037
+            tbody
+                tr
+                    border-top: 1px solid #CDD9F0
+                    td
+                        &.pending_status
+                            span
+                                background: #FFE3E3
+                                border-radius: 15px
+                                font-style: normal
+                                font-weight: normal
+                                font-size: 12px
+                                line-height: 16px
+                                text-align: center
+                                color: #EF4B4B
+                                padding: 10px 25px
+                                cursor: pointer
+                                transition: .3s
+                                &:hover
+                                    background: #f7d2d2
+                        &.active_status
+                            span
+                                background: #F0F7F2
+                                border-radius: 15px
+                                font-style: normal
+                                font-weight: normal
+                                font-size: 12px
+                                line-height: 16px
+                                text-align: center
+                                color: #75B07B
+                                padding: 10px 25px
+                                cursor: pointer
+                                transition: .3s
+                                &:hover
+                                    background: #ccf5d7
+  
+.days_option_section
+    margin: 80px 0 25px
+.days_option
+    a
+        font-family: Nunito
+        font-style: normal
+        font-weight: 600
+        font-size: 14px
+        line-height: 20px
+        color: #989898
+        margin: 0 15px
+        transition: .3s
+        &:hover
+            text-decoration: none
+            color: #777777
+        &.active
+            color: #303037
+    button
+        border: 1px solid #E3E3E3
+        background-color: transparent
+        display: flex
+        flex-direction: row
+        align-items: center
+        color: #EF4B4B
+        padding: 12px
+        text-transform: capitalize
+        margin-left: 10px
+        i
+            color: #989898
+            font-size: 20px
+            margin-right: 15px
+
+/* Admin transaction page style */
+/* Admin jobs page style */
+.job_top_section
+    margin: 80px 0 25px
+.job_top
+    h5
+        font-size: 25px
+        line-height: 29px
+
+.jobs_wrapper_section
+    padding-bottom: 120px
+    .jobs_wrapper
+        background: #FFFFFF
+        box-shadow: 0px 1px 7px rgba(86, 86, 86, 0.15)
+        border-radius: 5px
+        padding: 30px
+
+        display: grid
+        grid-template-columns: 31.3333% 31.3333% 31.3333%
+        grid-gap: 30px 3%
+        &>div
+            background: #FFFFFF
+            box-shadow: 0px 0px 9px rgba(81, 60, 60, 0.153737)
+            padding: 10px
+            .top
+                img
+                    width: 50px
+                    height: 50px
+                .middle
+                    padding-left: 10px
+                    h5
+                        font-size: 18px
+                        line-height: 21px
+                        margin-bottom: 15px
+                    p
+                        font-style: normal
+                        font-weight: normal
+                        font-size: 14px
+                        line-height: 20px
+                .right
+                    position: relative
+                    i
+                        cursor: pointer
+                    .job_dropdown
+                        position: absolute
+                        top: 0
+                        right: 30px
+                        background: #FFFFFF
+                        box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.1)
+                        border-radius: 2px
+                        text-align: left
+                        z-index: 999999999 
+                        width: 200px
+                        display: none
+                        a
+                            padding: 15px 20px
+                            border-bottom: 1px solid rgba(227, 227, 227, 0.568428)
+                            font-family: circular
+                            font-size: 14px
+                            line-height: 16px
+                            color: #303037
+                            display: block
+                            transition: .3s  
+                            &:last-child
+                                border-bottom: none
+                            &:hover
+                                text-decoration: none
+                                color: #8d8d8d   
+                            &.delete
+                                color: #EF4B4B
+                                &:hover
+                                    color: #ee8e8e                         
+
+            .middle_down
+                padding-left: 60px
+                margin: 15px 0
+                .experience, .amount
+                    p
+                        font-style: normal
+                        font-weight: 600
+                        font-size: 14px
+                        line-height: 20px
+
+            .bottom
+                .topic
+                    margin-right: 15px
+                    p
+                        font-style: normal
+                        font-weight: normal
+                        font-size: 14px
+                        line-height: 20px
+                        color: #989898
+                .name
+                    p
+                        font-style: normal
+                        font-weight: normal
+                        font-size: 14px
+                        line-height: 20px
+            
+/* /Admin jobs page style */
+
+/* Create appointment page style */
+.service_select    
+    &>div
+        margin: 0 20px 20px 0
+        background: #FFFFFF
+        border: 1px solid #E3E3E3
+        box-sizing: border-box
+        border-radius: 3px
+        padding: 7px 20px
+        cursor: pointer
+        transition: .4s
+        &.active
+            background: #EFF7F1
+            border: 0.8px solid #75B07B
+            box-shadow: 0px 0px 15px rgba(117, 176, 123, 0.26)
+        p
+            font-style: normal
+            font-weight: normal
+            font-size: 14px
+            line-height: 20px
+            color: #989898
+
+
+.appointment_setting_wrapper
+    margin-top: 80px
+    padding-bottom: 120px
+    .appointment_setting        
+        // background: #FFFFFF
+        box-shadow: 0px 1px 7px rgba(86, 86, 86, 0.15)
+        border-radius: 5px
+        .settings_progress
+            // background: #F9FAFB
+            background: transparent
+            border-radius: 5px 5px 0px 0px
+
+            display: grid
+            grid-template-columns: 20% 20% 20% 20% 20%
+            align-items: center
+            &>div
+                text-align: center
+                padding:
+                    top: 5px
+                    bottom: 5px
+                span
+                    font-family: circular
+                    font-size: 16px
+                    line-height: 30px
+                    color: #303037
+                &.active
+                    background-color: #EF4B4B
+                    clip-path: polygon(0 0, 90% 0, 100% 50%, 90% 100%, 0 100%, 0 0)
+                    span
+                        color: #fff
+                &:first-child
+                    border-radius: 5px 0 0 0
+                &:last-child
+                    border-radius: 0 5px 0 0
+        .settings_container
+            background: #FFFFFF
+            border-radius: 0 0 5px 5px
+            padding: 45px 35px 45px
+            .heder_text_div
+                margin-bottom: 25px
+                p
+                    font-style: normal
+                    font-weight: 600
+                    font-size: 18px
+                    line-height: 30px
+            .settings_content
+                display: grid
+                grid-template-columns: calc(50% - 20px) calc(50% - 20px)
+                grid-column-gap: 40px
+            .btn
+                margin: 30px 0 0 0
+                padding-right: 0
+                button
+                    margin-left: 15px
+            .right
+                .help_box
+                    background: #F8FAFE
+                    border-radius: 5px
+                    padding: 40px 30px
+                    .head
+                        i
+                            color: #989898
+                            margin-right: 15px
+                            font-size: 22px
+                        p
+                            font-family: circular
+                            font-size: 16px
+                            line-height: 30px
+                    .body
+                        margin-top: 15px
+                        p
+                            font-style: normal
+                            font-weight: normal
+                            font-size: 14px
+                            line-height: 20px
+                            color: #989898
+                            &:first-child
+                                margin-bottom: 20px
+            .select_service
+                .settings_content
+                    .left
+                        .add_note
+                            margin-top: 30px
+                            .head
+                                margin-bottom: 15px
+                                p
+                                    font-style: normal
+                                    font-weight: 600
+                                    font-size: 18px
+                                    line-height: 30px
+           
+            .appointment_types
+                display: none
+                .settings_content
+                    .left
+                        .app_type
+                            &>div
+                                border: 1px solid #E3E3E3
+                                box-sizing: border-box
+                                border-radius: 3px
+                                margin-right: 20px
+                                text-align: center
+                                padding: 25px 15px
+                                cursor: pointer
+                                transition: .4s
+                                span
+                                    font-family: Nunito
+                                    font-style: normal
+                                    font-weight: normal
+                                    font-size: 14px
+                                    line-height: 20px
+                                    color: #989898                                    
+                                p
+                                    font-style: normal
+                                    font-weight: 600
+                                    font-size: 16px
+                                    line-height: 23px
+                                    margin-top: 6px
+                                &.active
+                                    background: #F0F7F2;
+                                    border: 1px solid #75B07B;
+                                    box-shadow: 0px 0px 10px rgba(86, 86, 86, 0.15);
+                                    border-radius: 3px;
+                                    span                                        
+                                        color: #303037
+            .review_n_pay
+                display: none
+                .settings_content
+                    .left
+                        .appointment
+                            &>div
+                                background: #FFFFFF
+                                box-shadow: 0px 1px 3px rgba(63, 63, 68, 0.25)
+                                border-radius: 4px
+
+                                .card_body
+                                    padding: 40px 35px
+                                    .image
+                                        width: 60px
+                                        height: 60px
+                                        border-radius: 50%
+                                        background: #D8D8D8
+                                        box-shadow: 0px 2px 9px #FFE3E3
+                                        margin-right: 15px
+                                        img
+                                            width: 100%
+                                            height: 100%
+                                            border-radius: 50%
+                                    .name
+                                        h4
+                                            font-size: 18px
+                                            line-height: 21px
+                                            color: #EF4B4B
+                                            margin-bottom: 2px
+                                        p
+                                            font-style: normal
+                                            font-weight: normal
+                                            font-size: 14px
+                                            line-height: 20px
+                                    .note
+                                        margin: 20px 0
+                                        h6
+                                            font-family: nunito
+                                            font-style: normal
+                                            font-weight: 800
+                                            font-size: 17px
+                                            line-height: 20px
+                                            margin-bottom: 5px
+                                        p
+                                            font-family: nunito
+                                            font-style: normal
+                                            font-weight: 600
+                                            font-size: 14px
+                                            line-height: 20px
+                                    .channel
+                                        margin-bottom: 20px
+                                        h4
+                                            font-family: nunito
+                                            font-style: normal
+                                            font-weight: 800
+                                            font-size: 20px
+                                            line-height: 20px
+                                            margin-bottom: 5px
+                                        p
+                                            font-family: nunito
+                                            font-style: normal
+                                            font-weight: 600
+                                            font-size: 15px
+                                            line-height: 20px
+                                    .date_top
+                                        margin-bottom: 10px
+                                        i
+                                            padding-right: 10px
+                                            color:  #989898
+                                        span
+                                            font-family: nunito
+                                            font-style: normal
+                                            font-weight: normal
+                                            font-size: 14px
+                                            line-height: 20px
+                                    .date_bottom
+                                        i
+                                            padding-right: 10px
+                                            color:  #989898
+                                        span
+                                            font-family: nunito
+                                            font-style: normal
+                                            font-weight: normal
+                                            font-size: 14px
+                                            line-height: 20px
+
+
+                                .card_footer
+                                    padding: 12px 20px
+                                    i
+                                        padding-right: 10px
+                                        color:  #989898
+                                    a
+                                        font-family: nunito
+                                        font-style: normal
+                                        font-weight: 600
+                                        font-size: 14px
+                                        line-height: 19px
+                                        color: #EF4B4B
+                                        transition: .3s ease-in-out
+                                        &:hover
+                                            text-decoration: none
+                                            color: #e03b3b
+            .status
+                padding: 30px 10px
+                display: none
+                h5
+                    font-size: 32px
+                    line-height: 37px
+                    text-align: center
+                    margin-bottom: 20px
+                p
+                    font-style: normal
+                    font-weight: 600
+                    font-size: 18px
+                    line-height: 30px
+                    text-align: center
+                    a
+                        color: #EF4B4B
+                img
+                    margin: 25px 0
+                button
+                    display: block
+                    margin: 0 auto
+            .date_n_time
+                display: none
+
+/* /Create appointment page style */
+/* Dashboard */
+.dashboard_sidenav_toggler
+    width: 33px
+    cursor: pointer
+    display: none
+    transition: .4s
+    .bars
+        width: 100%
+        height: 4px
+        background-color: #EF4B4B
+        &:nth-child(2)
+            margin: 6px 0
+
+/* Dashboard */
+
+
+/* ======================End of DASHBOARD Style=================== */
+    
+
+

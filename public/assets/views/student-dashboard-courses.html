@@ -1,0 +1,605 @@
+<!doctype html> 
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no" />
+
+    <!-- Bootstrap CSS --> 
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+ 
+    <!-- CSS Animation -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.css">
+
+    <!-- Font Awesome CDN -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+
+     <!-- CSS Files -->
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/res.css">
+    <link rel="stylesheet" href="../css/animation.css">
+    
+    <title>Index</title>
+
+</head>
+<body class="onboard_pages">
+<section class="whole_page_wrapper">
+  
+  <!-- Dashboard side Navigation -->
+  <aside class="side_nav">
+    <!-- dashboard logo -->
+    <div class="full_row flex_r_a_center logo_div">
+      <img src="../utils/images/34.svg" alt="">
+      <div class="close_sideNav ml_auto">
+        <i class="far fa-times-circle"></i>
+    </div>
+    </div>
+    <!-- /dashboard logo -->
+    <!-- Side Navs -->
+    <div class="side_nav_wrapper">
+
+      <a href="#">
+          <i class="fab fa-buromobelexperte"></i> Overview
+      </a>
+      <a href="#" class="active">
+          <i class="fas fa-award"></i> Courses
+      </a>
+      <a href="#">
+          <i class="far fa-id-badge"></i> Find coaches
+      </a>
+      <a href="#">
+          <i class="fas fa-cog"></i> Settings
+      </a>
+      <a href="#">
+          <i class="fas fa-sign-out-alt"></i> Logout
+      </a>
+
+    </div>    
+    <!-- /Side Navs -->
+  </aside>
+  <!-- /Dashboard side Navigation -->
+  <!-- Dashboard Content side -->
+  <section class="dashboard_body"> 
+
+    <!-- top nav -->
+    <div class="full_row top_nav">
+      <div class="dashboard_center">
+        <!-- top nav container -->
+        <div class="flex_r_j_between_align_center">
+          <!-- left side -->
+          <div class="flex_r_a_center left_side">
+            <!-- mobile toggler -->
+            <div class="dashboard_sidenav_toggler">
+                <div class="bars"></div>
+                <div class="bars"></div>
+                <div class="bars"></div>
+            </div>          
+            <!-- mobile toggler -->
+            <h4>
+              Courses
+            </h4>
+          </div>
+          <!-- /left side -->
+          <!-- right side -->
+          <div class="flex_r_j_between_align_center right_side">
+            <div class="bell">
+                <i class="far fa-bell"></i>
+            </div>
+            <div class="flex_r_j_between_align_center username">
+              <!-- name icon -->
+              <span>
+                  IU
+              </span>
+              <!-- /name icon -->
+              <!-- name -->
+              <h6>
+                  Ifeanyi Umunnakwe
+              </h6>
+              <!-- /name -->              
+            </div>
+          </div>
+          <!-- /right side -->
+        </div>
+        <!-- /top nav container -->
+      </div>
+    </div>
+    <!--. top nav -->
+    <!-- Courses search top -->
+    <div class="full_row student_dashboard_courses_top">
+        <div class="dashboard_center">
+                <div class="full_row flex_r_j_between_align_center top">                        
+                    <!-- Left side -->          
+                    <div class="flex_r_wrap_align_center left spanToggle">
+                        <span class="active"> Pending </span>
+                        <span> Ongoing </span>
+                        <span> Completed </span>
+                    </div>
+                    <!-- /Left side --> 
+                    <!-- Right side --> 
+                    <div class="flex_r_j_between_align_center right">
+                        <!-- Search input -->
+                        <div class="flex_r_j_between_align_center search_input">
+                            <input type="text" name="" id="" placeholder="Search courses…">
+                            <button>
+                                <i class="fas fa-search"></i>
+                            </button>
+                        </div>
+                        <!-- Search input -->
+                        <!-- Coach selection -->
+                        <div class="coach_select">
+                            <select name="" id="" class="search_select">
+                                <option value=""> Coach </option>
+                            </select>
+                        </div>
+                        <!-- /Coach selection -->
+                        <!-- Cost selection -->
+                        <div class="cost_select">
+                            <select name="" id="" class="search_select">
+                                <option value=""> Cost </option>
+                            </select>
+                        </div>
+                        <!-- Cost selection -->
+                    </div>
+                    <!-- /Right side --> 
+                </div>
+        </div>
+    </div>
+    <!-- /Courses search top -->
+    <!-- Courses list Section -->
+    <div class="full_row course_list_section">
+        <div class="dashboard_center">
+          <div class="full_row course_list_n_pagination_wrapper">          
+            <!-- course list wrapper -->
+            <div class="full_row course_list_wrapper">
+              <!-- Each Courses -->
+              <div class="each_course">
+                  <!-- Each course top part (Lecturer Name and price) -->
+                  <div class="flex_r_j_between_align_center">
+                      <div class="lecturer">
+                          <p>
+                              By Strive Masayiwa
+                          </p>
+                      </div>
+                      <div class="flex_r_a_center course_price">
+                          <div class="price_tag_icon">
+                              <i class="fas fa-tag"></i>                                    
+                          </div>
+                          <div class="course_amount">
+                              <p>
+                                  N100,000
+                              </p>
+                          </div>                                
+                      </div>
+                  </div>
+                  <!-- /Each course top part (Lecturer Name and price) -->
+                  <!-- Each Course second part (course icon and name) -->
+                  <div class="flex_r_a_center course_icon_n_name">
+                      <div class="course_image_wrapper">                                
+                          <div class="course_image">
+                              <img src="../utils/images/Bitmap.png" alt="">
+                          </div>
+                      </div>
+                      <div class="course_name">
+                          <h5>
+                              Skillsets to shift your career
+                          </h5>                                
+                      </div>
+                  </div>
+                  <!-- /Each Course second part (course icon and name) -->
+                  <!-- Course Description part -->
+                  <div class="full_row course_description">
+                      <p>
+                          A course for anyone who’s ready 
+                          to find their dream job. Covering 
+                          everything from resumes to job 
+                          applications.
+                      </p>
+                  </div>
+                  <!-- /Course Description part -->
+                  <!-- Number of seats available -->
+                  <div class="flex_r_j_between_align_center seats_left">
+                    <div class="stud_images">
+                      <img src="../utils/images/40.png" alt="">
+                      <img src="../utils/images/41.png" alt="">
+                      <img src="../utils/images/42.png" alt="">
+                      <img src="../utils/images/43.png" alt="">
+                      <img src="../utils/images/44.png" alt="">
+                    </div>
+                    <div>
+                      <p>
+                          8 Seats left
+                      </p>
+                    </div>
+                  </div>
+                  <!-- /Number of seats available -->
+                  <!-- Course Enroll Button -->
+                  <div class="full_row">
+                      <button class="black_btn full_width_btn">
+                          Enrol Now
+                      </button>
+                  </div>
+                  <!-- /Course Enroll Button -->                        
+              </div>
+              <!-- /Each Courses -->
+              <!-- Each Courses -->
+              <div class="each_course">
+                  <!-- Each course top part (Lecturer Name and price) -->
+                  <div class="flex_r_j_between_align_center">
+                      <div class="lecturer">
+                          <p>
+                              By Strive Masayiwa
+                          </p>
+                      </div>
+                      <div class="flex_r_a_center course_price">
+                          <div class="price_tag_icon">
+                              <i class="fas fa-tag"></i>                                    
+                          </div>
+                          <div class="course_amount">
+                              <p>
+                                  N100,000
+                              </p>
+                          </div>                                
+                      </div>
+                  </div>
+                  <!-- /Each course top part (Lecturer Name and price) -->
+                  <!-- Each Course second part (course icon and name) -->
+                  <div class="flex_r_a_center course_icon_n_name">
+                      <div class="course_image_wrapper">                                
+                          <div class="course_image">
+                              <img src="../utils/images/Bitmap.png" alt="">
+                          </div>
+                      </div>
+                      <div class="course_name">
+                          <h5>
+                              Skillsets to shift your career
+                          </h5>                                
+                      </div>
+                  </div>
+                  <!-- /Each Course second part (course icon and name) -->
+                  <!-- Course Description part -->
+                  <div class="full_row course_description">
+                      <p>
+                          A course for anyone who’s ready 
+                          to find their dream job. Covering 
+                          everything from resumes to job 
+                          applications.
+                      </p>
+                  </div>
+                  <!-- /Course Description part -->
+                  <!-- Number of seats available -->
+                  <div class="flex_r_j_between_align_center seats_left">
+                    <div class="stud_images">
+                      <img src="../utils/images/40.png" alt="">
+                      <img src="../utils/images/41.png" alt="">
+                      <img src="../utils/images/42.png" alt="">
+                      <img src="../utils/images/43.png" alt="">
+                      <img src="../utils/images/44.png" alt="">
+                    </div>
+                    <div>
+                      <p>
+                          8 Seats left
+                      </p>
+                    </div>
+                  </div>
+                  <!-- /Number of seats available -->
+                  <!-- Course Enroll Button -->
+                  <div class="full_row">
+                      <button class="black_btn full_width_btn">
+                          Enrol Now
+                      </button>
+                  </div>
+                  <!-- /Course Enroll Button -->                        
+              </div>
+              <!-- /Each Courses -->
+              <!-- Each Courses -->
+              <div class="each_course">
+                  <!-- Each course top part (Lecturer Name and price) -->
+                  <div class="flex_r_j_between_align_center">
+                      <div class="lecturer">
+                          <p>
+                              By Strive Masayiwa
+                          </p>
+                      </div>
+                      <div class="flex_r_a_center course_price">
+                          <div class="price_tag_icon">
+                              <i class="fas fa-tag"></i>                                    
+                          </div>
+                          <div class="course_amount">
+                              <p>
+                                  N100,000
+                              </p>
+                          </div>                                
+                      </div>
+                  </div>
+                  <!-- /Each course top part (Lecturer Name and price) -->
+                  <!-- Each Course second part (course icon and name) -->
+                  <div class="flex_r_a_center course_icon_n_name">
+                      <div class="course_image_wrapper">                                
+                          <div class="course_image">
+                              <img src="../utils/images/Bitmap.png" alt="">
+                          </div>
+                      </div>
+                      <div class="course_name">
+                          <h5>
+                              Skillsets to shift your career
+                          </h5>                                
+                      </div>
+                  </div>
+                  <!-- /Each Course second part (course icon and name) -->
+                  <!-- Course Description part -->
+                  <div class="full_row course_description">
+                      <p>
+                          A course for anyone who’s ready 
+                          to find their dream job. Covering 
+                          everything from resumes to job 
+                          applications.
+                      </p>
+                  </div>
+                  <!-- /Course Description part -->
+                  <!-- Number of seats available -->
+                  <div class="flex_r_j_between_align_center seats_left">
+                    <div class="stud_images">
+                      <img src="../utils/images/40.png" alt="">
+                      <img src="../utils/images/41.png" alt="">
+                      <img src="../utils/images/42.png" alt="">
+                      <img src="../utils/images/43.png" alt="">
+                      <img src="../utils/images/44.png" alt="">
+                    </div>
+                    <div>
+                      <p>
+                          8 Seats left
+                      </p>
+                    </div>
+                  </div>
+                  <!-- /Number of seats available -->
+                  <!-- Course Enroll Button -->
+                  <div class="full_row">
+                      <button class="black_btn full_width_btn">
+                          Enrol Now
+                      </button>
+                  </div>
+                  <!-- /Course Enroll Button -->                        
+              </div>
+              <!-- /Each Courses -->
+              <!-- Each Courses -->
+              <div class="each_course">
+                  <!-- Each course top part (Lecturer Name and price) -->
+                  <div class="flex_r_j_between_align_center">
+                      <div class="lecturer">
+                          <p>
+                              By Strive Masayiwa
+                          </p>
+                      </div>
+                      <div class="flex_r_a_center course_price">
+                          <div class="price_tag_icon">
+                              <i class="fas fa-tag"></i>                                    
+                          </div>
+                          <div class="course_amount">
+                              <p>
+                                  N100,000
+                              </p>
+                          </div>                                
+                      </div>
+                  </div>
+                  <!-- /Each course top part (Lecturer Name and price) -->
+                  <!-- Each Course second part (course icon and name) -->
+                  <div class="flex_r_a_center course_icon_n_name">
+                      <div class="course_image_wrapper">                                
+                          <div class="course_image">
+                              <img src="../utils/images/Bitmap.png" alt="">
+                          </div>
+                      </div>
+                      <div class="course_name">
+                          <h5>
+                              Skillsets to shift your career
+                          </h5>                                
+                      </div>
+                  </div>
+                  <!-- /Each Course second part (course icon and name) -->
+                  <!-- Course Description part -->
+                  <div class="full_row course_description">
+                      <p>
+                          A course for anyone who’s ready 
+                          to find their dream job. Covering 
+                          everything from resumes to job 
+                          applications.
+                      </p>
+                  </div>
+                  <!-- /Course Description part -->
+                  <!-- Number of seats available -->
+                  <div class="flex_r_j_between_align_center seats_left">
+                    <div class="stud_images">
+                      <img src="../utils/images/40.png" alt="">
+                      <img src="../utils/images/41.png" alt="">
+                      <img src="../utils/images/42.png" alt="">
+                      <img src="../utils/images/43.png" alt="">
+                      <img src="../utils/images/44.png" alt="">
+                    </div>
+                    <div>
+                      <p>
+                          8 Seats left
+                      </p>
+                    </div>
+                  </div>
+                  <!-- /Number of seats available -->
+                  <!-- Course Enroll Button -->
+                  <div class="full_row">
+                      <button class="black_btn full_width_btn">
+                          Enrol Now
+                      </button>
+                  </div>
+                  <!-- /Course Enroll Button -->                        
+              </div>
+              <!-- /Each Courses -->
+              <!-- Each Courses -->
+              <div class="each_course">
+                  <!-- Each course top part (Lecturer Name and price) -->
+                  <div class="flex_r_j_between_align_center">
+                      <div class="lecturer">
+                          <p>
+                              By Strive Masayiwa
+                          </p>
+                      </div>
+                      <div class="flex_r_a_center course_price">
+                          <div class="price_tag_icon">
+                              <i class="fas fa-tag"></i>                                    
+                          </div>
+                          <div class="course_amount">
+                              <p>
+                                  N100,000
+                              </p>
+                          </div>                                
+                      </div>
+                  </div>
+                  <!-- /Each course top part (Lecturer Name and price) -->
+                  <!-- Each Course second part (course icon and name) -->
+                  <div class="flex_r_a_center course_icon_n_name">
+                      <div class="course_image_wrapper">                                
+                          <div class="course_image">
+                              <img src="../utils/images/Bitmap.png" alt="">
+                          </div>
+                      </div>
+                      <div class="course_name">
+                          <h5>
+                              Skillsets to shift your career
+                          </h5>                                
+                      </div>
+                  </div>
+                  <!-- /Each Course second part (course icon and name) -->
+                  <!-- Course Description part -->
+                  <div class="full_row course_description">
+                      <p>
+                          A course for anyone who’s ready 
+                          to find their dream job. Covering 
+                          everything from resumes to job 
+                          applications.
+                      </p>
+                  </div>
+                  <!-- /Course Description part -->
+                  <!-- Number of seats available -->
+                  <div class="flex_r_j_between_align_center seats_left">
+                    <div class="stud_images">
+                      <img src="../utils/images/40.png" alt="">
+                      <img src="../utils/images/41.png" alt="">
+                      <img src="../utils/images/42.png" alt="">
+                      <img src="../utils/images/43.png" alt="">
+                      <img src="../utils/images/44.png" alt="">
+                    </div>
+                    <div>
+                      <p>
+                          8 Seats left
+                      </p>
+                    </div>
+                  </div>
+                  <!-- /Number of seats available -->
+                  <!-- Course Enroll Button -->
+                  <div class="full_row">
+                      <button class="black_btn full_width_btn">
+                          Enrol Now
+                      </button>
+                  </div>
+                  <!-- /Course Enroll Button -->                        
+              </div>
+              <!-- /Each Courses -->
+              <!-- Each Courses -->
+              <div class="each_course">
+                  <!-- Each course top part (Lecturer Name and price) -->
+                  <div class="flex_r_j_between_align_center">
+                      <div class="lecturer">
+                          <p>
+                              By Strive Masayiwa
+                          </p>
+                      </div>
+                      <div class="flex_r_a_center course_price">
+                          <div class="price_tag_icon">
+                              <i class="fas fa-tag"></i>                                    
+                          </div>
+                          <div class="course_amount">
+                              <p>
+                                  N100,000
+                              </p>
+                          </div>                                
+                      </div>
+                  </div>
+                  <!-- /Each course top part (Lecturer Name and price) -->
+                  <!-- Each Course second part (course icon and name) -->
+                  <div class="flex_r_a_center course_icon_n_name">
+                      <div class="course_image_wrapper">                                
+                          <div class="course_image">
+                              <img src="../utils/images/Bitmap.png" alt="">
+                          </div>
+                      </div>
+                      <div class="course_name">
+                          <h5>
+                              Skillsets to shift your career
+                          </h5>                                
+                      </div>
+                  </div>
+                  <!-- /Each Course second part (course icon and name) -->
+                  <!-- Course Description part -->
+                  <div class="full_row course_description">
+                      <p>
+                          A course for anyone who’s ready 
+                          to find their dream job. Covering 
+                          everything from resumes to job 
+                          applications.
+                      </p>
+                  </div>
+                  <!-- /Course Description part -->
+                  <!-- Number of seats available -->
+                  <div class="flex_r_j_between_align_center seats_left">
+                    <div class="stud_images">
+                      <img src="../utils/images/40.png" alt="">
+                      <img src="../utils/images/41.png" alt="">
+                      <img src="../utils/images/42.png" alt="">
+                      <img src="../utils/images/43.png" alt="">
+                      <img src="../utils/images/44.png" alt="">
+                    </div>
+                    <div>
+                      <p>
+                          8 Seats left
+                      </p>
+                    </div>
+                  </div>
+                  <!-- /Number of seats available -->
+                  <!-- Course Enroll Button -->
+                  <div class="full_row">
+                      <button class="black_btn full_width_btn">
+                          Enrol Now
+                      </button>
+                  </div>
+                  <!-- /Course Enroll Button -->                        
+              </div>
+              <!-- /Each Courses -->
+            </div>
+            <!-- /course list wrapper -->
+            <!-- pagination -->
+            <div class="flex_r_j_end_align_center pagination">
+              <div> <a href="#"> <i class="fas fa-chevron-left"></i> </a> </div>
+              <div> <a href="#" class="active"> 1 </a> </div>
+              <div> <a href="#"> 2 </a> </div>
+              <div> <a href="#"> 3 </a> </div>
+              <div> <a href="#"> 4 </a> </div>
+              <div> <a href="#"> 5 </a> </div> 
+              <div> <a href="#"> <i class="fas fa-chevron-right"></i> </a> </div>              
+            </div>
+            <!-- /pagination -->
+          </div>
+        </div>
+    </div>
+    <!-- /Courses list Section -->
+
+  </section>
+  <!-- /Dashboard Content side -->
+  
+
+
+</section>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>    
+<script src="../js/jQuery.min.js"></script>    
+<script src="../js/main.js"></script> 
+
+</body>
+</html>

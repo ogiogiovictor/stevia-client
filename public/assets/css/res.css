@@ -1,0 +1,1177 @@
+@media only screen and (min-width: 1520px) {
+    
+    aside.side_nav {
+        width: 25%;
+    }
+    section.dashboard_body {
+        width: 75%;
+        margin-left: auto;
+    }
+    .dashboard_center {
+        width: 85%;
+    }
+    .site_center1 {
+        width: 75%;
+    }
+    
+}
+
+@media only screen and (max-width: 1477px) {
+    .course_list_wrapper {
+        grid-template-columns: 48% 48%;
+        grid-gap: 30px 4%;
+    }
+    .ongoing_course_list_wrapper {
+        grid-template-columns: 48% 48%;
+        grid-gap: 30px 4%;
+    }
+}
+
+@media only screen and (max-width: 1412px) {
+    .site_header_4_coaches {
+        background-size: 47% 100%;
+    }
+}
+
+@media only screen and (max-width: 1352px) {
+    .coaches_list_wrapper > div .coach_features {
+        padding: 25px 15px;
+    }
+}
+
+@media only screen and (max-width: 1370px) {
+
+    .stevia_benefits > div p br {
+        display: none;
+    }
+
+    .job_opnenings_wrapper > div .desc_texts p br {
+        display: none;
+    }
+
+}
+
+@media only screen and (max-width: 1292px) {
+    aside.side_nav {
+        transform: translateX(-100%);
+        display: none;
+    }
+    section.dashboard_body {
+        width: 100%;
+        margin-left: 0;
+    }
+    .dashboard_center {
+        width: 85%;
+    }
+    .dashboard_sidenav_toggler {
+        display: block;
+        margin-right: 20px;
+    }
+    aside.side_nav .logo_div img {
+        display: none;
+    }
+    aside.side_nav .logo_div .close_sideNav {
+        display: block;
+    }
+    section.dashboard_body .top_nav .left_side h4 {
+        font-size: 27px;
+    }
+}
+
+@media only screen and (max-width: 1249px) {
+    .site_header_4_coaches {
+        background-size: 47% 100%;
+    }
+    .coaches_page .site_center1 {
+        width: 90%;
+    }
+    .stud_signup_form_wrapper {
+        width: 45%;
+    }
+    .student_below_form {
+        width: 35%;
+    }
+}
+
+@media only screen and (max-width: 1238px) {
+    .post_a_job_signup .form_wrapper {
+        width: 45%;
+    }
+    .post_a_job_signup .below_form {
+        width: 35%;
+    }
+    .student_dashboard_coaches_top .right {
+        width: 40%;
+    }
+}
+
+@media only screen and (max-width: 1224px) {
+    .coaches_page .header_desc_left {
+        width: 50%;
+    }
+    .form_section_wrapper .form_div {
+        width: 58%;
+    }
+    .need_help {
+        width: 48%;
+    }
+}
+
+@media only screen and (max-width: 1224px) {
+    .coach_details_container .coach_details_div {
+        padding: 60px 50px;
+    }
+}
+
+@media only screen and (max-width: 1171px) {
+    .pending_appointment_container {
+        padding: 40px 40px;
+        grid-template-columns: 48% 48%;
+        grid-gap: 30px 4%;
+    }
+}
+
+@media only screen and (max-width: 1085px) {
+    .appointment-complete-modal > div,
+    .course-complete-modal > div {
+        width: 55%;
+    }
+}
+
+@media only screen and (max-width: 1075px) {
+    .jobs_page_header p br {
+        display: none;
+    }
+    .jobs_page_header {
+        padding: 160px 190px;
+    }
+}
+
+@media only screen and (max-width: 1053px) {
+    .post_a_job_login .form_wrapper {
+        width: 40%;
+    }
+    .below_form {
+        width: 30%;
+    }
+}
+
+@media only screen and (max-width: 1050px) {
+    .coach_details_container .coach_details_div {
+        padding: 40px 30px;
+    }
+    .coaches_list_wrapper > div .coach_features_middle {
+        margin: 15px 0;
+    }
+    .coaches_list_wrapper > div .coach_features_bottom .bottom_link {
+        margin-bottom: 15px;
+    }
+}
+
+@media only screen and (max-width: 1026px) {
+    .coach_search_n_category {
+        flex-direction: column;
+    }
+    .coach_search_n_category .coaches_category {
+        width: 100%;
+        margin-bottom: 30px;
+        /* justify-content: space-evenly; */
+    }
+    .coach_search_n_category .coaches_category .specialization {
+        /* width: 140px; */
+    }
+    .coach_search_n_category .course_search {
+        /* width: 90%; */
+        margin-right: auto;
+        margin-left: auto;
+    }
+}
+
+@media only screen and (max-width: 1020px) {
+    .courses_wrapper_div {
+        grid-template-columns: 48% 48%;
+        grid-gap: 30px 4%;
+    }
+}
+
+@media only screen and (max-width: 985px) {
+    .dashboard_center {
+        width: 90%;
+    }
+    .student_dashboard_courses_top .top {
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+    }
+    .student_dashboard_courses_top .top > div {
+        margin-top: 30px;
+    }
+    .student_dashboard_courses_top .top .right {
+        width: 100%;
+    }
+}
+
+@media only screen and (max-width: 968px) {
+    .job_description_content {
+        flex-direction: column-reverse;
+    }
+    .jobDescription_section_wrapper_div .job_description_content .main_job_desc {
+        width: 100%;
+        border-left: none;
+        padding: 40px 0 0 0;
+    }
+    .jobDescription_section_wrapper_div .job_description_content .job_location {
+        width: 1000%;
+        padding-top: 40px;
+        padding-right: 0;
+    }
+}
+
+@media only screen and (max-width: 966px) {
+    .site_header_4_coaches {
+        background-image: none;
+    }
+    .coaches_page .header_desc_left {
+        width: 60%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+
+@media only screen and (max-width: 965px) {
+    .course_search_n_category .course_category {
+        width: 40%;
+    }
+    .course_search_n_category .course_search {
+        width: 42%;
+    }
+}
+
+@media only screen and (max-width: 963px) {
+    .course_n_category_wrapper {
+        grid-template-columns: 26% 72%;
+        grid-column-gap: 2%;
+    }
+    .post_a_job_signup .form_wrapper {
+        width: 55%;
+    }
+    .post_a_job_signup .below_form {
+        width: 45%;
+    }
+}
+
+@media only screen and (max-width: 956px) {
+    .want_to_be_a_coach_wrapper .want_to_be_a_coach_div {
+        width: 41%;
+        margin: 0 auto;
+        padding: 50px 30px;
+        flex-direction: column;
+    }
+    .want_to_be_a_coach_wrapper .want_to_be_a_coach_div .arrow {
+        margin: 100px 0;
+        transform: rotate(90deg);
+    }
+    .want_to_be_a_coach_wrapper .want_to_be_a_coach_div .text {
+        width: 100%;
+        text-align: center;
+    }
+    .stud_signup_form_wrapper {
+        width: 55%;
+    }
+    .student_below_form {
+        width: 45%;
+    }
+}
+
+@media only screen and (max-width: 945px) {
+    .coaches_list_wrapper {
+        padding: 30px 20px;
+        grid-template-columns: 49% 49%;
+        grid-gap: 20px 2%;
+    }
+}
+
+@media only screen and (max-width: 938px) {
+    .coach_details_container .coach_details_div {
+        width: 63%;
+    }
+    .coach_details_container .coach_image {
+        width: 37%;
+    }
+}
+
+@media only screen and (max-width: 889px) {
+    .course_n_category_wrapper {
+        grid-template-columns: 100%;
+        grid-column-gap: 0;
+    }
+    .course_n_category_wrapper .left > div {
+        margin-bottom: 20px;
+    }
+    .course_n_category_wrapper .left > div [class*='options_'] {
+        display: none;
+    } 
+    .course_n_category_wrapper .left > div [class*='_header'] {
+        border: 1px solid #E3E3E3;
+        padding: 20px;        
+        cursor: pointer;
+    }
+    .course_n_category_wrapper .left > div [class*='_header'] i {
+        display: block;
+    }
+    .all_jobs {
+        padding-top: 15px;
+    }
+    .course_n_category_wrapper .jobs_header h4 {
+        font-size: 28px;
+    }
+    .course_n_category_wrapper .right {
+        margin-top: 30px;
+    }
+    .form_section_wrapper .form_div {
+        width: 78%;
+    }
+    .need_help {
+        width: 60%;
+    }
+    .appointment-complete-modal > div,
+    .course-complete-modal > div {
+        width: 60%;
+    }
+}
+
+@media only screen and (max-width: 867px) {
+    .jobDescription_section_wrapper_div .header_content_wrapper {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .jobDescription_section_wrapper_div .header_content_wrapper .job_title {
+        margin: 10px 0;
+    }
+}
+
+@media only screen and (max-width: 853px) {
+    .coach_details_wrapper {
+        height: initial;
+    }
+    .coach_details_container {
+        flex-direction: column;
+        width: 65%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .coach_details_container .coach_details_div {
+        width: 100%;        
+    }
+    .coach_details_container .coach_image {
+        width: 100%;
+        height: 550px;
+    }
+    .coach_details_container .coach_image img {
+        border-radius: 5px 5px 0 0;
+    }
+    .coach_summary {
+        flex-direction: column;
+    }
+    .coach_details_container .coach_details_div .coach_summary .coach_summary_n_specialization {
+        width: 100%;
+        border-right: none;
+        padding-top: 30px;
+        padding-right: 0;
+    }
+    .coach_details_container .coach_details_div .coach_summary .coach_social {
+        width: 50%;
+        padding-top: 40px;
+        padding-left: 0;
+    }
+    .about_coach_section {
+        /* transform: translateY(-110px); */
+    }
+}
+
+@media only screen and (max-width: 843px) {
+    .third_section_wrapper_div .how_it_works_left_side h4 {
+        font-size: 25px;
+    }
+    .third_section_wrapper_div .how_it_works_left_side p {
+        font-size: 15px;
+    }
+    .third_section_wrapper_div .how_it_works_right_side div[class*="how_it_work_step_"] p {
+        font-size: 13px;
+    }
+    .third_section_wrapper_div .how_it_works_right_side div[class*="how_it_work_step_"] h4 {
+        font-size: 15px;
+    }
+    .post_a_job_login .form_wrapper {
+        width: 50%;
+    }
+    .below_form {
+        width: 40%;
+    }
+}
+
+@media only screen and (max-width: 840px) {
+    .stevia_benefits {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    .stevia_benefits > div {
+        width: 45%;
+        margin: 0 2.5% 25px;
+    }
+    .course_search_n_category .course_category {
+        width: 43%;
+    }
+    .course_search_n_category .course_search {
+        width: 44%;
+    }
+}
+
+@media only screen and (max-width: 837px) {
+    section.dashboard_body .overview_cards .cards_wrapper {
+        grid-template-columns: 48% 48%;
+        grid-column-gap: 4%;
+    }
+    section.dashboard_body .overview_cards .cards_wrapper > div {
+        margin-bottom: 30px;
+    }
+    .student_dashboard_coaches_top .right {
+        width: 50%;
+    }
+}
+
+@media only screen and (max-width: 826px) {
+    .jobs_page_header {
+        padding: 120px 110px;
+    }
+    .jobs_page .site_center1 {
+        width: 90%;
+    }
+    .search_course_input_wrapper {
+        width: 60%;
+        transform: translateY(0);
+    }
+    .search_course_wrapper {
+        padding-top: 80px;
+    }
+    .subscribe_input_wrapper {
+        width: 60%;
+    }
+}
+
+@media only screen and (max-width: 817px) {
+    .coaches_page .header_desc_left h4 br {
+        display: none;
+    }
+    .coaches_page .header_desc_left p br {
+        display: none;
+    }
+    .course_list_wrapper {
+        grid-template-columns: 100%;
+        grid-gap: 30px 0;
+    }
+    .coaches_list_wrapper {
+        padding: 30px 20px;
+        grid-template-columns: 100%;
+        grid-gap: 20px 0;
+    }    
+    .coaches_list_wrapper > div {
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .ongoing_course_list_wrapper {
+        grid-template-columns: 100%;
+        grid-gap: 30px 0;
+    }
+}
+
+@media only screen and (max-width: 812px) {
+    .how_it_works_div {
+        flex-direction: column;
+    }
+    .contact_wrapper {
+        grid-template-columns: 100%;
+        grid-column-gap: 0;
+    }
+    .contact_section_wrapper_div .site_center1 {
+        width: 60%;
+    }
+    .contact_wrapper .contact_form {
+        margin-bottom: 60px;
+    }
+    .pending_appointment_container {
+        padding: 25px 25px;
+        grid-template-columns: 49% 49%;
+        grid-gap: 25px 2%;
+    }
+    
+}
+
+@media only screen and (max-width: 810px) {
+    .header_desc_div, .mobile_header {
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+    }
+    .site_header {
+        background-image: none;
+    }
+    .header_desc_left h4 br {
+        display: block;
+    }
+    .header_desc_left p br {
+        display: block;
+    }
+    .mobile_nav_toggler .bars_index {
+        background-color: #EF4B4B;
+    }
+    .site_center1 {
+        width: 80%;
+    }
+    .site_center2 {
+        width: 75%;
+    }
+    .header_desc_wrapper .header_desc_div, .mobile_header {
+        width: 80%;
+        margin-right: auto;
+        margin-left: auto;
+    }
+    .header_desc_wrapper {
+        background-image: url(../utils/images/8.png);
+        background-repeat: no-repeat;
+        background-position: 50px 0;
+        padding: 20px 0;
+        margin-top: 50px;
+    }
+    .header_desc_right {
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-end;
+        margin-top: 50px;
+       
+    }
+    .header_desc_right_index {
+        background-image: url(../utils/images/71.png);
+        background-repeat: no-repeat;
+        background-position: center center;
+        background-size: 100% 80px;
+    }
+    .header_desc_right img {
+        width: 452px;
+        height: 279px;
+    }
+    .benefits_wrapper .coach_benefits_wrapper {
+        grid-template-columns: 48% 48% ;
+        grid-column-gap: 4%;
+    }
+    .benefits_wrapper .coach_benefits_wrapper .each_benefit:nth-child(3) {
+        margin-top: 50px;
+    }
+    .benefits_section {
+        height: inherit;
+    }
+    .review_section_wrapper_div {
+        padding-top: 0;
+    }
+    .stud_signup_form_wrapper {
+        width: 70%;
+    }
+    .student_below_form {
+        width: 55%;
+    }
+}
+
+@media only screen and (max-width: 790px) {
+    .how_it_works_div {
+        flex-direction: column;
+    }
+
+    .how_it_works_div > div {
+        width: 100%;
+        text-align: center;
+    }
+
+    .third_section_wrapper_div .how_it_works_left_side {
+        padding-right: 0;
+        text-align: left;
+    }
+
+    .how_it_works_right_side {
+        justify-content: center;
+        margin-top: 60px;
+    }
+
+    .coaches_wrapper_div {
+        grid-template-columns: 100%;
+        grid-gap: 40px 0;
+    }
+
+    .coaches_wrapper_div > div {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .third_section_wrapper_div .how_it_works_left_side h4 br {
+        display: none;
+    }
+
+    .third_section_wrapper_div .how_it_works_left_side p.first_child {
+        margin-bottom: 15px;
+    }
+}
+
+@media only screen and (max-width: 782px) {
+    .course_search_n_category {
+        flex-direction: column;
+    }
+    .course_search_n_category .course_category {
+        width: 100%;
+        margin-bottom: 30px;
+    }
+    .course_search_n_category .course_category .select_wrapper {
+        width: 75%;
+        margin-left: auto;
+    }
+    .course_search_n_category .course_search {
+        width: 100%;
+    }
+    .post_a_job_page_wrapper .left_side .left_side_content_div .bottom .bottom_header h4 {
+        font-size: 25px;
+        line-height: 30px;
+        margin-bottom: 37px;
+    }
+}
+
+@media only screen and (max-width: 772px) {
+    .second_section_header p br {
+        display: none;
+    }
+    .post_a_job_signup .form_wrapper {
+        width: 65%;
+    }
+    .post_a_job_signup .below_form {
+        width: 55%;
+    }
+}
+
+@media only screen and (max-width: 766px) {
+    .coach_details_container {
+        width: 75%;
+    }
+}
+
+@media only screen and (max-width: 730px) {
+    .pending_appointment_container {
+        padding: 40px 40px;
+        grid-template-columns: 100%;
+        grid-gap: 25px auto;
+    }
+    .pending_appointment_container > div {
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+@media only screen and (max-width: 720px) {
+    .courses_wrapper_div {
+        grid-template-columns: 100%;
+        grid-gap: 30px 0;
+    }
+    .subscribe_input_wrapper {
+        width: 70%;
+    }
+}
+
+@media only screen and (max-width: 717px) {
+    .coaches_page .header_desc_left {
+        width: 70%;
+    }
+    .appointment-complete-modal > div,
+    .course-complete-modal > div {
+        width: 65%;
+    }
+}
+
+@media only screen and (max-width: 708px) {
+    .post_a_job_page_wrapper .left_side {
+        display: none;
+    }
+    .post_a_job_page_wrapper .right_side {
+        width: 100%;
+        margin-left: 0;
+    }    
+    .post_a_job_page_wrapper .right_side .right_side_header img {
+        display: block;
+    }
+}
+
+@media only screen and (max-width: 665px) {
+    .all_jobs {
+        display: grid;
+        grid-template-columns: 100%;
+        grid-gap: 30px 0;
+    }
+    .contact_section_wrapper_div .site_center1 {
+        width: 75%;
+    }
+    .benefits_wrapper .coach_benefits_wrapper {
+        grid-template-columns: 100% ;
+        grid-column-gap: 0;
+    }
+    .benefits_wrapper .coach_benefits_wrapper .each_benefit:nth-child(2) {
+        margin-top: 50px;
+    }
+    .appointment-complete-modal > div,
+    .course-complete-modal > div {
+        width: 85%;
+    }
+    .appointment-complete-modal .head h4,
+    .course-complete-modal .head h4 {
+        font-size: 20px;
+        line-height: 28px;
+    }
+    .appointment-complete-modal .head p,
+    .course-complete-modal .head p {
+        font-weight: 600;
+        font-size: 13px;
+        line-height: 23px;
+    }
+    .appointment-complete-modal .experience_question,
+    .course-complete-modal .experience_question {
+        margin: 25px 0 20px;
+    }
+    .appointment-complete-modal .experience_question h6,
+    .course-complete-modal .experience_question h6 {
+        font-size: 15px;
+        line-height: 20px;
+    }
+}
+
+@media only screen and (max-width: 654px) {
+    .jobDescription_section_wrapper_div .header_content_wrapper .job_title h4 {
+        font-size: 27px;
+    }
+    .post_a_job_login .form_wrapper {
+        width: 70%;
+    }
+    .below_form {
+        width: 50%;
+    }
+    .post_a_job_signup .form_wrapper {
+        width: 75%;
+    }
+    .post_a_job_signup .below_form {
+        width: 65%;
+    }
+    .stud_signup_form_wrapper {
+        width: 80%;
+    }
+    .student_below_form {
+        width: 65%;
+    }
+    .student_dashboard_coaches_top .search_input {
+        width: 40%;
+    }
+}
+
+@media only screen and (max-width: 636px) {
+    .coach_details_container {
+        width: 80%;
+    }
+    .coach_details_container .coach_image {
+        height: 450px;
+    }
+    .student_dashboard_coaches_top .top {
+        flex-direction: column-reverse;
+        align-items: flex-start;
+        justify-content: flex-start;
+    }
+    .student_dashboard_coaches_top .search_input {
+        margin-top: 20px;
+        width: 100%;
+    }
+    .student_dashboard_coaches_top .right {
+        width: 100%;
+    }
+}
+
+@media only screen and (max-width: 624px) {
+    .coaches_category > div {
+        margin-top: 10px;
+    }
+    section.dashboard_body .appointments_part .top {
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+    }
+    section.dashboard_body .appointments_part .top .left {
+        margin-bottom: 25px;
+    }
+}
+
+@media only screen and (max-width: 620px) {
+    .footer_wrapper .footer_links {
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+    }
+    .footer_wrapper .footer_social_icons {
+        margin: 30px 0 0;
+    }
+    .footer_wrapper .top_nav_links {
+        flex-direction: column;
+    }
+    .footer_wrapper .top_nav_links > div {
+        margin: 15px 0;
+        padding: 0;
+    }
+    .footer_wrapper {
+        justify-content: flex-start;
+        align-items: flex-start;
+    }
+    .footer_social_icons i {
+        margin: 0 15px 0 0;
+    }
+    .course_search_n_category .course_category .select_wrapper {
+        width: 70%;
+        margin-left: auto;
+    }
+    .subscribe_section_wrapper_div .subscribe_header h4 {
+        font-size: 28px;
+    }
+    .subscribe_section_wrapper_div .subscribe_header p br {
+        display: none;
+    }
+    .want_to_be_a_coach_wrapper .want_to_be_a_coach_div {
+        width: 51%;
+    }
+    .student_dashboard_courses_top .top .right {
+        width: 100%;
+    }
+    .course_list_wrapper .each_course .seats_left .stud_images img:nth-child(5) {
+        /* display: ; */
+    }
+
+}
+
+@media only screen and (max-width: 600px) {
+    .header_desc_right img {
+        width: 412px;
+        height: 249px;
+    }
+    .how_it_works_right_side {
+        flex-direction: column;
+    }
+    .third_section_wrapper_div .how_it_works_right_side {
+        background-image: none;
+    }
+    .third_section_wrapper_div .how_it_works_right_side > .steps_right_side {
+        margin-right: 0;
+    }
+    .stud_signup_form_wrapper {
+        width: 90%;
+    }
+    .student_below_form {
+        width: 80%;
+    }
+    .other_infos {
+        grid-template-columns: auto;
+        grid-column-gap: 0;
+    }
+}
+
+@media only screen and (max-width: 585px) {
+    .coaches_page .header_desc_left {
+        width: 80%;
+    }
+    .coach_details_container {
+        width: 100%;
+    }
+    .coach_details_container .coach_image {
+        height: 500px;
+    }
+    .coach_details_container .coach_details_div .coach_details_div_top .text h4 {
+        font-size: 28px;
+        line-height: 30px;
+    }
+    
+}
+
+@media only screen and (max-width: 572px) {
+    .coach_landing_page_header .text p br {
+        display: none;
+    }   
+    .coach_landing_page_header .text h4 br {
+        display: none;
+    } 
+}
+
+@media only screen and (max-width: 560px) {
+    .stevia_benefits > div {
+        width: 100%;
+        margin: 0 0 25px;
+    }
+    .coaches_wrapper_div .each_coach {
+        width: 100%;
+    }
+    .coaches_wrapper_div .each_coach .coach_features {
+        width: 63%;
+        padding: 15px 15px;
+    }
+    .coaches_wrapper_div .each_coach .coach_features_middle {
+        margin: 15px 0;
+    }
+    .coach_features_bottom button {
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+    .fourth_section_wrapper_div .site_center1 {
+        width: 90%;
+    }
+    .fifth_section_wrapper_div .site_center1 {
+        width: 90%;
+    }
+    .sixth_section_wrapper_div h5 {
+        font-size: 28px;
+    }
+    .header_desc_left h4 br {
+        display: none;
+    }
+    .header_desc_left p br {
+        display: none;
+    }
+    .courses_section_header_txt h4 {
+        font-size: 27px;
+    }
+    .jobs_page_header {
+        padding: 100px 100px;
+    }
+    .contact_section_wrapper_div .site_center1 {
+        width: 87%;
+    }
+    .recommendation_header h3 {
+        font-size: 26px;
+        line-height: 32px;
+    }
+    .recruiters_success {
+        padding: 30px;
+    }
+    .form_section_wrapper .form_div {
+        width: 90%;
+    }
+    .need_help {
+        width: 80%;
+    }
+}
+
+@media only screen and (max-width: 554px) {
+    section.dashboard_body .overview_cards .cards_wrapper {
+        grid-template-columns: 100%;
+        grid-column-gap: 0;
+    }
+    section.dashboard_body .top_nav .left_side h4 {
+        font-size: 23px;
+    }
+    .dashboard_sidenav_toggler {
+        margin-right: 10px;
+        width: 29px;
+    }
+    section.dashboard_body .top_nav .right_side .username {
+        padding-left: 10px;
+    }
+    section.dashboard_body .top_nav .right_side .bell {
+        padding: 25px 10px;
+    }
+    .dashboard_center {
+        width: 92%;
+    }
+    .pending_appointment_container {
+        padding: 30px 20px;
+    }
+}
+
+@media only screen and (max-width: 520px) {
+    .job_opnenings_wrapper > div {
+        width: 320px;
+        margin-right: 10px;
+    }
+    .fifth_section_wrapper_div .site_center1 {
+        width: 90%;
+    }
+    .course_search_n_category .course_category .select_wrapper {
+        width: 50%;
+        margin-left: auto;
+    }
+    .courses_section_wrapper_div .site_center1 {
+        width: 90%;
+    }
+    .pagination_div div {
+        padding: 10px 12px;
+    }
+    .contact_page_header {
+        padding-left: 13px;
+        padding-right: 13px;
+    }
+    .contact_page_header p br {
+        display: none;
+    }
+    .jobDescription_section_wrapper_div .header_content_wrapper .job_title h4 {
+        font-size: 22px;
+        line-height: 30px;
+    }
+    .benefits_wrapper .header h3 {
+        font-size: 27px;
+        line-height: 32px;
+    }
+    .want_to_be_a_coach_wrapper .want_to_be_a_coach_div {
+        width: 80%;
+    }
+    .benefits_wrapper .header h3 {
+        font-size: 26px;
+        line-height: 32px;
+    }
+    .post_a_job_login .form_wrapper {
+        width: 90%;
+    }
+    .below_form {
+        width: 70%;
+    }
+    .post_a_job_login .form_wrapper .login_text p {
+        font-size: 16px;
+        line-height: 20px;
+    }
+    .post_a_job_login .form_wrapper .login_text h3 {
+        font-size: 29px;
+        line-height: 32px;
+    }
+    .post_a_job_signup .form_wrapper {
+        width: 90%;
+        padding: 30px 30px;
+    }
+    .post_a_job_signup .below_form {
+        width: 80%;
+    }
+    .post_a_job_signup .form_wrapper .login_text h3 {
+        font-size: 26px;
+        line-height: 32px;
+    }
+    .post-a-job-nav {
+        flex-direction: column;
+        justify-content: flex-start;
+        /* align-items: flex-start; */
+    }
+    .post-a-job-nav > div:nth-child(1) {
+        margin-bottom: 30px;
+    }
+    .grid_item_two {
+        grid-template-columns: 100%;
+        grid-column-gap: 0;
+        margin-top: 0;
+    }
+    .grid_item_two > div:nth-child(2) {
+        margin-top: 15px;
+    }
+    .form_section_wrapper .application_mode .app_mode_grid {
+        grid-template-columns: 100%;
+        grid-column-gap: 0;
+    }
+    .form_section_wrapper .application_mode .app_mode_grid > div:nth-child(1) {
+        margin-bottom: 20px;
+    }
+    .pl-40 {
+        padding-left: 0;
+    }
+    .course_list_wrapper .each_course .seats_left {
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+    }
+    .course_list_wrapper .each_course .seats_left .stud_images {
+        margin-bottom: 15px;
+    }
+    .course_list_wrapper .each_course .course_name,
+    .ongoing_course_list_wrapper .each_course .course_name {
+        padding-left: 10px;
+    }
+    .course_list_wrapper .each_course .course_name h5,
+    .ongoing_course_list_wrapper .each_course .course_name h5 {
+        font-size: 15px;
+    }
+    .course_list_wrapper .each_course .course_image,
+    .ongoing_course_list_wrapper .each_course .course_image {
+        height: 60px;
+        width: 60px;
+    }
+    .course_list_wrapper {
+        padding: 15px;
+    }
+    .course_list_wrapper .each_course {
+        padding: 25px 15px;
+    }
+    .coaches_list_wrapper {
+        padding: 25px 10px;
+    }
+    .student_dashboard_courses_top .top .right .search_input {
+        width: 55%;
+    }
+    .student_dashboard_courses_top .top .right .coach_select {
+        width: 25%;
+        margin-left: 8px;
+        margin-right: 8px;
+    }
+    .student_dashboard_courses_top .top .right .cost_select {
+        width: 20%;
+    }
+    .student_dashboard_courses_top .top .left span,
+    section.dashboard_body .appointments_part .top .right span {
+        padding: 9px 22px;
+        font-size: 13px;
+        line-height: 12px;
+        margin: 10px 4px 0 0;
+    }
+    .ongoing_course_list_wrapper {
+        padding: 25px 15px;
+    }
+}
+
+@media only screen and (max-width: 500px) {
+    .header_desc_right img {
+        width: 280px;
+        height: 190px;
+    }
+    .header_desc_right {
+        background-size: 100% 70px;
+    }
+    .courses_navigator .courses_navigator_link {
+        margin: 0 0px;
+        padding: 12px 13px;
+    }
+    .jobs_page_header {
+        padding: 60px 30px;
+    }
+    .search_course_input_wrapper {
+        width: 90%;
+    }
+    .subscribe_input_wrapper {
+        width: 95%;
+    }
+    .subscribe_input_wrapper .subscribe_button button {
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+    .coach_details_container .coach_image {
+        height: 400px;
+    }
+    .review_lists .each_review {
+        width: 300px;
+    }
+    section.dashboard_body .appointments_part .top .right span:nth-child(2),
+    .student_dashboard_courses_top .top .left span:nth-child(2) {
+        margin: 20px 4px 0 0;
+    }    
+    section.dashboard_body .appointments_part .top .right span,
+    .student_dashboard_courses_top .top .left span {
+        margin: 20px 4px 0 0;
+    }
+}
+
