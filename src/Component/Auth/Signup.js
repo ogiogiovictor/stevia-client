@@ -9,10 +9,13 @@ class Signup extends Component {
           <div className='full_row post_a_job_signup'>
             <div className='form_wrapper'>
               <div className='full_row'>
-                <img
-                  src={process.env.PUBLIC_URL + 'assets/utils/images/47.png'}
-                  alt=''
-                />
+                <Link to='/'>
+                  <img
+                    src={process.env.PUBLIC_URL + 'assets/utils/images/15.png'}
+                    width='100px'
+                    alt=''
+                  />
+                </Link>
               </div>
               <div className='full_row login_text'>
                 <h3>Create an account</h3>

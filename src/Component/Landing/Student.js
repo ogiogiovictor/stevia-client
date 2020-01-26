@@ -38,7 +38,7 @@ class Student extends Component {
           </div>
 
           <div className='flex_r nav_link_buttons'>
-            <button className='mr-1 red_btn'>Login</button>
+            <Link to='/login'><button className='mr-1 red_btn'>Login</button></Link>
             <Link to='/coach'>
               <button className='black_btn'>Become a coach</button>
             </Link>
@@ -80,7 +80,7 @@ class Student extends Component {
                       </div>
                     </div>
                     <div className='flex_r nav_link_buttons'>
-                      <button className='mr-3 red_btn'>Login</button>
+                    <Link to='/login'><button className='mr-1 red_btn'>Login</button></Link>
                       <Link to='/coach'>
                         <button className='black_btn'>Become a coach</button>
                       </Link>

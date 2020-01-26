@@ -62,11 +62,11 @@ class Coach extends Component {
                   <div className='flex_r_j_between_align_center top_nav_right'>
                     <div className='flex_r top_nav_links'>
                       <div>
-                        <Link to='/'> LOGIN </Link>
+                        <Link to='/login'> LOGIN </Link>
                       </div>
                     </div>
                     <div className='flex_r nav_link_buttons'>
-                      <button className='red_btn'>signup</button>
+                      <Link to='/signup'><button className='red_btn'>signup</button></Link>
                     </div>
                   </div>
                   <div className='mobile_nav_toggler'>

@@ -9,10 +9,13 @@ class Login extends Component {
           <div className='flex_c_align_center post_a_job_login'>
             <div className='form_wrapper'>
               <div className='full_row'>
+                <Link to='/'>
                 <img
-                  src={process.env.PUBLIC_URL + 'assets/utils/images/47.png'}
+                  src={process.env.PUBLIC_URL + 'assets/utils/images/15.png'}
+                  width='100px'
                   alt=''
                 />
+                </Link>
               </div>
 
               <div className='full_row login_text'>
