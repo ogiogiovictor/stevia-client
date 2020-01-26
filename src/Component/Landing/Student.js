@@ -108,7 +108,7 @@ class Student extends Component {
                     job <br />
                     search, job loss, leadership and more.
                   </p>
-                  <button className='red_btn'>get started</button>
+                  <Link to='/login'><button className='red_btn'>get started</button></Link>
                 </div>
 
                 <div className='header_desc_right header_desc_right_index'>

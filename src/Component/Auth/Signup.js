@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
-class Login extends Component {
+class Signup extends Component {
   render() {
     return (
       <div className='onboard_pages'>
         <section className='whole_page_wrapper'>
-          <div className='flex_c_align_center post_a_job_login'>
+          <div className='full_row post_a_job_signup'>
             <div className='form_wrapper'>
               <div className='full_row'>
                 <img
@@ -14,15 +14,24 @@ class Login extends Component {
                   alt=''
                 />
               </div>
-
               <div className='full_row login_text'>
-                <h3>Log in</h3>
+                <h3>Create an account</h3>
                 <p>to continue to your dashboard</p>
               </div>
 
               <div className='full_row common_input_wrapper_2'>
-                <label for=''>Email Address</label>
-                <input type='text' name='' id='' placeholder='' />
+                <label for=''></label>
+                <input type='text' name='' id='' placeholder='Name' />
+              </div>
+
+              <div className='full_row common_input_wrapper_2'>
+                <label for=''></label>
+                <input type='text' name='' id='' placeholder='Email Address' />
+              </div>
+
+              <div className='full_row common_input_wrapper_2'>
+                <label for=''></label>
+                <input type='text' name='' id='' placeholder='Phone number' />
               </div>
 
               <div className='full_row common_input_wrapper_with_icon mt-24'>
@@ -38,7 +47,7 @@ class Login extends Component {
 
               <div className='flex_r forget_password_link'>
                 <div>
-                  <Link to='/' className='rubber_effect_link'>
+                  <Link to='' className='rubber_effect_link'>
                     {' '}
                     Forgot password?{' '}
                   </Link>
@@ -46,16 +55,24 @@ class Login extends Component {
               </div>
 
               <div className='full_row login_button'>
-                <button className='red_btn full_width_btn'>login</button>
+                <button className='red_btn full_width_btn'>sign up</button>
+              </div>
+              <div className='full_row site_terms'>
+                <p>
+                  Creating an account assumes that you agree to our
+                  <Link to='#' className='rubber_effect_link'>
+                    {' '}
+                    Terms of services{' '}
+                  </Link>
+                </p>
               </div>
             </div>
-
-            <div className='below_form text-center'>
+            <div class='below_form text-center'>
               <p>
-                Don’t have an account?{' '}
-                <Link to='/signup' className='rubber_effect_link'>
+                Already have an account?{' '}
+                <Link to='/login' className='rubber_effect_link'>
                   {' '}
-                  Sign up{' '}
+                  Login{' '}
                 </Link>
               </p>
             </div>
@@ -66,4 +83,4 @@ class Login extends Component {
   }
 }
 
-export default Login;
+export default Signup;
