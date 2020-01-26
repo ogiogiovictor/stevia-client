@@ -38,12 +38,12 @@ class Coach extends Component {
           </div>
 
           <div className='flex_r nav_link_buttons'>
-            <button className='mr-1 red_btn'>Login</button>
-            <button className='black_btn'>Become a coach</button>
+            <Link to='/login'><button className='mr-1 red_btn'>Login</button></Link>
+            <Link to='/signup'><button className='black_btn'>Become a coach</button></Link>
           </div>
         </div>
 
-        <section class='whole_page_wrapper'>
+        <section className='whole_page_wrapper'>
           <header className='full_row'>
             <nav>
               <div className='site_center1 top_nav_div'>
