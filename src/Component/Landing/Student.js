@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import Footer from './Footer';
 
 class Student extends Component {
   render() {
@@ -38,7 +39,9 @@ class Student extends Component {
 
           <div className='flex_r nav_link_buttons'>
             <button className='mr-1 red_btn'>Login</button>
-            <Link to='/coach'><button className='black_btn'>Become a coach</button></Link>
+            <Link to='/coach'>
+              <button className='black_btn'>Become a coach</button>
+            </Link>
           </div>
         </div>
 
@@ -78,7 +81,9 @@ class Student extends Component {
                     </div>
                     <div className='flex_r nav_link_buttons'>
                       <button className='mr-3 red_btn'>Login</button>
-                      <Link to='/coach'><button className='black_btn'>Become a coach</button></Link>
+                      <Link to='/coach'>
+                        <button className='black_btn'>Become a coach</button>
+                      </Link>
                     </div>
                   </div>
 
@@ -173,7 +178,9 @@ class Student extends Component {
                   <div>
                     <div>
                       <img
-                        src={process.env.PUBLIC_URL + 'assets/utils/images/14.png'}
+                        src={
+                          process.env.PUBLIC_URL + 'assets/utils/images/14.png'
+                        }
                         alt=''
                       />
                     </div>
@@ -667,48 +674,15 @@ class Student extends Component {
               <div className='site_center1 text-center'>
                 <h5>Do you want to become a coach on Stevia?</h5>
 
-                <Link to='/coach'><button className='black_btn'>Become a coach</button></Link>
+                <Link to='/coach'>
+                  <button className='black_btn'>Become a coach</button>
+                </Link>
               </div>
             </div>
           </section>
 
           <footer>
-            <div className='full_row footer_section'>
-              <div className='site_center1'>
-                <div className='flex_r_j_between_align_center footer_wrapper'>
-                  <div className='copy_right'>
-                    <p>Copyright © 2020. stevia.com</p>
-                  </div>
-
-                  <div className='flex_r_j_between_align_center footer_links'>
-                    <div className='flex_r top_nav_links'>
-                      <div>
-                        <Link to='#'> About Us </Link>
-                      </div>
-                      <div>
-                        <Link to='#'> Term of Services </Link>
-                      </div>
-                      <div>
-                        <Link to='#'> Privacy </Link>
-                      </div>
-                      <div>
-                        <Link to='#'> FAQ </Link>
-                      </div>
-                      <div>
-                        <Link to='#'> Contact Us </Link>
-                      </div>
-                    </div>
-
-                    <div className='flex_r footer_social_icons'>
-                      <i className='fab fa-facebook-f'></i>
-                      <i className='fab fa-youtube'></i>
-                      <i className='fab fa-linkedin'></i>
-                      <i className='fab fa-twitter'></i>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+            <Footer />
           </footer>
         </section>
       </div>
