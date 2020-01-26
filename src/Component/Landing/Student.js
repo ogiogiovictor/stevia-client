@@ -38,7 +38,9 @@ class Student extends Component {
 
           <div className='flex_r nav_link_buttons'>
             <button className='mr-1 red_btn'>Login</button>
-            <Link to='/coach'><button className='black_btn'>Become a coach</button></Link>
+            <Link to='/coach'>
+              <button className='black_btn'>Become a coach</button>
+            </Link>
           </div>
         </div>
 
@@ -78,7 +80,9 @@ class Student extends Component {
                     </div>
                     <div className='flex_r nav_link_buttons'>
                       <button className='mr-3 red_btn'>Login</button>
-                      <Link to='/coach'><button className='black_btn'>Become a coach</button></Link>
+                      <Link to='/coach'>
+                        <button className='black_btn'>Become a coach</button>
+                      </Link>
                     </div>
                   </div>
 
@@ -173,7 +177,9 @@ class Student extends Component {
                   <div>
                     <div>
                       <img
-                        src={process.env.PUBLIC_URL + 'assets/utils/images/14.png'}
+                        src={
+                          process.env.PUBLIC_URL + 'assets/utils/images/14.png'
+                        }
                         alt=''
                       />
                     </div>
@@ -667,7 +673,9 @@ class Student extends Component {
               <div className='site_center1 text-center'>
                 <h5>Do you want to become a coach on Stevia?</h5>
 
-                <Link to='/coach'><button className='black_btn'>Become a coach</button></Link>
+                <Link to='/coach'>
+                  <button className='black_btn'>Become a coach</button>
+                </Link>
               </div>
             </div>
           </section>
