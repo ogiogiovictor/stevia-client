@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import Footer from './Footer';
+import Testimonial from './Testimonial';
 
 class Coach extends Component {
   render() {
@@ -38,8 +39,12 @@ class Coach extends Component {
           </div>
 
           <div className='flex_r nav_link_buttons'>
-            <Link to='/login'><button className='mr-1 red_btn'>Login</button></Link>
-            <Link to='/signup'><button className='black_btn'>Become a coach</button></Link>
+            <Link to='/login'>
+              <button className='mr-1 red_btn'>Login</button>
+            </Link>
+            <Link to='/signup'>
+              <button className='black_btn'>Become a coach</button>
+            </Link>
           </div>
         </div>
 
@@ -66,7 +71,9 @@ class Coach extends Component {
                       </div>
                     </div>
                     <div className='flex_r nav_link_buttons'>
-                      <Link to='/signup'><button className='red_btn'>signup</button></Link>
+                      <Link to='/signup'>
+                        <button className='red_btn'>signup</button>
+                      </Link>
                     </div>
                   </div>
                   <div className='mobile_nav_toggler'>
@@ -170,109 +177,7 @@ class Coach extends Component {
           </section>
 
           <section>
-            <div className='full_row review_section_wrapper_div'>
-              <div className='full_row text-center review_header'>
-                <h4>Testimonials</h4>
-
-                <p>What are people saying</p>
-              </div>
-              <div className='full_row review_lists'>
-                <div className='list_container'>
-                  <div className='each_review'>
-                    <div className='full_row review_text'>
-                      <p>
-                        When I started working with Akin, I was miserable in my
-                        job. It was emotionally draining, and I felt trapped. I
-                        needed someone to help me focus my energy and get the
-                        work done well, and fast! Akin did just that! She helped
-                        me identify the positive aspects of my current situation
-                      </p>
-                    </div>
-                    <div className='flex_r_a_center image_n_name'>
-                      <img
-                        src={
-                          process.env.PUBLIC_URL + 'assets/utils/images/67.png'
-                        }
-                        alt=''
-                      />
-                      <div>
-                        <p> Lesly Williams </p>
-                        <span> MTN </span>
-                      </div>
-                    </div>
-                  </div>
-                  <div className='each_review'>
-                    <div className='full_row review_text'>
-                      <p>
-                        When I started working with Akin, I was miserable in my
-                        job. It was emotionally draining, and I felt trapped. I
-                        needed someone to help me focus my energy and get the
-                        work done well, and fast! Akin did just that! She helped
-                        me identify the positive aspects of my current situation
-                      </p>
-                    </div>
-                    <div className='flex_r_a_center image_n_name'>
-                      <img
-                        src={
-                          process.env.PUBLIC_URL + 'assets/utils/images/67.png'
-                        }
-                        alt=''
-                      />
-                      <div>
-                        <p> Lesly Williams </p>
-                        <span> MTN </span>
-                      </div>
-                    </div>
-                  </div>
-                  <div className='each_review'>
-                    <div className='full_row review_text'>
-                      <p>
-                        When I started working with Akin, I was miserable in my
-                        job. It was emotionally draining, and I felt trapped. I
-                        needed someone to help me focus my energy and get the
-                        work done well, and fast! Akin did just that! She helped
-                        me identify the positive aspects of my current situation
-                      </p>
-                    </div>
-                    <div className='flex_r_a_center image_n_name'>
-                      <img
-                        src={
-                          process.env.PUBLIC_URL + 'assets/utils/images/67.png'
-                        }
-                        alt=''
-                      />
-                      <div>
-                        <p> Lesly Williams </p>
-                        <span> MTN </span>
-                      </div>
-                    </div>
-                  </div>
-                  <div className='each_review'>
-                    <div className='full_row review_text'>
-                      <p>
-                        When I started working with Akin, I was miserable in my
-                        job. It was emotionally draining, and I felt trapped. I
-                        needed someone to help me focus my energy and get the
-                        work done well, and fast! Akin did just that! She helped
-                        me identify the positive aspects of my current situation
-                      </p>
-                    </div>
-                    <div className='flex_r_a_center image_n_name'>
-                      <img
-                        src={
-                          process.env.PUBLIC_URL + 'assets/utils/images/67.png'
-                        }
-                        alt=''
-                      />
-                      <div>
-                        <p> Lesly Williams </p>
-                        <span> MTN </span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+            <Testimonial />
           </section>
 
           <section>

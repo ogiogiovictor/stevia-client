@@ -1,0 +1,43 @@
+.info,
+.success,
+.warning,
+.error,
+.validation {
+  border: 1px solid;
+  margin: 10px 0px;
+  padding: 15px 10px 15px 50px;
+  background-repeat: no-repeat;
+  background-position: 10px center;
+}
+.info {
+  color: #00529b;
+  background-color: #bde5f8;
+  background-image: url('https://i.imgur.com/ilgqWuX.png');
+}
+.success {
+  color: #4f8a10;
+  background-color: #dff2bf;
+  background-image: url('https://i.imgur.com/Q9BGTuy.png');
+}
+.warning {
+  color: #9f6000;
+  background-color: #feefb3;
+  background-image: url('https://i.imgur.com/Z8q7ww7.png');
+}
+.error {
+  color: #d8000c;
+  background-color: #ffbaba;
+  background-image: url('https://i.imgur.com/GnyDvKN.png');
+}
+.validation {
+  color: #d63301;
+  background-color: #ffccba;
+  background-image: url('https://i.imgur.com/GnyDvKN.png');
+}
+
+form input.has-error {
+  color: #d8000c;
+  background-color: #ffbaba;
+  border: 2px dashed red;
+  border-color: red;
+}
