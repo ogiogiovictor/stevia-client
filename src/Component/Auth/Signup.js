@@ -51,7 +51,7 @@ class Signup extends Component {
       await Axios({
         method: 'post',
         redirect: 'follow',
-        url: 'https://stevia-backend.herokuapp.com/api/register/store',
+        url: 'http://127.0.0.1:8000/api/register/store',
         timeout: 4000, // 4 seconds timeout
         data: {
           firstname,
@@ -124,12 +124,12 @@ class Signup extends Component {
     this.setState(
       {
         formErrors: fieldValidationErrors,
-        lastnameValid: lastnameValid,
         firstnameValid: firstnameValid,
+        lastnameValid: lastnameValid,
         emailValid: emailValid,
         phone_numberValid: phone_numberValid,
-        confirmPasswordValid: confirmPasswordValid,
-        passwordValid: passwordValid
+        passwordValid: passwordValid,
+        confirmPasswordValid: confirmPasswordValid
       },
       this.validateForm
     );

@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import Axios from 'axios';
 import FormInput from '../FormInput/FormInput';
 import CustomButton from '../CustomButton/CutomButton';
+import { FormErrors } from '../FormErrors/FormErrors';
+import '../FormErrors/FormError.css';
 
 class Login extends Component {
   constructor(props) {
@@ -9,21 +12,96 @@ class Login extends Component {
 
     this.state = {
       email: '',
-      password: ''
+      password: '',
+      currentUser: {},
+      formErrors: {
+        email: '',
+        password: '',
+        message: '',
+      },
+      emailValid: false,
+      passwordValid: false,
+      formValid: false
     };
   }
 
-  handleSubmit = event => {
+  handleSubmit = async event => {
     event.preventDefault();
 
-    this.setState({ email: '', password: '' });
+    const { email, password } = this.state;
+
+    try {
+      await Axios({
+        method: 'post',
+        redirect: 'follow',
+        url: 'http://127.0.0.1:8000/api/auth/store',
+        timeout: 4000, // 4 seconds timeout
+        data: {
+          email,
+          password
+        }
+      }).then(response => {
+        if (response.data.status === 200) {
+          this.setState({ successMessage: response.data.message });
+          this.setState({ currentUser: response.data.data });
+          console.log(this.state.currentUser);
+        } else{
+          this.setState({ apiErrorMessage: response.data.message });
+        }
+      });
+    } catch (error) {
+      console.log(error)
+    }
   };
+
+  validateField(fieldName, value) {
+    let fieldValidationErrors = this.state.formErrors;
+    let emailValid = this.state.emailValid;
+    let passwordValid = this.state.passwordValid;
+
+    switch (fieldName) {
+      case 'email':
+        emailValid = value.match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i);
+        fieldValidationErrors.email = emailValid
+          ? ''
+          : '- Your email is invalid';
+        break;
+      case 'password':
+        passwordValid = value.length >= 6;
+        fieldValidationErrors.password = passwordValid
+          ? ''
+          : '- Your Password is too short';
+        break;
+      default:
+        break;
+    }
+    this.setState(
+      {
+        formErrors: fieldValidationErrors,
+        emailValid: emailValid,
+        passwordValid: passwordValid
+      },
+      this.validateForm
+    );
+  }
+
+  validateForm() {
+    this.setState({
+      formValid: this.state.emailValid && this.state.passwordValid
+    });
+  }
 
   handleChange = event => {
-    const { value, name } = event.target;
+    const { name, value } = event.target;
 
-    this.setState({ [name]: value });
+    this.setState({ [name]: value }, () => {
+      this.validateField(name, value);
+    });
   };
+
+  errorClass(error) {
+    return !error ? '' : 'has-error';
+  }
 
   render() {
     return (
@@ -46,6 +124,16 @@ class Login extends Component {
                 <p>to continue to your dashboard</p>
               </div>
               <form onSubmit={this.handleSubmit}>
+                <div className={this.state.successMessage ? 'success' : ''}>
+                  {this.state.successMessage}
+                </div>
+                <div className={this.state.apiErrorMessage ? 'error' : ''}>
+                  {this.state.apiErrorMessage}
+                </div>
+                <div>
+                  <FormErrors formErrors={this.state.formErrors} />
+                </div>
+
                 <div className='full_row common_input_wrapper_2'>
                   <FormInput
                     type='email'
@@ -53,6 +141,9 @@ class Login extends Component {
                     handleChange={this.handleChange}
                     name='email'
                     label='Email Address'
+                    className={`${this.errorClass(
+                      this.state.formErrors.firstname
+                    )}`}
                     required
                   />
                 </div>
@@ -65,6 +156,9 @@ class Login extends Component {
                       handleChange={this.handleChange}
                       name='password'
                       placeholder='Password'
+                      className={`${this.errorClass(
+                        this.state.formErrors.firstname
+                      )}`}
                       required
                     />
                   </div>
@@ -84,7 +178,9 @@ class Login extends Component {
                 </div>
 
                 <div className='full_row login_button'>
-                  <CustomButton type='submit'>Login</CustomButton>
+                  <CustomButton type='submit' disabled={!this.state.formValid}>
+                    Login
+                  </CustomButton>
                 </div>
               </form>
             </div>
