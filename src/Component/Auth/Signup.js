@@ -156,7 +156,7 @@ class Signup extends Component {
   };
 
   errorClass(error) {
-    return(!error ? '' : 'has-error');
+    return !error ? '' : 'has-error';
   }
 
   render() {
@@ -192,7 +192,10 @@ class Signup extends Component {
                 <div className={this.state.successMessage ? 'success' : ''}>
                   {this.state.successMessage}
                 </div>
-                <FormErrors formErrors={this.state.formErrors} />
+                <div>
+                  <FormErrors formErrors={this.state.formErrors} />
+                </div>
+
                 <div className='full_row common_input_wrapper_2'>
                   <FormInput
                     type='text'
@@ -200,7 +203,9 @@ class Signup extends Component {
                     value={firstname}
                     handleChange={this.handleChange}
                     placeholder='First Name'
-                    className={`${ this.errorClass(this.state.formErrors.firstname)}`}
+                    className={`${this.errorClass(
+                      this.state.formErrors.firstname
+                    )}`}
                     required
                   />
                 </div>
@@ -212,7 +217,9 @@ class Signup extends Component {
                     value={lastname}
                     handleChange={this.handleChange}
                     placeholder='Last Name'
-                    className={`${ this.errorClass(this.state.formErrors.lastname)}`}
+                    className={`${this.errorClass(
+                      this.state.formErrors.lastname
+                    )}`}
                     required
                   />
                 </div>
@@ -224,7 +231,9 @@ class Signup extends Component {
                     value={email}
                     handleChange={this.handleChange}
                     placeholder='Email Address'
-                    className={`${ this.errorClass(this.state.formErrors.email)}`}
+                    className={`${this.errorClass(
+                      this.state.formErrors.email
+                    )}`}
                     required
                   />
                 </div>
@@ -236,7 +245,9 @@ class Signup extends Component {
                     value={phone_number}
                     handleChange={this.handleChange}
                     placeholder='Phone number'
-                    className={`${ this.errorClass(this.state.formErrors.phone_number)}`}
+                    className={`${this.errorClass(
+                      this.state.formErrors.phone_number
+                    )}`}
                     required
                   />
                 </div>
@@ -249,7 +260,9 @@ class Signup extends Component {
                       value={password}
                       handleChange={this.handleChange}
                       placeholder='Password'
-                      className={`${ this.errorClass(this.state.formErrors.password)}`}
+                      className={`${this.errorClass(
+                        this.state.formErrors.password
+                      )}`}
                       required
                     />
                   </div>
@@ -267,7 +280,9 @@ class Signup extends Component {
                       value={confirmPassword}
                       handleChange={this.handleChange}
                       placeholder='Confirm Password'
-                      className={`${ this.errorClass(this.state.formErrors.confirmPassword)}`}
+                      className={`${this.errorClass(
+                        this.state.formErrors.confirmPassword
+                      )}`}
                       required
                     />
                   </div>
