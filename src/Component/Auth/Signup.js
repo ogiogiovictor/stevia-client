@@ -51,7 +51,7 @@ class Signup extends Component {
       await Axios({
         method: 'post',
         redirect: 'follow',
-        url: 'http://127.0.0.1:8000/api/register/store',
+        url: 'https://stevia-backend.herokuapp.com/api/register/store',
         timeout: 4000, // 4 seconds timeout
         data: {
           firstname,

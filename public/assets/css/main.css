@@ -368,6 +368,10 @@ button.red_btn {
 button.red_btn:hover {
   background-color: #da2f2f;
 }
+button.red_btn:disabled {
+  background-color: #dddddd;
+  cursor: progress;
+}
 
 button.black_btn {
   background-color: #303037;
