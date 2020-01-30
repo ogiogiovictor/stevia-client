@@ -18,12 +18,12 @@ class Signup extends Component {
       password: '',
       confirmPassword: '',
       formErrors: {
-        firstname: [],
-        lastname: [],
-        email: [],
-        phone_number: [],
-        password: [],
-        confirmPassword: []
+        firstname: '',
+        lastname: '',
+        email: '',
+        phone_number: '',
+        password: '',
+        confirmPassword: ''
       },
       firstnameValid: false,
       lastnameValid: false,
@@ -50,6 +50,7 @@ class Signup extends Component {
     try {
       await Axios({
         method: 'post',
+        redirect: 'follow',
         url: 'http://127.0.0.1:8000/api/register/store',
         timeout: 4000, // 4 seconds timeout
         data: {
@@ -61,16 +62,9 @@ class Signup extends Component {
           confirmPassword
         }
       }).then(response => {
-        console.log(response.data.message);
-      });
-
-      this.setState({
-        firstname: '',
-        lastname: '',
-        email: '',
-        phone_number: '',
-        password: '',
-        confirmPassword: ''
+        if (response.data.status === 200)
+          this.setState({ successMessage: response.data.message });
+        return (window.location.href = '/success');
       });
     } catch (error) {
       this.setState({ formErrors: error.response.data });
@@ -85,45 +79,44 @@ class Signup extends Component {
     let phone_numberValid = this.state.phone_numberValid;
     let passwordValid = this.state.passwordValid;
     let confirmPasswordValid = this.state.confirmPasswordValid;
-    let errorFromApi = this.state.formErrors;
 
     switch (fieldName) {
       case 'firstname':
-        firstnameValid = !errorFromApi.firstname[0];
+        firstnameValid = value.length >= 3;
         fieldValidationErrors.firstname = firstnameValid
           ? ''
-          : `${errorFromApi.firstname[0]}`;
+          : '- Your First Name is too short';
         break;
       case 'lastname':
-        lastnameValid = !errorFromApi.lastname[0];
+        lastnameValid = value.length >= 3;
         fieldValidationErrors.lastname = lastnameValid
           ? ''
-          : `${errorFromApi.lastname[0]}`;
+          : '- Your Last Name is too short';
         break;
       case 'email':
-        emailValid = !errorFromApi.email[0];
+        emailValid = value.match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i);
         fieldValidationErrors.email = emailValid
           ? ''
-          : `${errorFromApi.email[0]}`;
+          : '- Your email is invalid';
         break;
       case 'phone_number':
-        phone_numberValid = !errorFromApi.phone_number[0];
+        phone_numberValid = value.length >= 9;
         fieldValidationErrors.phone_number = phone_numberValid
           ? ''
-          : `${errorFromApi.phone_number[0]}`;
+          : '- Your Phone Number is not valid';
         break;
       case 'password':
-        passwordValid = !errorFromApi.password[0];
+        passwordValid = value.length >= 6;
         fieldValidationErrors.password = passwordValid
           ? ''
-          : `${errorFromApi.password[0]}`;
+          : '- Your Password is too short';
         break;
       case 'confirmPassword':
         confirmPasswordValid =
           this.state.password === this.state.confirmPassword;
         fieldValidationErrors.confirmPassword = confirmPasswordValid
           ? ''
-          : 'Your Password did not match';
+          : '- Your Password did not match';
         break;
       default:
         break;
@@ -163,7 +156,7 @@ class Signup extends Component {
   };
 
   errorClass(error) {
-    return error.length === 0 ? '' : 'has-error';
+    return(!error ? '' : 'has-error');
   }
 
   render() {
@@ -196,9 +189,10 @@ class Signup extends Component {
               </div>
 
               <form onSubmit={this.handleSubmit}>
-                <div className={!this.state.formErrors ? "error" : ""}>
-                  <FormErrors formErrors={this.state.formErrors} />
+                <div className={this.state.successMessage ? 'success' : ''}>
+                  {this.state.successMessage}
                 </div>
+                <FormErrors formErrors={this.state.formErrors} />
                 <div className='full_row common_input_wrapper_2'>
                   <FormInput
                     type='text'
@@ -206,9 +200,8 @@ class Signup extends Component {
                     value={firstname}
                     handleChange={this.handleChange}
                     placeholder='First Name'
-                    className={`${this.errorClass(
-                      this.state.formErrors.firstname
-                    )}`}
+                    className={`${ this.errorClass(this.state.formErrors.firstname)}`}
+                    required
                   />
                 </div>
 
@@ -219,9 +212,8 @@ class Signup extends Component {
                     value={lastname}
                     handleChange={this.handleChange}
                     placeholder='Last Name'
-                    className={`${this.errorClass(
-                      this.state.formErrors.lastname
-                    )}`}
+                    className={`${ this.errorClass(this.state.formErrors.lastname)}`}
+                    required
                   />
                 </div>
 
@@ -232,22 +224,20 @@ class Signup extends Component {
                     value={email}
                     handleChange={this.handleChange}
                     placeholder='Email Address'
-                    className={`${this.errorClass(
-                      this.state.formErrors.email
-                    )}`}
+                    className={`${ this.errorClass(this.state.formErrors.email)}`}
+                    required
                   />
                 </div>
 
                 <div className='full_row common_input_wrapper_2'>
                   <FormInput
-                    type='text'
+                    type='number'
                     name='phone_number'
                     value={phone_number}
                     handleChange={this.handleChange}
                     placeholder='Phone number'
-                    className={`${this.errorClass(
-                      this.state.formErrors.phone_number
-                    )}`}
+                    className={`${ this.errorClass(this.state.formErrors.phone_number)}`}
+                    required
                   />
                 </div>
 
@@ -259,9 +249,8 @@ class Signup extends Component {
                       value={password}
                       handleChange={this.handleChange}
                       placeholder='Password'
-                      className={`${this.errorClass(
-                        this.state.formErrors.password
-                      )}`}
+                      className={`${ this.errorClass(this.state.formErrors.password)}`}
+                      required
                     />
                   </div>
 
@@ -278,9 +267,8 @@ class Signup extends Component {
                       value={confirmPassword}
                       handleChange={this.handleChange}
                       placeholder='Confirm Password'
-                      className={`${this.errorClass(
-                        this.state.formErrors.confirmPassword
-                      )}`}
+                      className={`${ this.errorClass(this.state.formErrors.confirmPassword)}`}
+                      required
                     />
                   </div>
 
