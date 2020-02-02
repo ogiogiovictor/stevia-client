@@ -1,204 +1,140 @@
-import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
-import Axios from 'axios';
-import FormInput from '../FormInput/FormInput';
+import React from 'react';
+import { Link, Redirect } from 'react-router-dom';
+import { toast } from 'react-toastify';
+import { useForm } from 'react-hook-form';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+import { login } from '../../actions/auth';
 import CustomButton from '../CustomButton/CutomButton';
-import { FormErrors } from '../FormErrors/FormErrors';
-import '../FormErrors/FormError.css';
 
-class Login extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      email: '',
-      password: '',
-      currentUser: {},
-      formErrors: {
-        email: '',
-        password: '',
-        message: '',
-      },
-      emailValid: false,
-      passwordValid: false,
-      formValid: false
-    };
-  }
-
-  handleSubmit = async event => {
-    event.preventDefault();
-
-    const { email, password } = this.state;
-
-    try {
-      await Axios({
-        method: 'post',
-        redirect: 'follow',
-        url: 'https://stevia-backend.herokuapp.com/api/auth/store',
-        timeout: 4000, // 4 seconds timeout
-        data: {
-          email,
-          password
-        }
-      }).then(response => {
-        if (response.data.status === 200) {
-          this.setState({ successMessage: response.data.message });
-          this.setState({ currentUser: response.data.data });
-          console.log(this.state.currentUser);
-        } else{
-          this.setState({ apiErrorMessage: response.data.message });
-        }
-      });
-    } catch (error) {
-      console.log(error)
-    }
+const Login = ({ login, isAuthenticated, role }) => {
+  const { handleSubmit, register, errors, formState } = useForm({
+    mode: 'onChange'
+  });
+  const onSubmit = async values => {
+    const { email, password } = values;
+    login(email, password);
   };
 
-  validateField(fieldName, value) {
-    let fieldValidationErrors = this.state.formErrors;
-    let emailValid = this.state.emailValid;
-    let passwordValid = this.state.passwordValid;
+  // Redirect if logged in
 
-    switch (fieldName) {
-      case 'email':
-        emailValid = value.match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i);
-        fieldValidationErrors.email = emailValid
-          ? ''
-          : '- Your email is invalid';
-        break;
-      case 'password':
-        passwordValid = value.length >= 6;
-        fieldValidationErrors.password = passwordValid
-          ? ''
-          : '- Your Password is too short';
-        break;
-      default:
-        break;
-    }
-    this.setState(
-      {
-        formErrors: fieldValidationErrors,
-        emailValid: emailValid,
-        passwordValid: passwordValid
-      },
-      this.validateForm
-    );
+  if(isAuthenticated && role === 'STUDENT') {
+    return <Redirect to='/dashboard/student' />
   }
-
-  validateForm() {
-    this.setState({
-      formValid: this.state.emailValid && this.state.passwordValid
-    });
+  if(isAuthenticated && role === 'COACH') {
+    return <Redirect to='/dashboard/coach' />
   }
-
-  handleChange = event => {
-    const { name, value } = event.target;
-
-    this.setState({ [name]: value }, () => {
-      this.validateField(name, value);
-    });
-  };
-
-  errorClass(error) {
-    return !error ? '' : 'has-error';
+  if(isAuthenticated && role === 'ADMIN') {
+    return <Redirect to='/dashboard/admin' />
   }
+  if(isAuthenticated && role === 'RECRUITER') {
+    return <Redirect to='/dashboard/recruiter' />
+  }
+  return (
+    <div className='onboard_pages'>
+      <section className='whole_page_wrapper'>
+        <div className='flex_c_align_center post_a_job_login'>
+          <div className='form_wrapper'>
+            <div className='full_row'>
+              <Link to='/'>
+                <img
+                  src={process.env.PUBLIC_URL + 'assets/utils/images/15.png'}
+                  width='100px'
+                  alt=''
+                />
+              </Link>
+            </div>
 
-  render() {
-    return (
-      <div className='onboard_pages'>
-        <section className='whole_page_wrapper'>
-          <div className='flex_c_align_center post_a_job_login'>
-            <div className='form_wrapper'>
-              <div className='full_row'>
-                <Link to='/'>
-                  <img
-                    src={process.env.PUBLIC_URL + 'assets/utils/images/15.png'}
-                    width='100px'
-                    alt=''
+            <div className='full_row login_text'>
+              <h3>Log in</h3>
+              <p>to continue to your dashboard</p>
+            </div>
+            <form onSubmit={handleSubmit(onSubmit)}>
+              <div className='full_row common_input_wrapper_2'>
+                <label>Email Address</label>
+                <input
+                  name='email'
+                  ref={register({
+                    required: 'Email is Required',
+                    pattern: {
+                      value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
+                      message: 'invalid email address'
+                    }
+                  })}
+                />
+                <div style={{ display: 'none' }}>
+                  {!errors.email || undefined
+                    ? ''
+                    : toast.error(errors.email && errors.email.message)}
+                </div>
+              </div>
+
+              <div className='full_row common_input_wrapper_with_icon mt-24'>
+                <div className='input_div'>
+                  <input
+                    type='password'
+                    name='password'
+                    placeholder='Password'
+                    ref={register({
+                      required: 'Password is Required',
+                      validate: value => value.length >= 6
+                    })}
                   />
-                </Link>
+                </div>
+
+                <div className='icon_div'>
+                  <i className='fas fa-eye-slash'></i>
+                </div>
+                <div style={{ display: 'none' }}>
+                  {!errors.password || undefined
+                    ? ''
+                    : toast.error(
+                        errors.password &&
+                          'Your password is less than 6 characters'
+                      )}
+                </div>
               </div>
 
-              <div className='full_row login_text'>
-                <h3>Log in</h3>
-                <p>to continue to your dashboard</p>
-              </div>
-              <form onSubmit={this.handleSubmit}>
-                <div className={this.state.successMessage ? 'success' : ''}>
-                  {this.state.successMessage}
-                </div>
-                <div className={this.state.apiErrorMessage ? 'error' : ''}>
-                  {this.state.apiErrorMessage}
-                </div>
+              <div className='flex_r forget_password_link'>
                 <div>
-                  <FormErrors formErrors={this.state.formErrors} />
+                  <Link to='/' className='rubber_effect_link'>
+                    {' '}
+                    Forgot password?{' '}
+                  </Link>
                 </div>
+              </div>
 
-                <div className='full_row common_input_wrapper_2'>
-                  <FormInput
-                    type='email'
-                    value={this.state.email}
-                    handleChange={this.handleChange}
-                    name='email'
-                    label='Email Address'
-                    className={`${this.errorClass(
-                      this.state.formErrors.firstname
-                    )}`}
-                    required
-                  />
-                </div>
-
-                <div className='full_row common_input_wrapper_with_icon mt-24'>
-                  <div className='input_div'>
-                    <FormInput
-                      type='password'
-                      value={this.state.password}
-                      handleChange={this.handleChange}
-                      name='password'
-                      placeholder='Password'
-                      className={`${this.errorClass(
-                        this.state.formErrors.firstname
-                      )}`}
-                      required
-                    />
-                  </div>
-
-                  <div className='icon_div'>
-                    <i className='fas fa-eye-slash'></i>
-                  </div>
-                </div>
-
-                <div className='flex_r forget_password_link'>
-                  <div>
-                    <Link to='/' className='rubber_effect_link'>
-                      {' '}
-                      Forgot password?{' '}
-                    </Link>
-                  </div>
-                </div>
-
-                <div className='full_row login_button'>
-                  <CustomButton type='submit' disabled={!this.state.formValid}>
-                    Login
-                  </CustomButton>
-                </div>
-              </form>
-            </div>
-
-            <div className='below_form text-center'>
-              <p>
-                Don’t have an account?{' '}
-                <Link to='/signup' className='rubber_effect_link'>
-                  {' '}
-                  Sign up{' '}
-                </Link>
-              </p>
-            </div>
+              <div className='full_row login_button'>
+                <CustomButton type='submit' disabled={!formState.isValid}>
+                  Login
+                </CustomButton>
+              </div>
+            </form>
           </div>
-        </section>
-      </div>
-    );
-  }
+
+          <div className='below_form text-center'>
+            <p>
+              Don’t have an account?{' '}
+              <Link to='/signup' className='rubber_effect_link'>
+                {' '}
+                Sign up{' '}
+              </Link>
+            </p>
+          </div>
+        </div>
+      </section>
+    </div>
+  );
+};
+
+Login.propTypes = {
+  login: PropTypes.func.isRequired,
+  isAuthenticated: PropTypes.bool,
 }
 
-export default Login;
+const mapStateToProps = state => ({
+  isAuthenticated: state.auth.isAuthenticated,
+  role: state.auth.role.name
+});
+
+export default connect(mapStateToProps, { login })(Login);
