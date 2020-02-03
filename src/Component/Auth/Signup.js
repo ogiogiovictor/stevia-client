@@ -90,7 +90,7 @@ const Signup = ({ signup, isAuthenticated, role }) => {
                     readOnly
                     required
                   />
-                  Reruiter
+                  Recruiter
                 </label>
               </div>
               <div className='full_row common_input_wrapper_2'>
