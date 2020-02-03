@@ -18,119 +18,117 @@ const Login = ({ login, isAuthenticated, role }) => {
 
   // Redirect if logged in
 
-  if(isAuthenticated && role === 'STUDENT') {
-    return <Redirect to='/dashboard/student' />
+  if (isAuthenticated && role === 'STUDENT') {
+    return <Redirect to='/dashboard/student' />;
   }
-  if(isAuthenticated && role === 'COACH') {
-    return <Redirect to='/dashboard/coach' />
+  if (isAuthenticated && role === 'COACH') {
+    return <Redirect to='/dashboard/coach' />;
   }
-  if(isAuthenticated && role === 'ADMIN') {
-    return <Redirect to='/dashboard/admin' />
+  if (isAuthenticated && role === 'ADMIN') {
+    return <Redirect to='/dashboard/admin' />;
   }
-  if(isAuthenticated && role === 'RECRUITER') {
-    return <Redirect to='/dashboard/recruiter' />
+  if (isAuthenticated && role === 'RECRUITER') {
+    return <Redirect to='/dashboard/recruiter' />;
   }
   return (
-    <div className='onboard_pages'>
-      <section className='whole_page_wrapper'>
-        <div className='flex_c_align_center post_a_job_login'>
-          <div className='form_wrapper'>
-            <div className='full_row'>
-              <Link to='/'>
-                <img
-                  src={process.env.PUBLIC_URL + 'assets/utils/images/15.png'}
-                  width='100px'
-                  alt=''
-                />
-              </Link>
+    <section className='whole_page_wrapper'>
+      <div className='flex_c_align_center post_a_job_login'>
+        <div className='form_wrapper'>
+          <div className='full_row'>
+            <Link to='/'>
+              <img
+                src={process.env.PUBLIC_URL + 'assets/utils/images/15.png'}
+                width='100px'
+                alt=''
+              />
+            </Link>
+          </div>
+
+          <div className='full_row login_text'>
+            <h3>Log in</h3>
+            <p>to continue to your dashboard</p>
+          </div>
+          <form onSubmit={handleSubmit(onSubmit)}>
+            <div className='full_row common_input_wrapper_2'>
+              <label>Email Address</label>
+              <input
+                name='email'
+                ref={register({
+                  required: 'Email is Required',
+                  pattern: {
+                    value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
+                    message: 'invalid email address'
+                  }
+                })}
+              />
+              <div style={{ display: 'none' }}>
+                {!errors.email || undefined
+                  ? ''
+                  : toast.error(errors.email && errors.email.message)}
+              </div>
             </div>
 
-            <div className='full_row login_text'>
-              <h3>Log in</h3>
-              <p>to continue to your dashboard</p>
-            </div>
-            <form onSubmit={handleSubmit(onSubmit)}>
-              <div className='full_row common_input_wrapper_2'>
-                <label>Email Address</label>
+            <div className='full_row common_input_wrapper_with_icon mt-24'>
+              <div className='input_div'>
                 <input
-                  name='email'
+                  type='password'
+                  name='password'
+                  placeholder='Password'
                   ref={register({
-                    required: 'Email is Required',
-                    pattern: {
-                      value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
-                      message: 'invalid email address'
-                    }
+                    required: 'Password is Required',
+                    validate: value => value.length >= 6
                   })}
                 />
-                <div style={{ display: 'none' }}>
-                  {!errors.email || undefined
-                    ? ''
-                    : toast.error(errors.email && errors.email.message)}
-                </div>
               </div>
 
-              <div className='full_row common_input_wrapper_with_icon mt-24'>
-                <div className='input_div'>
-                  <input
-                    type='password'
-                    name='password'
-                    placeholder='Password'
-                    ref={register({
-                      required: 'Password is Required',
-                      validate: value => value.length >= 6
-                    })}
-                  />
-                </div>
-
-                <div className='icon_div'>
-                  <i className='fas fa-eye-slash'></i>
-                </div>
-                <div style={{ display: 'none' }}>
-                  {!errors.password || undefined
-                    ? ''
-                    : toast.error(
-                        errors.password &&
-                          'Your password is less than 6 characters'
-                      )}
-                </div>
+              <div className='icon_div'>
+                <i className='fas fa-eye-slash'></i>
               </div>
-
-              <div className='flex_r forget_password_link'>
-                <div>
-                  <Link to='/' className='rubber_effect_link'>
-                    {' '}
-                    Forgot password?{' '}
-                  </Link>
-                </div>
+              <div style={{ display: 'none' }}>
+                {!errors.password || undefined
+                  ? ''
+                  : toast.error(
+                      errors.password &&
+                        'Your password is less than 6 characters'
+                    )}
               </div>
+            </div>
 
-              <div className='full_row login_button'>
-                <CustomButton type='submit' disabled={!formState.isValid}>
-                  Login
-                </CustomButton>
+            <div className='flex_r forget_password_link'>
+              <div>
+                <Link to='/' className='rubber_effect_link'>
+                  {' '}
+                  Forgot password?{' '}
+                </Link>
               </div>
-            </form>
-          </div>
+            </div>
 
-          <div className='below_form text-center'>
-            <p>
-              Don’t have an account?{' '}
-              <Link to='/signup' className='rubber_effect_link'>
-                {' '}
-                Sign up{' '}
-              </Link>
-            </p>
-          </div>
+            <div className='full_row login_button'>
+              <CustomButton type='submit' disabled={!formState.isValid}>
+                Login
+              </CustomButton>
+            </div>
+          </form>
         </div>
-      </section>
-    </div>
+
+        <div className='below_form text-center'>
+          <p>
+            Don’t have an account?{' '}
+            <Link to='/signup' className='rubber_effect_link'>
+              {' '}
+              Sign up{' '}
+            </Link>
+          </p>
+        </div>
+      </div>
+    </section>
   );
 };
 
 Login.propTypes = {
   login: PropTypes.func.isRequired,
-  isAuthenticated: PropTypes.bool,
-}
+  isAuthenticated: PropTypes.bool
+};
 
 const mapStateToProps = state => ({
   isAuthenticated: state.auth.isAuthenticated,

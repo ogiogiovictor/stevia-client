@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import { Link, Redirect } from 'react-router-dom';
 import CustomButton from '../CustomButton/CutomButton';
 import { useForm } from 'react-hook-form';
@@ -12,25 +12,25 @@ const Signup = ({ signup, isAuthenticated, role }) => {
     mode: 'onChange'
   });
   const onSubmit = async values => {
-    const { firstname, lastname, email, phone_number, password } = values;
-    signup({ firstname, lastname, email, phone_number, password });
+    const { firstname, lastname, email, phone_number, password, role } = values;
+    signup({ firstname, lastname, email, phone_number, password, role });
   };
 
-  if(isAuthenticated && role === 'STUDENT') {
-    return <Redirect to='/dashboard/student' />
+  if (isAuthenticated && role === 'STUDENT') {
+    return <Redirect to='/dashboard/student' />;
   }
-  if(isAuthenticated && role === 'COACH') {
-    return <Redirect to='/dashboard/coach' />
+  if (isAuthenticated && role === 'COACH') {
+    return <Redirect to='/dashboard/coach' />;
   }
-  if(isAuthenticated && role === 'ADMIN') {
-    return <Redirect to='/dashboard/admin' />
+  if (isAuthenticated && role === 'ADMIN') {
+    return <Redirect to='/dashboard/admin' />;
   }
-  if(isAuthenticated && role === 'RECRUITER') {
-    return <Redirect to='/dashboard/recruiter' />
+  if (isAuthenticated && role === 'RECRUITER') {
+    return <Redirect to='/dashboard/recruiter' />;
   }
 
   return (
-    <div className='onboard_pages'>
+    <Fragment>
       <section className='whole_page_wrapper'>
         <div className='full_row post_a_job_signup'>
           <div className='form_wrapper'>
@@ -48,6 +48,51 @@ const Signup = ({ signup, isAuthenticated, role }) => {
               <p>to continue to your dashboard</p>
             </div>
             <form onSubmit={handleSubmit(onSubmit)}>
+              <p><strong>Choose a role:</strong></p>
+              <div className='form-check'>
+                <label>
+                  <input
+                    type='radio'
+                    name='role'
+                    value='1'
+                    className='form-check-input'
+                    ref={register}
+                    readOnly
+                    required
+                  />
+                  Student
+                </label>
+              </div>
+
+              <div className='form-check'>
+                <label>
+                  <input
+                    type='radio'
+                    name='role'
+                    value='2'
+                    className='form-check-input'
+                    ref={register}
+                    readOnly
+                    required
+                  />
+                  Coach
+                </label>
+              </div>
+
+              <div className='form-check'>
+                <label>
+                  <input
+                    type='radio'
+                    name='role'
+                    value='3'
+                    className='form-check-input'
+                    ref={register}
+                    readOnly
+                    required
+                  />
+                  Reruiter
+                </label>
+              </div>
               <div className='full_row common_input_wrapper_2'>
                 <input
                   type='text'
@@ -108,7 +153,7 @@ const Signup = ({ signup, isAuthenticated, role }) => {
                 </div>
               </div>
 
-              <div className='full_row common_input_wrapper_with_icon mt-24'>
+              <div className='full_row common_input_wrapper_2'>
                 <div className='input_div'>
                   <input
                     type='password'
@@ -120,10 +165,6 @@ const Signup = ({ signup, isAuthenticated, role }) => {
                     })}
                   />
                 </div>
-
-                <div className='icon_div'>
-                  <i className='fas fa-eye-slash'></i>
-                </div>
                 <div style={{ display: 'none' }}>
                   {!errors.password || undefined
                     ? ''
@@ -134,7 +175,7 @@ const Signup = ({ signup, isAuthenticated, role }) => {
                 </div>
               </div>
 
-              <div className='full_row common_input_wrapper_with_icon mt-24'>
+              <div className='full_row common_input_wrapper_2'>
                 <div className='input_div'>
                   <input
                     type='password'
@@ -148,9 +189,6 @@ const Signup = ({ signup, isAuthenticated, role }) => {
                   />
                 </div>
 
-                <div className='icon_div'>
-                  <i className='fas fa-eye-slash'></i>
-                </div>
                 <div style={{ display: 'none' }}>
                   {!errors.confirmPassword || undefined
                     ? ''
@@ -187,7 +225,7 @@ const Signup = ({ signup, isAuthenticated, role }) => {
           </div>
         </div>
       </section>
-    </div>
+    </Fragment>
   );
 };
 

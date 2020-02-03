@@ -38,7 +38,8 @@ export const signup = ({
   lastname,
   email,
   phone_number,
-  password
+  password,
+  role
 }) => async dispatch => {
   const config = {
     headers: {
@@ -51,7 +52,8 @@ export const signup = ({
     lastname,
     email,
     phone_number,
-    password
+    password,
+    role
   });
 
   try {
