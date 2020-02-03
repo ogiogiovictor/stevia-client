@@ -12,8 +12,8 @@ const Signup = ({ signup, isAuthenticated, role }) => {
     mode: 'onChange'
   });
   const onSubmit = async values => {
-    const { firstname, lastname, email, phone_number, password, role } = values;
-    signup({ firstname, lastname, email, phone_number, password, role });
+    const { firstname, lastname, email, phone_number, password, account_type } = values;
+    signup({ firstname, lastname, email, phone_number, password, account_type });
   };
 
   if (isAuthenticated && role === 'STUDENT') {
@@ -48,12 +48,12 @@ const Signup = ({ signup, isAuthenticated, role }) => {
               <p>to continue to your dashboard</p>
             </div>
             <form onSubmit={handleSubmit(onSubmit)}>
-              <p><strong>Choose a role:</strong></p>
+              <p><strong>Choose your role:</strong></p>
               <div className='form-check'>
                 <label>
                   <input
                     type='radio'
-                    name='role'
+                    name='account_type'
                     value='1'
                     className='form-check-input'
                     ref={register}
@@ -68,7 +68,7 @@ const Signup = ({ signup, isAuthenticated, role }) => {
                 <label>
                   <input
                     type='radio'
-                    name='role'
+                    name='account_type'
                     value='2'
                     className='form-check-input'
                     ref={register}
@@ -83,7 +83,7 @@ const Signup = ({ signup, isAuthenticated, role }) => {
                 <label>
                   <input
                     type='radio'
-                    name='role'
+                    name='account_type'
                     value='3'
                     className='form-check-input'
                     ref={register}
