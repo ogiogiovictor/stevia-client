@@ -5,13 +5,13 @@ import { connect } from 'react-redux';
 
 const PrivateStudentRoute = ({
   component: Component,
-  auth: { isAuthenticated, loading, role: {name} },
+  auth: { isAuthenticated, loading, role },
   ...rest
 }) => (
   <Route
     {...rest}
     render={props =>
-      !isAuthenticated && name !== 'STUDENT' ? (
+      !isAuthenticated && role !== 'STUDENT' ? (
         <Redirect to='/login' />
       ) : (
         <Component {...props} />

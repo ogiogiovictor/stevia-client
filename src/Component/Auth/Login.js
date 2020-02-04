@@ -127,13 +127,14 @@ const Login = ({ login, isAuthenticated, role, setAlert }) => {
 
 Login.propTypes = {
   login: PropTypes.func.isRequired,
-  isAuthenticated: PropTypes.bool
+  isAuthenticated: PropTypes.bool,
+  role: PropTypes.string,
+  setAlert: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => ({
   isAuthenticated: state.auth.isAuthenticated,
-  setAlert: PropTypes.func.isRequired,
-  role: state.auth.role.name
+  role: state.auth.role
 });
 
 export default connect(mapStateToProps, { login, setAlert })(Login);

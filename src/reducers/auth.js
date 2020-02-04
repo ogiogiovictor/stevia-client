@@ -10,7 +10,7 @@ import {
 const initialState = {
     token: localStorage.getItem('token'),
     isAuthenticated: null,
-    role:{name: ''},
+    role: null,
     loading: true,
     user: null
 }
@@ -22,6 +22,7 @@ export default function(state = initialState, action) {
             return {
                 ...state,
                 isAuthenticated: true,
+                role: payload.role.name,
                 loading: false,
                 user: payload
             }
@@ -31,15 +32,16 @@ export default function(state = initialState, action) {
                 ...state,
                 ...payload,
                 isAuthenticated: false,
+                role: null,
                 loading: false
             }
         case LOGIN_SUCCESS:
             localStorage.setItem('token', payload.auth_token);
-            localStorage.setItem('role', payload.role.name);
             return {
                 ...state,
                 ...payload,
                 isAuthenticated: true,
+                role: payload.role.name,
                 loading: false
             }
         case REGISTER_FAIL:
@@ -50,6 +52,7 @@ export default function(state = initialState, action) {
                 ...state,
                 ...payload,
                 isAuthenticated: false,
+                role: null,
                 loading: false
             }
 

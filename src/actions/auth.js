@@ -17,17 +17,16 @@ export const loadUser = () => async dispatch => {
   if (localStorage.token) {
     setAuthToken(localStorage.token);
   }
-  const loadUserApi = `http://127.0.0.1:8000/api/dashboard/get/${localStorage.role}`;
+  const loadUserApi = `http://127.0.0.1:8000/api/dashboard/currentuser`;
   
   try {
     const res = await Axios.get(loadUserApi);
 
     dispatch({
       type: USER_LOADED,
-      payload: res.data
+      payload: res.data.data[0]
     });
   } catch (error) {
-    dispatch(setAlert(error.message));
     dispatch({
       type: AUTH_ERROR
     });
@@ -63,6 +62,7 @@ export const signup = ({
     const registerApi = 'http://127.0.0.1:8000/api/register/store';
     const res = await Axios.post(registerApi, body, config);
     dispatch(setAlert(res.data.message, 'success'));
+    console.log(res.data)
     dispatch({
       type: REGISTER_SUCCESS,
       payload: res.data
@@ -92,6 +92,7 @@ export const login = (email, password) => async dispatch => {
     const res = await Axios.post(loginApi, body, config);
 
     if(res.data.status === 200){
+      console.log(res.data)
       dispatch(setAlert(res.data.message, 'success'));
       dispatch({
       type: LOGIN_SUCCESS,
