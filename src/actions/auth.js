@@ -7,27 +7,27 @@ import {
   USER_LOADED,
   AUTH_ERROR
 } from './types';
-import { toast } from 'react-toastify';
 import setAuthToken from '../Utils/setAuthToken';
+import { setAlert } from './alert';
 
 // Load User
 
-const loginApi = 'https://stevia-backend.herokuapp.com/api/auth/store';
-const registerApi = 'https://stevia-backend.herokuapp.com/api/register/store';
-
 export const loadUser = () => async dispatch => {
+  
   if (localStorage.token) {
     setAuthToken(localStorage.token);
   }
-
+  const loadUserApi = `http://127.0.0.1:8000/api/dashboard/get/${localStorage.role}`;
+  
   try {
-    const res = await Axios.post(registerApi);
+    const res = await Axios.get(loadUserApi);
 
     dispatch({
       type: USER_LOADED,
-      payload: res.data.data
+      payload: res.data
     });
   } catch (error) {
+    dispatch(setAlert(error.message));
     dispatch({
       type: AUTH_ERROR
     });
@@ -60,17 +60,16 @@ export const signup = ({
   });
 
   try {
+    const registerApi = 'http://127.0.0.1:8000/api/register/store';
     const res = await Axios.post(registerApi, body, config);
-    toast.success(res.data.message);
+    dispatch(setAlert(res.data.message, 'success'));
     dispatch({
       type: REGISTER_SUCCESS,
       payload: res.data
     });
 
-    // dispatch(loadUser());
   } catch (error) {
-    toast.error(error.response.data.email[0]);
-    console.log(error);
+    dispatch(setAlert(error.response.data.email[0]));
     dispatch({
       type: REGISTER_FAIL
     });
@@ -80,6 +79,7 @@ export const signup = ({
 // Login User
 
 export const login = (email, password) => async dispatch => {
+  const loginApi = 'http://127.0.0.1:8000/api/auth/store';
   const config = {
     headers: {
       'Content-Type': 'application/json'
@@ -92,19 +92,18 @@ export const login = (email, password) => async dispatch => {
     const res = await Axios.post(loginApi, body, config);
 
     if(res.data.status === 200){
+      dispatch(setAlert(res.data.message, 'success'));
       dispatch({
       type: LOGIN_SUCCESS,
       payload: res.data.data
     });
+    dispatch(loadUser());
     } else {
-      dispatch({
-      type: LOGIN_FAIL
-    });
+      dispatch(setAlert(res.data.message, 'error'));
     }
 
-    // dispatch(loadUser());
   } catch (error) {
-    console.log(error);
+    dispatch(setAlert(error, 'error'));
     dispatch({
       type: LOGIN_FAIL
     });

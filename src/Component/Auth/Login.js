@@ -1,13 +1,13 @@
 import React from 'react';
 import { Link, Redirect } from 'react-router-dom';
-import { toast } from 'react-toastify';
 import { useForm } from 'react-hook-form';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { login } from '../../actions/auth';
 import CustomButton from '../CustomButton/CutomButton';
+import { setAlert } from '../../actions/alert';
 
-const Login = ({ login, isAuthenticated, role }) => {
+const Login = ({ login, isAuthenticated, role, setAlert }) => {
   const { handleSubmit, register, errors, formState } = useForm({
     mode: 'onChange'
   });
@@ -64,7 +64,7 @@ const Login = ({ login, isAuthenticated, role }) => {
               <div style={{ display: 'none' }}>
                 {!errors.email || undefined
                   ? ''
-                  : toast.error(errors.email && errors.email.message)}
+                  : setAlert(errors.email && errors.email.message, 'error')}
               </div>
             </div>
 
@@ -87,9 +87,9 @@ const Login = ({ login, isAuthenticated, role }) => {
               <div style={{ display: 'none' }}>
                 {!errors.password || undefined
                   ? ''
-                  : toast.error(
+                  : setAlert(
                       errors.password &&
-                        'Your password is less than 6 characters'
+                        'Your password is less than 6 characters', 'error'
                     )}
               </div>
             </div>
@@ -132,7 +132,8 @@ Login.propTypes = {
 
 const mapStateToProps = state => ({
   isAuthenticated: state.auth.isAuthenticated,
+  setAlert: PropTypes.func.isRequired,
   role: state.auth.role.name
 });
 
-export default connect(mapStateToProps, { login })(Login);
+export default connect(mapStateToProps, { login, setAlert })(Login);

@@ -6,8 +6,9 @@ import { toast } from 'react-toastify';
 import { signup } from '../../actions/auth';
 import { PropTypes } from 'prop-types';
 import { connect } from 'react-redux';
+import { setAlert } from '../../actions/alert';
 
-const Signup = ({ signup, isAuthenticated, role }) => {
+const Signup = ({ signup, isAuthenticated, role, setAlert }) => {
   const { handleSubmit, register, errors, formState } = useForm({
     mode: 'onChange'
   });
@@ -103,7 +104,7 @@ const Signup = ({ signup, isAuthenticated, role }) => {
                 <div style={{ display: 'none' }}>
                   {!errors.firstname || undefined
                     ? ''
-                    : toast.error(errors.firstname && errors.firstname.message)}
+                    : toast(errors.firstname && errors.firstname.message, 'error')}
                 </div>
               </div>
               <div className='full_row common_input_wrapper_2'>
@@ -116,7 +117,7 @@ const Signup = ({ signup, isAuthenticated, role }) => {
                 <div style={{ display: 'none' }}>
                   {!errors.lastname || undefined
                     ? ''
-                    : toast.error(errors.lastname && errors.lastname.message)}
+                    : toast(errors.lastname && errors.lastname.message, 'error')}
                 </div>
               </div>
               <div className='full_row common_input_wrapper_2'>
@@ -129,8 +130,8 @@ const Signup = ({ signup, isAuthenticated, role }) => {
                 <div style={{ display: 'none' }}>
                   {!errors.phone_number || undefined
                     ? ''
-                    : toast.error(
-                        errors.phone_number && errors.phone_number.message
+                    : setAlert(
+                        errors.phone_number && errors.phone_number.message, 'error'
                       )}
                 </div>
               </div>
@@ -149,7 +150,7 @@ const Signup = ({ signup, isAuthenticated, role }) => {
                 <div style={{ display: 'none' }}>
                   {!errors.email || undefined
                     ? ''
-                    : toast.error(errors.email && errors.email.message)}
+                    : setAlert(errors.email && errors.email.message, 'error')}
                 </div>
               </div>
 
@@ -168,9 +169,9 @@ const Signup = ({ signup, isAuthenticated, role }) => {
                 <div style={{ display: 'none' }}>
                   {!errors.password || undefined
                     ? ''
-                    : toast.error(
+                    : setAlert(
                         errors.password &&
-                          'Your password is less than 6 characters'
+                          'Your password is less than 6 characters', 'error'
                       )}
                 </div>
               </div>
@@ -192,8 +193,8 @@ const Signup = ({ signup, isAuthenticated, role }) => {
                 <div style={{ display: 'none' }}>
                   {!errors.confirmPassword || undefined
                     ? ''
-                    : toast.error(
-                        errors.confirmPassword && 'The Password do not match'
+                    : setAlert(
+                        errors.confirmPassword && 'The Password do not match', 'error'
                       )}
                 </div>
               </div>
@@ -231,6 +232,7 @@ const Signup = ({ signup, isAuthenticated, role }) => {
 
 Signup.protoTypes = {
   signup: PropTypes.func.isRequired,
+  setAlert: PropTypes.func.isRequired,
   isAuthenticated: PropTypes.bool
 };
 
@@ -239,4 +241,4 @@ const mapStateToProps = state => ({
   role: state.auth.role.name
 });
 
-export default connect(mapStateToProps, { signup })(Signup);
+export default connect(mapStateToProps, { signup, setAlert })(Signup);

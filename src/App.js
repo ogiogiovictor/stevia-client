@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Fragment, useEffect } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Student from './Component/Landing/Student';
 import Coach from './Component/Landing/Coach';
@@ -19,21 +19,21 @@ import PrivateCoachRoute from './routing/PrivateCoachRoute';
 import CoachDashboard from './Component/Coaches';
 import PrivateAdminRoute from './routing/PrivateAdminRoute';
 import AdminDashboard from './Component/Admin';
+import Alert from './Component/Alert/Alert';
 
 if (localStorage.token) {
   setAuthToken(localStorage.token);
 }
 
-class App extends Component {
-  componentDidMount() {
+const App = () => {
+  useEffect(() => {
     store.dispatch(loadUser());
-  }
+  }, []);
 
-  render() {
-    return (
-      <Provider store={store}>
+  return (
+    <Provider store={store}>
         <Router>
-          <div>
+          <Fragment>
             <ToastContainer
               position='top-right'
               autoClose={2000}
@@ -46,6 +46,7 @@ class App extends Component {
               pauseOnHover
             />
             <ToastContainer />
+            <Alert />
             <Switch>
               <Route path='/signup' exact component={Signup} />
               <Route path='/success' exact component={Success} />
@@ -56,11 +57,10 @@ class App extends Component {
               <PrivateAdminRoute path='/dashboard/admin' exact component={AdminDashboard} />
               <Route path='/' exact component={Student} />
             </Switch>
-          </div>
+          </Fragment>
         </Router>
       </Provider>
-    );
-  }
-}
+  );
+};
 
 export default App;
