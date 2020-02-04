@@ -90,10 +90,17 @@ export const login = (email, password) => async dispatch => {
 
   try {
     const res = await Axios.post(loginApi, body, config);
-    dispatch({
+
+    if(res.data.status === 200){
+      dispatch({
       type: LOGIN_SUCCESS,
       payload: res.data.data
     });
+    } else {
+      dispatch({
+      type: LOGIN_FAIL
+    });
+    }
 
     // dispatch(loadUser());
   } catch (error) {

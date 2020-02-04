@@ -54,7 +54,7 @@ const Signup = ({ signup, isAuthenticated, role }) => {
                   <input
                     type='radio'
                     name='account_type'
-                    value='1'
+                    value='3'
                     className='form-check-input'
                     ref={register}
                     readOnly
@@ -84,7 +84,7 @@ const Signup = ({ signup, isAuthenticated, role }) => {
                   <input
                     type='radio'
                     name='account_type'
-                    value='3'
+                    value='4'
                     className='form-check-input'
                     ref={register}
                     readOnly

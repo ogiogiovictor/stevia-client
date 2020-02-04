@@ -1,16 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { toast } from 'react-toastify';
+
 import './Alert.css';
 
 const Alert = ({ alerts }) =>
   alerts !== null &&
   alerts.length > 0 &&
-  alerts.map(alert => (
-    <div key={alert.id} className={`alert alert-${alert.alertType}`}>
-      {alert.msg}
-    </div>
-  ));
+  alerts.map(alert => toast.alert.alertType(alert.msg));
 
 Alert.propTypes = {
   alerts: PropTypes.array.isRequired
