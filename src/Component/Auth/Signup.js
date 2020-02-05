@@ -238,7 +238,7 @@ Signup.protoTypes = {
 
 const mapStateToProps = state => ({
   isAuthenticated: state.auth.isAuthenticated,
-  role: state.auth.role.name
+  role: state.auth.role
 });
 
 export default connect(mapStateToProps, { signup, setAlert })(Signup);
