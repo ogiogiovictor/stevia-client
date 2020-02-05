@@ -4,20 +4,38 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { logout } from '../../actions/auth';
 
-const StudentDashboard = ({
+const Dashboard = ({
   auth: { isAuthenticated, loading, user },
   logout,
-  
 }) => {
   return (
     <Fragment>
       <section className='whole_page_wrapper'>
-        <aside className='side_nav'>
+      <aside className='side_nav'>
           <div className='full_row flex_r_a_center logo_div'>
-            <img
+            {user ?
+              user.currentUser.role.name !== 'STUDENT' ?
+            '': <Link to='/dashboard'><img
               src={process.env.PUBLIC_URL + '../assets/utils/images/34.svg'}
               alt=''
+            /></Link>
+              : ''}
+            {user ?
+              user.currentUser.role.name !== 'COACH' ?
+            '': <img
+              src={process.env.PUBLIC_URL + '../assets/utils/images/48.png'}
+              alt=''
             />
+              : ''}
+            {user ?
+              user.currentUser.role.name !== 'ADMIN' ?
+            '': <img
+              src={process.env.PUBLIC_URL + '../assets/utils/images/51.png'}
+              alt=''
+            />
+              : ''}
+
+            
             <div className='close_sideNav ml_auto'>
               <i className='far fa-times-circle'></i>
             </div>
@@ -60,7 +78,7 @@ const StudentDashboard = ({
                   <div className='flex_r_j_between_align_center username'>
                     <span>IU</span>
                     <h6>
-                      {user ? `${user.firstname} ${user.lastname}` : ''}
+                      {user ? `${user.currentUser.firstname} ${user.currentUser.lastname}` : ''}
                     </h6>
                   </div>
                 </div>
@@ -151,7 +169,7 @@ const StudentDashboard = ({
   );
 };
 
-StudentDashboard.propTypes = {
+Dashboard.propTypes = {
   logout: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired
 };
@@ -160,4 +178,4 @@ const mapStateToProps = state => ({
   auth: state.auth,
 });
 
-export default connect(mapStateToProps, { logout })(StudentDashboard);
+export default connect(mapStateToProps, { logout })(Dashboard);

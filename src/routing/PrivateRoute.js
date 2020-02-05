@@ -3,9 +3,9 @@ import { Route, Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-const PrivateCoachRoute = ({
+const PrivateRoute = ({
   component: Component,
-  auth: { isAuthenticated, loading, role },
+  auth: { isAuthenticated, loading, user },
   ...rest
 }) => (
   <Route
@@ -16,11 +16,12 @@ const PrivateCoachRoute = ({
       ) : (
         <Component {...props} />
       )
+  
     }
   />
 );
 
-PrivateCoachRoute.propTypes = {
+PrivateRoute.propTypes = {
   auth: PropTypes.object.isRequired
 };
 
@@ -28,4 +29,4 @@ const mapStateToProps = state => ({
   auth: state.auth
 });
 
-export default connect(mapStateToProps)(PrivateCoachRoute);
+export default connect(mapStateToProps)(PrivateRoute);

@@ -19,7 +19,7 @@ const Login = ({ login, isAuthenticated, setAlert }) => {
   // Redirect if logged in
 
   if (isAuthenticated) {
-    return <Redirect to='/dashboard/student' />;
+    return <Redirect to='/dashboard' />;
   }
   return (
     <section className='whole_page_wrapper'>

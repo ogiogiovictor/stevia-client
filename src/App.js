@@ -13,12 +13,8 @@ import { Provider } from 'react-redux';
 import store from './store';
 import { loadUser } from './actions/auth';
 import setAuthToken from './Utils/setAuthToken';
-import PrivateStudentRoute from './routing/PrivateStudentRoute';
-import StudentDashboard from './Component/Students';
-import PrivateCoachRoute from './routing/PrivateCoachRoute';
-import CoachDashboard from './Component/Coaches';
-import PrivateAdminRoute from './routing/PrivateAdminRoute';
-import AdminDashboard from './Component/Admin';
+import PrivateRoute from './routing/PrivateRoute';
+import Dashboard from './Component/Dashboard';
 import Alert from './Component/Alert/Alert';
 
 if (localStorage.token) {
@@ -52,9 +48,7 @@ const App = () => {
               <Route path='/success' exact component={Success} />
               <Route path='/coach' exact component={Coach} />
               <Route path='/login' exact component={Login} />
-              <PrivateStudentRoute path='/dashboard/student' exact component={StudentDashboard} />
-              <PrivateCoachRoute path='/dashboard/coach' exact component={CoachDashboard} />
-              <PrivateAdminRoute path='/dashboard/admin' exact component={AdminDashboard} />
+              <PrivateRoute path='/dashboard' exact component={Dashboard} />
               <Route path='/' exact component={Student} />
             </Switch>
           </Fragment>

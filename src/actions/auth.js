@@ -24,11 +24,11 @@ export const loadUser = () => async dispatch => {
   
   try {
     const res = await Axios.get(loadUserApi);
-    console.log(res)
+    console.log(res.data.data)
 
     dispatch({
       type: USER_LOADED,
-      payload: res.data
+      payload: res.data.data
     });
   } catch (error) {
     dispatch({
