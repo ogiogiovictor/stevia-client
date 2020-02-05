@@ -11,7 +11,7 @@ const PrivateStudentRoute = ({
   <Route
     {...rest}
     render={props =>
-       role !== 'STUDENT' ? (
+      !isAuthenticated && !loading ? (
         <Redirect to='/login' />
       ) : (
         <Component {...props} />

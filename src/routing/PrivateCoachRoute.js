@@ -11,7 +11,7 @@ const PrivateCoachRoute = ({
   <Route
     {...rest}
     render={props =>
-      role !== 'COACH' ? (
+      !isAuthenticated && !loading ? (
         <Redirect to='/login' />
       ) : (
         <Component {...props} />
