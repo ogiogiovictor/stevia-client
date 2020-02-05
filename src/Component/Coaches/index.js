@@ -1,8 +1,10 @@
 import React, { Fragment } from 'react';
-// import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+import { logout } from '../../actions/auth';
 
-const CoachDashboard = props => {
+const CoachDashboard = ({ auth: { isAuthenticated, loading, user }, logout }) => {
   return (
     <Fragment>
       <section className='whole_page_wrapper'>
@@ -29,7 +31,7 @@ const CoachDashboard = props => {
             <Link to='#'>
               <i className='fas fa-cog'></i> Settings
             </Link>
-            <Link to='#'>
+            <Link onClick={logout} to='#!'>
               <i className='fas fa-sign-out-alt'></i> Logout
             </Link>
           </div>
@@ -47,7 +49,7 @@ const CoachDashboard = props => {
                   </div>
                   <div className='flex_r_j_between_align_center username'>
                     <span>IU</span>
-                    <h6>Ifeanyi Umunnakwe</h6>
+                    <h6>{user ? `${user.firstname} ${user.lastname}` : ''}</h6>
                   </div>
                 </div>
               </div>
@@ -351,6 +353,13 @@ const CoachDashboard = props => {
   );
 };
 
-CoachDashboard.propTypes = {};
+CoachDashboard.propTypes = {
+  logout: PropTypes.func.isRequired,
+  auth: PropTypes.object.isRequired
+};
 
-export default CoachDashboard;
+const mapStateToProps = state => ({
+  auth: state.auth
+});
+
+export default connect(mapStateToProps, { logout })(CoachDashboard);

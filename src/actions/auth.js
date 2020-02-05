@@ -5,7 +5,8 @@ import {
   LOGIN_SUCCESS,
   LOGIN_FAIL,
   USER_LOADED,
-  AUTH_ERROR
+  AUTH_ERROR,
+  LOGOUT
 } from './types';
 import setAuthToken from '../Utils/setAuthToken';
 import { setAlert } from './alert';
@@ -92,7 +93,6 @@ export const login = (email, password) => async dispatch => {
     const res = await Axios.post(loginApi, body, config);
 
     if(res.data.status === 200){
-      console.log(res.data)
       dispatch(setAlert(res.data.message, 'success'));
       dispatch({
       type: LOGIN_SUCCESS,
@@ -109,4 +109,10 @@ export const login = (email, password) => async dispatch => {
       type: LOGIN_FAIL
     });
   }
+};
+
+// Logout /Clear Profile
+
+export const logout = () => dispatch => {
+  dispatch({ type: LOGOUT });
 };
