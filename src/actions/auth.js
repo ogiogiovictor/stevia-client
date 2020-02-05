@@ -17,15 +17,18 @@ export const loadUser = () => async dispatch => {
   
   if (localStorage.token) {
     setAuthToken(localStorage.token);
+  }else{
+    console.log('no token')
   }
-  const loadUserApi = `https://stevia-backend.herokuapp.com/api/dashboard/currentuser`;
+  const loadUserApi = `http://127.0.0.1:8000/api/dashboard/currentuser`;
   
   try {
     const res = await Axios.get(loadUserApi);
+    console.log(res)
 
     dispatch({
       type: USER_LOADED,
-      payload: res.data.data[0]
+      payload: res.data
     });
   } catch (error) {
     dispatch({
@@ -60,7 +63,7 @@ export const signup = ({
   });
 
   try {
-    const registerApi = 'https://stevia-backend.herokuapp.com/api/register/store';
+    const registerApi = 'http://127.0.0.1:8000/api/register/store';
     const res = await Axios.post(registerApi, body, config);
     dispatch(setAlert(res.data.message, 'success'));
     console.log(res.data)
@@ -70,7 +73,7 @@ export const signup = ({
     });
 
   } catch (error) {
-    dispatch(setAlert(error.response.data.email[0]));
+    dispatch(setAlert(error.response.data.email[0], 'error'));
     dispatch({
       type: REGISTER_FAIL
     });
@@ -80,7 +83,7 @@ export const signup = ({
 // Login User
 
 export const login = (email, password) => async dispatch => {
-  const loginApi = 'https://stevia-backend.herokuapp.com/api/auth/store';
+  const loginApi = 'http://127.0.0.1:8000/api/auth/store';
   const config = {
     headers: {
       'Content-Type': 'application/json'
@@ -104,7 +107,7 @@ export const login = (email, password) => async dispatch => {
     }
 
   } catch (error) {
-    dispatch(setAlert(error, 'error'));
+    console.log(error)
     dispatch({
       type: LOGIN_FAIL
     });

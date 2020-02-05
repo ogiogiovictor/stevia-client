@@ -7,7 +7,7 @@ import { login } from '../../actions/auth';
 import CustomButton from '../CustomButton/CutomButton';
 import { setAlert } from '../../actions/alert';
 
-const Login = ({ login, isAuthenticated, role, setAlert }) => {
+const Login = ({ login, isAuthenticated, setAlert }) => {
   const { handleSubmit, register, errors, formState } = useForm({
     mode: 'onChange'
   });
@@ -18,17 +18,8 @@ const Login = ({ login, isAuthenticated, role, setAlert }) => {
 
   // Redirect if logged in
 
-  if (isAuthenticated && role === 'STUDENT') {
+  if (isAuthenticated) {
     return <Redirect to='/dashboard/student' />;
-  }
-  if (isAuthenticated && role === 'COACH') {
-    return <Redirect to='/dashboard/coach' />;
-  }
-  if (isAuthenticated && role === 'ADMIN') {
-    return <Redirect to='/dashboard/admin' />;
-  }
-  if (isAuthenticated && role === 'RECRUITER') {
-    return <Redirect to='/dashboard/recruiter' />;
   }
   return (
     <section className='whole_page_wrapper'>
@@ -128,13 +119,12 @@ const Login = ({ login, isAuthenticated, role, setAlert }) => {
 Login.propTypes = {
   login: PropTypes.func.isRequired,
   isAuthenticated: PropTypes.bool,
-  role: PropTypes.string,
   setAlert: PropTypes.func.isRequired,
+  
 };
 
 const mapStateToProps = state => ({
-  isAuthenticated: state.auth.isAuthenticated,
-  role: state.auth.role
+  isAuthenticated: state.auth.isAuthenticated
 });
 
 export default connect(mapStateToProps, { login, setAlert })(Login);
