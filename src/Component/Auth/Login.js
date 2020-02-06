@@ -5,9 +5,9 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { login } from '../../actions/auth';
 import CustomButton from '../CustomButton/CutomButton';
-import { setAlert } from '../../actions/alert';
+import '../Alert/Alert.css';
 
-const Login = ({ login, isAuthenticated, setAlert }) => {
+const Login = ({ login, isAuthenticated, setAlert, loading }) => {
   const { handleSubmit, register, errors, formState } = useForm({
     mode: 'onChange'
   });
@@ -52,13 +52,10 @@ const Login = ({ login, isAuthenticated, setAlert }) => {
                   }
                 })}
               />
-              <div style={{ display: 'none' }}>
-                {!errors.email || undefined
-                  ? ''
-                  : setAlert(errors.email && errors.email.message, 'error')}
-              </div>
             </div>
-
+            <div className={!errors.email ? '' : 'alert alert-danger'} >
+              {errors.email && errors.email.message}
+            </div>
             <div className='full_row common_input_wrapper_with_icon mt-24'>
               <div className='input_div'>
                 <input
@@ -75,15 +72,12 @@ const Login = ({ login, isAuthenticated, setAlert }) => {
               <div className='icon_div'>
                 <i className='fas fa-eye-slash'></i>
               </div>
-              <div style={{ display: 'none' }}>
-                {!errors.password || undefined
-                  ? ''
-                  : setAlert(
-                      errors.password &&
-                        'Your password is less than 6 characters', 'error'
-                    )}
-              </div>
+              
             </div>
+
+            <div className={!errors.password ? '' : 'alert alert-danger'}>
+                {errors.password && 'Your password is less than 6 characters'}
+              </div>
 
             <div className='flex_r forget_password_link'>
               <div>
@@ -119,12 +113,12 @@ const Login = ({ login, isAuthenticated, setAlert }) => {
 Login.propTypes = {
   login: PropTypes.func.isRequired,
   isAuthenticated: PropTypes.bool,
-  setAlert: PropTypes.func.isRequired,
-  
+  loading: PropTypes.bool
 };
 
 const mapStateToProps = state => ({
-  isAuthenticated: state.auth.isAuthenticated
+  isAuthenticated: state.auth.isAuthenticated,
+  loading: state.auth.loading
 });
 
-export default connect(mapStateToProps, { login, setAlert })(Login);
+export default connect(mapStateToProps, { login })(Login);

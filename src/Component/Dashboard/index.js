@@ -1,60 +1,65 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { logout } from '../../actions/auth';
+import { getCurrentProfile } from '../../actions/profile';
+
+import Sidebar from './Sidebar';
+import Spinner from '../Spinner/Spinner';
 
 const Dashboard = ({
-  auth: { isAuthenticated, loading, user },
-  logout,
+  getCurrentProfile,
+  auth: { user },
+  profile: { profile, loading },
+  logout
 }) => {
-  return (
+  useEffect(() => {
+    getCurrentProfile();
+  }, [getCurrentProfile]);
+
+  return loading && profile === null ? (
+    <Spinner />
+  ) : (
     <Fragment>
       <section className='whole_page_wrapper'>
-      <aside className='side_nav'>
+        <aside className='side_nav'>
           <div className='full_row flex_r_a_center logo_div'>
-            {user ?
-              user.currentUser.role.name !== 'STUDENT' ?
-            '': <Link to='/dashboard'><img
-              src={process.env.PUBLIC_URL + '../assets/utils/images/34.svg'}
-              alt=''
-            /></Link>
-              : ''}
-            {user ?
-              user.currentUser.role.name !== 'COACH' ?
-            '': <img
-              src={process.env.PUBLIC_URL + '../assets/utils/images/48.png'}
-              alt=''
-            />
-              : ''}
-            {user ?
-              user.currentUser.role.name !== 'ADMIN' ?
-            '': <img
-              src={process.env.PUBLIC_URL + '../assets/utils/images/51.png'}
-              alt=''
-            />
-              : ''}
+            {user && user.currentUser.role.name !== 'STUDENT' ? (
+              ''
+            ) : (
+              <Link to='/dashboard'>
+                <img
+                  src={process.env.PUBLIC_URL + '../assets/utils/images/34.svg'}
+                  alt=''
+                />
+              </Link>
+            )}
+            {user && user.currentUser.role.name !== 'COACH' ? (
+              ''
+            ) : (
+              <img
+                src={process.env.PUBLIC_URL + '../assets/utils/images/48.png'}
+                alt=''
+              />
+            )}
+            {user && user.currentUser.role.name !== 'ADMIN' ? (
+              ''
+            ) : (
+              <img
+                src={process.env.PUBLIC_URL + '../assets/utils/images/51.png'}
+                alt=''
+              />
+            )}
 
-            
             <div className='close_sideNav ml_auto'>
               <i className='far fa-times-circle'></i>
             </div>
           </div>
           <div className='side_nav_wrapper'>
-            <Link to='#' className='active'>
-              <i className='fab fa-buromobelexperte'></i> Overview
-            </Link>
-            <Link to='#'>
-              <i className='fas fa-award'></i> Courses
-            </Link>
-            <Link to='#'>
-              <i className='far fa-id-badge'></i> Find coaches
-            </Link>
-            <Link to='#'>
-              <i className='fas fa-cog'></i> Settings
-            </Link>
+            <Sidebar menu={user ? user.menu : ''} />
             <Link onClick={logout} to='#!'>
-              <i className='fas fa-sign-out-alt'> </i> Logout
+              <i className='fas fa-sign-out-alt'> </i> N Logout
             </Link>
           </div>
         </aside>
@@ -78,7 +83,8 @@ const Dashboard = ({
                   <div className='flex_r_j_between_align_center username'>
                     <span>IU</span>
                     <h6>
-                      {user ? `${user.currentUser.firstname} ${user.currentUser.lastname}` : ''}
+                      {user && user.currentUser.firstname}{' '}
+                      {user && user.currentUser.lastname}
                     </h6>
                   </div>
                 </div>
@@ -171,11 +177,16 @@ const Dashboard = ({
 
 Dashboard.propTypes = {
   logout: PropTypes.func.isRequired,
-  auth: PropTypes.object.isRequired
+  getCurrentProfile: PropTypes.func.isRequired,
+  auth: PropTypes.object.isRequired,
+  profile: PropTypes.object.isRequired
 };
 
 const mapStateToProps = state => ({
   auth: state.auth,
+  profile: state.profile
 });
 
-export default connect(mapStateToProps, { logout })(Dashboard);
+export default connect(mapStateToProps, { getCurrentProfile, logout })(
+  Dashboard
+);

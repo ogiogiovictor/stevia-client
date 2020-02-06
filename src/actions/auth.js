@@ -6,7 +6,8 @@ import {
   LOGIN_FAIL,
   USER_LOADED,
   AUTH_ERROR,
-  LOGOUT
+  LOGOUT,
+  CLEAR_PROFILE
 } from './types';
 import setAuthToken from '../Utils/setAuthToken';
 import { setAlert } from './alert';
@@ -20,11 +21,10 @@ export const loadUser = () => async dispatch => {
   }else{
     console.log('no token')
   }
-  const loadUserApi = `https://stevia-backend.herokuapp.com/api/dashboard/currentuser`;
+  const loadUserApi = `http://127.0.0.1:8000/api/dashboard/currentuser`;
   
   try {
     const res = await Axios.get(loadUserApi);
-    console.log(res.data.data)
 
     dispatch({
       type: USER_LOADED,
@@ -63,7 +63,7 @@ export const signup = ({
   });
 
   try {
-    const registerApi = 'https://stevia-backend.herokuapp.com/api/register/store';
+    const registerApi = 'http://127.0.0.1:8000/api/register/store';
     const res = await Axios.post(registerApi, body, config);
     dispatch(setAlert(res.data.message, 'success'));
     console.log(res.data)
@@ -83,7 +83,7 @@ export const signup = ({
 // Login User
 
 export const login = (email, password) => async dispatch => {
-  const loginApi = 'https://stevia-backend.herokuapp.com/api/auth/store';
+  const loginApi = 'http://127.0.0.1:8000/api/auth/store';
   const config = {
     headers: {
       'Content-Type': 'application/json'
@@ -117,5 +117,6 @@ export const login = (email, password) => async dispatch => {
 // Logout /Clear Profile
 
 export const logout = () => dispatch => {
+  dispatch({ type: CLEAR_PROFILE });
   dispatch({ type: LOGOUT });
 };
