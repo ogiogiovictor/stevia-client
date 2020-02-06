@@ -7,7 +7,8 @@ import {
   USER_LOADED,
   AUTH_ERROR,
   LOGOUT,
-  CLEAR_PROFILE
+  CLEAR_PROFILE,
+  CLEAR_USER
 } from './types';
 import setAuthToken from '../Utils/setAuthToken';
 import { setAlert } from './alert';
@@ -118,5 +119,7 @@ export const login = (email, password) => async dispatch => {
 
 export const logout = () => dispatch => {
   dispatch({ type: CLEAR_PROFILE });
+  dispatch({ type: CLEAR_USER });
   dispatch({ type: LOGOUT });
+ 
 };
