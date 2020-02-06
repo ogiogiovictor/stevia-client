@@ -7,7 +7,7 @@ import { login } from '../../actions/auth';
 import CustomButton from '../CustomButton/CutomButton';
 import '../Alert/Alert.css';
 
-const Login = ({ login, isAuthenticated, setAlert, loading }) => {
+const Login = ({ login, isAuthenticated }) => {
   const { handleSubmit, register, errors, formState } = useForm({
     mode: 'onChange'
   });
@@ -112,13 +112,11 @@ const Login = ({ login, isAuthenticated, setAlert, loading }) => {
 
 Login.propTypes = {
   login: PropTypes.func.isRequired,
-  isAuthenticated: PropTypes.bool,
-  loading: PropTypes.bool
+  isAuthenticated: PropTypes.bool
 };
 
 const mapStateToProps = state => ({
-  isAuthenticated: state.auth.isAuthenticated,
-  loading: state.auth.loading
+  isAuthenticated: state.auth.isAuthenticated
 });
 
 export default connect(mapStateToProps, { login })(Login);

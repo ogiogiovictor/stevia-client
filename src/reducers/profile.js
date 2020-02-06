@@ -28,6 +28,7 @@ export default function(state = initialState, action) {
         ...state,
         profile: null,
         coaches: [],
+        isAuthenticated: false,
         loading: false
       }
     default:
