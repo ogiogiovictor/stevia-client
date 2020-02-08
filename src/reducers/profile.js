@@ -1,10 +1,11 @@
-import { GET_PROFILE, PROFILE_ERROR, CLEAR_PROFILE, CLEAR_USER } from '../actions/types';
+import { GET_PROFILE, PROFILE_ERROR, CLEAR_PROFILE, GET_COACHES_PROFILE } from '../actions/types';
 
 const initialState = {
   profile: null,
   coaches: [],
   loading: true,
-  error: {}
+  error: {},
+  role: null
 };
 
 export default function(state = initialState, action) {
@@ -17,14 +18,20 @@ export default function(state = initialState, action) {
         profile: payload,
         loading: false
       };
+    case GET_COACHES_PROFILE:
+      return {
+        ...state,
+        coaches: payload,
+        loading: false,
+      };
     case PROFILE_ERROR:
       return {
         ...state,
         error: payload,
-        loading: false
+        loading: false,
+        profile: null
       };
     case CLEAR_PROFILE:
-    case CLEAR_USER:
       return {
         ...state,
         profile: null,

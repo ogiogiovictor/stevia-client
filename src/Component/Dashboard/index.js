@@ -58,7 +58,7 @@ const Dashboard = ({
           </div>
           <div className='side_nav_wrapper'>
             <Sidebar menu={user ? user.menu : ''} />
-            <Link onClick={logout} to='#!'>
+            <Link onClick={logout} to='/#!'>
               <i className='fas fa-sign-out-alt'> </i> N Logout
             </Link>
           </div>
