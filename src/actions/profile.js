@@ -6,7 +6,7 @@ import { GET_PROFILE, PROFILE_ERROR, CLEAR_PROFILE, GET_COACHES_PROFILE } from '
 export const getCurrentProfile = () => async dispatch => {
   try {
     const res = await Axios.get(
-      `https://infinite-falls-35837.herokuapp.com/dashboard/role/${localStorage.token}`
+      `http://dueseason.biz/stevia-backend/api/dashboard/role/${localStorage.token}`
     );
 
     dispatch({
@@ -29,7 +29,7 @@ export const getCoachesProfile = () => async dispatch => {
   try {
     dispatch(loadUser());
     const res = await Axios.get(
-      `https://infinite-falls-35837.herokuapp.com/dashboard/get/coach`
+      `http://dueseason.biz/stevia-backend/api/dashboard/get/coach`
     );
     console.log(res.data.data);
     dispatch({
