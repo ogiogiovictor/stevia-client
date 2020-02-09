@@ -53,7 +53,7 @@ const CreateProfile = ({ auth: { user }, profile: { profile, loading } }) => {
                   </div>
                   <div className='flex_r_j_between_align_center username'>
                     <span>IU</span>
-                    <h6>Ifeanyi Umunnakwe</h6>
+                    <h6>{user.currentUser.firstname} {user.currentUser.lastname}</h6>
                   </div>
                 </div>
               </div>
