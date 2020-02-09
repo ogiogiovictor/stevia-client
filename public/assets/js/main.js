@@ -1,22 +1,22 @@
-$(document).ready(function(){
+window.(document).ready(function(){
 
     // Start of Input div with <label> effect
-    $(".common_input_wrapper_2 input, .common_input_wrapper_2 textarea, .common_input_wrapper_with_icon input, .common_input_wrapper_with_icon textarea").focusin(function(){
-        $(this).siblings("label").css({
+    window.$(".common_input_wrapper_2 input, .common_input_wrapper_2 textarea, .common_input_wrapper_with_icon input, .common_input_wrapper_with_icon textarea").focusin(function(){
+        (this).siblings("label").css({
             "transform": "translate(15px, 20px)",
             "color": "#EF4B4B"
         });
     }) 
 
 
-    $(".common_input_wrapper_2 input, .common_input_wrapper_2 textarea, .common_input_wrapper_with_icon input, .common_input_wrapper_with_icon textarea").focusout(function(){
+    window.$(".common_input_wrapper_2 input, .common_input_wrapper_2 textarea, .common_input_wrapper_with_icon input, .common_input_wrapper_with_icon textarea").focusout(function(){
 
         var checkValue = this.value.length;
         console.log(checkValue);
 
         if(checkValue <= 0 ) {
 
-            $(this).siblings("label").css({
+            window.$(this).siblings("label").css({
             "transform": "translate(15px, 47px)",
             "color": "#989898"
         });
@@ -26,166 +26,166 @@ $(document).ready(function(){
     })
 
 
-    $('.common_input_wrapper_2 label').click(function(){
+    window.$('.common_input_wrapper_2 label').click(function(){
 
-        $(this).siblings('input').focus();
+        window.$(this).siblings('input').focus();
 
     });
     // End of Input div with <label> effect 
 
  // Start --> Toggling active class in job type of job information form
- $('.job_type_options > div, .servive_type_options > div, .comm_channel_options > div, .service_select > div, .app_type > div').click(function(){
+ window.$('.job_type_options > div, .servive_type_options > div, .comm_channel_options > div, .service_select > div, .app_type > div').click(function(){
 
-    $(".job_type_options > div, .servive_type_options > div, .comm_channel_options > div, .service_select > div, .app_type > div").not(this).removeClass("active");
-    $(this).addClass("active");      
+    window.$(".job_type_options > div, .servive_type_options > div, .comm_channel_options > div, .service_select > div, .app_type > div").not(this).removeClass("active");
+    window.$(this).addClass("active");      
 })
 // End --> Toggling active class in job type of job information form
 
-$('td.action i').click(function(){
-    var dd = $(this).siblings('div.action_dropdown');
-    $('div.action_dropdown').not(dd).fadeOut();
-    $(this).siblings('div.action_dropdown').fadeToggle();
+window.$('td.action i').click(function(){
+    var dd = window.$(this).siblings('div.action_dropdown');
+    window.$('div.action_dropdown').not(dd).fadeOut();
+    window.$(this).siblings('div.action_dropdown').fadeToggle();
 })
-$('.each_job .top .right i').click(function(){
-    var dd = $(this).siblings('div.job_dropdown');
-    $('div.job_dropdown').not(dd).fadeOut();
-    $(this).siblings('div.job_dropdown').fadeToggle();
+window.$('.each_job .top .right i').click(function(){
+    var dd = window.$(this).siblings('div.job_dropdown');
+    window.$('div.job_dropdown').not(dd).fadeOut();
+    window.$(this).siblings('div.job_dropdown').fadeToggle();
 })
     
 // Start of review scroll
-var testi_width = 545 * $(".list_container .each_review").length;
-    $(".review_lists .list_container").css("width", testi_width+"px");
+var testi_width = 545 * window.$(".list_container .each_review").length;
+    window.$(".review_lists .list_container").css("width", testi_width+"px");
 // End of review scroll
 
 // Start of landing page script
-$('.courses_navigator > div').click(function(){    
+window.$('.courses_navigator > div').click(function(){    
 
-    $(this).siblings('div').removeClass("active_courses_navigator_link");
-    $(this).addClass("active_courses_navigator_link");
+    window.$(this).siblings('div').removeClass("active_courses_navigator_link");
+    window.$(this).addClass("active_courses_navigator_link");
     
 })
 
-$('.courses_navigator > #top_course').click(function(){  
+window.$('.courses_navigator > #top_course').click(function(){  
 
-    $(".featured_course_wrapper").fadeOut(200);
-    $(".top_course_wrapper").delay(200).fadeIn();
+    window.$(".featured_course_wrapper").fadeOut(200);
+    window.$(".top_course_wrapper").delay(200).fadeIn();
 })
 
-$('.courses_navigator > #featured_course').click(function(){  
+window.$('.courses_navigator > #featured_course').click(function(){  
 
-    $(".top_course_wrapper").fadeOut(200);
-    $(".featured_course_wrapper").delay(200).fadeIn();
+    window.$(".top_course_wrapper").fadeOut(200);
+    window.$(".featured_course_wrapper").delay(200).fadeIn();
 })
 
-var jobs_width = 415 * $(".job_opnenings_wrapper > div").length;
-    $(".job_opnenings_wrapper").css("width", jobs_width+"px");
+var jobs_width = 415 * window.$(".job_opnenings_wrapper > div").length;
+    window.$(".job_opnenings_wrapper").css("width", jobs_width+"px");
 
     
  
-// var scroll_val = $('.job_opnenings_wrapper_scroll').scrollLeft();
-// $('.der').click(function(){
-//     console.log($('.job_opnenings_wrapper_scroll').scrollLeft());
+// var scroll_val = window.$('.job_opnenings_wrapper_scroll').scrollLeft();
+// window.$('.der').click(function(){
+//     console.log(window.$('.job_opnenings_wrapper_scroll').scrollLeft());
 // })
 // End of landing page script
 
 // Input field with icon
-$('.common_input_wrapper_with_icon input').focusin(function(){
-    $(this).parent().parent().css("border-color","#EF4B4B");
+window.$('.common_input_wrapper_with_icon input').focusin(function(){
+    window.$(this).parent().parent().css("border-color","#EF4B4B");
 })
 
-$('.common_input_wrapper_with_icon input').focusout(function(){
-    $(this).parent().parent().css("border-color","#E3E3E3");
+window.$('.common_input_wrapper_with_icon input').focusout(function(){
+    window.$(this).parent().parent().css("border-color","#E3E3E3");
 })
 
 // Dashboard side nav link
-$('.side_nav_wrapper a').click(function(){
-    $(this).siblings().removeClass("active");
-    $(this).addClass("active");
+window.$('.side_nav_wrapper a').click(function(){
+    window.$(this).siblings().removeClass("active");
+    window.$(this).addClass("active");
 })
 // Dashboard side nav link
 
-$('.spanToggle span').click(function(){
+window.$('.spanToggle span').click(function(){
     $(this).siblings().removeClass("active");
     $(this).addClass("active");
 })
 
 // Settings navigator
-$('.settings_navigator > div').click(function(){
-    $(this).siblings().removeClass("active_settings_navigator_link");
-    $(this).addClass("active_settings_navigator_link");
+window.$('.settings_navigator > div').click(function(){
+    window.$(this).siblings().removeClass("active_settings_navigator_link");
+    window.$(this).addClass("active_settings_navigator_link");
 })
 
-$('.settings_navigator > div:first-child').click(function(){
-    $("#settings_holder > section").not('section:first-child').fadeOut(200);
-    $("#settings_holder > section:first-child").delay(200).fadeIn();
+window.$('.settings_navigator > div:first-child').click(function(){
+    window.$("#settings_holder > section").not('section:first-child').fadeOut(200);
+    window.$("#settings_holder > section:first-child").delay(200).fadeIn();
 })
 
-$('.settings_navigator > div:nth-child(2)').click(function(){
-    $("#settings_holder > section").not('section:nth-child(2)').fadeOut(200);
-    $("#settings_holder > section:nth-child(2)").delay(200).fadeIn();
+window.$('.settings_navigator > div:nth-child(2)').click(function(){
+    window.$("#settings_holder > section").not('section:nth-child(2)').fadeOut(200);
+    window.$("#settings_holder > section:nth-child(2)").delay(200).fadeIn();
 })
 
-$('.settings_navigator > div:nth-child(3)').click(function(){
-    $("#settings_holder > section").not('section:nth-child(3)').fadeOut(200);
-    $("#settings_holder > section:nth-child(3)").delay(200).fadeIn();
+window.$('.settings_navigator > div:nth-child(3)').click(function(){
+    window.$("#settings_holder > section").not('section:nth-child(3)').fadeOut(200);
+    window.$("#settings_holder > section:nth-child(3)").delay(200).fadeIn();
 })
 
-$('.settings_navigator > div:nth-child(4)').click(function(){
-    $("#settings_holder > section").not('section:nth-child(4)').fadeOut(200);
-    $("#settings_holder > section:nth-child(4)").delay(200).fadeIn();
+window.$('.settings_navigator > div:nth-child(4)').click(function(){
+    window.$("#settings_holder > section").not('section:nth-child(4)').fadeOut(200);
+    window.$("#settings_holder > section:nth-child(4)").delay(200).fadeIn();
 })
 
 // Settings navigator
 
 // admin Coach and student details page
-$('.coach_details_navigator > div').click(function(){
+window.$('.coach_details_navigator > div').click(function(){
     $(this).siblings().removeClass("active_settings_navigator_link");
     $(this).addClass("active_settings_navigator_link");
 })
 
-$('.coach_details_navigator > div:first-child').click(function(){
+window.$('.coach_details_navigator > div:first-child').click(function(){
     $(".personal_appointment_section").fadeOut(200);
     $(".personal_course_list_section").delay(200).fadeIn();
 })
-$('.coach_details_navigator > div:nth-child(2)').click(function(){
+window.$('.coach_details_navigator > div:nth-child(2)').click(function(){
     $(".personal_course_list_section").fadeOut(200);
     $(".personal_appointment_section").delay(200).fadeIn();
 })
 // admin Coach and student details page
 
 // Create appointment
-$('#to_appointment_type').click(function(){
+window.$('#to_appointment_type').click(function(){
     $('.select_service').fadeOut(200);
     $(".appointment_types").delay(200).fadeIn();
 })
-$('#back_to_select_service').click(function(){
-    $('.appointment_types').fadeOut(200);
-    $(".select_service").delay(200).fadeIn();
+window.$('#back_to_select_service').click(function(){
+    window.$('.appointment_types').fadeOut(200);
+    window.$(".select_service").delay(200).fadeIn();
 })
-$('#goto_date_n_time').click(function(){
-    $('.appointment_types').fadeOut(200);
-    $(".date_n_time").delay(200).fadeIn();
+window.$('#goto_date_n_time').click(function(){
+    window.$('.appointment_types').fadeOut(200);
+    window.$(".date_n_time").delay(200).fadeIn();
 })
-$('#back_to_app_type').click(function(){
-    $('.date_n_time').fadeOut(200);
-    $(".appointment_types").delay(200).fadeIn();
+window.$('#back_to_app_type').click(function(){
+    window.$('.date_n_time').fadeOut(200);
+    window.$(".appointment_types").delay(200).fadeIn();
 })
-$('#goto_review_n_pay').click(function(){
-    $('.date_n_time').fadeOut(200);
-    $(".review_n_pay").delay(200).fadeIn();
+window.$('#goto_review_n_pay').click(function(){
+    window.$('.date_n_time').fadeOut(200);
+    window.$(".review_n_pay").delay(200).fadeIn();
 })
-$('#goto_status').click(function(){
-    $('.review_n_pay').fadeOut(200);
-    $(".status").delay(200).fadeIn();
+window.$('#goto_status').click(function(){
+    window.$('.review_n_pay').fadeOut(200);
+    window.$(".status").delay(200).fadeIn();
 })
-$('#bact_to_date').click(function(){
-    $('.review_n_pay').fadeOut(200);
-    $(".date_n_time").delay(200).fadeIn();
+window.$('#bact_to_date').click(function(){
+    window.$('.review_n_pay').fadeOut(200);
+    window.$(".date_n_time").delay(200).fadeIn();
 })
 // Create appointment
 
 // mobile top nav toggler
-$('.mobile_nav_toggler').click(function(){  
+window.$('.mobile_nav_toggler').click(function(){  
     $('.whole_page_wrapper').css({
         'transform': 'translate(-300px,200px)'
     })
@@ -197,7 +197,7 @@ $('.mobile_nav_toggler').click(function(){
     })
 })
 
-$('.close_btn').click(function(){ 
+window.$('.close_btn').click(function(){ 
     $('.whole_page_wrapper').css({
         'transform': 'translate(0,0)'
     })
@@ -211,7 +211,7 @@ $('.close_btn').click(function(){
 // mobile top nav toggler
 
 // Start of mobile top nav toggler (Dashboard)
-$('.dashboard_sidenav_toggler').click(function(){  
+window.$('.dashboard_sidenav_toggler').click(function(){  
     $('.dashboard_body').css({
         // 'transform': 'translateX(300px)',
         // 'margin-left': '300px'
@@ -226,7 +226,7 @@ $('.dashboard_sidenav_toggler').click(function(){
     })
 })
 
-$('.close_sideNav').click(function(){ 
+window.$('.close_sideNav').click(function(){ 
     $('aside.side_nav').css({
         'transform': 'translateX(-100%)'
     })
@@ -239,7 +239,7 @@ $('.close_sideNav').click(function(){
 // Start of Jobs page mobile Toggler
 var screenWidth = window.innerWidth;
 if(screenWidth <= 889) {
-    $('.jobs_section_wrapper_div [class*="_header"]').click(function(){
+    window.$('.jobs_section_wrapper_div [class*="_header"]').click(function(){
         $(this).siblings('[class*="options_"]').slideToggle()
     })
 }
@@ -253,7 +253,7 @@ var w = window.innerWidth;
     var h = window.innerHeight;
     console.log(`
 
-        The Screen width is : ${w}px
-        The Screen height is : ${h}px
+        The Screen width is : window.${w}px
+        The Screen height is : window.${h}px
     
     `)

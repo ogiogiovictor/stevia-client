@@ -17,6 +17,7 @@ import PrivateRoute from './routing/PrivateRoute';
 import Dashboard from './Component/Dashboard';
 import Alert from './Component/Alert/Alert';
 import Studentcoaches from './Component/Dashboard/Student/Coaches';
+import CreateProfile from './Component/Dashboard/ProfileSettings/CreateProfile';
 
 if (localStorage.token) {
   setAuthToken(localStorage.token);
@@ -50,6 +51,7 @@ const App = () => {
               <Route path='/coach' exact component={Coach} />
               <Route path='/login' exact component={Login} />
               <PrivateRoute path='/dashboard/student/coaches' exact component={Studentcoaches} />
+              <PrivateRoute path='/dashboard/student/settings' exact component={CreateProfile} />
               <PrivateRoute path='/dashboard' exact component={Dashboard} />
               <PrivateRoute path='/dashboard/student' exact component={Dashboard} />
               <Route path='/' exact component={Student} />

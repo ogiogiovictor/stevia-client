@@ -1,5 +1,5 @@
 import React, { Fragment, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { logout } from '../../actions/auth';
@@ -7,19 +7,30 @@ import { getCurrentProfile } from '../../actions/profile';
 
 import Sidebar from './Sidebar';
 import Spinner from '../Spinner/Spinner';
+import { setAlert } from '../../actions/alert';
 
 const Dashboard = ({
   getCurrentProfile,
   auth: { user },
   profile: { profile, loading },
+  setAlert,
   logout
 }) => {
   useEffect(() => {
     getCurrentProfile();
   }, [getCurrentProfile]);
 
-  return loading && profile === null ? (
-    <Spinner />
+  let newProfile = null;
+
+  if (loading && profile === null) {
+    return <Spinner />;
+  }
+  const { dob, state, country, sex, qualitifcation, location } = profile;
+  newProfile = { dob, state, country, sex, qualitifcation, location };
+  let prof = Object.values(newProfile).every(item => item !== null);
+  return !prof && user.currentUser.role.name === 'STUDENT' ? (
+    setAlert('You need to complete your profile', 'error'),
+    <Redirect to='/dashboard/student/settings' />
   ) : (
     <Fragment>
       <section className='whole_page_wrapper'>
@@ -92,8 +103,6 @@ const Dashboard = ({
             </div>
           </div>
           {/* <!--. top nav --> */}
-
-          {/* <!-- Overview cards --> */}
           <div className='full_row overview_cards'>
             <div className='dashboard_center'>
               <div className='full_row cards_wrapper'>
@@ -169,6 +178,7 @@ const Dashboard = ({
               </div>
             </div>
           </div>
+          {/* <!-- Overview cards --> */}
         </section>
       </section>
     </Fragment>
@@ -179,7 +189,8 @@ Dashboard.propTypes = {
   logout: PropTypes.func.isRequired,
   getCurrentProfile: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired,
-  profile: PropTypes.object.isRequired
+  profile: PropTypes.object.isRequired,
+  setAlert: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => ({
@@ -187,6 +198,6 @@ const mapStateToProps = state => ({
   profile: state.profile
 });
 
-export default connect(mapStateToProps, { getCurrentProfile, logout })(
+export default connect(mapStateToProps, { getCurrentProfile, logout, setAlert })(
   Dashboard
 );

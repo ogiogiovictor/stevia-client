@@ -13,6 +13,8 @@ import setAuthToken from '../Utils/setAuthToken';
 import { setAlert } from './alert';
 
 // Load User
+// const url = 'https://dueseason.biz/stevia-backend/api';
+const url = 'http://127.0.0.1:8000/api';
 
 export const loadUser = () => async dispatch => {
   
@@ -21,7 +23,7 @@ export const loadUser = () => async dispatch => {
   }else{
     console.log('no token')
   }
-  const loadUserApi = `https://dueseason.biz/stevia-backend/api/dashboard/currentuser`;
+  const loadUserApi = `${url}/dashboard/currentuser`;
   
   try {
     const res = await Axios.get(loadUserApi);
@@ -63,7 +65,7 @@ export const signup = ({
   });
 
   try {
-    const registerApi = 'https://dueseason.biz/stevia-backend/api/register/store';
+    const registerApi = `${url}/register/store`;
     const res = await Axios.post(registerApi, body, config);
     dispatch(setAlert(res.data.message, 'success'));
     console.log(res.data)
@@ -83,7 +85,7 @@ export const signup = ({
 // Login User
 
 export const login = (email, password) => async dispatch => {
-  const loginApi = 'https://dueseason.biz/stevia-backend/api/auth/store';
+  const loginApi = `${url}/auth/store`;
   const config = {
     headers: {
       'Content-Type': 'application/json'

@@ -10,7 +10,7 @@ import CoachItem from './CoachItem'
 const Coaches = ({
   getCoachesProfile,
   profile: { coaches, loading },
-  user
+  auth: { user }
 }) => {
   useEffect(() => {
     getCoachesProfile();
@@ -21,9 +21,9 @@ const Coaches = ({
         <Spinner />
       ) : (
         <Fragment>
-          <section class='whole_page_wrapper'>
-            <aside class='side_nav'>
-              <div class='full_row flex_r_a_center logo_div'>
+          <section className='whole_page_wrapper'>
+            <aside className='side_nav'>
+              <div className='full_row flex_r_a_center logo_div'>
                 <img
                   src={
                     process.env.PUBLIC_URL + '../../assets/utils/images/34.svg'
@@ -163,12 +163,12 @@ const Coaches = ({
 Coaches.propTypes = {
   getCoachesProfile: PropTypes.func.isRequired,
   profile: PropTypes.object.isRequired,
-  user: PropTypes.object.isRequired
+  auth: PropTypes.object.isRequired
 };
 
 const mapStateToProps = state => ({
   profile: state.profile,
-  user: state.auth.user
+  auth: state.auth
 });
 
 export default connect(mapStateToProps, { getCoachesProfile })(Coaches);
