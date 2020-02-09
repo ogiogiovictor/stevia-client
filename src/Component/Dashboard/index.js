@@ -1,60 +1,76 @@
-import React, { Fragment } from 'react';
-import { Link } from 'react-router-dom';
+import React, { Fragment, useEffect } from 'react';
+import { Link, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { logout } from '../../actions/auth';
+import { getCurrentProfile } from '../../actions/profile';
+
+import Sidebar from './Sidebar';
+import Spinner from '../Spinner/Spinner';
+import { setAlert } from '../../actions/alert';
 
 const Dashboard = ({
-  auth: { isAuthenticated, loading, user },
-  logout,
+  getCurrentProfile,
+  auth: { user },
+  profile: { profile, loading },
+  setAlert,
+  logout
 }) => {
-  return (
+  useEffect(() => {
+    getCurrentProfile();
+  }, [getCurrentProfile]);
+
+  let newProfile = null;
+
+  if (loading && profile === null) {
+    return <Spinner />;
+  }
+  const { dob, state, country, sex, qualitifcation, location } = profile;
+  newProfile = { dob, state, country, sex, qualitifcation, location };
+  let prof = Object.values(newProfile).every(item => item !== null);
+  return !prof && user.currentUser.role.name === 'STUDENT' ? (
+    setAlert('You need to complete your profile', 'error'),
+    <Redirect to='/dashboard/student/settings' />
+  ) : (
     <Fragment>
       <section className='whole_page_wrapper'>
-      <aside className='side_nav'>
+        <aside className='side_nav'>
           <div className='full_row flex_r_a_center logo_div'>
-            {user ?
-              user.currentUser.role.name !== 'STUDENT' ?
-            '': <Link to='/dashboard'><img
-              src={process.env.PUBLIC_URL + '../assets/utils/images/34.svg'}
-              alt=''
-            /></Link>
-              : ''}
-            {user ?
-              user.currentUser.role.name !== 'COACH' ?
-            '': <img
-              src={process.env.PUBLIC_URL + '../assets/utils/images/48.png'}
-              alt=''
-            />
-              : ''}
-            {user ?
-              user.currentUser.role.name !== 'ADMIN' ?
-            '': <img
-              src={process.env.PUBLIC_URL + '../assets/utils/images/51.png'}
-              alt=''
-            />
-              : ''}
+            {user && user.currentUser.role.name !== 'STUDENT' ? (
+              ''
+            ) : (
+              <Link to='/dashboard'>
+                <img
+                  src={process.env.PUBLIC_URL + '../assets/utils/images/34.svg'}
+                  alt=''
+                />
+              </Link>
+            )}
+            {user && user.currentUser.role.name !== 'COACH' ? (
+              ''
+            ) : (
+              <img
+                src={process.env.PUBLIC_URL + '../assets/utils/images/48.png'}
+                alt=''
+              />
+            )}
+            {user && user.currentUser.role.name !== 'ADMIN' ? (
+              ''
+            ) : (
+              <img
+                src={process.env.PUBLIC_URL + '../assets/utils/images/51.png'}
+                alt=''
+              />
+            )}
 
-            
             <div className='close_sideNav ml_auto'>
               <i className='far fa-times-circle'></i>
             </div>
           </div>
           <div className='side_nav_wrapper'>
-            <Link to='#' className='active'>
-              <i className='fab fa-buromobelexperte'></i> Overview
-            </Link>
-            <Link to='#'>
-              <i className='fas fa-award'></i> Courses
-            </Link>
-            <Link to='#'>
-              <i className='far fa-id-badge'></i> Find coaches
-            </Link>
-            <Link to='#'>
-              <i className='fas fa-cog'></i> Settings
-            </Link>
-            <Link onClick={logout} to='#!'>
-              <i className='fas fa-sign-out-alt'> </i> Logout
+            <Sidebar menu={user ? user.menu : ''} />
+            <Link onClick={logout} to='/#!'>
+              <i className='fas fa-sign-out-alt'> </i> N Logout
             </Link>
           </div>
         </aside>
@@ -78,7 +94,8 @@ const Dashboard = ({
                   <div className='flex_r_j_between_align_center username'>
                     <span>IU</span>
                     <h6>
-                      {user ? `${user.currentUser.firstname} ${user.currentUser.lastname}` : ''}
+                      {user && user.currentUser.firstname}{' '}
+                      {user && user.currentUser.lastname}
                     </h6>
                   </div>
                 </div>
@@ -86,8 +103,6 @@ const Dashboard = ({
             </div>
           </div>
           {/* <!--. top nav --> */}
-
-          {/* <!-- Overview cards --> */}
           <div className='full_row overview_cards'>
             <div className='dashboard_center'>
               <div className='full_row cards_wrapper'>
@@ -163,6 +178,7 @@ const Dashboard = ({
               </div>
             </div>
           </div>
+          {/* <!-- Overview cards --> */}
         </section>
       </section>
     </Fragment>
@@ -171,11 +187,17 @@ const Dashboard = ({
 
 Dashboard.propTypes = {
   logout: PropTypes.func.isRequired,
-  auth: PropTypes.object.isRequired
+  getCurrentProfile: PropTypes.func.isRequired,
+  auth: PropTypes.object.isRequired,
+  profile: PropTypes.object.isRequired,
+  setAlert: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => ({
   auth: state.auth,
+  profile: state.profile
 });
 
-export default connect(mapStateToProps, { logout })(Dashboard);
+export default connect(mapStateToProps, { getCurrentProfile, logout, setAlert })(
+  Dashboard
+);

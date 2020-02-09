@@ -2,19 +2,31 @@ import React, { Fragment } from 'react';
 import { Link, Redirect } from 'react-router-dom';
 import CustomButton from '../CustomButton/CutomButton';
 import { useForm } from 'react-hook-form';
-import { toast } from 'react-toastify';
 import { signup } from '../../actions/auth';
 import { PropTypes } from 'prop-types';
 import { connect } from 'react-redux';
-import { setAlert } from '../../actions/alert';
 
-const Signup = ({ signup, isAuthenticated, role, setAlert }) => {
+const Signup = ({ signup, isAuthenticated, role }) => {
   const { handleSubmit, register, errors, formState } = useForm({
     mode: 'onChange'
   });
   const onSubmit = async values => {
-    const { firstname, lastname, email, phone_number, password, account_type } = values;
-    signup({ firstname, lastname, email, phone_number, password, account_type });
+    const {
+      firstname,
+      lastname,
+      email,
+      phone_number,
+      password,
+      account_type
+    } = values;
+    signup({
+      firstname,
+      lastname,
+      email,
+      phone_number,
+      password,
+      account_type
+    });
   };
 
   if (isAuthenticated && role === 'STUDENT') {
@@ -49,7 +61,12 @@ const Signup = ({ signup, isAuthenticated, role, setAlert }) => {
               <p>to continue to your dashboard</p>
             </div>
             <form onSubmit={handleSubmit(onSubmit)}>
-              <p><strong>Choose your role:</strong></p>
+              <p>
+                <strong>Choose your role:</strong>
+              </p>
+              <div className={!errors.account_type ? '' : 'alert alert-danger'}>
+                {errors.account_type && errors.account_type.message}
+              </div>
               <div className='form-check'>
                 <label>
                   <input
@@ -57,9 +74,8 @@ const Signup = ({ signup, isAuthenticated, role, setAlert }) => {
                     name='account_type'
                     value='3'
                     className='form-check-input'
-                    ref={register}
+                    ref={register({ required: 'Choose desired role' })}
                     readOnly
-                    required
                   />
                   Student
                 </label>
@@ -72,9 +88,8 @@ const Signup = ({ signup, isAuthenticated, role, setAlert }) => {
                     name='account_type'
                     value='2'
                     className='form-check-input'
-                    ref={register}
+                    ref={register({ required: 'Choose desired role' })}
                     readOnly
-                    required
                   />
                   Coach
                 </label>
@@ -87,9 +102,8 @@ const Signup = ({ signup, isAuthenticated, role, setAlert }) => {
                     name='account_type'
                     value='4'
                     className='form-check-input'
-                    ref={register}
+                    ref={register({ required: 'Choose desired role' })}
                     readOnly
-                    required
                   />
                   Recruiter
                 </label>
@@ -101,11 +115,9 @@ const Signup = ({ signup, isAuthenticated, role, setAlert }) => {
                   placeholder='First Name'
                   ref={register({ required: 'First Name is required' })}
                 />
-                <div style={{ display: 'none' }}>
-                  {!errors.firstname || undefined
-                    ? ''
-                    : toast(errors.firstname && errors.firstname.message, 'error')}
-                </div>
+              </div>
+              <div className={!errors.firstname ? '' : 'alert alert-danger'}>
+                {errors.firstname && errors.firstname.message}
               </div>
               <div className='full_row common_input_wrapper_2'>
                 <input
@@ -114,11 +126,9 @@ const Signup = ({ signup, isAuthenticated, role, setAlert }) => {
                   placeholder='Last Name'
                   ref={register({ required: 'Last Name is required' })}
                 />
-                <div style={{ display: 'none' }}>
-                  {!errors.lastname || undefined
-                    ? ''
-                    : toast(errors.lastname && errors.lastname.message, 'error')}
-                </div>
+              </div>
+              <div className={!errors.lastname ? '' : 'alert alert-danger'}>
+                {errors.lastname && errors.lastname.message}
               </div>
               <div className='full_row common_input_wrapper_2'>
                 <input
@@ -127,13 +137,9 @@ const Signup = ({ signup, isAuthenticated, role, setAlert }) => {
                   placeholder='Phone Number'
                   ref={register({ required: 'Phone Number is required' })}
                 />
-                <div style={{ display: 'none' }}>
-                  {!errors.phone_number || undefined
-                    ? ''
-                    : setAlert(
-                        errors.phone_number && errors.phone_number.message, 'error'
-                      )}
-                </div>
+              </div>
+              <div className={!errors.phone_number ? '' : 'alert alert-danger'}>
+                {errors.phone_number && errors.phone_number.message}
               </div>
               <div className='full_row common_input_wrapper_2'>
                 <input
@@ -147,10 +153,8 @@ const Signup = ({ signup, isAuthenticated, role, setAlert }) => {
                     }
                   })}
                 />
-                <div style={{ display: 'none' }}>
-                  {!errors.email || undefined
-                    ? ''
-                    : setAlert(errors.email && errors.email.message, 'error')}
+                <div className={!errors.email ? '' : 'alert alert-danger'}>
+                  {errors.email && errors.email.message}
                 </div>
               </div>
 
@@ -166,14 +170,9 @@ const Signup = ({ signup, isAuthenticated, role, setAlert }) => {
                     })}
                   />
                 </div>
-                <div style={{ display: 'none' }}>
-                  {!errors.password || undefined
-                    ? ''
-                    : setAlert(
-                        errors.password &&
-                          'Your password is less than 6 characters', 'error'
-                      )}
-                </div>
+              </div>
+              <div className={!errors.password ? '' : 'alert alert-danger'}>
+                {errors.password && 'Your password is less than 6 characters'}
               </div>
 
               <div className='full_row common_input_wrapper_2'>
@@ -183,20 +182,15 @@ const Signup = ({ signup, isAuthenticated, role, setAlert }) => {
                     name='confirmPassword'
                     placeholder='Confirm Password'
                     ref={register({
-                      required: 'Password is Required',
-                      validate: value =>
-                        value.password === value.confirmPassword
+                      required: 'Password is Required'
                     })}
                   />
                 </div>
-
-                <div style={{ display: 'none' }}>
-                  {!errors.confirmPassword || undefined
-                    ? ''
-                    : setAlert(
-                        errors.confirmPassword && 'The Password do not match', 'error'
-                      )}
-                </div>
+              </div>
+              <div
+                className={!errors.confirmPassword ? '' : 'alert alert-danger'}
+              >
+                {errors.confirmPassword && 'The Password do not match'}
               </div>
 
               <div className='full_row login_button'>
@@ -232,7 +226,6 @@ const Signup = ({ signup, isAuthenticated, role, setAlert }) => {
 
 Signup.protoTypes = {
   signup: PropTypes.func.isRequired,
-  setAlert: PropTypes.func.isRequired,
   isAuthenticated: PropTypes.bool
 };
 
@@ -241,4 +234,4 @@ const mapStateToProps = state => ({
   role: state.auth.role
 });
 
-export default connect(mapStateToProps, { signup, setAlert })(Signup);
+export default connect(mapStateToProps, { signup })(Signup);

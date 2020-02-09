@@ -35,6 +35,7 @@ export default function(state = initialState, action) {
             }
         case LOGIN_SUCCESS:
             localStorage.setItem('token', payload.auth_token);
+            localStorage.setItem('role', payload.role.name.toLowerCase());
             return {
                 ...state,
                 ...payload,
@@ -46,6 +47,7 @@ export default function(state = initialState, action) {
         case LOGIN_FAIL:
         case LOGOUT:
             localStorage.removeItem('token');
+            localStorage.removeItem('role');
             return {
                 ...state,
                 ...payload,
