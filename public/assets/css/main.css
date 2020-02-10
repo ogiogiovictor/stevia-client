@@ -4026,7 +4026,7 @@ section.dashboard_body .appointments_part .appointment_container .empty_content 
 }
 
 .other_information_section {
-  display: none;
+  width: 900px;
   padding: 25px 0 100px;
 }
 
@@ -4059,11 +4059,6 @@ section.dashboard_body .appointments_part .appointment_container .empty_content 
 .other_information_section .cols-2 .common_input_wrapper_2 {
   margin-top: 0;
   margin-bottom: 0;
-}
-
-.notification_section {
-  padding: 25px 0 100px;
-  display: none;
 }
 
 .notification_section .profile_details {
