@@ -18,7 +18,6 @@ import Dashboard from './Component/Dashboard';
 import Alert from './Component/Alert/Alert';
 import Studentcoaches from './Component/Dashboard/Student/Coaches';
 import CreateProfile from './Component/Dashboard/ProfileSettings/CreateProfile';
-import tabbed from './Component/Dashboard/ProfileSettings/tabbed';
 
 
 
@@ -57,7 +56,6 @@ const App = () => {
               <PrivateRoute path='/dashboard/student/settings' exact component={CreateProfile} />
               <PrivateRoute path='/dashboard' exact component={Dashboard} />
               <PrivateRoute path='/dashboard/student' exact component={Dashboard} />
-              <Route path='/tabbed' exact component={tabbed} />
               <Route path='/' exact component={Student} />
             </Switch>
           </Fragment>
