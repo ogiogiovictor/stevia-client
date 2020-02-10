@@ -4,8 +4,8 @@ import { setAlert } from './alert';
 
 import { GET_PROFILE, PROFILE_ERROR, CLEAR_PROFILE, GET_COACHES_PROFILE } from './types';
 
-// const url = 'https://dueseason.biz/stevia-backend/api';
-const url = 'http://127.0.0.1:8000/api';
+const url = 'https://dueseason.biz/stevia-backend/api';
+// const url = 'http://127.0.0.1:8000/api';
 
 export const getCurrentProfile = () => async dispatch => {
   try {
