@@ -1,5 +1,6 @@
 import Axios from 'axios';
 import { loadUser } from '../actions/auth';
+import { setAlert } from './alert';
 
 import { GET_PROFILE, PROFILE_ERROR, CLEAR_PROFILE, GET_COACHES_PROFILE } from './types';
 
@@ -24,6 +25,32 @@ export const getCurrentProfile = () => async dispatch => {
     });
   }
 };
+
+// Create or Update a Profile
+export const createProfile = (formData, history, edit = false) => async dispatch => {
+  try {
+    const config = {
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    }
+    const res = await Axios.post(`${url}/dashboard/postprofile`, formData, config);
+
+    dispatch({
+      type: GET_PROFILE,
+      payload: res.data.data
+    });
+    
+    dispatch(setAlert(res.data.message, 'success'));
+    history.push('/dashboard');
+
+  } catch (error) {
+    dispatch({
+      type: PROFILE_ERROR,
+      payload: { msg: 'error check' }
+    });
+  }
+}
 
 
 // Get Coaches Profiles

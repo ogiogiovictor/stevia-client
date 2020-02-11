@@ -1,4 +1,6 @@
-window.$(document).ready(function(){
+import $ from 'jquery';
+
+$(document).ready(function(){
 
     // Start of Input div with <label> effect
     $(".common_input_wrapper_2 input, .common_input_wrapper_2 textarea, .common_input_wrapper_with_icon input, .common_input_wrapper_with_icon textarea").focusin(function(){
