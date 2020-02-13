@@ -54,8 +54,10 @@ const App = () => {
               <Route path='/login' exact component={Login} />
               <PrivateRoute path='/dashboard/student/coaches' exact component={Studentcoaches} />
               <PrivateRoute path='/dashboard/student/settings' exact component={CreateProfile} />
+              <PrivateRoute path='/dashboard/coaches/settings' exact component={CreateProfile} />
               <PrivateRoute path='/dashboard' exact component={Dashboard} />
               <PrivateRoute path='/dashboard/student' exact component={Dashboard} />
+              <PrivateRoute path='/dashboard/coaches' exact component={Dashboard} />
               <Route path='/' exact component={Student} />
             </Switch>
           </Fragment>

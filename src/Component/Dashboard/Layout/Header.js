@@ -1,0 +1,79 @@
+import React, { Fragment } from 'react';
+import { Link } from 'react-router-dom';
+import Sidebar from '../Sidebar';
+import Spinner from '../../Spinner/Spinner';
+import PropTypes from 'prop-types';
+import { logout } from '../../../actions/auth';
+import { connect } from 'react-redux';
+
+const Header = ({
+  auth: { loading, user },
+  logout
+}) => {
+
+  if (loading && user === null) {
+    return <Spinner />;
+  }
+
+  return (
+    <Fragment>
+      <aside className='side_nav'>
+        <div className='full_row flex_r_a_center logo_div'>
+          {user && user.currentUser.role.name !== 'STUDENT' ? (
+            ''
+          ) : (
+            <Link to='/dashboard'>
+              <img
+                src={process.env.PUBLIC_URL + '../../assets/utils/images/34.svg'}
+                alt=''
+              />
+            </Link>
+          )}
+          {user && user.currentUser.role.name !== 'COACH' ? (
+            ''
+          ) : (
+            <Link to='/dashboard'>
+              <img
+                src={process.env.PUBLIC_URL + '../../assets/utils/images/48.png'}
+                alt=''
+              />
+            </Link>
+          )}
+          {user && user.currentUser.role.name !== 'ADMIN' ? (
+            ''
+          ) : (
+            <Link to='/dashboard'>
+              <img
+                src={process.env.PUBLIC_URL + '../../assets/utils/images/51.png'}
+                alt=''
+              />
+            </Link>
+          )}
+
+          <div className='close_sideNav ml_auto'>
+            <i className='far fa-times-circle'></i>
+          </div>
+        </div>
+        <div className='side_nav_wrapper'>
+          <Sidebar menu={user ? user.menu : ''} />
+          <Link onClick={logout} to='/#!'>
+            <i className='fas fa-sign-out-alt'> </i> N Logout
+          </Link>
+        </div>
+      </aside>
+    </Fragment>
+  );
+};
+
+Header.propTypes = {
+  logout: PropTypes.func.isRequired,
+  auth: PropTypes.object.isRequired,
+};
+
+const mapStateToProps = state => ({
+  auth: state.auth,
+});
+
+export default connect(mapStateToProps, {
+  logout
+})(Header);
