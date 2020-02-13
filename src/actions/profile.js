@@ -72,7 +72,7 @@ export const profileImage = (formData, history, edit = false) => async dispatch 
     dispatch(getCurrentProfile());
     const config = {
       headers: {
-        'Content-Type': 'multipart/form-data'
+        'Content-Type': `multipart/form-data; boundary=${formData._boundary}`
       }
     }
     const res = await Axios.post(`${url}/dashboard/profileimage`, formData, config);

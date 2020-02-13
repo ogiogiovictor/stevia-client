@@ -114,7 +114,8 @@ const CreateProfile = ({
       bank: loading || !profile.bank ? '' : profile.bank,
       account_number:
         loading || !profile.account_number ? '' : profile.account_number,
-      account_name: loading || !profile.account_name ? '' : profile.account_name,
+      account_name:
+        loading || !profile.account_name ? '' : profile.account_name,
       uploadpix: loading || !profile.uploadpix ? '' : profile.uploadpix
     });
   }, [loading, getCurrentProfile]);
@@ -222,7 +223,9 @@ const CreateProfile = ({
                   <section className='profile_details_section'>
                     <div className='full_row settings_box profile_details'>
                       <div className='profile_details_left'>
-                        <form encType="multipart/form-data" onSubmit={e => onSubmit2(e)}>
+                        <form
+                          onSubmit={e => onSubmit2(e)}
+                        >
                           <div className='full_row each_student_sett_header'>
                             <p> Profile Information </p>
                             <span>
@@ -234,16 +237,20 @@ const CreateProfile = ({
                           <div className='flex_r_a_center image_change_div'>
                             <div className='image'>
                               <img
-                                src={
-                                  process.env.PUBLIC_URL +
-                                  {uploadpix}
-                                }
+                                src={process.env.PUBLIC_URL + { uploadpix }}
                                 alt=''
                               />
                             </div>
                             <div className='link'>
                               <p to='#'> Change image </p>
-                              <input name='uploadpix' id='uploadpix' onChange={e => onChange(e)} value={uploadpix} type='file' required />
+                              <input
+                                name='uploadpix'
+                                id='uploadpix'
+                                onChange={e => onChange(e)}
+                                value={uploadpix}
+                                type='file'
+                                required
+                              />
                             </div>
                           </div>
                           <div className='full_row setings_form_wrapper'>
