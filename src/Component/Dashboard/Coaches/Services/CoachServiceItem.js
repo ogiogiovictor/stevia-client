@@ -7,7 +7,7 @@ import { deleteService } from '../../../../actions/service';
 
 const ServiceItem = ({
   deleteService,
-  service: { id, slug, name, percentage }
+  coachservice: { id, price_per_session, price_per_hour, name, percentage }
 }) => {
   return (
     <Fragment>
@@ -15,7 +15,7 @@ const ServiceItem = ({
         <div className='full_row flex_r top'>
           <div className='left'>
             <p> {name} </p>
-            <span> 7% (Commission) </span>
+            <span> {percentage}% (Commission) </span>
           </div>
           <div className='right'>
             <span> ... </span>
@@ -24,11 +24,11 @@ const ServiceItem = ({
         <div className='full_row flex_r bottom'>
           <div className='left'>
             <span> Per hour </span>
-            <p> N15,000.00 </p>
+            <p> {price_per_hour}</p>
           </div>
           <div className='right'>
-            <span> Per hour </span>
-            <p> N15,000.00 </p>
+            <span> Per Session </span>
+            <p> {price_per_session} </p>
           </div>
         </div>
       </div>
@@ -37,7 +37,7 @@ const ServiceItem = ({
 };
 
 ServiceItem.propTypes = {
-  service: PropTypes.object.isRequired,
+  coachservice: PropTypes.object.isRequired,
   deleteService: PropTypes.func.isRequired
 };
 

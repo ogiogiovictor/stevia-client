@@ -2,6 +2,7 @@ import { GET_SERVICES, SERVICE_ERROR, ADD_SERVICE, DELETE_SERVICE, GET_COACH_SER
 
 const initialState = {
   services: [],
+  coachservices: [],
   service: null,
   loading: true,
   error: {}
@@ -20,7 +21,7 @@ export default function(state = initialState, action) {
     case GET_COACH_SERVICES:
       return {
         ...state,
-        services: payload,
+        coachservices: payload,
         loading: false
       };
       case ADD_SERVICE:
