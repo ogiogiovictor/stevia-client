@@ -79,8 +79,6 @@ const CreateProfile = ({
   const state = useState(0);
   const [formData, setFormData] = useState({
     dob: '',
-    state: '',
-    country: '',
     sex: '',
     qualitifcation: '',
     location: '',
@@ -99,8 +97,6 @@ const CreateProfile = ({
     getCurrentProfile();
     setFormData({
       dob: loading || !profile.dob ? '' : profile.dob,
-      state: loading || !profile.state ? '' : profile.state,
-      country: loading || !profile.country ? '' : profile.country,
       sex: loading || !profile.sex ? '' : profile.sex,
       qualitifcation:
         loading || !profile.qualitifcation ? '' : profile.qualitifcation,
@@ -126,7 +122,6 @@ const CreateProfile = ({
 
   const {
     dob,
-    country,
     sex,
     qualitifcation,
     location,
@@ -150,8 +145,7 @@ const CreateProfile = ({
   };
   const onSubmit2 = e => {
     e.preventDefault();
-    profileImage(formData, history, true);
-    console.log(formData);
+    profileImage(uploadpix, phone_number, history, true);
   };
   const onSubmit3 = e => {
     e.preventDefault();
@@ -249,7 +243,6 @@ const CreateProfile = ({
                                 onChange={e => onChange(e)}
                                 value={uploadpix}
                                 type='file'
-                                required
                               />
                             </div>
                           </div>
@@ -379,14 +372,19 @@ const CreateProfile = ({
                                   />
                                 </div>
                                 <div className='common_input_wrapper_2'>
-                                  <input
+                                  
+                                  <select
                                     type='text'
                                     name='sex'
                                     placeholder='Sex'
                                     value={sex}
                                     onChange={e => onChange(e)}
                                     required
-                                  />
+                                  >
+                                    <option defaultValue='Sex'>Sex</option>
+                                    <option value='male'>Male</option>
+                                    <option value='Female'>Female</option>
+                                  </select>
                                 </div>
                               </div>
                               <div className='common_input_wrapper_2'>
@@ -407,28 +405,6 @@ const CreateProfile = ({
                                   name='job_title'
                                   placeholder='Job Title'
                                   value={job_title}
-                                  onChange={e => onChange(e)}
-                                  required
-                                />
-                              </div>
-                              <div className='common_input_wrapper_2'>
-                                <label></label>
-                                <input
-                                  type='text'
-                                  name='state'
-                                  placeholder='State'
-                                  value={formData.state}
-                                  onChange={e => onChange(e)}
-                                  required
-                                />
-                              </div>
-                              <div className='common_input_wrapper_2'>
-                                <label></label>
-                                <input
-                                  type='text'
-                                  name='country'
-                                  placeholder='Country'
-                                  value={country}
                                   onChange={e => onChange(e)}
                                   required
                                 />

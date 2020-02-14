@@ -1,0 +1,51 @@
+.each_service div.action {
+    position: relative;
+    text-align: right;
+  }
+  
+  .each_service div.action i {
+    cursor: pointer;
+  }
+  
+  .each_service div .action_dropdown {
+    position: absolute;
+    top: 0;
+    right: 60px;
+    background: #FFFFFF;
+    -webkit-box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.1);
+            box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.1);
+    border-radius: 2px;
+    text-align: left;
+    z-index: 999999999;
+    width: 200px;
+    display: none;
+  }
+  
+  .each_service div .action_dropdown a {
+    padding: 15px 20px;
+    border-bottom: 1px solid rgba(227, 227, 227, 0.568428);
+    font-family: circular;
+    font-size: 14px;
+    line-height: 16px;
+    color: #303037;
+    display: block;
+    -webkit-transition: .3s;
+    transition: .3s;
+  }
+  
+  .each_service div .action_dropdown a:last-child {
+    border-bottom: none;
+  }
+  
+  .each_service div .action_dropdown a:hover {
+    text-decoration: none;
+    color: #8d8d8d;
+  }
+  
+  .each_service div .action_dropdown a.delete {
+    color: #EF4B4B;
+  }
+  
+  .each_service div .action_dropdown a.delete:hover {
+    color: #ee8e8e;
+  }
