@@ -20,6 +20,7 @@ import Header from '../Layout/Header';
 import Topnav from '../Layout/Topnav';
 import { Maintitle } from '../../Maintitle';
 import { withRouter } from 'react-router-dom';
+import Progress from './Progress';
 
 const cn = (...args) => args.filter(Boolean).join(' ');
 
@@ -89,9 +90,12 @@ const CreateProfile = ({
     job_title: '',
     bank: '',
     account_number: '',
-    account_name: '',
-    uploadpix: ''
+    account_name: ''
   });
+
+  const [file, setFile] = useState('');
+  const [filename, setFilename] = useState('Change Image');
+  const [uploadPercentage, setUploadPercentage] = useState(0);
 
   useEffect(() => {
     getCurrentProfile();
@@ -110,9 +114,7 @@ const CreateProfile = ({
       bank: loading || !profile.bank ? '' : profile.bank,
       account_number:
         loading || !profile.account_number ? '' : profile.account_number,
-      account_name:
-        loading || !profile.account_name ? '' : profile.account_name,
-      uploadpix: loading || !profile.uploadpix ? '' : profile.uploadpix
+      account_name: loading || !profile.account_name ? '' : profile.account_name
     });
   }, [loading, getCurrentProfile]);
 
@@ -132,12 +134,16 @@ const CreateProfile = ({
     job_title,
     bank,
     account_number,
-    account_name,
-    uploadpix
+    account_name
   } = formData;
 
   const onChange = e =>
     setFormData({ ...formData, [e.target.name]: e.target.value });
+
+  const handleFile = e => {
+    setFile(e.target.files[0]);
+    setFilename(e.target.files[0].name);
+  };
 
   const onSubmit = e => {
     e.preventDefault();
@@ -145,7 +151,21 @@ const CreateProfile = ({
   };
   const onSubmit2 = e => {
     e.preventDefault();
-    profileImage(uploadpix, phone_number, history, true);
+    const formDataImg = new FormData();
+    formDataImg.append('uploadpix', file);
+    formDataImg.append('phone_number', phone_number);
+    const config = {
+      onUploadProgress: ProgressEvent => {
+        setUploadPercentage(
+          parseInt(Math.round(ProgressEvent.loaded * 100) / ProgressEvent.total)
+        );
+
+        setTimeout(() => {
+          setUploadPercentage(0);
+        }, 10000);
+      }
+    };
+    profileImage(formDataImg, config, history);
   };
   const onSubmit3 = e => {
     e.preventDefault();
@@ -217,9 +237,7 @@ const CreateProfile = ({
                   <section className='profile_details_section'>
                     <div className='full_row settings_box profile_details'>
                       <div className='profile_details_left'>
-                        <form
-                          onSubmit={e => onSubmit2(e)}
-                        >
+                        <form onSubmit={e => onSubmit2(e)}>
                           <div className='full_row each_student_sett_header'>
                             <p> Profile Information </p>
                             <span>
@@ -231,21 +249,27 @@ const CreateProfile = ({
                           <div className='flex_r_a_center image_change_div'>
                             <div className='image'>
                               <img
-                                src={process.env.PUBLIC_URL + { uploadpix }}
+                                src={`http://127.0.0.1:8000/public/storage/images/${profile &&
+                                  profile.userpic}`}
                                 alt=''
                               />
                             </div>
                             <div className='link'>
-                              <p to='#'> Change image </p>
+                              <label htmlFor='uploadpix'>{filename}</label>
                               <input
                                 name='uploadpix'
                                 id='uploadpix'
-                                onChange={e => onChange(e)}
-                                value={uploadpix}
+                                onChange={handleFile}
                                 type='file'
+                                required
                               />
                             </div>
                           </div>
+                          {uploadPercentage > 0 ? (
+                            <Progress percentage={uploadPercentage} />
+                          ) : (
+                            ''
+                          )}
                           <div className='full_row setings_form_wrapper'>
                             <div className='common_input_wrapper_2'>
                               <label></label>
@@ -288,6 +312,7 @@ const CreateProfile = ({
                                 placeholder='Phone Number'
                                 value={phone_number}
                                 onChange={e => onChange(e)}
+                                required
                               />
                             </div>
                             <div className='full_row button'>
@@ -372,7 +397,6 @@ const CreateProfile = ({
                                   />
                                 </div>
                                 <div className='common_input_wrapper_2'>
-                                  
                                   <select
                                     type='text'
                                     name='sex'

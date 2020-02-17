@@ -7,15 +7,15 @@ import { deleteService } from '../../../../actions/service';
 
 const ServiceItem = ({
   deleteService,
-  coachservice: { id, price_per_session, price_per_hour, name, percentage }
+  coachservice: { service, price_per_session, price_per_hour }
 }) => {
   return (
     <Fragment>
       <div className='each_service'>
         <div className='full_row flex_r top'>
           <div className='left'>
-            <p> {name} </p>
-            <span> {percentage}% (Commission) </span>
+            <p> {service[0].name} </p>
+            <span> {service[0].percentage}% (Commission) </span>
           </div>
           <div className='right'>
             <span> ... </span>

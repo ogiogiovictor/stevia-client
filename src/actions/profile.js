@@ -4,7 +4,7 @@ import { setAlert } from './alert';
 import { GET_PROFILE, PROFILE_ERROR, CLEAR_PROFILE, GET_COACHES_PROFILE, UPLOAD_PROFILE_IMAGE } from './types';
 import { loadUser } from './auth';
 
-const url = 'https://dueseason.biz/stevia-backend/api';
+const url = 'https://omareservations.com/stevia/api';
 // const url = 'http://127.0.0.1:8000/api';
 export const getCurrentProfile = () => async dispatch => {
 if (localStorage.token) {
@@ -50,7 +50,7 @@ export const createProfile = (formData, history, edit = false) => async dispatch
     });
     
     dispatch(setAlert(res.data.message, 'success'));
-    history.push('/dashboard');
+    dispatch(getCurrentProfile());
 
   } catch (error) {
     dispatch({
@@ -61,29 +61,24 @@ export const createProfile = (formData, history, edit = false) => async dispatch
 }
 
 // Update a Profile Image
-export const profileImage = (uploadpix, phone_number, history) => async dispatch => {
+export const profileImage = (formData, config, history) => async dispatch => {
   try {
-    dispatch(getCurrentProfile());
-    const formData = {
-      uploadpix,
-      phone_number,
-    }
-    const config = {
-      headers: {
-        'Content-Type': 'multipart/form-data'
-      }
-    }
     const res = await Axios.post(`${url}/dashboard/profileimage`, formData, config);
-
     dispatch({
       type: UPLOAD_PROFILE_IMAGE,
       payload: res.data.data
     });
     
     dispatch(setAlert(res.data.message, 'success'));
-    history.push('/dashboard');
+    dispatch(getCurrentProfile());
 
   } catch (error) {
+    // const errors = error.response.data;
+    // if(errors){
+    //   Object.keys(errors).map((fieldName) => {
+    //    return errors[fieldName].map(err => dispatch(setAlert(err, 'error')));
+    //   });
+    // }
     dispatch({
       type: PROFILE_ERROR,
       payload: { msg: error }
@@ -107,7 +102,7 @@ export const getCoachesProfile = () => async dispatch => {
     dispatch({ type: CLEAR_PROFILE });
     dispatch({
       type: PROFILE_ERROR,
-      payload: { msg: 'error check' }
+      payload: { msg: error }
     });
   }
 };

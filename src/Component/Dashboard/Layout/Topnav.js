@@ -1,6 +1,7 @@
 import React, { Fragment } from 'react';
+import { Link } from 'react-router-dom';
 
-const Topnav = ({ user, htitle }) => {
+const Topnav = ({ user, htitle, back }) => {
   return (
     <Fragment>
       {/* {<!-- top nav -->} */}
@@ -13,6 +14,15 @@ const Topnav = ({ user, htitle }) => {
                 <div className='bars'></div>
                 <div className='bars'></div>
               </div>
+              {back ? (
+                <div>
+                  <Link to='./' className='flex_r_a_center'>
+                    <i class='fas fa-long-arrow-alt-left'></i> {back}
+                  </Link>
+                </div>
+              ) : (
+                ''
+              )}
               <h4>{htitle}</h4>
             </div>
             <div className='flex_r_j_between_align_center right_side'>

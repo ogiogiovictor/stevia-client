@@ -20,6 +20,8 @@ import Studentcoaches from './Component/Dashboard/Student/Coaches';
 import CreateProfile from './Component/Dashboard/ProfileSettings/CreateProfile';
 import AdminServices from './Component/Dashboard/Admin/Services/Services';
 import CoachServices from './Component/Dashboard/Coaches/Services/CoachServices';
+import Courses from './Component/Dashboard/Coaches/Courses/Courses'
+import CreateCourse from './Component/Dashboard/Coaches/Courses/CreateCourse'
 
 if (localStorage.token) {
   setAuthToken(localStorage.token);
@@ -55,6 +57,8 @@ const App = () => {
               <PrivateRoute path='/dashboard/student/coaches' exact component={Studentcoaches} />
               <PrivateRoute path='/dashboard/admin/services' exact component={AdminServices} />
               <PrivateRoute path='/dashboard/coaches/services' exact component={CoachServices} />
+              <PrivateRoute path='/dashboard/coaches/courses' exact component={Courses} />
+              <PrivateRoute path='/dashboard/coaches/courses/create' exact component={CreateCourse} />
               <PrivateRoute path='/dashboard/student/settings' exact component={CreateProfile} />
               <PrivateRoute path='/dashboard/coaches/settings' exact component={CreateProfile} />
               <PrivateRoute path='/dashboard/admin/settings' exact component={CreateProfile} />

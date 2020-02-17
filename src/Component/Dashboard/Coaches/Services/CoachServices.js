@@ -10,7 +10,6 @@ import {
   addCoachService
 } from '../../../../actions/service';
 import ServiceItem from './CoachServiceItem';
-import { withRouter, Link, Redirect } from 'react-router-dom';
 
 const CoachServices = ({
   getServices,
@@ -76,6 +75,7 @@ const CoachServices = ({
               <div className='full_row added_services_wrapper'>
                 {coachservices.length > 0 ? (
                   coachservices.map(coachservice => (
+                    
                     <ServiceItem
                       key={coachservice.id}
                       coachservice={coachservice}
@@ -224,6 +224,4 @@ const mapStateToProps = state => ({
   user: state.auth.user
 });
 
-export default connect(mapStateToProps, { getServices, getCoachServices, addCoachService })(
-  withRouter(CoachServices)
-);
+export default connect(mapStateToProps, { getServices, getCoachServices, addCoachService })(CoachServices);

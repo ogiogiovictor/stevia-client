@@ -13,7 +13,7 @@ import setAuthToken from '../Utils/setAuthToken';
 import { setAlert } from './alert';
 
 // Load User
-const url = 'https://dueseason.biz/stevia-backend/api';
+const url = 'https://omareservations.com/stevia/api';
 // const url = 'http://127.0.0.1:8000/api';
 
 export const loadUser = () => async dispatch => {

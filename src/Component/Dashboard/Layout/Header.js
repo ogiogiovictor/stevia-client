@@ -34,7 +34,7 @@ const Header = ({
           ) : (
             <Link to='/dashboard'>
               <img
-                src={process.env.PUBLIC_URL + '../../assets/utils/images/48.png'}
+                src={process.env.PUBLIC_URL + '../../../assets/utils/images/48.png'}
                 alt=''
               />
             </Link>
