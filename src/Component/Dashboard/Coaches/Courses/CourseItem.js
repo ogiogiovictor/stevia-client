@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 // import { deleteService } from '../../../../actions/service';
 // import './Service.css'
 
-const CourseItem = ({ course: { course_description, } }) => {
+const CourseItem = ({ course: { course_description, title, price_per_session } }) => {
   return (
     <Fragment>
       <div className='each_course'>
@@ -14,7 +14,7 @@ const CourseItem = ({ course: { course_description, } }) => {
               <i className='fas fa-tag'></i>
             </div>
             <div className='course_amount'>
-              <p>N100,000</p>
+              <p>₦ {price_per_session}</p>
             </div>
           </div>
         </div>
@@ -25,14 +25,11 @@ const CourseItem = ({ course: { course_description, } }) => {
             </div>
           </div>
           <div className='course_name'>
-            <h5>{course_description}</h5>
+            <h5>{title}</h5>
           </div>
         </div>
         <div className='full_row course_description'>
-          <p>
-            A course for anyone who’s ready to find their dream job. Covering
-            everything from resumes to job applications.
-          </p>
+          <p>{course_description}</p>
         </div>
         <div className='flex_r_j_between_align_center seats_left'>
           <div className='stud_images'>
