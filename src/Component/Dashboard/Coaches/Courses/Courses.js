@@ -64,7 +64,6 @@ const Courses = ({ getCourses, courses: { courses, loading }, user }) => {
                     courses.map(course => (
                       <CourseItem
                         key={course.id}
-                        //   service={services.find(service => service.id === coachservice.service_id)}
                         course={course}
                       />
                     ))

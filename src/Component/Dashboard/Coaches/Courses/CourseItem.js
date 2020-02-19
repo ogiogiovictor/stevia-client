@@ -4,7 +4,8 @@ import { connect } from 'react-redux';
 // import { deleteService } from '../../../../actions/service';
 // import './Service.css'
 
-const CourseItem = ({ course: { course_description, title, price_per_session } }) => {
+const CourseItem = ({ course: { coach_service, service_id, image, course_description, title} }) => {
+  const coachservice = coach_service.find(coachservice => coachservice.id === parseInt(service_id));
   return (
     <Fragment>
       <div className='each_course'>
@@ -14,14 +15,14 @@ const CourseItem = ({ course: { course_description, title, price_per_session } }
               <i className='fas fa-tag'></i>
             </div>
             <div className='course_amount'>
-              <p>₦ {price_per_session}</p>
+              <p>₦ {coachservice.price_per_session}</p>
             </div>
           </div>
         </div>
         <div className='flex_r_a_center course_icon_n_name'>
           <div className='course_image_wrapper'>
             <div className='course_image'>
-              <img src='../utils/images/Bitmap.png' alt='' />
+              <img src={image} alt='' />
             </div>
           </div>
           <div className='course_name'>
@@ -52,7 +53,7 @@ const CourseItem = ({ course: { course_description, title, price_per_session } }
 };
 
 CourseItem.propTypes = {
-  course: PropTypes.object.isRequired
+  course: PropTypes.object.isRequired,
 };
 
 export default connect(null)(CourseItem);

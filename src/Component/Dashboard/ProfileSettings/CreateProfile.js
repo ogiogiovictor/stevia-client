@@ -166,6 +166,7 @@ const CreateProfile = ({
       }
     };
     profileImage(formDataImg, config, history);
+    setFile({uploadpix: {}});
   };
   const onSubmit3 = e => {
     e.preventDefault();
@@ -249,8 +250,7 @@ const CreateProfile = ({
                           <div className='flex_r_a_center image_change_div'>
                             <div className='image'>
                               <img
-                                src={`http://127.0.0.1:8000/public/storage/images/${profile &&
-                                  profile.userpic}`}
+                                src={`${profile && profile.userpic}`}
                                 alt=''
                               />
                             </div>

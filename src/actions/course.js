@@ -2,11 +2,29 @@ import Axios from "axios";
 import { setAlert } from "./alert";
 import { GET_COURSES, COURSE_ERROR, ADD_COURSE } from '../actions/types';
 
-// const url = 'http://127.0.0.1:8000/api';
-const url = 'https://omareservations.com/stevia/api';
+const url = 'http://127.0.0.1:8000/api';
+// const url = 'https://omareservations.com/stevia/api';
 // Get Courses
 
 export const getCourses = () => async dispatch => {
+    try {
+      const res = await Axios.get(
+        `${url}/student/index`
+      );
+  
+      dispatch({
+        type: GET_COURSES,
+        payload: res.data.data
+      });
+    } catch (error) {
+      dispatch({
+        type: COURSE_ERROR,
+        payload: { msg: error.response.data, status: error.response.data.status }
+      });
+    }
+  };
+  
+export const getCoursesById = () => async dispatch => {
     try {
       const res = await Axios.get(
         `${url}/student/index`
