@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { Link, Redirect } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { connect } from 'react-redux';
@@ -8,13 +8,16 @@ import CustomButton from '../CustomButton/CutomButton';
 import '../Alert/Alert.css';
 
 const Login = ({ login, isAuthenticated }) => {
-  const { handleSubmit, register, errors, formState } = useForm({
+  const { handleSubmit, register, errors } = useForm({
     mode: 'onChange'
   });
   const onSubmit = async values => {
+    setDouble(true);
     const { email, password } = values;
     login(email, password);
   };
+  const [double, setDouble] = useState(false);
+
 
   // Redirect if logged in
 
@@ -89,8 +92,8 @@ const Login = ({ login, isAuthenticated }) => {
             </div>
 
             <div className='full_row login_button'>
-              <CustomButton type='submit' disabled={!formState.isValid}>
-                Login
+              <CustomButton type='submit' disabled={double}>
+                {double ? 'Loading please wait!!!' : 'Login'}
               </CustomButton>
             </div>
           </form>

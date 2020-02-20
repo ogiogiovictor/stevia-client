@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useState } from 'react';
 import { Link, Redirect } from 'react-router-dom';
 import CustomButton from '../CustomButton/CutomButton';
 import { useForm } from 'react-hook-form';
@@ -7,10 +7,11 @@ import { PropTypes } from 'prop-types';
 import { connect } from 'react-redux';
 
 const Signup = ({ signup, isAuthenticated, role }) => {
-  const { handleSubmit, register, errors, formState } = useForm({
+  const { handleSubmit, register, errors } = useForm({
     mode: 'onChange'
   });
   const onSubmit = async values => {
+    setDouble(true);
     const {
       firstname,
       lastname,
@@ -29,17 +30,10 @@ const Signup = ({ signup, isAuthenticated, role }) => {
     });
   };
 
-  if (isAuthenticated && role === 'STUDENT') {
-    return <Redirect to='/dashboard/student' />;
-  }
-  if (isAuthenticated && role === 'COACH') {
-    return <Redirect to='/dashboard/coach' />;
-  }
-  if (isAuthenticated && role === 'ADMIN') {
-    return <Redirect to='/dashboard/admin' />;
-  }
-  if (isAuthenticated && role === 'RECRUITER') {
-    return <Redirect to='/dashboard/recruiter' />;
+  const [double, setDouble] = useState(false);
+
+  if (isAuthenticated) {
+    return <Redirect to='/dashboard' />;
   }
 
   return (
@@ -194,9 +188,9 @@ const Signup = ({ signup, isAuthenticated, role }) => {
               </div>
 
               <div className='full_row login_button'>
-                <CustomButton type='submit' disabled={!formState.isValid}>
-                  Sign up
-                </CustomButton>
+              <CustomButton type='submit' disabled={double}>
+                {double ? 'Loading please wait!!!' : 'Sign up'}
+              </CustomButton>
               </div>
               <div className='full_row site_terms'>
                 <p>

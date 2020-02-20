@@ -22,6 +22,7 @@ import AdminServices from './Component/Dashboard/Admin/Services/Services';
 import CoachServices from './Component/Dashboard/Coaches/Services/CoachServices';
 import Courses from './Component/Dashboard/Coaches/Courses/Courses'
 import CreateCourse from './Component/Dashboard/Coaches/Courses/CreateCourse'
+import { loadProgressBar } from 'axios-progress-bar';
 
 if (localStorage.token) {
   setAuthToken(localStorage.token);
@@ -30,6 +31,7 @@ if (localStorage.token) {
 const App = () => {
   useEffect(() => {
     store.dispatch(loadUser());
+    loadProgressBar();
   }, []);
 
   return (
