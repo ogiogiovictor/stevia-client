@@ -4,8 +4,7 @@ import { connect } from 'react-redux';
 // import { deleteService } from '../../../../actions/service';
 // import './Service.css'
 
-const CourseItem = ({ course: { coach_service, service_id, image, course_description, title} }) => {
-  const coachservice = coach_service.find(coachservice => coachservice.id === parseInt(service_id));
+const CourseItem = ({ course: { price_per_session, image, course_description, title} }) => {
   return (
     <Fragment>
       <div className='each_course'>
@@ -15,7 +14,7 @@ const CourseItem = ({ course: { coach_service, service_id, image, course_descrip
               <i className='fas fa-tag'></i>
             </div>
             <div className='course_amount'>
-              <p>₦ {coachservice.price_per_session}</p>
+              <p>₦ {price_per_session}</p>
             </div>
           </div>
         </div>
