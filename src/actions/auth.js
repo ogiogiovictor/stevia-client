@@ -105,6 +105,7 @@ export const login = (email, password) => async dispatch => {
     dispatch(loadUser());
     } else {
       dispatch(setAlert(res.data.message, 'error'));
+      window.location.reload();
     }
 
   } catch (error) {

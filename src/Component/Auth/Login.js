@@ -7,16 +7,18 @@ import { login } from '../../actions/auth';
 import CustomButton from '../CustomButton/CutomButton';
 import '../Alert/Alert.css';
 
-const Login = ({ login, isAuthenticated }) => {
+const Login = ({ login, auth: {isAuthenticated, loading} }) => {
   const { handleSubmit, register, errors } = useForm({
     mode: 'onChange'
   });
+  const [double, setDouble] = useState(false);
   const onSubmit = async values => {
     setDouble(true);
     const { email, password } = values;
     login(email, password);
+    
   };
-  const [double, setDouble] = useState(false);
+  
 
 
   // Redirect if logged in
@@ -115,11 +117,11 @@ const Login = ({ login, isAuthenticated }) => {
 
 Login.propTypes = {
   login: PropTypes.func.isRequired,
-  isAuthenticated: PropTypes.bool
+  auth: PropTypes.object.isRequired
 };
 
 const mapStateToProps = state => ({
-  isAuthenticated: state.auth.isAuthenticated
+  auth: state.auth
 });
 
 export default connect(mapStateToProps, { login })(Login);

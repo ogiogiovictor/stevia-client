@@ -22,6 +22,7 @@ import AdminServices from './Component/Dashboard/Admin/Services/Services';
 import CoachServices from './Component/Dashboard/Coaches/Services/CoachServices';
 import Courses from './Component/Dashboard/Coaches/Courses/Courses'
 import CreateCourse from './Component/Dashboard/Coaches/Courses/CreateCourse'
+import logout from './Component/Auth/logout';
 import { loadProgressBar } from 'axios-progress-bar';
 
 if (localStorage.token) {
@@ -67,6 +68,7 @@ const App = () => {
               <PrivateRoute path='/dashboard/student' exact component={Dashboard} />
               <PrivateRoute path='/dashboard/coaches' exact component={Dashboard} />
               <PrivateRoute path='/dashboard/admin' exact component={Dashboard} />
+              <PrivateRoute path='/logout' exact component={logout} />
               <PrivateRoute path='/dashboard' exact component={Dashboard} />
               <Route path='/' exact component={Student} />
             </Switch>

@@ -3,12 +3,10 @@ import { Link } from 'react-router-dom';
 import Sidebar from '../Sidebar';
 import Spinner from '../../Spinner/Spinner';
 import PropTypes from 'prop-types';
-import { logout } from '../../../actions/auth';
 import { connect } from 'react-redux';
 
 const Header = ({
   auth: { loading, user },
-  logout
 }) => {
 
   if (loading && user === null) {
@@ -56,9 +54,9 @@ const Header = ({
         </div>
         <div className='side_nav_wrapper'>
           <Sidebar menu={user ? user.menu : ''} />
-          <Link onClick={logout} to='/#!'>
+          {/* <Link onClick={logout} to='/#!'>
             <i className='fas fa-sign-out-alt'> </i> N Logout
-          </Link>
+          </Link> */}
         </div>
       </aside>
     </Fragment>
@@ -66,7 +64,6 @@ const Header = ({
 };
 
 Header.propTypes = {
-  logout: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired,
 };
 
@@ -74,6 +71,4 @@ const mapStateToProps = state => ({
   auth: state.auth,
 });
 
-export default connect(mapStateToProps, {
-  logout
-})(Header);
+export default connect(mapStateToProps)(Header);
