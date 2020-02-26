@@ -8,30 +8,31 @@ import { getCourses } from '../../../../actions/course';
 import CourseItem from './CourseItem';
 import Spinner from '../../../Spinner/Spinner';
 
-const Courses = ({ getCourses, courses: { courses, loading }, user }) => {
+const StudentCourses = ({
+  getCourses,
+  courses: { courses, loading },
+  user
+}) => {
   useEffect(() => {
     getCourses();
   }, [getCourses]);
-  return loading ? <Spinner /> : (
+  return loading ? (
+    <Spinner />
+  ) : (
     <Fragment>
       <section className='whole_page_wrapper'>
         <Header menu={user && user.menu} />
         <section className='dashboard_body'>
           <Topnav user={user} htitle='Courses' />
-          <div className='full_row coach_dashboard_courses_top'>
+          <div className='full_row student_dashboard_courses_top'>
             <div className='dashboard_center'>
-              <div className='full_row flex_r_j_end_align_center create_course_btn_div'>
-                <Link to='/dashboard/coaches/courses/create'>
-                <button className='black_btn'>create course</button>
-                </Link>
-              </div>
               <div className='full_row flex_r_j_between_align_center top'>
-                <div className='flex_r_j_between_align_center left spanToggle'>
-                  <span className='active'> Active </span>
+                <div className='flex_r_wrap_align_center left spanToggle'>
+                  <span className='active'> Pending </span>
+                  <span> Ongoing </span>
                   <span> Completed </span>
-                  <span> Past </span>
                 </div>
-                <div className='flex_r_j_end_align_center right'>
+                <div className='flex_r_j_between_align_center right'>
                   <div className='flex_r_j_between_align_center search_input'>
                     <input
                       type='text'
@@ -43,19 +44,20 @@ const Courses = ({ getCourses, courses: { courses, loading }, user }) => {
                       <i className='fas fa-search'></i>
                     </button>
                   </div>
-                  <div className='sort_text'>
-                    <p> Sort by </p>
+                  <div className='coach_select'>
+                    <select name='' id='' className='search_select'>
+                      <option value=''> Coach </option>
+                    </select>
                   </div>
                   <div className='cost_select'>
                     <select name='' id='' className='search_select'>
-                      <option value=''> Date </option>
+                      <option value=''> Cost </option>
                     </select>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-
           <div className='full_row course_list_section'>
             <div className='dashboard_center'>
               <div className='full_row course_list_n_pagination_wrapper'>
@@ -70,6 +72,7 @@ const Courses = ({ getCourses, courses: { courses, loading }, user }) => {
                   ) : (
                     <h4>No Courses Found...</h4>
                   )}
+                  
                 </div>
                 <div className='flex_r_j_end_align_center pagination'>
                   <div>
@@ -119,7 +122,7 @@ const Courses = ({ getCourses, courses: { courses, loading }, user }) => {
   );
 };
 
-Courses.propTypes = {
+StudentCourses.propTypes = {
   getCourses: PropTypes.func.isRequired,
   user: PropTypes.object.isRequired,
   courses: PropTypes.object.isRequired
@@ -130,4 +133,4 @@ const mapStateToProps = state => ({
   user: state.auth.user
 });
 
-export default connect(mapStateToProps, { getCourses })(Courses);
+export default connect(mapStateToProps, { getCourses })(StudentCourses);

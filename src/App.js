@@ -17,6 +17,7 @@ import PrivateRoute from './routing/PrivateRoute';
 import Dashboard from './Component/Dashboard';
 import Alert from './Component/Alert/Alert';
 import Studentcoaches from './Component/Dashboard/Student/Coaches';
+import StudentCourses from './Component/Dashboard/Student/Courses/Courses';
 import CreateProfile from './Component/Dashboard/ProfileSettings/CreateProfile';
 import AdminServices from './Component/Dashboard/Admin/Services/Services';
 import CoachServices from './Component/Dashboard/Coaches/Services/CoachServices';
@@ -61,6 +62,7 @@ const App = () => {
               <PrivateRoute path='/dashboard/admin/services' exact component={AdminServices} />
               <PrivateRoute path='/dashboard/coaches/services' exact component={CoachServices} />
               <PrivateRoute path='/dashboard/coaches/courses' exact component={Courses} />
+              <PrivateRoute path='/dashboard/student/courses' exact component={StudentCourses} />
               <PrivateRoute path='/dashboard/coaches/courses/create' exact component={CreateCourse} />
               <PrivateRoute path='/dashboard/student/settings' exact component={CreateProfile} />
               <PrivateRoute path='/dashboard/coaches/settings' exact component={CreateProfile} />
