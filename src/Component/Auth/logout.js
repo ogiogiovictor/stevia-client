@@ -2,11 +2,12 @@ import React from 'react'
 import { connect } from 'react-redux'
 import {logout} from '../../actions/auth'
 import { Link } from 'react-router-dom'
+import Spinner from '../Spinner/Spinner'
 
 
-const logoutEnd = ({user, logout}) => {
+const logoutEnd = ({auth: {loading}, logout}) => {
 
-    return (
+    return loading ? <Spinner /> : (
         <div>
         <div className='flex_c_align_center recruiters_success'>
           <div className='success_div'>
@@ -44,7 +45,7 @@ const logoutEnd = ({user, logout}) => {
 }
 
 const mapStateToProps = state => ({
-    user: state.auth.user
+    auth: state.auth
   });
 
 export default connect(mapStateToProps, logout)(logoutEnd)
