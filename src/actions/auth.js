@@ -118,7 +118,10 @@ export const login = (email, password) => async dispatch => {
 
 // Logout /Clear Profile
 
-export const logout = () => dispatch => {
+export const logout = () => async dispatch => {
+  const logoutApi = `${url}/dashboard/logout`;
+  const res = await Axios.post(logoutApi);
+  dispatch(setAlert(res.data.message, 'success'));
   dispatch({ type: CLEAR_PROFILE });
   dispatch({ type: LOGOUT });
  
