@@ -4,8 +4,8 @@ import { setAlert } from './alert';
 import { GET_PROFILE, PROFILE_ERROR, CLEAR_PROFILE, GET_COACHES_PROFILE, UPLOAD_PROFILE_IMAGE } from './types';
 import { loadUser } from './auth';
 
-// const url = 'https://omareservations.com/stevia/api';
-const url = 'http://127.0.0.1:8000/api';
+const url = 'https://omareservations.com/stevia/api';
+// const url = 'http://127.0.0.1:8000/api';
 export const getCurrentProfile = () => async dispatch => {
 if (localStorage.token) {
   try {
