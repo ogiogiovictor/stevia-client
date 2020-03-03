@@ -8535,6 +8535,14 @@ h4.write_ratings_head {
   margin-top: 0;
 }
 
+.create_course_form_section .about_the_course .header2 p {
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 30px;
+  color: #686868;
+}
+
 /* End of Create Course Little fields Addition */
 /* ======================End of DASHBOARD Style=================== */
 /*# sourceMappingURL=main.css.map */
