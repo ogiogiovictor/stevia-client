@@ -15,10 +15,6 @@ html, body {
   padding: 0;
 }
 
-body.onboard_pages {
-  background-color: #f2f2f2;
-}
-
 .text-center {
   text-align: center;
 }
@@ -79,6 +75,10 @@ p, span {
 }
 
 /* /Fonts */
+body.onboard_pages {
+  background-color: #f0f3fc;
+}
+
 /* Scrobar Style */
 ::-webkit-scrollbar {
   background: transparent;
@@ -758,6 +758,7 @@ input:focus, select:focus {
   background-size: auto 100%;
   background-position: top right;
   background-repeat: no-repeat;
+  background-color: #f0f3fc;
   padding-bottom: 100px;
 }
 
@@ -1436,7 +1437,7 @@ input:focus, select:focus {
 /* Fifth section Style */
 /* Courses Page Style */
 .courses_section_wrapper_div {
-  background-color: #F2F2F2;
+  background-color: #f0f3fc;
 }
 
 .courses_section_wrapper_div .courses_section_header_txt h4 {
@@ -1662,7 +1663,7 @@ input:focus, select:focus {
 
 /* /Coaches Section Style */
 .contact_section_wrapper_div {
-  background-color: #F8FAFE;
+  background-color: #f0f3fc;
 }
 
 .contact_page_header {
@@ -1814,7 +1815,7 @@ input:focus, select:focus {
 }
 
 .search_course_wrapper {
-  background-color: #F8FAFE;
+  background-color: #f0f3fc;
 }
 
 .search_course_input_wrapper {
@@ -1921,7 +1922,7 @@ input:focus, select:focus {
 }
 
 .jobs_section_wrapper_div {
-  background-color: #F8FAFE;
+  background-color: #f0f3fc;
 }
 
 .course_n_category_wrapper {
@@ -2352,7 +2353,7 @@ input:focus, select:focus {
 
 /* START of post a job style */
 .post_a_job_page_wrapper {
-  background-color: #F2F2F2;
+  background-color: #f0f3fc;
 }
 
 .post_a_job_page_wrapper .left_side {
@@ -2444,7 +2445,7 @@ input:focus, select:focus {
 }
 
 .coach_details_wrapper {
-  background-color: #F2F2F2;
+  background-color: #f0f3fc;
   height: 420px;
 }
 
@@ -2556,7 +2557,7 @@ input:focus, select:focus {
 }
 
 .about_coach_section {
-  background-color: #f2f2f2;
+  background-color: #f0f3fc;
 }
 
 .more_about_coach .Header {
@@ -2596,7 +2597,7 @@ input:focus, select:focus {
 }
 
 .review_section_wrapper_div {
-  background-color: #f2f2f2;
+  background-color: #f0f3fc;
 }
 
 .review_section_wrapper_div h4 {
@@ -2667,7 +2668,7 @@ input:focus, select:focus {
 }
 
 .course_from_coach_section_landing_page {
-  background-color: #f2f2f2;
+  background-color: #f0f3fc;
   padding-bottom: 100px;
 }
 
@@ -2698,7 +2699,7 @@ input:focus, select:focus {
 }
 
 .benefits_section {
-  background-color: #f2f2f2;
+  background-color: #f0f3fc;
   height: 280px;
 }
 
@@ -4779,7 +4780,7 @@ section.dashboard_body .appointments_part .appointment_container .empty_content 
 }
 
 .about_coach_section {
-  background-color: #f2f2f2;
+  background-color: #f0f3fc;
 }
 
 ._more_about_coach {
@@ -8046,7 +8047,7 @@ section.dashboard_body .appointments_part .appointment_container .empty_content 
 /* Dashboard */
 /* Course Details Page */
 .course_details_titlePart_wrapper {
-  background-color: #f2f2f2;
+  background-color: #f0f3fc;
 }
 
 .course_details_titlePart {
@@ -8140,7 +8141,7 @@ section.dashboard_body .appointments_part .appointment_container .empty_content 
 }
 
 .course_image_and_duration {
-  background-color: #f2f2f2;
+  background-color: #f0f3fc;
 }
 
 .course_duration_and_price {
@@ -8150,7 +8151,7 @@ section.dashboard_body .appointments_part .appointment_container .empty_content 
   margin-right: auto;
   -webkit-transform: translateY(-50%);
           transform: translateY(-50%);
-  background-color: #f2f2f2;
+  background-color: #f0f3fc;
   border-radius: 5px 5px 0 0;
 }
 
@@ -8188,7 +8189,7 @@ section.dashboard_body .appointments_part .appointment_container .empty_content 
 }
 
 .course_full_desc_main_section {
-  background-color: #f2f2f2;
+  background-color: #f0f3fc;
 }
 
 .course_full_desc_main_wrapper {
@@ -8436,7 +8437,7 @@ h4.write_ratings_head {
 
 .student_work_section {
   padding-bottom: 100px;
-  background-color: #f2f2f2;
+  background-color: #f0f3fc;
 }
 
 .student_work_header h4 {

@@ -12,10 +12,6 @@ html, body
     :margin 0
     :padding 0
 
-body
-    &.onboard_pages
-        background-color: #f2f2f2
-
 .text-center
     text-align: center
 
@@ -40,6 +36,7 @@ body
 /* /Margins */
 
 /* Variables */
+$background-blue: #f0f3fc
 
 /* Colors */
 ::root
@@ -67,6 +64,10 @@ p, span
     color: var(--default_black)
 
 /* /Fonts */
+
+body
+    &.onboard_pages
+        background-color: $background-blue
 
 /* Scrobar Style */
 
@@ -482,6 +483,7 @@ input, select
         size: auto 100%
         position: top right
         repeat: no-repeat
+        color: $background-blue
     // height: 700px
     // overflow: auto
     :padding
@@ -1005,7 +1007,7 @@ input, select
 /* Courses Page Style */
 
 .courses_section_wrapper_div
-    background-color: #F2F2F2
+    background-color: $background-blue
 
     .courses_section_header_txt
         h4
@@ -1191,7 +1193,7 @@ input, select
 // Contact Page Style
 
 .contact_section_wrapper_div
-    background-color: #F8FAFE
+    background-color: $background-blue
 
 .contact_page_header
     text-align: center
@@ -1327,7 +1329,7 @@ input, select
         color: #FFFFFF
 
 .search_course_wrapper
-    background-color: #F8FAFE
+    background-color: $background-blue
 
 .search_course_input_wrapper
     width: 40%
@@ -1398,7 +1400,7 @@ input, select
                 transform: translateY(0)
             
 .jobs_section_wrapper_div
-    background-color: #F8FAFE
+    background-color: $background-blue
 
 .course_n_category_wrapper
     display: grid
@@ -1765,7 +1767,7 @@ input, select
 /* START of post a job style */
 
 .post_a_job_page_wrapper
-    background-color: #F2F2F2
+    background-color: $background-blue
 
     .left_side
         width: 40%
@@ -1848,7 +1850,7 @@ input, select
     height: 390px
 
 .coach_details_wrapper
-    background-color: #F2F2F2
+    background-color: $background-blue
     height: 420px
 
 
@@ -1960,7 +1962,7 @@ input, select
             
 
 .about_coach_section
-    background-color: #f2f2f2
+    background-color: $background-blue
     // padding-bottom: 100px
 
 .more_about_coach
@@ -1999,7 +2001,7 @@ input, select
                 line-height: 25px
 
 .review_section_wrapper_div
-    background-color: #f2f2f2
+    background-color: $background-blue
 
     h4
         font-size: 32px
@@ -2057,7 +2059,7 @@ input, select
                 color: #303037
 
 .course_from_coach_section_landing_page
-    background-color: #f2f2f2
+    background-color: $background-blue
     padding-bottom: 100px
 
 
@@ -2091,7 +2093,7 @@ input, select
             color: #FFFFFF
 
 .benefits_section
-    background-color: #f2f2f2
+    background-color: $background-blue
     height: 280px
 
 .benefits_wrapper
@@ -3755,7 +3757,7 @@ section.dashboard_body
             margin-top: 35px
      
 .about_coach_section
-    background-color: #f2f2f2
+    background-color: $background-blue
     // padding-bottom: 100px
 
 ._more_about_coach
@@ -6118,7 +6120,7 @@ section.dashboard_body
 
 /* Course Details Page */
 .course_details_titlePart_wrapper
-    background-color: #f2f2f2
+    background-color: $background-blue
 
 .course_details_titlePart
     padding:
@@ -6187,7 +6189,7 @@ section.dashboard_body
         height: 100%
 
 .course_image_and_duration
-    background-color: #f2f2f2
+    background-color: $background-blue
     
 .course_duration_and_price
     padding: 30px 20px
@@ -6196,7 +6198,7 @@ section.dashboard_body
         left: auto
         right: auto
     transform: translateY(-50%)
-    background-color: #f2f2f2
+    background-color: $background-blue
     border-radius: 5px 5px 0 0
 
     .each_div
@@ -6218,7 +6220,7 @@ section.dashboard_body
             .bottom
                 color: var(--default_black)
 .course_full_desc_main_section
-    background-color: #f2f2f2
+    background-color: $background-blue
 .course_full_desc_main_wrapper
     display: grid
     grid-template-columns: 61% 35%
@@ -6403,7 +6405,7 @@ h4.write_ratings_head
 
 .student_work_section
     padding-bottom: 100px
-    background-color: #f2f2f2
+    background-color: $background-blue
 .student_work_header
     h4
         font-family: circular
