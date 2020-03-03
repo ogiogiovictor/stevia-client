@@ -2,6 +2,7 @@
 * {
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
+  scroll-behavior: smooth;
 }
 
 p, h1, h2, h3, h4, h5, h6, a {
@@ -50,6 +51,12 @@ body.onboard_pages {
 
 /* /Margins */
 /* Variables */
+/* Colors */
+::root {
+  --default_black: #303037;
+  --default_red: #EF4B4B;
+}
+
 /* Fonts */
 @font-face {
   font-family: circular;
@@ -212,6 +219,22 @@ p, span {
           align-items: center;
 }
 
+.flex_r_wrap_j_center_align_center {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: row wrap;
+          flex-flow: row wrap;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
 .flex_r_j_center_align_center {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -280,6 +303,19 @@ p, span {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.flex_c_justify_center {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
@@ -367,10 +403,6 @@ button.red_btn {
 
 button.red_btn:hover {
   background-color: #da2f2f;
-}
-button.red_btn:disabled {
-  background-color: #dddddd;
-  cursor: progress;
 }
 
 button.black_btn {
@@ -974,9 +1006,19 @@ input:focus, select:focus {
 
 /* /Second section Style */
 /* Third section Style */
+.third_section_wrapper_div .how_it_works_div {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 46% 48%;
+      grid-template-columns: 46% 48%;
+  grid-column-gap: 6%;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
 .third_section_wrapper_div .how_it_works_left_side {
   color: var(--default_black);
-  padding-right: 40px;
 }
 
 .third_section_wrapper_div .how_it_works_left_side h4 {
@@ -1124,9 +1166,9 @@ input:focus, select:focus {
 .coaches_wrapper_div {
   display: -ms-grid;
   display: grid;
-  -ms-grid-columns: 31.3333% 31.3333% 31.3333%;
-      grid-template-columns: 31.3333% 31.3333% 31.3333%;
-  grid-gap: 35px 3%;
+  -ms-grid-columns: 32.3333% 32.3333% 32.3333%;
+      grid-template-columns: 32.3333% 32.3333% 32.3333%;
+  grid-gap: 30px 1.5%;
   margin-bottom: 40px;
 }
 
@@ -1154,7 +1196,7 @@ input:focus, select:focus {
 }
 
 .coaches_wrapper_div .each_coach .coach_image {
-  width: 37%;
+  width: 39%;
 }
 
 .coaches_wrapper_div .each_coach .coach_image img {
@@ -1163,8 +1205,8 @@ input:focus, select:focus {
 }
 
 .coaches_wrapper_div .each_coach .coach_features {
-  width: 63%;
-  padding: 35px 20px;
+  width: 61%;
+  padding: 25px 10px 25px 15px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -2624,6 +2666,11 @@ input:focus, select:focus {
   color: #303037;
 }
 
+.course_from_coach_section_landing_page {
+  background-color: #f2f2f2;
+  padding-bottom: 100px;
+}
+
 /* END of coach details page */
 /* Coach Landing page Style */
 .coach_landing_page_header {
@@ -2703,7 +2750,7 @@ input:focus, select:focus {
   width: 61%;
   margin: 0 auto;
   padding: 35px 35px;
-  background-image: url("../utils/images/Re.png");
+  background-image: url("../utils/images/re.png");
 }
 
 .want_to_be_a_coach_wrapper .want_to_be_a_coach_div .text {
@@ -3250,6 +3297,11 @@ aside.side_nav {
   transition: .4s;
   z-index: 9999;
   overflow-y: scroll;
+  padding-bottom: 30px;
+}
+
+aside.side_nav::-webkit-scrollbar {
+  display: none;
 }
 
 aside.side_nav .logo_div {
@@ -4026,7 +4078,7 @@ section.dashboard_body .appointments_part .appointment_container .empty_content 
 }
 
 .other_information_section {
-  width: 900px;
+  display: none;
   padding: 25px 0 100px;
 }
 
@@ -4059,6 +4111,11 @@ section.dashboard_body .appointments_part .appointment_container .empty_content 
 .other_information_section .cols-2 .common_input_wrapper_2 {
   margin-top: 0;
   margin-bottom: 0;
+}
+
+.notification_section {
+  padding: 25px 0 100px;
+  display: none;
 }
 
 .notification_section .profile_details {
@@ -5530,6 +5587,7 @@ section.dashboard_body .appointments_part .appointment_container .empty_content 
           box-shadow: 0px 1px 7px rgba(86, 86, 86, 0.15) #ffffff;
   border-radius: 5px #ffffff;
   padding: 30px;
+  margin-bottom: 80px;
   display: -ms-grid;
   display: grid;
   -ms-grid-columns: 31.3333% 31.3333% 31.3333%;
@@ -5624,6 +5682,7 @@ section.dashboard_body .appointments_part .appointment_container .empty_content 
   pointer-events: none;
   -webkit-transition: all 0.3s;
   transition: all 0.3s;
+  overflow-y: scroll;
 }
 
 .add-service-modal:target {
@@ -5882,11 +5941,11 @@ section.dashboard_body .appointments_part .appointment_container .empty_content 
   -webkit-box-shadow: 0px 1px 7px rgba(86, 86, 86, 0.15);
           box-shadow: 0px 1px 7px rgba(86, 86, 86, 0.15);
   border-radius: 5px;
+  overflow-x: auto;
 }
 
 .table_div_wrapper .table_div table {
   width: 100%;
-  table-layout: fixed;
 }
 
 .table_div_wrapper .table_div table th, .table_div_wrapper .table_div table td {
@@ -6016,6 +6075,10 @@ section.dashboard_body .appointments_part .appointment_container .empty_content 
 
 .availability_section .profile_details .bottom_part .week_days {
   margin-top: 40px;
+}
+
+.availability_section .profile_details .bottom_part .week_days > div {
+  margin-top: 20px;
 }
 
 .availability_section .profile_details .bottom_part .week_days input[type="checkbox"] {
@@ -6211,7 +6274,7 @@ section.dashboard_body .appointments_part .appointment_container .empty_content 
 }
 
 .history_n_stream .recent_payment {
-  width: 70%;
+  width: 65%;
   padding: 0 30px 80px 0;
   border-right: 1px solid #E3E3E3;
 }
@@ -6231,11 +6294,11 @@ section.dashboard_body .appointments_part .appointment_container .empty_content 
   -webkit-box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.07);
           box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.07);
   border-radius: 5px;
+  overflow-x: auto;
 }
 
 .history_n_stream .recent_payment .table_div table {
   width: 100%;
-  table-layout: fixed;
 }
 
 .history_n_stream .recent_payment .table_div table th, .history_n_stream .recent_payment .table_div table td {
@@ -6263,7 +6326,7 @@ section.dashboard_body .appointments_part .appointment_container .empty_content 
 }
 
 .history_n_stream .activity_strem {
-  width: 30%;
+  width: 35%;
   padding: 0 0 50px 30px;
 }
 
@@ -6411,6 +6474,7 @@ section.dashboard_body .appointments_part .appointment_container .empty_content 
   -webkit-box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.07);
           box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.07);
   border-radius: 5px;
+  overflow-x: auto;
 }
 
 .table_div table {
@@ -7014,6 +7078,7 @@ section.dashboard_body .appointments_part .appointment_container .empty_content 
           box-shadow: 0px 1px 7px rgba(86, 86, 86, 0.15) #ffffff;
   border-radius: 5px #ffffff;
   padding: 30px;
+  margin-bottom: 60px;
   display: -ms-grid;
   display: grid;
   -ms-grid-columns: 31.3333% 31.3333% 31.3333%;
@@ -7062,6 +7127,7 @@ section.dashboard_body .appointments_part .appointment_container .empty_content 
 .admin_services_wrapper .each_service .top .right span {
   color: #989898;
   font-size: 23px;
+  cursor: pointer;
 }
 
 .admin_services_wrapper .each_service .bottom {
@@ -7279,6 +7345,7 @@ section.dashboard_body .appointments_part .appointment_container .empty_content 
   -webkit-box-shadow: 0px 1px 7px rgba(86, 86, 86, 0.15);
           box-shadow: 0px 1px 7px rgba(86, 86, 86, 0.15);
   border-radius: 5px;
+  overflow-x: auto;
 }
 
 .transaction_table_div_wrapper .table_div table {
@@ -7581,6 +7648,8 @@ section.dashboard_body .appointments_part .appointment_container .empty_content 
 .appointment_setting_wrapper .appointment_setting .settings_progress {
   background: transparent;
   border-radius: 5px 5px 0px 0px;
+  -webkit-transition: .4s;
+  transition: .4s;
   display: -ms-grid;
   display: grid;
   -ms-grid-columns: 20% 20% 20% 20% 20%;
@@ -7594,6 +7663,8 @@ section.dashboard_body .appointments_part .appointment_container .empty_content 
   text-align: center;
   padding-top: 5px;
   padding-bottom: 5px;
+  -webkit-transition: .4s;
+  transition: .4s;
 }
 
 .appointment_setting_wrapper .appointment_setting .settings_progress > div span {
@@ -7607,9 +7678,21 @@ section.dashboard_body .appointments_part .appointment_container .empty_content 
   background-color: #EF4B4B;
   -webkit-clip-path: polygon(0 0, 90% 0, 100% 50%, 90% 100%, 0 100%, 0 0);
           clip-path: polygon(0 0, 90% 0, 100% 50%, 90% 100%, 0 100%, 0 0);
+  -webkit-transition-delay: .2s;
+          transition-delay: .2s;
 }
 
 .appointment_setting_wrapper .appointment_setting .settings_progress > div.active span {
+  color: #fff;
+}
+
+.appointment_setting_wrapper .appointment_setting .settings_progress > div.done {
+  background-color: #EF4B4B;
+  -webkit-clip-path: polygon(0 0, 100% 0, 100% 100%, 100% 100%, 0 100%, 0 0);
+          clip-path: polygon(0 0, 100% 0, 100% 100%, 100% 100%, 0 100%, 0 0);
+}
+
+.appointment_setting_wrapper .appointment_setting .settings_progress > div.done span {
   color: #fff;
 }
 
@@ -7949,6 +8032,472 @@ section.dashboard_body .appointments_part .appointment_container .empty_content 
   margin: 6px 0;
 }
 
+.wraap {
+  overflow: scroll;
+  -webkit-transition: .4s;
+  transition: .4s;
+  border-radius: 5px 5px 0 0;
+}
+
+.wraap::-webkit-scrollbar {
+  display: none;
+}
+
 /* Dashboard */
+/* Course Details Page */
+.course_details_titlePart_wrapper {
+  background-color: #f2f2f2;
+}
+
+.course_details_titlePart {
+  padding-top: 80px;
+  padding-bottom: 50px;
+}
+
+.backToCourses {
+  margin-bottom: 25px;
+}
+
+.backToCourses a {
+  color: #EF4B4B;
+  font-family: circular;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 30px;
+  -webkit-transition: 1s;
+  transition: 1s;
+}
+
+.backToCourses a:hover {
+  text-decoration: none;
+  letter-spacing: 1.3px;
+}
+
+.course_name_and_excerpt {
+  width: 65%;
+}
+
+.course_name_and_excerpt h3 {
+  font-family: circular;
+  font-size: 32px;
+  line-height: 37px;
+  color: var(--default_black);
+}
+
+.course_name_and_excerpt p {
+  font-family: nunito;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 25px;
+  color: var(--default_black);
+  margin-top: 20px;
+}
+
+.scroll_navigator {
+  border-top: 1px solid #E3E3E3;
+  border-bottom: 1px solid #E3E3E3;
+}
+
+.scroll_navigator_link_container a {
+  font-family: nunito;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 25px;
+  color: var(--default_black);
+  padding: 20px 30px;
+  position: relative;
+}
+
+.scroll_navigator_link_container a:hover {
+  text-decoration: none;
+}
+
+.scroll_navigator_link_container a:before {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 0;
+  background-color: #EF4B4B;
+  -webkit-transition: .3s;
+  transition: .3s;
+}
+
+.scroll_navigator_link_container a:hover:before {
+  height: 4px;
+}
+
+.course_image {
+  height: 290px;
+}
+
+.course_image img {
+  width: 100%;
+  height: 100%;
+}
+
+.course_image_and_duration {
+  background-color: #f2f2f2;
+}
+
+.course_duration_and_price {
+  padding: 30px 20px;
+  width: 85%;
+  margin-left: auto;
+  margin-right: auto;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+  background-color: #f2f2f2;
+  border-radius: 5px 5px 0 0;
+}
+
+.course_duration_and_price .each_div {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 20% 20% 20% 20% 20%;
+      grid-template-columns: 20% 20% 20% 20% 20%;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.course_duration_and_price .each_div > div {
+  text-align: center;
+  border-right: 1px solid rgba(152, 152, 152, 0.5);
+}
+
+.course_duration_and_price .each_div > div:last-child {
+  border-right: none;
+}
+
+.course_duration_and_price .each_div > div p {
+  font-family: circular;
+  font-size: 18px;
+  line-height: 30px;
+}
+
+.course_duration_and_price .each_div > div .top {
+  color: #989898;
+}
+
+.course_duration_and_price .each_div > div .bottom {
+  color: var(--default_black);
+}
+
+.course_full_desc_main_section {
+  background-color: #f2f2f2;
+}
+
+.course_full_desc_main_wrapper {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 61% 35%;
+      grid-template-columns: 61% 35%;
+  grid-gap: 25px 4%;
+}
+
+.course_video_container {
+  height: 400px;
+}
+
+.course_description_container {
+  margin-top: 30px;
+}
+
+.course_desc_header_text h3 {
+  font-family: circular;
+  font-size: 32px;
+  line-height: 37px;
+  color: var(--default_black);
+}
+
+.date_and_duration_of_course {
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
+.course_date, .course_time, .course_descriptions {
+  font-family: nunito;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 22px;
+}
+
+.course_descriptions p {
+  margin-bottom: 30px;
+}
+
+.course_lessons_container {
+  margin-top: 60px;
+}
+
+.course_lessons_container .header h4 {
+  font-family: circular;
+  font-size: 32px;
+  line-height: 37px;
+  color: var(--default_black);
+  margin-bottom: 15px;
+}
+
+.course_lessons_container .header p {
+  font-family: nunito;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 22px;
+}
+
+.course_lessons_container .header p a {
+  color: #EF4B4B;
+  -webkit-transition: .3s;
+  transition: .3s;
+}
+
+.course_lessons_container .header p a:hover {
+  text-decoration: none;
+  color: #b12323;
+}
+
+.each_lesson_wrapper {
+  margin-top: 50px;
+}
+
+.each_lesson {
+  padding: 20px 10px 20px 0;
+}
+
+.each_lesson:not(last-child) {
+  border-bottom: 1px solid rgba(152, 152, 152, 0.5);
+}
+
+.lesson_duration_and_time {
+  margin-left: 20px;
+}
+
+.lesson_description p {
+  font-family: Nunito;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 22px;
+  color: var(--default_black);
+}
+
+.lesson_duration {
+  margin-top: 5px;
+}
+
+.lesson_duration P {
+  font-family: nunito;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 22px;
+  color: #989898;
+}
+
+.write_ratings {
+  text-align: left;
+  margin-bottom: 20px;
+}
+
+h4.write_ratings_head {
+  text-align: left;
+  margin-bottom: 10px;
+}
+
+.topics_covered span {
+  background: #E3E3E3;
+  border-radius: 3px;
+  padding: 15px 30px;
+  color: var(--default_black);
+  margin: 5px;
+  position: relative;
+}
+
+.topics_covered span::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 0;
+  width: 100%;
+  background-color: #97979715;
+  border-radius: 3px 0 0 3px;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.topics_covered span:hover::before {
+  height: 100%;
+}
+
+.topics_covered_div {
+  padding-top: 30px;
+  padding-bottom: 35px;
+}
+
+.right_side_headings h2 {
+  font-family: circular;
+  font-size: 32px;
+  line-height: 37px;
+  color: var(--default_black);
+  text-transform: capitalize;
+}
+
+.class_materials {
+  border-top: 1px solid rgba(152, 152, 152, 0.5);
+  border-bottom: 1px solid rgba(152, 152, 152, 0.5);
+  padding-top: 35px;
+  padding-bottom: 35px;
+}
+
+.each_material_wrapper {
+  margin-top: 30px;
+}
+
+.each_material {
+  padding: 15px 20px;
+  background: #E3E3E3;
+  border-radius: 3px;
+  color: var(--default_black);
+  font-family: nunito;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 22px;
+  margin-bottom: 7px;
+  cursor: pointer;
+  position: relative;
+}
+
+.each_material::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 0;
+  background-color: #97979715;
+  border-radius: 3px 0 0 3px;
+  -webkit-transition: .3s;
+  transition: .3s;
+}
+
+.each_material::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 100%;
+  width: 0;
+  background-color: #97979715;
+  border-radius: 0 3px 3px 0;
+  -webkit-transition: .3s;
+  transition: .3s;
+}
+
+.each_material:hover::before, .each_material:hover::after {
+  width: 50%;
+}
+
+.coach_mini_profile {
+  text-align: center;
+  padding: 40px 10px;
+}
+
+.coach_mini_profile_image {
+  margin-bottom: 20px;
+}
+
+.coach_excerpt {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.coach_full_profile_link a {
+  font-family: circular;
+  font-size: 16px;
+  line-height: 19px;
+  text-align: center;
+  color: #EF4B4B;
+  -webkit-transition: .5s;
+  transition: .5s;
+}
+
+.coach_full_profile_link a:hover {
+  letter-spacing: 1.5px;
+  text-decoration: none;
+}
+
+.student_work_section {
+  padding-bottom: 100px;
+  background-color: #f2f2f2;
+}
+
+.student_work_header h4 {
+  font-family: circular;
+  font-size: 32px;
+  line-height: 37px;
+}
+
+.student_work_header p {
+  font-family: nunito;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 31px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.student_work_upload {
+  border: 1.5px solid #EF4B4B;
+  border-radius: 3px;
+  color: #EF4B4B;
+  padding: 10px 25px;
+  background-color: transparent;
+  font-family: circular;
+  font-size: 14px;
+  line-height: 16px;
+  text-transform: lowercase;
+}
+
+.student_gallery {
+  margin-top: 40px;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: calc( (100% - 80px) / 5) calc( (100% - 80px) / 5) calc( (100% - 80px) / 5) calc( (100% - 80px) / 5) calc( (100% - 80px) / 5);
+      grid-template-columns: calc( (100% - 80px) / 5) calc( (100% - 80px) / 5) calc( (100% - 80px) / 5) calc( (100% - 80px) / 5) calc( (100% - 80px) / 5);
+  grid-gap: 20px 20px;
+}
+
+.student_gallery > div {
+  height: 145px;
+  overflow: hidden;
+  background-color: red;
+}
+
+.student_gallery > div img {
+  width: 100%;
+  height: 100%;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.student_gallery > div:hover img {
+  -webkit-transform: scale(1.1);
+          transform: scale(1.1);
+}
+
+.pt_1 {
+  padding-top: 1px;
+}
+
+/* End Course Details Page */
 /* ======================End of DASHBOARD Style=================== */
 /*# sourceMappingURL=main.css.map */

@@ -2,6 +2,7 @@
 
 *
     :box-sizing border-box
+    scroll-behavior: smooth
 
 p, h1, h2, h3, h4, h5, h6, a
     :margin 0
@@ -40,10 +41,11 @@ body
 
 /* Variables */
 
-// Colors
+/* Colors */
+::root
     --default_black: #303037
     --default_red: #EF4B4B
-    $default_red: #EF4B4B
+$default_red: #EF4B4B
 
 /* Fonts */
 
@@ -133,6 +135,12 @@ p, span
     :flex-flow row wrap
     :justify-content space-between
     :align-items center
+
+.flex_r_wrap_j_center_align_center
+    :display flex
+    :flex-flow row wrap
+    :justify-content center
+    :align-items center
         
 .flex_r_j_center_align_center
     :display flex
@@ -164,6 +172,11 @@ p, span
     :display flex
     flex-direction: column
     align-items: center
+    justify-content: center
+
+.flex_c_justify_center
+    :display flex
+    flex-direction: column
     justify-content: center
 
 /* /Flex col */
@@ -660,9 +673,13 @@ input, select
 /* Third section Style */
 
 .third_section_wrapper_div
+    .how_it_works_div
+        display: grid
+        grid-template-columns: 46% 48%
+        grid-column-gap: 6%
+        align-items: center
     .how_it_works_left_side
         :color var(--default_black)
-        padding-right: 40px
         h4
             font-size: 32px
             line-height: 34px        
@@ -762,8 +779,8 @@ input, select
 
 .coaches_wrapper_div
     display: grid
-    grid-template-columns: 31.3333% 31.3333% 31.3333%
-    grid-gap: 35px 3%
+    grid-template-columns: 32.3333% 32.3333% 32.3333%
+    grid-gap: 30px 1.5%
     margin-bottom: 40px
     @media only screen and ( min-width: 1295px ) and (max-width: 1353px)
         grid-template-columns: 32.3333% 32.3333% 32.3333%
@@ -779,7 +796,7 @@ input, select
         border-radius: 5px     
 
         .coach_image
-            width: 37%
+            width: 39%
             // height: 320px
 
             img
@@ -787,8 +804,8 @@ input, select
                 height: 100%
 
         .coach_features
-            width: 63%
-            padding: 35px 20px
+            width: 61%
+            padding: 25px 10px 25px 15px
             display: flex
             flex-direction: column
             justify-content: space-between
@@ -2039,6 +2056,10 @@ input, select
                 line-height: 20px
                 color: #303037
 
+.course_from_coach_section_landing_page
+    background-color: #f2f2f2
+    padding-bottom: 100px
+
 
 
 /* END of coach details page */
@@ -2600,6 +2621,10 @@ aside.side_nav
     transition: .4s
     z-index: 9999
     overflow-y: scroll
+    padding-bottom: 30px
+
+    &::-webkit-scrollbar
+        display: none
 
     .logo_div
         padding: 25px 10px 30px 40px
@@ -4333,6 +4358,7 @@ section.dashboard_body
     box-shadow: 0px 1px 7px rgba(86, 86, 86, 0.15)#ffffff
     border-radius: 5px#ffffff
     padding: 30px
+    margin-bottom: 80px
 
     display: grid
     grid-template-columns: 31.3333% 31.3333% 31.3333%
@@ -4399,6 +4425,7 @@ section.dashboard_body
     opacity: 0
     pointer-events: none
     transition: all 0.3s
+    overflow-y: scroll
     &:target 
         visibility: visible
         opacity: 1
@@ -4585,10 +4612,11 @@ section.dashboard_body
         background: #FFFFFF
         box-shadow: 0px 1px 7px rgba(86, 86, 86, 0.15)
         border-radius: 5px
+        overflow-x: auto
 
         table
             width: 100%
-            table-layout: fixed
+            // table-layout: fixed
             th, td
                 text-align: center
                 padding: 20px 5px            
@@ -4687,6 +4715,8 @@ section.dashboard_body
                             line-height: 30px
             .week_days
                 margin-top: 40px
+                &>div
+                    margin-top: 20px
                 input[type="checkbox"]
                     display: none
                 input[type="checkbox"] + label
@@ -4812,7 +4842,7 @@ section.dashboard_body
 .history_n_stream_section
 .history_n_stream
     .recent_payment
-        width: 70%
+        width: 65%
         padding: 0 30px 80px 0
         border-right: 1px solid #E3E3E3
         .header
@@ -4825,9 +4855,10 @@ section.dashboard_body
             background: #FFFFFF
             box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.07)
             border-radius: 5px
+            overflow-x: auto
             table
                 width: 100%
-                table-layout: fixed
+                // table-layout: fixed
                 th, td
                     padding: 20px 15px            
                 th
@@ -4847,7 +4878,7 @@ section.dashboard_body
                         border-top: 1px solid #CDD9F0
                         
     .activity_strem
-        width: 30%
+        width: 35%
         padding: 0 0 50px 30px
         .header
             margin-bottom: 14px
@@ -4939,6 +4970,7 @@ section.dashboard_body
     background: #FFFFFF
     box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.07)
     border-radius: 5px
+    overflow-x: auto
     table
         width: 100%
         // table-layout: auto
@@ -5397,6 +5429,7 @@ section.dashboard_body
     box-shadow: 0px 1px 7px rgba(86, 86, 86, 0.15)#ffffff
     border-radius: 5px#ffffff
     padding: 30px
+    margin-bottom: 60px
 
     display: grid
     grid-template-columns: 31.3333% 31.3333% 31.3333%
@@ -5429,6 +5462,7 @@ section.dashboard_body
                 span
                     color: #989898
                     font-size: 23px
+                    cursor: pointer
         .bottom
             border-top: 1px solid #E3E3E3
             &>div
@@ -5588,6 +5622,7 @@ section.dashboard_body
         background: #FFFFFF
         box-shadow: 0px 1px 7px rgba(86, 86, 86, 0.15)
         border-radius: 5px
+        overflow-x: auto
 
         table
             width: 100%
@@ -5809,6 +5844,7 @@ section.dashboard_body
             // background: #F9FAFB
             background: transparent
             border-radius: 5px 5px 0px 0px
+            transition: .4s
 
             display: grid
             grid-template-columns: 20% 20% 20% 20% 20%
@@ -5818,6 +5854,7 @@ section.dashboard_body
                 padding:
                     top: 5px
                     bottom: 5px
+                transition: .4s
                 span
                     font-family: circular
                     font-size: 16px
@@ -5826,6 +5863,12 @@ section.dashboard_body
                 &.active
                     background-color: #EF4B4B
                     clip-path: polygon(0 0, 90% 0, 100% 50%, 90% 100%, 0 100%, 0 0)
+                    transition-delay: .2s
+                    span
+                        color: #fff
+                &.done
+                    background-color: #EF4B4B
+                    clip-path: polygon(0 0, 100% 0, 100% 100%, 100% 100%, 0 100%, 0 0)
                     span
                         color: #fff
                 &:first-child
@@ -6064,8 +6107,350 @@ section.dashboard_body
         &:nth-child(2)
             margin: 6px 0
 
+.wraap
+    overflow: scroll
+    &::-webkit-scrollbar
+        display: none
+    transition: .4s
+    border-radius: 5px 5px 0 0
+
 /* Dashboard */
 
+/* Course Details Page */
+.course_details_titlePart_wrapper
+    background-color: #f2f2f2
+
+.course_details_titlePart
+    padding:
+        top: 80px
+        bottom: 50px
+.backToCourses
+    margin-bottom: 25px
+    a
+        color: #EF4B4B
+        font-family: circular
+        font-size: 16px
+        font-weight: 500
+        line-height: 30px
+        transition: 1s
+        &:hover
+            text-decoration: none
+            letter-spacing: 1.3px
+.course_name_and_excerpt
+    width: 65%
+    h3
+        font-family: circular
+        font-size: 32px
+        line-height: 37px
+        color: var(--default_black)
+    p
+        font-family: nunito
+        font-style: normal
+        font-weight: 600
+        font-size: 18px
+        line-height: 25px
+        color: var(--default_black)
+        margin-top: 20px
+
+.scroll_navigator
+    border:
+        top: 1px solid #E3E3E3
+        bottom: 1px solid #E3E3E3
+    
+.scroll_navigator_link_container
+    a
+        font-family: nunito
+        font-style: normal
+        font-weight: 600
+        font-size: 18px
+        line-height: 25px
+        color: var(--default_black)
+        padding: 20px 30px
+        position: relative
+        &:hover
+            text-decoration: none
+        &:before
+            content: ''
+            position: absolute
+            left: 0
+            bottom: 0
+            width: 100%
+            height: 0
+            background-color: #EF4B4B
+            transition: .3s
+        &:hover:before
+            height: 4px
+.course_image
+    height: 290px
+    img
+        width: 100%
+        height: 100%
+
+.course_image_and_duration
+    background-color: #f2f2f2
+    
+.course_duration_and_price
+    padding: 30px 20px
+    width: 85%
+    margin:
+        left: auto
+        right: auto
+    transform: translateY(-50%)
+    background-color: #f2f2f2
+    border-radius: 5px 5px 0 0
+
+    .each_div
+        display: grid
+        grid-template-columns: 20% 20% 20% 20% 20%
+        align-items: center
+        &>div
+            text-align: center
+            border-right: 1px solid rgba(152, 152, 152, 0.5)
+            // width: 20%
+            &:last-child
+                border-right: none
+            p
+                font-family: circular
+                font-size: 18px
+                line-height: 30px
+            .top
+                color: #989898
+            .bottom
+                color: var(--default_black)
+.course_full_desc_main_section
+    background-color: #f2f2f2
+.course_full_desc_main_wrapper
+    display: grid
+    grid-template-columns: 61% 35%
+    grid-gap: 25px 4%
+    >div
+        // box-shadow: 0 0 5px rgba(0,0,0,0.5)
+.course_video_container
+    height: 400px
+.course_description_container
+    margin-top: 30px
+.course_desc_header_text
+    h3
+        font-family: circular
+        font-size: 32px
+        line-height: 37px
+        color: var(--default_black)
+.date_and_duration_of_course
+    margin:
+        top: 15px
+        bottom: 15px
+.course_date, .course_time, .course_descriptions
+    font-family: nunito
+    font-style: normal
+    font-weight: normal
+    font-size: 16px
+    line-height: 22px
+.course_descriptions
+    p
+        margin-bottom: 30px
+
+.course_lessons_container
+    margin-top: 60px
+    .header
+        h4
+            font-family: circular
+            font-size: 32px
+            line-height: 37px
+            color: var(--default_black)
+            margin-bottom: 15px
+        p
+            font-family: nunito
+            font-style: normal
+            font-weight: normal
+            font-size: 16px
+            line-height: 22px
+            a
+                color: #EF4B4B
+                transition: .3s
+                &:hover
+                    text-decoration: none
+                    color: #b12323
+.each_lesson_wrapper
+    margin-top: 50px
+.each_lesson
+    padding: 20px 10px 20px 0
+.each_lesson:not(last-child)
+    border-bottom: 1px solid rgba(152, 152, 152, 0.5)
+.lesson_duration_and_time
+    margin-left: 20px
+.lesson_description
+    p
+        font-family: Nunito
+        font-style: normal
+        font-weight: normal
+        font-size: 16px
+        line-height: 22px
+        color: var(--default_black)
+.lesson_duration
+    margin-top: 5px
+    P
+        font-family: nunito
+        font-style: normal
+        font-weight: normal
+        font-size: 16px
+        line-height: 22px
+        color: #989898
+
+.write_ratings
+    text-align: left
+    margin-bottom: 20px
+h4.write_ratings_head
+    text-align: left
+    margin-bottom: 10px
+
+.topics_covered
+    span
+        background: #E3E3E3
+        border-radius: 3px
+        padding: 15px 30px
+        color: var(--default_black)
+        margin: 5px
+        position: relative
+        &::before
+            content: ''
+            position: absolute
+            bottom: 0
+            left: 0
+            height: 0
+            width: 100%
+            background-color: #97979715
+            border-radius: 3px 0 0 3px
+            transition: .4s
+        &:hover
+            &::before
+                height: 100%
+.topics_covered_div
+    padding:
+        top: 30px
+        bottom: 35px
+.right_side_headings
+    h2
+        font-family: circular
+        font-size: 32px
+        line-height: 37px
+        color: var(--default_black)
+        text-transform: capitalize
+.class_materials
+    border:
+        top: 1px solid rgba(152, 152, 152, 0.5)
+        bottom: 1px solid rgba(152, 152, 152, 0.5)
+    padding:
+        top: 35px
+        bottom: 35px
+.each_material_wrapper
+    margin-top: 30px
+.each_material
+    padding: 15px 20px
+    background: #E3E3E3
+    border-radius: 3px
+    color: var(--default_black)
+    font-family: nunito
+    font-style: normal
+    font-weight: normal
+    font-size: 16px
+    line-height: 22px
+    margin-bottom: 7px
+    cursor: pointer
+    position: relative
+    &::before
+        content: ''
+        position: absolute
+        top: 0
+        left: 0
+        height: 100%
+        width: 0
+        background-color: #97979715
+        border-radius: 3px 0 0 3px
+        transition: .3s
+    &::after
+        content: ''
+        position: absolute
+        top: 0
+        right: 0
+        height: 100%
+        width: 0
+        background-color: #97979715
+        border-radius: 0 3px 3px 0
+        transition: .3s
+    &:hover
+        &::before, &::after
+            width: 50%
+.coach_mini_profile
+    text-align: center
+    padding: 40px 10px
+.coach_mini_profile_image
+    margin-bottom: 20px
+.coach_excerpt
+    margin:
+        top: 20px
+        bottom: 20px
+.coach_full_profile_link
+    a
+        font-family: circular
+        font-size: 16px
+        line-height: 19px
+        text-align: center
+        color: #EF4B4B
+        transition: .5s
+        &:hover
+            letter-spacing: 1.5px
+            text-decoration: none
+
+.student_work_section
+    padding-bottom: 100px
+    background-color: #f2f2f2
+.student_work_header
+    h4
+        font-family: circular
+        font-size: 32px
+        line-height: 37px
+    p
+        font-family: nunito
+        font-style: normal
+        font-weight: 600
+        font-size: 18px
+        line-height: 31px
+        margin:
+            top: 20px
+            bottom: 20px
+.student_work_upload
+    border: 1.5px solid #EF4B4B
+    border-radius: 3px
+    color: #EF4B4B
+    padding: 10px 25px
+    background-color: transparent
+    font-family: circular
+    font-size: 14px
+    line-height: 16px
+    text-transform: lowercase
+
+.student_gallery
+    margin-top: 40px
+    $width: calc( (100% - 80px) / 5 )
+    display: grid
+    grid-template-columns: $width $width $width $width $width
+    grid-gap: 20px 20px
+    >div
+        height: 145px
+        overflow: hidden
+        background-color: red
+        img
+            width: 100%
+            height: 100%
+            transition: .4s
+        &:hover
+            img
+                transform: scale(1.1)
+                // filter: grayscale(100%)
+.pt_1
+    padding-top: 1px
+
+/* End Course Details Page */
 
 /* ======================End of DASHBOARD Style=================== */
     
