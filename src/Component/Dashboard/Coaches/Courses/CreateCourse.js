@@ -25,7 +25,10 @@ const CreateCourse = ({
     medium_of_communication: '',
     date: '',
     from_time: '',
-    to_time: ''
+    to_time: '',
+    course_duration: '',
+    brief_description: '',
+    youtube_video_preview: ''
   });
   const [file, setFile] = useState('');
   const [uploadPercentage, setUploadPercentage] = useState(0);
@@ -37,7 +40,10 @@ const CreateCourse = ({
     course_description,
     date,
     from_time,
-    to_time
+    to_time,
+    course_duration,
+    brief_description,
+    youtube_video_preview
   } = formData;
 
   const onChange = e =>
@@ -56,6 +62,7 @@ const CreateCourse = ({
   const findservice = coachservices.find(
     ({ id }) => id === parseInt(service_id)
   );
+  console.log(findservice);
 
   const onSubmit = e => {
     e.preventDefault();
@@ -68,6 +75,9 @@ const CreateCourse = ({
     formDataImg.append('date', date);
     formDataImg.append('from_time', from_time);
     formDataImg.append('to_time', to_time);
+    formDataImg.append('course_duration', course_duration);
+    formDataImg.append('brief_description', brief_description);
+    formDataImg.append('youtube_video_preview', youtube_video_preview);
     formDataImg.append(
       'price_per_session',
       service_id && findservice.price_per_session
@@ -120,9 +130,7 @@ const CreateCourse = ({
                           onChange={e => onChange(e)}
                           required
                         >
-                          <option selected>
-                            {selectedOption}
-                          </option>
+                          <option selected>{selectedOption}</option>
                           {coachservices.length > 0 ? (
                             coachservices.map(coachservice => (
                               <option
@@ -167,6 +175,28 @@ const CreateCourse = ({
                     ) : (
                       ''
                     )}
+                    <div class='full_row cols-2'>
+                      <div class='common_input_wrapper_2'>
+                        <input
+                          type='text'
+                          name='youtube_video_preview'
+                          placeholder='Course Youtube Video Link'
+                          value={youtube_video_preview}
+                          onChange={e => onChange(e)}
+                          required
+                        />
+                      </div>
+                      <div class='common_input_wrapper_2'>
+                        <input
+                          type='number'
+                          name='course_duration'
+                          placeholder='Course Duration'
+                          value={course_duration}
+                          onChange={e => onChange(e)}
+                          required
+                        />
+                      </div>
+                    </div>
                     <div className='full_row cols-2'>
                       <div className='common_input_wrapper_2'>
                         <input
@@ -192,6 +222,17 @@ const CreateCourse = ({
                     </div>
                     <div className='common_input_wrapper_2'>
                       <textarea
+                        name='brief_description'
+                        cols='10'
+                        rows='2'
+                        placeholder='Brief Course description'
+                        value={brief_description}
+                        onChange={e => onChange(e)}
+                        required
+                      />
+                    </div>
+                    <div className='common_input_wrapper_2'>
+                      <textarea
                         name='course_description'
                         cols='10'
                         rows='5'
@@ -212,6 +253,18 @@ const CreateCourse = ({
                         onChange={e => onChange(e)}
                         disabled
                         required
+                      />
+                    </div>
+                    <div className='common_input_wrapper_2'>
+                      <p> Topics Covered </p>
+                    </div>
+                    <div className='common_input_wrapper_2'>
+                      <textarea
+                        name=''
+                        id=''
+                        cols='10'
+                        rows='2'
+                        placeholder='Enter the topics covered in this course'
                       />
                     </div>
                     <div className='flex_r_j_between_align_center date_n_time'>
@@ -287,7 +340,7 @@ CreateCourse.propTypes = {
   user: PropTypes.object.isRequired,
   getCoachServices: PropTypes.func.isRequired,
   services: PropTypes.object.isRequired,
-  addCourse: PropTypes.func.isRequired,
+  addCourse: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => ({
@@ -295,4 +348,6 @@ const mapStateToProps = state => ({
   user: state.auth.user
 });
 
-export default connect(mapStateToProps, { getCoachServices, addCourse })(withRouter(CreateCourse));
+export default connect(mapStateToProps, { getCoachServices, addCourse })(
+  withRouter(CreateCourse)
+);
