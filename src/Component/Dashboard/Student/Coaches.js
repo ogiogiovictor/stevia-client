@@ -73,7 +73,7 @@ const Coaches = ({
                         type='text'
                         name=''
                         id=''
-                        placeholder='Search courses…'
+                        placeholder='Search coaches…'
                       />
                       <button>
                         <i className='fas fa-search'></i>
@@ -105,9 +105,9 @@ const Coaches = ({
                   <div className='full_row course_list_n_pagination_wrapper'>
                     <div className='full_row coaches_list_wrapper'>
                     {coaches.length > 0 ? (coaches.map(coach => 
-                            <CoachItem key={coach.id} coach={coach} />
+                            <CoachItem key={coach.id} coach={coach} loading={loading} />
                         )) : 
-                        <h4>No Coaches Found...</h4>}
+                        <h4>Loading...</h4>}
                       </div>
 
                     <div className='flex_r_j_end_align_center pagination'>

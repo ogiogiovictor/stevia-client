@@ -14,7 +14,8 @@ import './tab.css';
 import {
   createProfile,
   getCurrentProfile,
-  profileImage
+  profileImage,
+  coachOtherInfo
 } from '../../../actions/profile';
 import Header from '../Layout/Header';
 import Topnav from '../Layout/Topnav';
@@ -166,7 +167,7 @@ const CreateProfile = ({
       }
     };
     profileImage(formDataImg, config, history);
-    setFile({uploadpix: {}});
+    setFile({ uploadpix: {} });
   };
   const onSubmit3 = e => {
     e.preventDefault();
@@ -213,6 +214,16 @@ const CreateProfile = ({
                 {user && user.currentUser.role.name === 'COACH' ? (
                   <Tab>
                     <span>Bank</span>
+                  </Tab>
+                ) : (
+                  <div style={{ display: 'none' }}>
+                    <Tab></Tab>
+                  </div>
+                )}
+
+                {user && user.currentUser.role.name === 'COACH' ? (
+                  <Tab>
+                    <span>Other Information</span>
                   </Tab>
                 ) : (
                   <div style={{ display: 'none' }}>
@@ -572,6 +583,114 @@ const CreateProfile = ({
                                   name='account_name'
                                   placeholder='Account Name'
                                   value={account_name}
+                                  onChange={e => onChange(e)}
+                                  required
+                                />
+                              </div>
+                              <div className='full_row button'>
+                                <button
+                                  type='submit'
+                                  className='full_width_btn red_btn'
+                                >
+                                  Update profile information
+                                </button>
+                              </div>
+                            </div>
+                          </form>
+                        </div>
+                      </div>
+                    </section>
+                  </Panel>
+                ) : (
+                  <div style={{ display: 'none' }}>
+                    <Panel></Panel>
+                  </div>
+                )}
+                {user && user.currentUser.role.name === 'COACH' ? (
+                  <Panel>
+                    <section className='other_information_section'>
+                      <div className='full_row settings_box profile_details'>
+                        <div className=''>
+                          <form onSubmit={e => onSubmit3(e)}>
+                            <div className='full_row each_student_sett_header'>
+                              <p> Other Information </p>
+                            </div>
+                            <div className='full_row setings_form_wrapper'>
+                              <div className='common_input_wrapper_2'>
+                                <label></label>
+                                <textarea
+                                  type='text'
+                                  rows="5"
+                                  cols="70"
+                                  name='about_me'
+                                  value={''}
+                                  placeholder='More about you'
+                                  onChange={e => onChange(e)}
+                                  required
+                                />
+                              </div>
+                              <div className='common_input_wrapper_2'>
+                                <label></label>
+                                <input
+                                  type='text'
+                                  name='specialization'
+                                  placeholder='Specialization'
+                                  value={''}
+                                  onChange={e => onChange(e)}
+                                  required
+                                />
+                              </div>
+                              <div className='common_input_wrapper_2'>
+                                <label></label>
+                                <input
+                                  type='text'
+                                  name='certifications'
+                                  placeholder='Certifications'
+                                  value={''}
+                                  onChange={e => onChange(e)}
+                                  required
+                                />
+                              </div>
+                              <div className='common_input_wrapper_2'>
+                                <label></label>
+                                <input
+                                  type='text'
+                                  name='youtube_link'
+                                  placeholder='Youtube Link'
+                                  value={''}
+                                  onChange={e => onChange(e)}
+                                  required
+                                />
+                              </div>
+                              <div className='common_input_wrapper_2'>
+                                <label></label>
+                                <input
+                                  type='text'
+                                  name='facebook'
+                                  placeholder='Facebook'
+                                  value={''}
+                                  onChange={e => onChange(e)}
+                                  required
+                                />
+                              </div>
+                              <div className='common_input_wrapper_2'>
+                                <label></label>
+                                <input
+                                  type='text'
+                                  name='twitter'
+                                  placeholder='twitter'
+                                  value={''}
+                                  onChange={e => onChange(e)}
+                                  required
+                                />
+                              </div>
+                              <div className='common_input_wrapper_2'>
+                                <label></label>
+                                <input
+                                  type='text'
+                                  name='linkedin'
+                                  placeholder='Linkedin'
+                                  value={''}
                                   onChange={e => onChange(e)}
                                   required
                                 />

@@ -47,6 +47,16 @@ const Header = ({
               />
             </Link>
           )}
+          {user && user.currentUser.role.name !== 'RECRUITER' ? (
+            ''
+          ) : (
+            <Link to='/dashboard'>
+              <img
+                src={process.env.PUBLIC_URL + '../../assets/utils/images/32.svg'}
+                alt=''
+              />
+            </Link>
+          )}
 
           <div className='close_sideNav ml_auto'>
             <i className='far fa-times-circle'></i>

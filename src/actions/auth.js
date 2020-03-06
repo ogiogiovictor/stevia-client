@@ -13,8 +13,8 @@ import setAuthToken from '../Utils/setAuthToken';
 import { setAlert } from './alert';
 
 // Load User
-const url = 'https://omareservations.com/stevia/api';
-// const url = 'http://127.0.0.1:8000/api';
+// const url = 'https://omareservations.com/stevia/api';
+const url = 'http://127.0.0.1:8000/api';
 
 export const loadUser = () => async dispatch => {
   
@@ -105,7 +105,9 @@ export const login = (email, password) => async dispatch => {
     dispatch(loadUser());
     } else {
       dispatch(setAlert(res.data.message, 'error'));
-      window.location.reload();
+      setTimeout(() => {
+        dispatch(window.location.reload())
+      }, 3000); 
     }
 
   } catch (error) {

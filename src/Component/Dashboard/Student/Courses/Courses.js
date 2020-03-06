@@ -67,6 +67,7 @@ const StudentCourses = ({
                       <CourseItem
                         key={course.id}
                         course={course}
+                        loading = {loading}
                       />
                     ))
                   ) : (

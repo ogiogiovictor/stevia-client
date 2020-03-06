@@ -1,15 +1,17 @@
 import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import Spinner from '../../Spinner/Spinner';
 
 const CoachItem = ({ 
+    loading,
     coach: {
         id,
         firstname,
         lastname
     }
  }) => {
-  return (
+  return loading ? <Spinner /> : (
       <Fragment>
           <div className='flex_r each_coach'>
                         <div className='coach_image'>

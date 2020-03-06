@@ -21,8 +21,9 @@ import StudentCourses from './Component/Dashboard/Student/Courses/Courses';
 import CreateProfile from './Component/Dashboard/ProfileSettings/CreateProfile';
 import AdminServices from './Component/Dashboard/Admin/Services/Services';
 import CoachServices from './Component/Dashboard/Coaches/Services/CoachServices';
-import Courses from './Component/Dashboard/Coaches/Courses/Courses'
-import CreateCourse from './Component/Dashboard/Coaches/Courses/CreateCourse'
+import Courses from './Component/Dashboard/Coaches/Courses/Courses';
+import CreateCourse from './Component/Dashboard/Coaches/Courses/CreateCourse';
+import PostaJob from './Component/Dashboard/Recruiters/PostaJob';
 import logout from './Component/Auth/logout';
 import { loadProgressBar } from 'axios-progress-bar';
 
@@ -38,45 +39,94 @@ const App = () => {
 
   return (
     <Provider store={store}>
-        <Router>
-          <Fragment>
-            <ToastContainer
-              position='top-right'
-              autoClose={100}
-              hideProgressBar={false}
-              newestOnTop={false}
-              closeOnClick
-              rtl={false}
-              pauseOnVisibilityChange
-              draggable
-              pauseOnHover
+      <Router>
+        <Fragment>
+          <ToastContainer
+            position='top-right'
+            autoClose={100}
+            hideProgressBar={false}
+            newestOnTop={false}
+            closeOnClick
+            rtl={false}
+            pauseOnVisibilityChange
+            draggable
+            pauseOnHover
+          />
+          <ToastContainer />
+          <Alert />
+          <Switch>
+            <Route path='/signup' exact component={Signup} />
+            <Route path='/success' exact component={Success} />
+            <Route path='/coach' exact component={Coach} />
+            <Route path='/login' exact component={Login} />
+            <PrivateRoute
+              path='/dashboard/student/coaches'
+              exact
+              component={Studentcoaches}
             />
-            <ToastContainer />
-            <Alert />
-            <Switch>
-              <Route path='/signup' exact component={Signup} />
-              <Route path='/success' exact component={Success} />
-              <Route path='/coach' exact component={Coach} />
-              <Route path='/login' exact component={Login} />
-              <PrivateRoute path='/dashboard/student/coaches' exact component={Studentcoaches} />
-              <PrivateRoute path='/dashboard/admin/services' exact component={AdminServices} />
-              <PrivateRoute path='/dashboard/coaches/services' exact component={CoachServices} />
-              <PrivateRoute path='/dashboard/coaches/courses' exact component={Courses} />
-              <PrivateRoute path='/dashboard/student/courses' exact component={StudentCourses} />
-              <PrivateRoute path='/dashboard/coaches/courses/create' exact component={CreateCourse} />
-              <PrivateRoute path='/dashboard/student/settings' exact component={CreateProfile} />
-              <PrivateRoute path='/dashboard/coaches/settings' exact component={CreateProfile} />
-              <PrivateRoute path='/dashboard/admin/settings' exact component={CreateProfile} />
-              <PrivateRoute path='/dashboard/student' exact component={Dashboard} />
-              <PrivateRoute path='/dashboard/coaches' exact component={Dashboard} />
-              <PrivateRoute path='/dashboard/admin' exact component={Dashboard} />
-              <PrivateRoute path='/logout' exact component={logout} />
-              <PrivateRoute path='/dashboard' exact component={Dashboard} />
-              <Route path='/' exact component={Student} />
-            </Switch>
-          </Fragment>
-        </Router>
-      </Provider>
+            <PrivateRoute
+              path='/dashboard/admin/services'
+              exact
+              component={AdminServices}
+            />
+            <PrivateRoute
+              path='/dashboard/coaches/services'
+              exact
+              component={CoachServices}
+            />
+            <PrivateRoute
+              path='/dashboard/coaches/courses'
+              exact
+              component={Courses}
+            />
+            <PrivateRoute
+              path='/dashboard/student/courses'
+              exact
+              component={StudentCourses}
+            />
+            <PrivateRoute
+              path='/dashboard/coaches/courses/create'
+              exact
+              component={CreateCourse}
+            />
+            <PrivateRoute
+              path='/dashboard/student/settings'
+              exact
+              component={CreateProfile}
+            />
+            <PrivateRoute
+              path='/dashboard/coaches/settings'
+              exact
+              component={CreateProfile}
+            />
+            <PrivateRoute
+              path='/dashboard/recruiter/postajob'
+              exact
+              component={PostaJob}
+            />
+            <PrivateRoute
+              path='/dashboard/admin/settings'
+              exact
+              component={CreateProfile}
+            />
+            <PrivateRoute
+              path='/dashboard/student'
+              exact
+              component={Dashboard}
+            />
+            <PrivateRoute
+              path='/dashboard/coaches'
+              exact
+              component={Dashboard}
+            />
+            <PrivateRoute path='/dashboard/admin' exact component={Dashboard} />
+            <PrivateRoute path='/logout' exact component={logout} />
+            <PrivateRoute path='/dashboard' exact component={Dashboard} />
+            <Route path='/' exact component={Student} />
+          </Switch>
+        </Fragment>
+      </Router>
+    </Provider>
   );
 };
 

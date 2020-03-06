@@ -1,13 +1,15 @@
 import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import Spinner from '../../../Spinner/Spinner';
 // import { deleteService } from '../../../../actions/service';
 // import './Service.css'
 
 const CourseItem = ({
+  loading,
   course: { price_per_session, image, course_description, title, coach_id }
 }) => {
-  return (
+  return loading ? <Spinner /> : (
     <Fragment>
       <div className='each_course'>
         <div className='flex_r_j_between_align_center'>
