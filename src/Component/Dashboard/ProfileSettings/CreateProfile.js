@@ -75,6 +75,7 @@ const CreateProfile = ({
   auth: { user },
   profile: { profile, loading },
   createProfile,
+  coachOtherInfo,
   profileImage,
   history
 }) => {
@@ -91,7 +92,14 @@ const CreateProfile = ({
     job_title: '',
     bank: '',
     account_number: '',
-    account_name: ''
+    account_name: '',
+    about_me: '',
+    specialization: '',
+    certifications: '',
+    youtube_link: '',
+    facebook: '',
+    twitter: '',
+    linkedin: ''
   });
 
   const [file, setFile] = useState('');
@@ -135,7 +143,14 @@ const CreateProfile = ({
     job_title,
     bank,
     account_number,
-    account_name
+    account_name,
+    about_me,
+    specialization,
+    certifications,
+    youtube_link,
+    facebook,
+    twitter,
+    linkedin
   } = formData;
 
   const onChange = e =>
@@ -172,6 +187,19 @@ const CreateProfile = ({
   const onSubmit3 = e => {
     e.preventDefault();
     createProfile(formData, history, true);
+  };
+  const onSubmit4 = e => {
+    e.preventDefault();
+    const formDataCoach = new FormData();
+    formDataCoach.append('coach_id', user && user.currentUser.id);
+    formDataCoach.append('about_me', about_me);
+    formDataCoach.append('specialization', specialization);
+    formDataCoach.append('certifications', certifications);
+    formDataCoach.append('youtube_link', youtube_link);
+    formDataCoach.append('facebook', facebook);
+    formDataCoach.append('twitter', twitter);
+    formDataCoach.append('linkedin', linkedin);
+    coachOtherInfo(formDataCoach, history, true);
   };
 
   return (
@@ -611,7 +639,7 @@ const CreateProfile = ({
                     <section className='other_information_section'>
                       <div className='full_row settings_box profile_details'>
                         <div className=''>
-                          <form onSubmit={e => onSubmit3(e)}>
+                          <form onSubmit={e => onSubmit4(e)}>
                             <div className='full_row each_student_sett_header'>
                               <p> Other Information </p>
                             </div>
@@ -620,10 +648,10 @@ const CreateProfile = ({
                                 <label></label>
                                 <textarea
                                   type='text'
-                                  rows="5"
-                                  cols="70"
+                                  rows='5'
+                                  cols='70'
                                   name='about_me'
-                                  value={''}
+                                  value={about_me}
                                   placeholder='More about you'
                                   onChange={e => onChange(e)}
                                   required
@@ -635,7 +663,7 @@ const CreateProfile = ({
                                   type='text'
                                   name='specialization'
                                   placeholder='Specialization'
-                                  value={''}
+                                  value={specialization}
                                   onChange={e => onChange(e)}
                                   required
                                 />
@@ -646,7 +674,7 @@ const CreateProfile = ({
                                   type='text'
                                   name='certifications'
                                   placeholder='Certifications'
-                                  value={''}
+                                  value={certifications}
                                   onChange={e => onChange(e)}
                                   required
                                 />
@@ -657,7 +685,7 @@ const CreateProfile = ({
                                   type='text'
                                   name='youtube_link'
                                   placeholder='Youtube Link'
-                                  value={''}
+                                  value={youtube_link}
                                   onChange={e => onChange(e)}
                                   required
                                 />
@@ -668,7 +696,7 @@ const CreateProfile = ({
                                   type='text'
                                   name='facebook'
                                   placeholder='Facebook'
-                                  value={''}
+                                  value={facebook}
                                   onChange={e => onChange(e)}
                                   required
                                 />
@@ -679,7 +707,7 @@ const CreateProfile = ({
                                   type='text'
                                   name='twitter'
                                   placeholder='twitter'
-                                  value={''}
+                                  value={twitter}
                                   onChange={e => onChange(e)}
                                   required
                                 />
@@ -690,7 +718,7 @@ const CreateProfile = ({
                                   type='text'
                                   name='linkedin'
                                   placeholder='Linkedin'
-                                  value={''}
+                                  value={linkedin}
                                   onChange={e => onChange(e)}
                                   required
                                 />
@@ -886,6 +914,7 @@ CreateProfile.propTypes = {
   auth: PropTypes.object.isRequired,
   createProfile: PropTypes.func.isRequired,
   profileImage: PropTypes.func.isRequired,
+  coachOtherInfo: PropTypes.func.isRequired,
   getCurrentProfile: PropTypes.func.isRequired,
   profile: PropTypes.object.isRequired
 };
@@ -898,5 +927,6 @@ const mapStateToProps = state => ({
 export default connect(mapStateToProps, {
   createProfile,
   profileImage,
-  getCurrentProfile
+  getCurrentProfile,
+  coachOtherInfo
 })(withRouter(CreateProfile));
