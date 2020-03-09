@@ -15,8 +15,13 @@ const CourseDetailsItem = ({
             <p> {title} </p>
             <br />
             <p>
-              <button class='red_btn'>Upload Videos</button>{' '}
-              <button class='red_btn'>Upload Documents</button>
+              <a href='#add-video-modal'>
+                <button class='red_btn'>Add Videos</button>
+              </a>{' '}
+              <a href='#add-documents-modal'>
+              <button class='red_btn'>Add Documents</button>{' '}
+              </a>
+              <button class='red_btn'>View</button>
             </p>
           </div>
           <div className='flex_r Description_n_price'>
@@ -44,6 +49,89 @@ const CourseDetailsItem = ({
               <p> ₦ {price_per_session} </p>
             </div>
           </div>
+        </div>
+      </div>
+
+      <div className='add-service-modal' id='add-video-modal'>
+        <div>
+          <div className='full_row head'>
+            <h4> Upload Videos </h4>
+          </div>
+          <form onSubmit=''>
+            <input name='coach_id' type='hidden' value={''} onChange={''} />
+            <div className='full_row comm_channel'>
+              <div className='full_row header'></div>
+              <div className='full_row comm_channel_type'>
+                <div className='flex_r_wrap comm_channel_options'>
+                  <div className='form-check'>
+                    <input
+                      type='file'
+                      name='image'
+                      id='image'
+                      onChange={''}
+                      required
+                    />
+                  </div>
+                </div>
+                <div><p>No Videos Added</p></div>
+              </div>
+            </div>
+            <div className='flex_r_j_end_align_center footer_button'>
+              <div>
+                <a href='#overview_cards'>
+                  <button type='button' className='grey_btn'>
+                    Close
+                  </button>
+                </a>
+              </div>
+              <div>
+                <button type='submit' className='black_btn'>
+                  add
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div className='add-service-modal' id='add-documents-modal'>
+        <div>
+          <div className='full_row head'>
+            <h4> Upload Documents </h4>
+          </div>
+          <form onSubmit=''>
+            <input name='coach_id' type='hidden' value={''} onChange={''} />
+            <div className='full_row comm_channel'>
+              <div className='full_row header'></div>
+              <div className='full_row comm_channel_type'>
+                <div className='flex_r_wrap comm_channel_options'>
+                  <div className='form-check'>
+                    <input
+                      type='file'
+                      name='image'
+                      id='image'
+                      onChange={''}
+                      required
+                    />
+                  </div>
+                </div>
+                <div><p>No Documents Added</p></div>
+              </div>
+            </div>
+            <div className='flex_r_j_end_align_center footer_button'>
+              <div>
+                <a href='#overview_cards'>
+                  <button type='button' className='grey_btn'>
+                    Close
+                  </button>
+                </a>
+              </div>
+              <div>
+                <button type='submit' className='black_btn'>
+                  add
+                </button>
+              </div>
+            </div>
+          </form>
         </div>
       </div>
     </Fragment>
