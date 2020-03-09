@@ -1,10 +1,11 @@
 import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 // import { deleteService } from '../../../../actions/service';
 // import './Service.css'
 
-const CourseItem = ({ course: { price_per_session, image, course_description, title} }) => {
+const CourseItem = ({ course: { id, price_per_session, image, course_description, title} }) => {
   return (
     <Fragment>
       <div className='each_course'>
@@ -44,7 +45,7 @@ const CourseItem = ({ course: { price_per_session, image, course_description, ti
           </div>
         </div>
         <div className='full_row'>
-          <button className='black_btn full_width_btn'>view course</button>
+          <Link to={`./courses/details/${id}`}><button className='black_btn full_width_btn'>view course</button></Link>
         </div>
       </div>
     </Fragment>
