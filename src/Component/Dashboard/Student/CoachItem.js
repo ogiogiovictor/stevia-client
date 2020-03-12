@@ -46,7 +46,7 @@ const CoachItem = ({
                           </div>
                           <div className='flex_c full_row coach_features_bottom'>
                             <div className='bottom_link'>
-                              <Link to={`/coach-details/${id}`}>
+                              <Link to={`./coaches/${id}`}>
                                 {' '}
                                 View Profile{' '}
                               </Link>

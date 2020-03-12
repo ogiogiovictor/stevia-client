@@ -62,7 +62,6 @@ const CreateCourse = ({
   const findservice = coachservices.find(
     ({ id }) => id === parseInt(service_id)
   );
-  console.log(findservice);
 
   const onSubmit = e => {
     e.preventDefault();

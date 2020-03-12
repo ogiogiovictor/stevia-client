@@ -27,6 +27,7 @@ import PostaJob from './Component/Dashboard/Recruiters/PostaJob';
 import logout from './Component/Auth/logout';
 import { loadProgressBar } from 'axios-progress-bar';
 import CoachCourseDetails from './Component/Dashboard/Coaches/Courses/CourseDetails';
+import CoachDetails from './Component/Dashboard/Student/CoachDetails';
 
 if (localStorage.token) {
   setAuthToken(localStorage.token);
@@ -84,6 +85,11 @@ const App = () => {
               path='/dashboard/coaches/courses/details/:id'
               exact
               component={CoachCourseDetails}
+            />
+            <PrivateRoute
+              path='/dashboard/student/coaches/:id'
+              exact
+              component={CoachDetails}
             />
             <PrivateRoute
               path='/dashboard/student/courses'

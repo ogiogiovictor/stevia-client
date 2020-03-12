@@ -1,9 +1,41 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useState } from 'react';
 import PropTypes from 'prop-types';
+import Progress from '../../ProfileSettings/Progress';
+import { addVideos } from '../../../../actions/course';
+import { connect } from 'react-redux';
 
 const CourseDetailsItem = ({
-  course: { price_per_session, image, course_description, title }
+  course: { id, price_per_session, coach_id, image, course_description, title }, addVideos
 }) => {
+  const [file, setFile] = useState('');
+  const [uploadPercentage, setUploadPercentage] = useState(0);
+  const handleFile = e => {
+    setFile(e.target.files);
+  };
+  const onSubmit = e => {
+    e.preventDefault();
+    const formData = new FormData();
+    formData.append('coursevideo', file);
+    formData.append('coach_id', coach_id);
+    formData.append('course_id', id);
+
+    const config = {
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      onUploadProgress: ProgressEvent => {
+        setUploadPercentage(
+          parseInt(Math.round(ProgressEvent.loaded * 100) / ProgressEvent.total)
+        );
+
+        setTimeout(() => {
+          setUploadPercentage(0);
+        }, 10000);
+      }
+    };
+    console.log(formData);
+    addVideos(formData, config);
+  };
   return (
     <Fragment>
       <div className='full_row flex_r course_banner_wrapper'>
@@ -51,14 +83,12 @@ const CourseDetailsItem = ({
           </div>
         </div>
       </div>
-
       <div className='add-service-modal' id='add-video-modal'>
         <div>
           <div className='full_row head'>
             <h4> Upload Videos </h4>
           </div>
-          <form onSubmit=''>
-            <input name='coach_id' type='hidden' value={''} onChange={''} />
+          <form onSubmit={e => onSubmit(e)}>
             <div className='full_row comm_channel'>
               <div className='full_row header'></div>
               <div className='full_row comm_channel_type'>
@@ -66,12 +96,18 @@ const CourseDetailsItem = ({
                   <div className='form-check'>
                     <input
                       type='file'
-                      name='image'
-                      id='image'
-                      onChange={''}
+                      name='coursevideo'
+                      id='coursevideo'
+                      onChange={handleFile}
+                      multiple
                       required
                     />
                   </div>
+                  {uploadPercentage > 0 ? (
+                      <Progress percentage={uploadPercentage} />
+                    ) : (
+                      ''
+                    )}
                 </div>
                 <div><p>No Videos Added</p></div>
               </div>
@@ -107,9 +143,10 @@ const CourseDetailsItem = ({
                   <div className='form-check'>
                     <input
                       type='file'
-                      name='image'
-                      id='image'
+                      name='documents'
+                      id='documents'
                       onChange={''}
+                      multiple
                       required
                     />
                   </div>
@@ -139,7 +176,8 @@ const CourseDetailsItem = ({
 };
 
 CourseDetailsItem.propTypes = {
-  course: PropTypes.object.isRequired
+  course: PropTypes.object.isRequired,
+  addVideos: PropTypes.func.isRequired
 };
 
-export default CourseDetailsItem;
+export default connect(null, {addVideos})(CourseDetailsItem);
