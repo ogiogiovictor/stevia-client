@@ -155,7 +155,7 @@ const CoachServices = ({
                     <input
                       type='radio'
                       name='medium_of_communication'
-                      value='zoom'
+                      value='1'
                       className='form-check-input'
                       onChange={e => onChange(e)}
                       readOnly
@@ -169,7 +169,7 @@ const CoachServices = ({
                     <input
                       type='radio'
                       name='medium_of_communication'
-                      value='skype'
+                      value='2'
                       onChange={e => onChange(e)}
                       className='form-check-input'
                       readOnly
@@ -183,7 +183,7 @@ const CoachServices = ({
                     <input
                       type='radio'
                       name='medium_of_communication'
-                      value='whatsapp'
+                      value='3'
                       onChange={e => onChange(e)}
                       className='form-check-input'
                       readOnly

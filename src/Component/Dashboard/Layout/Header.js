@@ -22,7 +22,7 @@ const Header = ({
           ) : (
             <Link to='/dashboard'>
               <img
-                src={process.env.PUBLIC_URL + '../../assets/utils/images/34.svg'}
+                src={process.env.PUBLIC_URL + '../../../../assets/utils/images/34.svg'}
                 alt=''
               />
             </Link>

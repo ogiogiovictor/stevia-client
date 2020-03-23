@@ -121,7 +121,7 @@ const CreateCourse = ({
               <form onSubmit={e => onSubmit(e)}>
                 <div className='full_row create_course_form'>
                   <div className='full_row service_section'>
-                  <div className='full_row servive_type'>
+                    <div className='full_row servive_type'>
                       <div className='common_input_wrapper_2'>
                         <select
                           name='course_type'
@@ -131,7 +131,7 @@ const CreateCourse = ({
                         >
                           <option selected>Select Type</option>
                           <option value='fullcourse'>Full Course</option>
-                          <option value='appointment'>Appointment</option>
+                          <option value='appointment'>Short Session</option>
                         </select>
                       </div>
                     </div>

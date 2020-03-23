@@ -8,11 +8,18 @@ import { getCourses } from '../../../../actions/course';
 import Spinner from '../../../Spinner/Spinner';
 import CourseDetailsItem from './CourseDetailsItem';
 
-const CourseDetails = ({ getCourses, courses: { courses, loading }, user, match }) => {
-    useEffect(() => {
-        getCourses();
-      }, [getCourses]);
-      return loading ? <Spinner /> : (
+const CourseDetails = ({
+  getCourses,
+  courses: { courses, loading },
+  user,
+  match
+}) => {
+  useEffect(() => {
+    getCourses();
+  }, [getCourses]);
+  return loading ? (
+    <Spinner />
+  ) : (
     <Fragment>
       <section className='whole_page_wrapper'>
         <Header menu={user && user.menu} />
@@ -21,17 +28,17 @@ const CourseDetails = ({ getCourses, courses: { courses, loading }, user, match 
 
           <div className='full_row course_banner'>
             <div className='dashboard_center'>
-            {courses.length > 0 ? (
-                    courses.map(course => (
-                    parseInt(match.params.id) === course.id ?
-                      <CourseDetailsItem
-                        key={course.id}
-                        course={course}
-                      /> : ''
-                    ))
+              {courses.length > 0 ? (
+                courses.map(course =>
+                  parseInt(match.params.id) === course.id ? (
+                    <CourseDetailsItem key={course.id} course={course} />
                   ) : (
-                    <h4>No Courses Found...</h4>
-                  )}
+                    ''
+                  )
+                )
+              ) : (
+                <h4>No Courses Found...</h4>
+              )}
             </div>
           </div>
           <div className='full_row enrolled_student'>
@@ -40,101 +47,154 @@ const CourseDetails = ({ getCourses, courses: { courses, loading }, user, match 
                 <h4>Enrolled Students</h4>
               </div>
               <div className='full_row enrolledStudent_list_n_pagination_wrapper'>
-                <div className='full_row student_list_wrapper'>
-                  <div className='each_student'>
-                    <div className='flex_r_a_center top'>
-                      <div className='stud_image'>
-                        <img src='../utils/images/40.png' alt='' />
+                <div></div>
+                <div className='full_row admin_dashboard_coaches_top'>
+                  <div className='dashboard_center'>
+                    <div className='full_row flex_r_j_between_align_center top'>
+                      <div className='flex_r_j_between_align_center search_input'>
+                        <input
+                          type='text'
+                          name=''
+                          id=''
+                          placeholder='Search courses…'
+                        />
+                        <button>
+                          <i className='fas fa-search'></i>
+                        </button>
                       </div>
-                      <div className='name_n_email'>
-                        <p> Ifeanyi Umunnakwe </p>
-                        <span> ifeanyiernestict@gmail.com </span>
+                      <div className='flex_r_j_end_align_center right'>
+                        <div className='sort_text'>
+                          <p>Sort by</p>
+                        </div>
+                        <div className='sort_type'>
+                          <select name='' id='' className='search_select'>
+                            <option value=''> Date </option>
+                          </select>
+                        </div>
                       </div>
-                    </div>
-                    <div className='full_row flex_r_j_center_align_center appointment_card_footer bottom'>
-                      <Link to=''> Confirm </Link>
-                    </div>
-                  </div>
-                  <div className='each_student'>
-                    <div className='flex_r_a_center top'>
-                      <div className='stud_image'>
-                        <img src='../utils/images/40.png' alt='' />
-                      </div>
-                      <div className='name_n_email'>
-                        <p> Ifeanyi Umunnakwe </p>
-                        <span> ifeanyiernestict@gmail.com </span>
-                      </div>
-                    </div>
-                    <div className='full_row flex_r_j_center_align_center appointment_card_footer bottom'>
-                      <Link to=''> Confirm </Link>
-                    </div>
-                  </div>
-                  <div className='each_student'>
-                    <div className='flex_r_a_center top'>
-                      <div className='stud_image'>
-                        <img src='../utils/images/40.png' alt='' />
-                      </div>
-                      <div className='name_n_email'>
-                        <p> Ifeanyi Umunnakwe </p>
-                        <span> ifeanyiernestict@gmail.com </span>
-                      </div>
-                    </div>
-                    <div className='full_row flex_r_j_center_align_center appointment_card_footer bottom'>
-                      <Link to=''> Confirm </Link>
-                    </div>
-                  </div>
-                  <div className='each_student'>
-                    <div className='flex_r_a_center top'>
-                      <div className='stud_image'>
-                        <img src='../utils/images/40.png' alt='' />
-                      </div>
-                      <div className='name_n_email'>
-                        <p> Ifeanyi Umunnakwe </p>
-                        <span> ifeanyiernestict@gmail.com </span>
-                      </div>
-                    </div>
-                    <div className='full_row flex_r_j_center_align_center appointment_card_footer bottom'>
-                      <Link to=''> Confirm </Link>
                     </div>
                   </div>
                 </div>
-                <div className='flex_r_j_end_align_center pagination'>
-                  <div>
-                    {' '}
-                    <Link to='#'>
-                      {' '}
-                      <i class='fas fa-chevron-left'></i>{' '}
-                    </Link>{' '}
-                  </div>
-                  <div>
-                    {' '}
-                    <Link to='#' class='active'>
-                      {' '}
-                      1{' '}
-                    </Link>{' '}
-                  </div>
-                  <div>
-                    {' '}
-                    <Link to='#'> 2 </Link>{' '}
-                  </div>
-                  <div>
-                    {' '}
-                    <Link to='#'> 3 </Link>{' '}
-                  </div>
-                  <div>
-                    {' '}
-                    <Link to='#'> 4 </Link>{' '}
-                  </div>
-                  <div>
-                    {' '}
-                    <Link to='#'> 5 </Link>{' '}
-                  </div>
-                  <div>
-                    {' '}
-                    <Link to='#'>
-                      {' '}
-                      <i class='fas fa-chevron-right'></i>{' '}
-                    </Link>{' '}
+                <div className='full_row table_div_section'>
+                  <div className='dashboard_center'>
+                    <div className='full_row table_div'>
+                      <table>
+                        <thead>
+                          <tr>
+                            <th> Recipient </th>
+                            <th> Phone Number </th>
+                            <th> Email Address </th>
+                            <th> Date Joined </th>
+                            <th>Location</th>
+                            <th> </th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td className='flex_r_a_center recipient'>
+                              <img src='../utils/images/57.png' alt='' />
+                              <span> Strive Masayiwa </span>
+                            </td>
+                            <td> 07074983993 </td>
+                            <td> strivemas@gmail.com </td>
+                            <td> 24- June - 1992 </td>
+                            <td> Abuja </td>
+                            <td className='action'>
+                              <i className='fas fa-align-right'></i>
+                              <div className='action_dropdown'>
+                                <Link to=''> View Details </Link>
+                                <Link to=''> Approve Registration </Link>
+                                <Link to='' className='delete'>
+                                  {' '}
+                                  Delete{' '}
+                                </Link>
+                              </div>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td className='flex_r_a_center recipient'>
+                              <img src='../utils/images/58.png' alt='' />
+                              <span> Strive Masayiwa </span>
+                            </td>
+                            <td> 07074983993 </td>
+                            <td> strivemas@gmail.com </td>
+                            <td> 24- June - 1992 </td>
+                            <td> Abuja </td>
+                            <td className='action'>
+                              <i className='fas fa-align-right'></i>
+                              <div className='action_dropdown'>
+                                <Link to=''> View Details </Link>
+                                <Link to=''> Approve Registration </Link>
+                                <Link to='' className='delete'>
+                                  {' '}
+                                  Delete{' '}
+                                </Link>
+                              </div>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td className='flex_r_a_center recipient'>
+                              <img src='../utils/images/59.png' alt='' />
+                              <span> Strive Masayiwa </span>
+                            </td>
+                            <td> 07074983993 </td>
+                            <td> strivemas@gmail.com </td>
+                            <td> 24- June - 1992 </td>
+                            <td> Abuja </td>
+                            <td className='action'>
+                              <i className='fas fa-align-right'></i>
+                              <div className='action_dropdown'>
+                                <Link to=''> View Details </Link>
+                                <Link to=''> Approve Registration </Link>
+                                <Link to='' className='delete'>
+                                  {' '}
+                                  Delete{' '}
+                                </Link>
+                              </div>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                      <div className='flex_r_j_end_align_center pagination'>
+                        <div>
+                          {' '}
+                          <Link to='#'>
+                            {' '}
+                            <i className='fas fa-chevron-left'></i>{' '}
+                          </Link>{' '}
+                        </div>
+                        <div>
+                          {' '}
+                          <Link to='#' className='active'>
+                            {' '}
+                            1{' '}
+                          </Link>{' '}
+                        </div>
+                        <div>
+                          {' '}
+                          <Link to='#'> 2 </Link>{' '}
+                        </div>
+                        <div>
+                          {' '}
+                          <Link to='#'> 3 </Link>{' '}
+                        </div>
+                        <div>
+                          {' '}
+                          <Link to='#'> 4 </Link>{' '}
+                        </div>
+                        <div>
+                          {' '}
+                          <Link to='#'> 5 </Link>{' '}
+                        </div>
+                        <div>
+                          {' '}
+                          <Link to='#'>
+                            {' '}
+                            <i className='fas fa-chevron-right'></i>{' '}
+                          </Link>{' '}
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -241,4 +301,4 @@ const mapStateToProps = state => ({
   user: state.auth.user
 });
 
-export default connect(mapStateToProps, {getCourses})(CourseDetails);
+export default connect(mapStateToProps, { getCourses })(CourseDetails);

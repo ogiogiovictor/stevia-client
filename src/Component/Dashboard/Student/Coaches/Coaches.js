@@ -1,9 +1,9 @@
 import React, { Fragment, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import Spinner from '../../Spinner/Spinner';
-import { getCoachesProfile } from '../../../actions/profile';
-import Sidebar from '../Sidebar';
+import Spinner from '../../../Spinner/Spinner';
+import { getCoachesProfile } from '../../../../actions/profile';
+import Sidebar from '../../Sidebar';
 import { Link } from 'react-router-dom';
 import CoachItem from './CoachItem'
 

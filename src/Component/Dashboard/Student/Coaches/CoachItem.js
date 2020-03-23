@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import Spinner from '../../Spinner/Spinner';
+import Spinner from '../../../Spinner/Spinner';
 
 const CoachItem = ({ 
     loading,
@@ -52,7 +52,7 @@ const CoachItem = ({
                               </Link>
                             </div>
                             <div>
-                              <button className='black_btn'>Book</button>
+                              <Link to={`./coaches/book/${id}`}><button className='black_btn'>Book</button></Link>
                             </div>
                           </div>
                         </div>

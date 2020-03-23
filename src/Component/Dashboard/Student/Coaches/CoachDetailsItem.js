@@ -1,7 +1,7 @@
 import React, { Fragment, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import CourseItem from './Courses/CourseItem';
-import { getCourses } from '../../../actions/course';
+import CourseItem from '../Courses/CourseItem';
+import { getCourses } from '../../../../actions/course';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
@@ -83,7 +83,7 @@ const CoachDetailsItem = ({
                 </div>
 
                 <div className='full_row book_button'>
-                  <button className='black_btn'>book {firstname}</button>
+                  <Link to={`./book/${id}`}><button className='black_btn'>book {firstname}</button></Link>
                 </div>
               </div>
             </div>
@@ -120,13 +120,13 @@ const CoachDetailsItem = ({
             </div>
             <div className='full_row course_list_wrapper'>
               {courses.length > 0 ? (
-                courses.map(course => (
-                    id === parseInt(course.coach_id) ?
-                  <CourseItem
-                    key={course.id}
-                    course={course}
-                  /> : ''
-                ))
+                courses.map(course =>
+                  id === parseInt(course.coach_id) ? (
+                    <CourseItem key={course.id} course={course} />
+                  ) : (
+                    ''
+                  )
+                )
               ) : (
                 <h4>No Courses Found...</h4>
               )}
@@ -228,7 +228,7 @@ CoachDetailsItem.propTypes = {
 };
 
 const mapStateToProps = state => ({
-    courses: state.courses
-  });
+  courses: state.courses
+});
 
-export default connect(mapStateToProps, {getCourses})(CoachDetailsItem);
+export default connect(mapStateToProps, { getCourses })(CoachDetailsItem);

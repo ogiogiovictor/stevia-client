@@ -1,8 +1,8 @@
 import React, { Fragment, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import Header from '../Layout/Header';
-import Topnav from '../Layout/Topnav';
-import { getCoachesProfile } from '../../../actions/profile';
+import Header from '../../Layout/Header';
+import Topnav from '../../Layout/Topnav';
+import { getCoachesProfile } from '../../../../actions/profile';
 import { connect } from 'react-redux';
 import CoachDetailsItem from './CoachDetailsItem';
 
