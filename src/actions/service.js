@@ -149,7 +149,7 @@ export const bookACoach = (formData) => async dispatch => {
       formData,
       config
     );
-    console.log(res.data);
+    dispatch(setAlert(res.data.msg, 'success'));
     dispatch({
       type: BOOK_A_COACH,
       payload: res.data.data
