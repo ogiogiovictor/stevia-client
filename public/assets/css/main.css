@@ -412,9 +412,18 @@ button.red_btn:disabled {
 button.black_btn {
   background-color: #303037;
 }
+button.black_btn:disabled {
+  background-color: #dddddd;
+  cursor: progress;
+}
 
 button.black_btn:hover {
   background-color: #1b1b20;
+}
+
+button.black_btn:hover:disabled {
+  background-color: #dddddd;
+  cursor: progress;
 }
 
 button.grey_btn {

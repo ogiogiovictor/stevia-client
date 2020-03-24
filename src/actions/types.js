@@ -23,3 +23,6 @@ export const GET_COURSES = 'GET_COURSES';
 export const COURSE_ERROR = 'COURSE_ERROR';
 export const ADD_COURSE = 'ADD_COURSE';
 export const ADD_VIDEOS = 'ADD_VIDEOS';
+export const BOOK_A_COACH = 'BOOK_A_COACH';
+
+
