@@ -8,15 +8,22 @@
   },
   "dependencies": {
     "@bumaga/tabs": "^0.2.0",
+    "@fullcalendar/core": "^4.4.0",
+    "@fullcalendar/daygrid": "^4.4.0",
+    "@fullcalendar/interaction": "^4.4.0",
+    "@fullcalendar/react": "^4.4.0",
+    "@fullcalendar/timegrid": "^4.4.0",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.4.0",
     "@testing-library/user-event": "^7.2.1",
     "axios": "^0.19.2",
     "axios-progress-bar": "^1.2.0",
+    "date-fns": "^2.11.1",
     "framer-motion": "^1.8.4",
     "jquery": "^3.4.1",
     "moment": "^2.24.0",
     "react": "^16.12.0",
+    "react-big-calendar-like-google": "0.0.3",
     "react-devtools": "^4.4.0",
     "react-dom": "^16.12.0",
     "react-helmet": "^5.2.1",
@@ -38,7 +45,7 @@
     "uuid": "^3.4.0"
   },
   "scripts": {
-    "start": "serve -s build",
+    "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"

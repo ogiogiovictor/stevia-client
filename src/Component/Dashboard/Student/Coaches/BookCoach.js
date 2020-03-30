@@ -9,6 +9,12 @@ import { render } from 'react-dom';
 import { Wizard, Steps, Step, Navigation, Progress } from 'react-wizr';
 import { useForm } from 'react-hook-form';
 import './Style.css';
+import FullCalendar from '@fullcalendar/react';
+import dayGridPlugin from '@fullcalendar/daygrid';
+import timeGridPlugin from '@fullcalendar/timegrid';
+import interactionPlugin from '@fullcalendar/interaction'; // needed for dayClick
+import '@fullcalendar/core/main.css';
+import '@fullcalendar/daygrid/main.css';
 
 const BookCoach = ({
   getCoachesProfile,
@@ -26,10 +32,12 @@ const BookCoach = ({
     channel_id: '',
     note: '',
     amount: '',
-    date: ''
+    date: '',
+    start_date: '',
+    end_date: ''
   });
 
-  const { service_id, note, amount, date } = formData;
+  const { service_id, note, amount, date, start_date, end_date } = formData;
 
   const onChange = e =>
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -48,15 +56,14 @@ const BookCoach = ({
     ? coach.services.find(({ id }) => id === parseInt(service_id))
     : '';
 
-    const onSubmit = e => {
-      e.preventDefault();
-      formData.coach_id = match.params.id;
-      formData.channel_id = service_id;
-      formData.student_id = user.currentUser.id;
-      formData.course_type = 'appointment';
-      formData.status = 'pending';
-      bookACoach(formData);
-    };
+  const onSubmit = e => {
+    e.preventDefault();
+    formData.coach_id = match.params.id;
+    formData.channel_id = service_id;
+    formData.student_id = user.currentUser.id;
+    formData.course_type = 'appointment';
+    bookACoach(formData);
+  };
 
   const SimpleNavigation = () => (
     <Navigation
@@ -68,7 +75,12 @@ const BookCoach = ({
             </button>
           )}
           {activeStepIndex < totalSteps - 1 && (
-            <button type='submit' disabled={!formState.isValid} className='black_btn' onClick={goToNextStep}>
+            <button
+              type='submit'
+              disabled={!formState.isValid}
+              className='black_btn'
+              onClick={goToNextStep}
+            >
               Continue
             </button>
           )}
@@ -139,18 +151,29 @@ const BookCoach = ({
                               </div>
                               <div class='settings_content'>
                                 <div class='left'>
-                                <div className={!errors.service_id ? '' : 'alert alert-danger'}>
-                {errors.service_id && errors.service_id.message}
-              </div>
+                                  <div
+                                    className={
+                                      !errors.service_id
+                                        ? ''
+                                        : 'alert alert-danger'
+                                    }
+                                  >
+                                    {errors.service_id &&
+                                      errors.service_id.message}
+                                  </div>
                                   <div class='flex_r_wrap service_select'>
                                     <select
                                       name='service_id'
                                       className='search_select search_select2'
                                       onChange={e => onChange(e)}
                                       value={service_id}
-                                      ref={register({ required: 'Choose a Service' })}
+                                      ref={register({
+                                        required: 'Choose a Service'
+                                      })}
                                     >
-                                      <option selected>{selectedOption}</option>
+                                      <option defaultValue>
+                                        {selectedOption}
+                                      </option>
                                       {coach ? (
                                         coach.services.map(service => (
                                           <option
@@ -178,13 +201,19 @@ const BookCoach = ({
                                         rows='5'
                                         value={note}
                                         onChange={e => onChange(e)}
-                                        ref={register({ required: 'This Field is required' })}
+                                        ref={register({
+                                          required: 'This Field is required'
+                                        })}
                                         required
                                       ></textarea>
                                     </div>
-                                    <div className={!errors.note ? '' : 'alert alert-danger'}>
-                {errors.note && errors.note.message}
-              </div>
+                                    <div
+                                      className={
+                                        !errors.note ? '' : 'alert alert-danger'
+                                      }
+                                    >
+                                      {errors.note && errors.note.message}
+                                    </div>
                                   </div>
                                   <SimpleNavigation />
                                 </div>
@@ -233,7 +262,9 @@ const BookCoach = ({
                                           findservice &&
                                           findservice.price_per_session
                                         }
-                                        ref={register({ required: 'This Field is required' })}
+                                        ref={register({
+                                          required: 'This Field is required'
+                                        })}
                                         className='form-check-input'
                                         onChange={e => onChange(e)}
                                         readOnly
@@ -252,7 +283,9 @@ const BookCoach = ({
                                           findservice &&
                                           findservice.price_per_hour
                                         }
-                                        ref={register({ required: 'This Field is required' })}
+                                        ref={register({
+                                          required: 'This Field is required'
+                                        })}
                                         className='form-check-input'
                                         onChange={e => onChange(e)}
                                         readOnly
@@ -262,14 +295,15 @@ const BookCoach = ({
                                         findservice.price_per_hour}
                                     </label>
                                     <div
-                                    className={
-                                      !errors.amount ? '' : 'alert alert-danger'
-                                    }
-                                  >
-                                    {errors.amount && errors.amount.message}
+                                      className={
+                                        !errors.amount
+                                          ? ''
+                                          : 'alert alert-danger'
+                                      }
+                                    >
+                                      {errors.amount && errors.amount.message}
+                                    </div>
                                   </div>
-                                  </div>
-                                  
                                 </div>
                                 <SimpleNavigation />
                               </div>
@@ -299,55 +333,34 @@ const BookCoach = ({
                         <section>
                           <div class='full_row date_n_time'>
                             <div class='heder_text_div'>
-                              <p>Select Date and Time.</p>
+                              <h3 className='callout'>
+                                Click an event to see more info, or drag the
+                                mouse over the calendar to select a date/time
+                                range.
+                              </h3>
                             </div>
                             <div class='settings_content'>
                               <div class='left'>
-                                <div className='label'>
-                                  <p> Date: </p>
-                                </div>
-                                <div className='common_input_wrapper_2'>
-                                  <input
-                                    type='date'
-                                    name='date'
-                                    value={date}
-                                    placeholder='MM / DD / YY'
-                                    onChange={e => onChange(e)}
-                                    required
+                                <div>
+                                  <FullCalendar
+                                    defaultView='dayGridWeek'
+                                    header={{
+                                      left: 'prev,next today',
+                                      center: 'title',
+                                      right:
+                                        'dayGridMonth,timeGridWeek,timeGridDay,listWeek'
+                                    }}
+                                    plugins={[
+                                      dayGridPlugin,
+                                      timeGridPlugin,
+                                      interactionPlugin
+                                    ]}
+                                    weekends={true}
+                                    events={[
+                                      { title: 'event 1', date: '2020-04-01' },
+                                      { title: 'event 2', date: '2020-04-02' }
+                                    ]}
                                   />
-                                </div>
-
-                                <div className='flex_r_a_center time'>
-                                  <div className='label'>
-                                    {' '}
-                                    <p> From: </p>{' '}
-                                  </div>
-                                  <div className='common_input_wrapper_2'>
-                                    <input
-                                      type='time'
-                                      name='from_time'
-                                      value={''}
-                                      placeholder='00:00 AM'
-                                      onChange={e => onChange(e)}
-                                      required
-                                    />
-                                  </div>
-                                </div>
-                                <div className='flex_r_a_center to'>
-                                  <div className='label'>
-                                    {' '}
-                                    <p> To: </p>{' '}
-                                  </div>
-                                  <div className='common_input_wrapper_2'>
-                                    <input
-                                      type='time'
-                                      name='to_time'
-                                      value={''}
-                                      placeholder='00:00 AM'
-                                      onChange={e => onChange(e)}
-                                      required
-                                    />
-                                  </div>
                                 </div>
                                 <SimpleNavigation />
                               </div>
@@ -376,110 +389,132 @@ const BookCoach = ({
                       <Step id='fourth'>
                         <section>
                           <form onSubmit={e => onSubmit(e)}>
-                          <div class='full_row review_n_pay'>
-                            <div class='heder_text_div'>
-                              <p>
-                                Please review your appointment details below,
-                                then click ‘Pay’ to proceed with the
-                                transaction.
-                              </p>
-                            </div>
-                            <div class='settings_content'>
-                              <div class='left'>
-                                <div class='full_row appointment'>
-                                  <div>
-                                    <div class='full_row card_body'>
-                                      <div class='flex_r_a_center'>
-                                        <div class='image'>
-                                          <img
-                                            src={user && user.currentUser.image}
-                                            alt=''
-                                          />
+                            <div class='full_row review_n_pay'>
+                              <div class='heder_text_div'>
+                                <p>
+                                  Please review your appointment details below,
+                                  then click ‘Pay’ to proceed with the
+                                  transaction.
+                                </p>
+                              </div>
+                              <div class='settings_content'>
+                                <div class='left'>
+                                  <div class='full_row appointment'>
+                                    <div>
+                                      <div class='full_row card_body'>
+                                        <div class='flex_r_a_center'>
+                                          <div class='image'>
+                                            <img
+                                              src={
+                                                user && user.currentUser.image
+                                              }
+                                              alt=''
+                                            />
+                                          </div>
+                                          <div class='name'>
+                                            <h4>
+                                              {user &&
+                                                user.currentUser.firstname}{' '}
+                                              {user &&
+                                                user.currentUser.lastname}
+                                            </h4>
+                                            <p>
+                                              {' '}
+                                              {findservice &&
+                                                findservice.service}
+                                            </p>
+                                          </div>
                                         </div>
-                                        <div class='name'>
-                                          <h4>
-                                            {user && user.currentUser.firstname}{' '}
-                                            {user && user.currentUser.lastname}
-                                          </h4>
+                                        <div class='full_row note'>
+                                          <h6> Note </h6>
+                                          <p>{note}</p>
+                                        </div>
+                                        <div class='full_row channel'>
+                                          <h4> Communication channel </h4>
                                           <p>
-                                            {' '}
-                                            {findservice && findservice.service}
+                                            {findservice &&
+                                              findservice.communication}
                                           </p>
                                         </div>
-                                      </div>
-                                      <div class='full_row note'>
-                                        <h6> Note </h6>
-                                        <p>{note}</p>
-                                      </div>
-                                      <div class='full_row channel'>
-                                        <h4> Communication channel </h4>
-                                        <p>
-                                          {findservice &&
-                                            findservice.communication}
-                                        </p>
-                                      </div>
-                                      <div class='flex_r_j_between_align_center date_top'>
-                                        <div class='flex_r_a_center'>
-                                          <div>
-                                            {' '}
-                                            <i class='far fa-calendar'></i>{' '}
+                                        <div class='flex_r_j_between_align_center date_top'>
+                                          <div class='flex_r_a_center'>
+                                            <div>
+                                              {' '}
+                                              <i class='far fa-calendar'></i>{' '}
+                                            </div>
+                                            <div>
+                                              {' '}
+                                              <span> {date} </span>{' '}
+                                            </div>
                                           </div>
-                                          <div>
-                                            {' '}
-                                            <span> {date} </span>{' '}
-                                          </div>
-                                        </div>
-                                        <div class='flex_r_a_center'>
-                                          <div>
-                                            {' '}
-                                            <i class='far fa-clock'></i>{' '}
-                                          </div>
-                                          <div>
-                                            {' '}
-                                            <span> 2:30 - 3:30 PM </span>{' '}
+                                          <div class='flex_r_a_center'>
+                                            <div>
+                                              {' '}
+                                              <i class='far fa-clock'></i>{' '}
+                                            </div>
+                                            <div>
+                                              {' '}
+                                              <span>
+                                                {' '}
+                                                {start_date} - {end_date}{' '}
+                                              </span>{' '}
+                                            </div>
                                           </div>
                                         </div>
-                                      </div>
-                                      <div class='flex_r_j_between_align_center date_bottom'>
-                                        <div class='flex_r_a_center'>
-                                          <div>
-                                            {' '}
-                                            <i class='far fa-building'></i>{' '}
-                                          </div>
-                                          <div>
-                                            {' '}
-                                            <span> {findservice && amount === findservice.price_per_hour ? findservice.price_per_hour + ' per hour'  : findservice &&findservice.price_per_session + ' per session' } </span>{' '}
+                                        <div class='flex_r_j_between_align_center date_bottom'>
+                                          <div class='flex_r_a_center'>
+                                            <div>
+                                              {' '}
+                                              <i class='far fa-building'></i>{' '}
+                                            </div>
+                                            <div>
+                                              {' '}
+                                              <span>
+                                                {' '}
+                                                {findservice &&
+                                                amount ===
+                                                  findservice.price_per_hour
+                                                  ? findservice.price_per_hour +
+                                                    ' per hour'
+                                                  : findservice &&
+                                                    findservice.price_per_session +
+                                                      ' per session'}{' '}
+                                              </span>{' '}
+                                            </div>
                                           </div>
                                         </div>
                                       </div>
                                     </div>
                                   </div>
-                                </div>
-                                <div class='flex_r_j_end_align_center btn'>
-                                  <button type='submit' class='black_btn' id='goto_status'>
-                                    Pay
-                                  </button>
-                                </div>
-                              </div>
-                              <div class='right'>
-                                <div class='full_row help_box'>
-                                  <div class='full_row flex_r_a_center head'>
-                                    <i class='far fa-lightbulb'></i>
-                                    <p>Help message</p>
+                                  <div class='flex_r_j_end_align_center btn'>
+                                    <button
+                                      type='submit'
+                                      class='black_btn'
+                                      id='goto_status'
+                                    >
+                                      Pay
+                                    </button>
                                   </div>
-                                  <div class='full_row body'>
-                                    <p>
-                                      This is a summary of your booking details.
-                                      kindly go through to ensure all the
-                                      details provided is accurate.
-                                    </p>
-                                    <p>Click on pay to confirm booking.</p>
+                                </div>
+                                <div class='right'>
+                                  <div class='full_row help_box'>
+                                    <div class='full_row flex_r_a_center head'>
+                                      <i class='far fa-lightbulb'></i>
+                                      <p>Help message</p>
+                                    </div>
+                                    <div class='full_row body'>
+                                      <p>
+                                        This is a summary of your booking
+                                        details. kindly go through to ensure all
+                                        the details provided is accurate.
+                                      </p>
+                                      <p>Click on pay to confirm booking.</p>
+                                    </div>
                                   </div>
                                 </div>
                               </div>
                             </div>
-                          </div>
-                          <SimpleNavigation />
+                            <SimpleNavigation />
                           </form>
                         </section>
                       </Step>
@@ -507,4 +542,6 @@ const mapStateToProps = state => ({
   user: state.auth.user
 });
 
-export default connect(mapStateToProps, { getCoachesProfile, bookACoach })(BookCoach);
+export default connect(mapStateToProps, { getCoachesProfile, bookACoach })(
+  BookCoach
+);

@@ -1,9 +1,10 @@
-import { GET_PROFILE, PROFILE_ERROR, CLEAR_PROFILE, GET_COACHES_PROFILE } from '../actions/types';
+import { GET_PROFILE, PROFILE_ERROR, CLEAR_PROFILE, GET_COACHES_PROFILE, COACH_AVAILABILITY } from '../actions/types';
 
 const initialState = {
   profile: null,
   coaches: [],
   loading: true,
+  coachavailability: {},
   error: {},
   role: null
 };
@@ -22,6 +23,12 @@ export default function(state = initialState, action) {
       return {
         ...state,
         coaches: payload,
+        loading: false,
+      };
+    case COACH_AVAILABILITY:
+      return {
+        ...state,
+        coachavailability: payload,
         loading: false,
       };
     case PROFILE_ERROR:

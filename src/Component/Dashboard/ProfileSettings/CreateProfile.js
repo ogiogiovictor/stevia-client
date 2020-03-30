@@ -15,7 +15,8 @@ import {
   createProfile,
   getCurrentProfile,
   profileImage,
-  coachOtherInfo
+  coachOtherInfo,
+  coachAvailability
 } from '../../../actions/profile';
 import Header from '../Layout/Header';
 import Topnav from '../Layout/Topnav';
@@ -77,6 +78,7 @@ const CreateProfile = ({
   createProfile,
   coachOtherInfo,
   profileImage,
+  coachAvailability,
   history
 }) => {
   const state = useState(0);
@@ -99,7 +101,16 @@ const CreateProfile = ({
     youtube_link: '',
     facebook: '',
     twitter: '',
-    linkedin: ''
+    linkedin: '',
+    start: '',
+    end: '',
+    monday: '',
+    tuesday: '',
+    wednesday: '',
+    thursday: '',
+    friday: '',
+    saturday: '',
+    sunday: ''
   });
 
   const [file, setFile] = useState('');
@@ -150,7 +161,16 @@ const CreateProfile = ({
     youtube_link,
     facebook,
     twitter,
-    linkedin
+    linkedin,
+    start,
+    end,
+    monday,
+    tuesday,
+    wednesday,
+    thursday,
+    friday,
+    saturday,
+    sunday
   } = formData;
 
   const onChange = e =>
@@ -200,6 +220,17 @@ const CreateProfile = ({
     formDataCoach.append('twitter', twitter);
     formDataCoach.append('linkedin', linkedin);
     coachOtherInfo(formDataCoach, history, true);
+  };
+  
+  const onSubmit5 = e => {
+    e.preventDefault();
+    const formData = new FormData();
+    const timenew = [start, end];
+    formData.append('coach_id', user && user.currentUser.id);
+    formData.append('days', [monday, tuesday, wednesday, thursday, friday, saturday, sunday]);
+    formData.append('time', timenew);
+    coachAvailability(formData);
+    console.log(wednesday, start, end)
   };
 
   return (
@@ -746,98 +777,197 @@ const CreateProfile = ({
                 {user && user.currentUser.role.name === 'COACH' ? (
                   <Panel>
                     <section className='availability_section'>
-                      <div className='full_row settings_box profile_details'>
-                        <div className='full_row top_part'>
-                          <div className='full_row header'>
-                            <p>
-                              When would you like to be available for
-                              appointment
-                            </p>
-                          </div>
-                          <div className='flex_r_j_between_align_center  time_zone'>
-                            <div className='left'>
-                              {' '}
-                              <p> Time Zone </p>{' '}
+                      <form onSubmit={e => onSubmit5(e)}>
+                        <div className='full_row settings_box profile_details'>
+                          <div className='full_row top_part'>
+                            <div className='full_row header'>
+                              <p>
+                                When would you like to be available for
+                                appointment
+                              </p>
                             </div>
-                            <div className='right'>
-                              <div className='common_input_wrapper_2'>
-                                <select
-                                  name=''
-                                  id=''
-                                  className='search_select search_select2'
-                                >
-                                  <option value=''>
-                                    {' '}
-                                    (+01:00) West Central Africa{' '}
-                                  </option>
-                                </select>
+                            <div className='flex_r_j_between_align_center  time_zone'>
+                              <div className='left'>
+                                {' '}
+                                <p> Time Zone </p>{' '}
                               </div>
-                            </div>
-                          </div>
-                        </div>
-                        <div className='full_row bottom_part'>
-                          <div className='flex_r_j_between_align_center top'>
-                            <div className='left'>
-                              <p> Available </p>
-                            </div>
-                            <div className='flex_r_j_end_align_center right'>
-                              <div className='from'>
+                              <div className='right'>
                                 <div className='common_input_wrapper_2'>
                                   <select
                                     name=''
                                     id=''
                                     className='search_select search_select2'
                                   >
-                                    <option value=''> 00:00 </option>
-                                  </select>
-                                </div>
-                              </div>
-                              <div className='flex_r_a_center to'>
-                                <p> to </p>
-                                <div className='common_input_wrapper_2'>
-                                  <select
-                                    name=''
-                                    id=''
-                                    className='search_select search_select2'
-                                  >
-                                    <option value=''> 00:30 </option>
+                                    <option value=''>
+                                      {' '}
+                                      (+01:00) West Central Africa{' '}
+                                    </option>
                                   </select>
                                 </div>
                               </div>
                             </div>
                           </div>
-                          <div className='flex_r_j_between_align_center week_days'>
-                            <div>
-                              <input type='checkbox' name='' id='mon' />
-                              <label for='mon'> Mon </label>
+                          <div className='full_row bottom_part'>
+                            <div className='flex_r_j_between_align_center top'>
+                              <div className='left'>
+                                <p> Available </p>
+                              </div>
+                              <div className='flex_r_j_end_align_center right'>
+                                <div className='from'>
+                                  <div className='common_input_wrapper_2'>
+                                    <select
+                                      name='start'
+                                      value={start}
+                                      onChange={e => onChange(e)}
+                                      className='search_select search_select2'
+                                    >
+                                      <option value='00:00'> 00:00 </option>
+                                      <option value='01:00'> 01:00 </option>
+                                      <option value='02:00'> 02:00 </option>
+                                      <option value='03:00'> 03:00 </option>
+                                      <option value='04:00 '> 04:00 </option>
+                                      <option value='05:00 '> 05:00 </option>
+                                      <option value='06:00'> 06:00 </option>
+                                      <option value='07:00'> 07:00 </option>
+                                      <option value='08:00'> 08:00 </option>
+                                      <option value='09:00'> 09:00 </option>
+                                      <option value='10:00'> 10:00 </option>
+                                      <option value='11:00'> 11:00 </option>
+                                      <option value='12:00'> 12:00 </option>
+                                      <option value='13:00'> 13:00 </option>
+                                      <option value='14:00'> 14:00 </option>
+                                      <option value='15:00'> 15:00 </option>
+                                      <option value='16:00'> 16:00 </option>
+                                      <option value='17:00'> 17:00 </option>
+                                      <option value='18:00'> 18:00 </option>
+                                      <option value='19:00'> 19:00 </option>
+                                      <option value='20:00'> 20:00 </option>
+                                      <option value='21:00'> 21:00 </option>
+                                      <option value='22:00'> 22:00 </option>
+                                      <option value='23:00'> 23:00 </option>
+                                      <option value='24:00'> 24:00 </option>
+                                    </select>
+                                  </div>
+                                </div>
+                                <div className='flex_r_a_center to'>
+                                  <p> to </p>
+                                  <div className='common_input_wrapper_2'>
+                                    <select
+                                      name='end'
+                                      value={end}
+                                      onChange={e => onChange(e)}
+                                      className='search_select search_select2'
+                                    >
+                                      <option value='00:00'> 00:00 </option>
+                                      <option value='01:00'> 01:00 </option>
+                                      <option value='02:00'> 02:00 </option>
+                                      <option value='03:00'> 03:00 </option>
+                                      <option value='04:00 '> 04:00 </option>
+                                      <option value='05:00 '> 05:00 </option>
+                                      <option value='06:00'> 06:00 </option>
+                                      <option value='07:00'> 07:00 </option>
+                                      <option value='08:00'> 08:00 </option>
+                                      <option value='09:00'> 09:00 </option>
+                                      <option value='10:00'> 10:00 </option>
+                                      <option value='11:00'> 11:00 </option>
+                                      <option value='12:00'> 12:00 </option>
+                                      <option value='13:00'> 13:00 </option>
+                                      <option value='14:00'> 14:00 </option>
+                                      <option value='15:00'> 15:00 </option>
+                                      <option value='16:00'> 16:00 </option>
+                                      <option value='17:00'> 17:00 </option>
+                                      <option value='18:00'> 18:00 </option>
+                                      <option value='19:00'> 19:00 </option>
+                                      <option value='20:00'> 20:00 </option>
+                                      <option value='21:00'> 21:00 </option>
+                                      <option value='22:00'> 22:00 </option>
+                                      <option value='23:00'> 23:00 </option>
+                                      <option value='24:00'> 24:00 </option>
+                                    </select>
+                                  </div>
+                                </div>
+                              </div>
                             </div>
-                            <div>
-                              <input type='checkbox' name='' id='tue' />
-                              <label for='tue'> tue </label>
+                            <div className='flex_r_j_between_align_center week_days'>
+                              <div>
+                                <input
+                                  type='checkbox'
+                                  name='monday'
+                                  value='monday'
+                                  onChange={e => onChange(e)}
+                                  id='mon'
+                                />
+                                <label for='mon'> Mon </label>
+                              </div>
+                              <div>
+                                <input
+                                  type='checkbox'
+                                  name='tuesday'
+                                  value='tuesday'
+                                  onChange={e => onChange(e)}
+                                  id='tue'
+                                />
+                                <label for='tue'> tue </label>
+                              </div>
+                              <div>
+                                <input
+                                  type='checkbox'
+                                  name='wednesday'
+                                  value='wednesday'
+                                  onChange={e => onChange(e)}
+                                  id='wednesday'
+                                />
+                                <label for='wednesday'> wed </label>
+                              </div>
+                              <div>
+                                <input
+                                  type='checkbox'
+                                  name='thursday'
+                                  value='thursday'
+                                  onChange={e => onChange(e)}
+                                  id='thurs'
+                                />
+                                <label for='thurs'> thurs </label>
+                              </div>
+                              <div>
+                                <input
+                                  type='checkbox'
+                                  name='friday'
+                                  value='friday'
+                                  onChange={e => onChange(e)}
+                                  id='fri'
+                                />
+                                <label for='fri'> fri </label>
+                              </div>
+                              <div>
+                                <input
+                                  type='checkbox'
+                                  name='saturday'
+                                  value='saturday'
+                                  onChange={e => onChange(e)}
+                                  id='sat'
+                                />
+                                <label for='sat'> sat </label>
+                              </div>
+                              <div>
+                                <input
+                                  type='checkbox'
+                                  name='sunday'
+                                  value='sunday'
+                                  onChange={e => onChange(e)}
+                                  id='sun'
+                                />
+                                <label for='sun'> sun </label>
+                              </div>
                             </div>
-                            <div>
-                              <input type='checkbox' name='' id='wed' />
-                              <label for='wed'> wed </label>
-                            </div>
-                            <div>
-                              <input type='checkbox' name='' id='thurs' />
-                              <label for='thurs'> thurs </label>
-                            </div>
-                            <div>
-                              <input type='checkbox' name='' id='fri' />
-                              <label for='fri'> fri </label>
-                            </div>
-                            <div>
-                              <input type='checkbox' name='' id='sat' />
-                              <label for='sat'> sat </label>
-                            </div>
-                            <div>
-                              <input type='checkbox' name='' id='sun' />
-                              <label for='sun'> sun </label>
-                            </div>
+                          </div>
+                          <div className='full_row button text-right'>
+                            <button type='submit' className='red_btn'>
+                              Update Availability
+                            </button>
                           </div>
                         </div>
-                      </div>
+                      </form>
                     </section>
                     <section className='notification_section2'>
                       <div className='full_row settings_box profile_details'>
@@ -913,6 +1043,7 @@ const CreateProfile = ({
 CreateProfile.propTypes = {
   auth: PropTypes.object.isRequired,
   createProfile: PropTypes.func.isRequired,
+  coachAvailability: PropTypes.func.isRequired,
   profileImage: PropTypes.func.isRequired,
   coachOtherInfo: PropTypes.func.isRequired,
   getCurrentProfile: PropTypes.func.isRequired,
@@ -928,5 +1059,6 @@ export default connect(mapStateToProps, {
   createProfile,
   profileImage,
   getCurrentProfile,
+  coachAvailability,
   coachOtherInfo
 })(withRouter(CreateProfile));

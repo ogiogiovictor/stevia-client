@@ -128,12 +128,12 @@ const App = () => {
               component={CreateProfile}
             />
             <PrivateRoute
-              path='/dashboard/student'
+              path='/dashboard/student/overview'
               exact
               component={Dashboard}
             />
             <PrivateRoute
-              path='/dashboard/coaches'
+              path='/dashboard/coaches/overview'
               exact
               component={Dashboard}
             />

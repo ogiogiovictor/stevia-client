@@ -1,11 +1,11 @@
 import Axios from 'axios';
 import { setAlert } from './alert';
 
-import { GET_PROFILE, PROFILE_ERROR, CLEAR_PROFILE, GET_COACHES_PROFILE, UPLOAD_PROFILE_IMAGE } from './types';
+import { GET_PROFILE, PROFILE_ERROR, CLEAR_PROFILE, GET_COACHES_PROFILE, UPLOAD_PROFILE_IMAGE, COACH_AVAILABILITY } from './types';
 import { loadUser } from './auth';
 
-const url = 'https://omareservations.com/stevia/api';
-// const url = 'http://127.0.0.1:8000/api';
+// const url = 'https://omareservations.com/stevia/api';
+const url = 'http://127.0.0.1:8000/api';
 export const getCurrentProfile = () => async dispatch => {
 if (localStorage.token) {
   try {
@@ -133,3 +133,28 @@ export const getCoachesProfile = () => async dispatch => {
     });
   }
 };
+
+// Coach Availability
+export const coachAvailability = (formData) => async dispatch => {
+  try {
+    const config = {
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    }
+    const res = await Axios.post(`${url}/coach-service/coach_availability`, formData, config);
+
+    dispatch({
+      type: COACH_AVAILABILITY,
+      payload: res.data.data
+    });
+    
+    dispatch(setAlert('Availability Updated Successfully', 'success'));
+
+  } catch (error) {
+    dispatch({
+      type: PROFILE_ERROR,
+      payload: { msg: error }
+    });
+  }
+}
