@@ -28,7 +28,8 @@ const CreateCourse = ({
     to_time: '',
     course_duration: '',
     brief_description: '',
-    youtube_video_preview: ''
+    youtube_video_preview: '',
+    course_type: ''
   });
   const [file, setFile] = useState('');
   const [uploadPercentage, setUploadPercentage] = useState(0);
@@ -43,7 +44,8 @@ const CreateCourse = ({
     to_time,
     course_duration,
     brief_description,
-    youtube_video_preview
+    youtube_video_preview,
+    course_type
   } = formData;
 
   const onChange = e =>
@@ -62,7 +64,6 @@ const CreateCourse = ({
   const findservice = coachservices.find(
     ({ id }) => id === parseInt(service_id)
   );
-  console.log(findservice);
 
   const onSubmit = e => {
     e.preventDefault();
@@ -78,6 +79,7 @@ const CreateCourse = ({
     formDataImg.append('course_duration', course_duration);
     formDataImg.append('brief_description', brief_description);
     formDataImg.append('youtube_video_preview', youtube_video_preview);
+    formDataImg.append('course_type', course_type);
     formDataImg.append(
       'price_per_session',
       service_id && findservice.price_per_session
@@ -119,6 +121,20 @@ const CreateCourse = ({
               <form onSubmit={e => onSubmit(e)}>
                 <div className='full_row create_course_form'>
                   <div className='full_row service_section'>
+                    <div className='full_row servive_type'>
+                      <div className='common_input_wrapper_2'>
+                        <select
+                          name='course_type'
+                          className='search_select search_select2'
+                          onChange={e => onChange(e)}
+                          required
+                        >
+                          <option selected>Select Type</option>
+                          <option value='fullcourse'>Full Course</option>
+                          <option value='appointment'>Short Session</option>
+                        </select>
+                      </div>
+                    </div>
                     <div className='full_row header'>
                       <p>Select which service you want to book</p>
                     </div>

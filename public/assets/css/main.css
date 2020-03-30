@@ -437,9 +437,18 @@ button.red_btn:hover {
 button.black_btn {
   background-color: #303037;
 }
+button.black_btn:disabled {
+  background-color: #dddddd;
+  cursor: progress;
+}
 
 button.black_btn:hover {
   background-color: #1b1b20;
+}
+
+button.black_btn:hover:disabled {
+  background-color: #dddddd;
+  cursor: progress;
 }
 
 button.grey_btn {
@@ -7825,9 +7834,9 @@ section.dashboard_body .appointments_part .appointment_container .empty_content 
   line-height: 30px;
 }
 
-.appointment_setting_wrapper .appointment_setting .settings_container .appointment_types {
+/* .appointment_setting_wrapper .appointment_setting .settings_container .appointment_types {
   display: none;
-}
+} */
 
 .appointment_setting_wrapper .appointment_setting .settings_container .appointment_types .settings_content .left .app_type > div {
   border: 1px solid #E3E3E3;
@@ -7871,9 +7880,9 @@ section.dashboard_body .appointments_part .appointment_container .empty_content 
   color: #303037;
 }
 
-.appointment_setting_wrapper .appointment_setting .settings_container .review_n_pay {
+/* .appointment_setting_wrapper .appointment_setting .settings_container .review_n_pay {
   display: none;
-}
+} */
 
 .appointment_setting_wrapper .appointment_setting .settings_container .review_n_pay .settings_content .left .appointment > div {
   background: #FFFFFF;
@@ -8015,7 +8024,7 @@ section.dashboard_body .appointments_part .appointment_container .empty_content 
 
 .appointment_setting_wrapper .appointment_setting .settings_container .status {
   padding: 30px 10px;
-  display: none;
+  /* display: none; */
 }
 
 .appointment_setting_wrapper .appointment_setting .settings_container .status h5 {
@@ -8046,9 +8055,9 @@ section.dashboard_body .appointments_part .appointment_container .empty_content 
   margin: 0 auto;
 }
 
-.appointment_setting_wrapper .appointment_setting .settings_container .date_n_time {
+/* .appointment_setting_wrapper .appointment_setting .settings_container .date_n_time {
   display: none;
-}
+} */
 
 /* /Create appointment page style */
 /* Dashboard */

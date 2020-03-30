@@ -1,4 +1,4 @@
-import { GET_COURSES, COURSE_ERROR,ADD_COURSE } from '../actions/types';
+import { GET_COURSES, COURSE_ERROR,ADD_COURSE, ADD_VIDEOS } from '../actions/types';
 
 const initialState = {
   courses: [],
@@ -18,6 +18,12 @@ export default function(state = initialState, action) {
         loading: false
       };
     case ADD_COURSE:
+        return {
+          ...state,
+          courses: [...state.courses, payload],
+          loading: false
+        };
+    case ADD_VIDEOS:
         return {
           ...state,
           courses: [...state.courses, payload],

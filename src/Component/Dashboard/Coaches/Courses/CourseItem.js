@@ -45,7 +45,7 @@ const CourseItem = ({ course: { id, price_per_session, image, course_description
           </div>
         </div>
         <div className='full_row'>
-          <Link to={`./courses/details/${id}`}><button className='black_btn full_width_btn'>view course</button></Link>
+          <Link to={`./courses/details/${id}`}><button className='black_btn full_width_btn'>manage course</button></Link>
         </div>
       </div>
     </Fragment>

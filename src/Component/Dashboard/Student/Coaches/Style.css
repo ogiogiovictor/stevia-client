@@ -1,0 +1,14 @@
+
+  
+  .ProgressBar {
+    width: 100%;
+    height: 4px;
+  }
+  
+  .ProgressBar-value {
+    display: block;
+    height: 4px;
+    background: #A8CD1B;
+  
+    transition: all 200ms cubic-bezier(0.4, 0, 0.2, 1);
+  }

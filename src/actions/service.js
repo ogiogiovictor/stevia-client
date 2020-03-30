@@ -1,9 +1,9 @@
 import Axios from 'axios';
 import { setAlert } from './alert';
-import { GET_SERVICES, ADD_COACH_SERVICE, GET_COACH_SERVICES, SERVICE_ERROR, ADD_SERVICE, DELETE_SERVICE } from './types';
+import { GET_SERVICES, ADD_COACH_SERVICE, GET_COACH_SERVICES, SERVICE_ERROR, ADD_SERVICE, DELETE_SERVICE, BOOK_A_COACH } from './types';
 
-// const url = 'http://127.0.0.1:8000/api';
-const url = 'https://omareservations.com/stevia/api';
+const url = 'http://127.0.0.1:8000/api';
+// const url = 'https://omareservations.com/stevia/api';
 // Get Admin Services
 export const getServices = () => async dispatch => {
   try {
@@ -119,6 +119,39 @@ export const addCoachService = (formData) => async dispatch => {
     dispatch(setAlert('Service Successfully Added ', 'success'));
     dispatch({
       type: ADD_COACH_SERVICE,
+      payload: res.data.data
+    });
+    dispatch(getCoachServices());
+  } catch (error) {
+    const errors = error.response.data;
+    if (errors) {
+      Object.keys(errors).map(fieldName => {
+        return errors[fieldName].map(err => dispatch(setAlert(err, 'error')));
+      });
+    }
+    dispatch({
+      type: SERVICE_ERROR,
+      payload: { msg: error.response.data, status: error.response.data.status }
+    });
+  }
+};
+
+// Book a Coach
+export const bookACoach = (formData) => async dispatch => {
+  const config = {
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  };
+  try {
+    const res = await Axios.post(
+      `${url}/coach-service/coachenrollappoint`,
+      formData,
+      config
+    );
+    dispatch(setAlert(res.data.msg, 'success'));
+    dispatch({
+      type: BOOK_A_COACH,
       payload: res.data.data
     });
     dispatch(getCoachServices());

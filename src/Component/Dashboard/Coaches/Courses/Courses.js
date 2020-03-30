@@ -12,7 +12,9 @@ const Courses = ({ getCourses, courses: { courses, loading }, user }) => {
   useEffect(() => {
     getCourses();
   }, [getCourses]);
-  return loading ? <Spinner /> : (
+  return loading ? (
+    <Spinner />
+  ) : (
     <Fragment>
       <section className='whole_page_wrapper'>
         <Header menu={user && user.menu} />
@@ -22,7 +24,7 @@ const Courses = ({ getCourses, courses: { courses, loading }, user }) => {
             <div className='dashboard_center'>
               <div className='full_row flex_r_j_end_align_center create_course_btn_div'>
                 <Link to='/dashboard/coaches/courses/create'>
-                <button className='black_btn'>create course</button>
+                  <button className='black_btn'>create course</button>
                 </Link>
               </div>
               <div className='full_row flex_r_j_between_align_center top'>
@@ -62,10 +64,7 @@ const Courses = ({ getCourses, courses: { courses, loading }, user }) => {
                 <div className='full_row course_list_wrapper'>
                   {courses.length > 0 ? (
                     courses.map(course => (
-                      <CourseItem
-                        key={course.id}
-                        course={course}
-                      />
+                      <CourseItem key={course.id} course={course} />
                     ))
                   ) : (
                     <h4>No Courses Found...</h4>

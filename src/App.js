@@ -16,7 +16,7 @@ import setAuthToken from './Utils/setAuthToken';
 import PrivateRoute from './routing/PrivateRoute';
 import Dashboard from './Component/Dashboard';
 import Alert from './Component/Alert/Alert';
-import Studentcoaches from './Component/Dashboard/Student/Coaches';
+import Studentcoaches from './Component/Dashboard/Student//Coaches/Coaches';
 import StudentCourses from './Component/Dashboard/Student/Courses/Courses';
 import CreateProfile from './Component/Dashboard/ProfileSettings/CreateProfile';
 import AdminServices from './Component/Dashboard/Admin/Services/Services';
@@ -27,6 +27,8 @@ import PostaJob from './Component/Dashboard/Recruiters/PostaJob';
 import logout from './Component/Auth/logout';
 import { loadProgressBar } from 'axios-progress-bar';
 import CoachCourseDetails from './Component/Dashboard/Coaches/Courses/CourseDetails';
+import CoachDetails from './Component/Dashboard/Student/Coaches/CoachDetails';
+import BookCoach from './Component/Dashboard/Student/Coaches/BookCoach';
 
 if (localStorage.token) {
   setAuthToken(localStorage.token);
@@ -66,6 +68,11 @@ const App = () => {
               component={Studentcoaches}
             />
             <PrivateRoute
+              path='/dashboard/student/coaches/book/:id'
+              exact
+              component={BookCoach}
+            />
+            <PrivateRoute
               path='/dashboard/admin/services'
               exact
               component={AdminServices}
@@ -84,6 +91,11 @@ const App = () => {
               path='/dashboard/coaches/courses/details/:id'
               exact
               component={CoachCourseDetails}
+            />
+            <PrivateRoute
+              path='/dashboard/student/coaches/:id'
+              exact
+              component={CoachDetails}
             />
             <PrivateRoute
               path='/dashboard/student/courses'
