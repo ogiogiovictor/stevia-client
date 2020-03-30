@@ -245,6 +245,15 @@ if(screenWidth <= 889) {
 }
 // End of Jobs page mobile Toggler
 
+// FAQ page 
+$('.faq_header').click(function(){
+    $(this).parent().siblings().find('.faq_answer').not(this).slideUp();
+    $(this).parent().siblings().find('.icon .horizontal').fadeIn();
+    $(this).siblings('.faq_answer').slideToggle()
+    $(this).find('.icon .horizontal').fadeToggle()
+})
+// End of FAQ page 
+
 
 })
 

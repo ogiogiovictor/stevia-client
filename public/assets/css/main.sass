@@ -169,6 +169,11 @@ body
     flex-direction: column
     justify-content: space-between 
 
+.flex_c_a_end
+    display: flex
+    flex-direction: column
+    align-items: flex-end
+
 .flex_c_align_center
     :display flex
     flex-direction: column
@@ -179,6 +184,12 @@ body
     :display flex
     flex-direction: column
     justify-content: center
+
+.flex_c_center_all
+    :display flex
+    flex-direction: column
+    justify-content: center
+    align-items: center
 
 /* /Flex col */
 
@@ -6494,6 +6505,407 @@ h4.write_ratings_head
                 line-height: 30px
                 color: #686868
 /* End of Create Course Little fields Addition */
+/* Additional Coach Settings */
+.other_coach_details
+    @extend .other_information_section
+    display: block
+    &>div
+        margin-bottom: 20px
+        margin-top: 25px
+.header2
+    margin-bottom: 5px
+    +
+        .common_input_wrapper_2
+            margin-top: 0
+    p
+        font-style: normal
+        font-weight: 600
+        font-size: 16px
+        line-height: 30px
+        color: #686868
+
+.social_input_wrapper
+    @extend .file_input_wrapper
+    &>.common_input_wrapper_2:nth-child(2)
+        margin:
+            top: 15px
+            bottom: 15px
+        
+.mt-40
+    margin-top: 40px
+
+.error_wrapper
+    text-align: center
+    border-bottom: 1px solid #e3e3e3
+    padding-bottom: 60px
+    h4
+        font-style: normal
+        font-weight: 500
+        font-size: 35px
+        line-height: 41px
+        margin: 20px 0
+        color: $default_red
+    p
+        font-style: normal
+        font-weight: normal
+        font-size: 16px
+        line-height: 155%
+        color: #344248
+    button
+        margin-top: 20px
+        
+/* End of Additional Coach Settings */
+/* FAQ page Style */
+.faq_wrapper
+    background:
+        image: url('../utils/images/faqq.png')
+        position: top right
+        repeat: no-repeat
+        size: 200px 200px
+
+.faq_container
+    .each_question
+        border: 1px solid rgba(239, 75, 75, 0.274)
+        border-radius: 6px
+        padding: 15px 20px
+        margin-top: 5px
+        margin-bottom: 5px
+
+        .faq_header
+            cursor: pointer
+            .question
+                h6
+                    color: rgba(239, 75, 75, 0.71)
+                    font-size: 18px
+            .icon
+                position: relative
+                width: 15px
+                height: 15px
+                // transform: rotate(180deg)
+                .horizontal
+                    :position absolute
+                    height: 100%
+                    width: 2px
+                    background-color: rgba(239, 75, 75, 0.71)
+                    // border: 1px solid rgba(239, 75, 75, 0.71)
+                .vertical
+                    position: absolute
+                    width: 100%
+                    height: 2px
+                    background-color: rgba(239, 75, 75, 0.71)
+                    // border: 1px solid rgba(239, 75, 75, 0.71)
+    
+        .faq_answer
+            padding-top: 25px
+            display: none
+            p
+                color: #989898
+                font-weight: 400
+                font-size: 15px
+                line-height: 150%
+
+/* End of FAQ page Style */
+/* Terms and Conditions Page Style */
+.terms_wrapper
+    section
+        margin-bottom: 40px
+        [class*="term_"]
+            .header
+                :margin-bottom 10px
+                h5
+                    color: #4d4c4c
+                    font-weight: normal
+                    font-size: 20px
+                    
+            .content
+                p
+                    color: #6b6b6b
+                    font-weight: normal
+                    font-size: 16px
+                    line-height: 200%
+
+/* End of Terms and Conditions Page Style */
+/* About Us Page Style */
+.aboutUs_section
+    background-color: $background-blue
+.about_us_head
+    text-align: center
+    h4
+        font-size: 30px
+        line-height: 130%
+        margin-bottom: 25px
+    p
+        // font-size: 30px
+        line-height: 200%
+.aboutUs_cards
+    display: grid
+    grid-template-columns: 33.3333% 33.3333% 33.3333%
+    margin-top: 75px
+
+[class*='about_card_']
+    position: relative
+    text-align: center
+    padding: 35px
+    h5
+        margin-top: 30px
+        margin-bottom: 30px
+    &::before
+        position: absolute
+        content: ''
+        width: 50px
+        height: 50px
+        transition: .5s
+    &::after
+        position: absolute
+        content: ''
+        width: 50px
+        height: 50px
+        transition: .5s
+    img
+        width: 64px
+        height: 64px
+
+.about_card_one
+    &::after
+        right: 0
+        bottom: 0
+        border-right: 1px solid #ef4b4b34
+        border-bottom: 1px solid #ef4b4b34
+    &:hover
+        &::after
+            border-right: 2px solid $default_red
+            border-bottom: 2px solid $default_red
+
+.about_card_two
+    &::before
+        left: 0
+        bottom: 0
+        border-left: 1px solid  #ef4b4b34
+        border-bottom: 1px solid #ef4b4b34
+    &::after
+        right: 0
+        bottom: 0
+        border-right: 1px solid #ef4b4b34
+        border-bottom: 1px solid #ef4b4b34
+    &:hover
+        &::after
+            border-right: 2px solid $default_red
+            border-bottom: 2px solid $default_red  
+        &::before
+            border-left: 2px solid $default_red
+            border-bottom: 2px solid $default_red       
+
+.about_card_three
+    &::before
+        left: 0
+        bottom: 0
+        border-left: 1px solid  #ef4b4b34
+        border-bottom: 1px solid #ef4b4b34
+    &:hover
+        &::before
+            border-left: 2px solid $default_red
+            border-bottom: 2px solid $default_red
+
+.about_card_four
+    &::after
+        right: 0
+        top: 0
+        border-right: 1px solid #ef4b4b34
+        border-top: 1px solid #ef4b4b34
+    &:hover        
+        &::after
+            border-right: 2px solid $default_red
+            border-top: 2px solid $default_red
+    
+.about_card_five
+    &::before
+        left: 0
+        top: 0
+        border-left: 1px solid  #ef4b4b34
+        border-top: 1px solid #ef4b4b34
+    &::after
+        right: 0
+        top: 0
+        border-right: 1px solid #ef4b4b34
+        border-top: 1px solid #ef4b4b34
+    &:hover
+        &::before
+            border-left: 2px solid $default_red
+            border-top: 2px solid $default_red 
+        &::after
+            border-right: 2px solid $default_red 
+            border-top: 2px solid $default_red 
+
+.about_card_six
+    &::before
+        left: 0
+        top: 0
+        border-left: 1px solid #ef4b4b34
+        border-top: 1px solid #ef4b4b34  
+    &:hover              
+        &::before
+            // border-left-color: $default_red
+            // border-top-color: $default_red   
+            border-left: 2px solid $default_red
+            border-top: 2px solid $default_red       
+
+.team_members_section
+    // background-color: #f0f3fc
+
+.teamMember_head
+    text-align: center
+    h4
+        font-size: 30px
+        line-height: 130%
+        margin-bottom: 25px
+    p
+        // font-size: 30px
+        line-height: 200%
+
+.card_member_wrapper
+    display: grid
+    grid-template-columns: 23% 23% 23% 23%
+    grid-gap: 40px 2.6667%
+    margin-top: 80px
+
+.members_card
+    border-radius: 10px 10px 0 0
+    position: relative
+    box-shadow: 0 0 10px rgba(0,0,0,0.3)
+    // padding: 60px 20px
+    height: 400px
+    overflow: hidden
+    .members_image, .overlay_div, .social_media_icons_wrapper, .members_name_n_post
+        position: absolute
+    .members_image
+        width: 100%
+        height: 100%
+        top: 0
+        left: 0
+        transition: .5s
+        img
+            width: 100%
+            height: 100%
+            object-fit: cover
+
+    .overlay_div
+        width: 100%
+        height: 100%
+        top: 0
+        left: 0
+        background-color: #ef4b4b38
+        transition: .5s
+        // opacity: 0
+
+    .social_media_icons_wrapper
+        right: 0
+        top: 35%
+        width: 100%
+        // background-color: green
+
+        .member_facebook_link
+            width: 20%
+            border-radius: 30px 0 0 30px
+            // padding: 15px
+            background: linear-gradient(to right, #EF4B4B, #ef4b4bb9, #ef4b4b81, #ef4b4b3f, #ef4b4b1a, #ef4b4b07)
+            transform: translateX(20%)
+            transition: .5s
+
+        .member_twitter_link
+            width: 40%
+            border-radius: 30px 0 0 30px
+            // padding: 15px
+            background: linear-gradient(to right, #EF4B4B, #ef4b4bb9, #ef4b4b81, #ef4b4b3f, #ef4b4b1a, #ef4b4b07)
+            transform: translateX(42%)
+            transition: .5s
+            margin:
+                top: 10px
+                bottom: 10px
+
+        .member_linkedIn_link
+            width: 60%
+            border-radius: 30px 0 0 30px
+            // padding: 15px
+            background: linear-gradient(to right, #EF4B4B, #ef4b4bb9, #ef4b4b81, #ef4b4b3f, #ef4b4b1a, #ef4b4b07)
+            transform: translateX(52%)
+            transition: .5s
+
+        .icon_holder
+            border-radius: 30px
+            padding: 7px 20px
+            // background-color: #fff
+            i
+                font-size: 18px
+                color: #fff
+    
+    .members_name_n_post
+        left: 0
+        bottom: 0
+        // height: 50px
+        width: 100%
+        // opacity: .5
+        // clip-path: polygon(0 0, 80% 60%, 90% 80%, 90% 100%, 0 100%)
+        // clip-path: polygon(0 0, 100% 100%, 0 100%)
+        // background-color: #ef4b4b66
+        // border-radius: 30px 0 0 30px
+        padding: 10px 20px 10px 20px
+        .name
+            p
+                text-transform: capitalize
+                font-size: 20px
+                color: #ffffff
+                position: relative
+                &::before
+                    position: absolute
+                    content: ''
+                    left: 0
+                    bottom: 0
+                    width: 15%
+                    height: 1px
+                    background-color: #fff
+        .post
+            span
+                font-style: italic
+                color: #ffffff
+                font-size: 15px
+    &:hover
+        .members_image
+            transform: scale(1.05)
+        .overlay_div
+            background-color: #ef4b4b7e
+        .member_facebook_link, .member_twitter_link, .member_linkedIn_link
+            transform: translateX(0)
+
+.figures_section
+    background-color: $background-blue
+
+.figures_head
+    text-align: center
+    h4
+        font-size: 30px
+        line-height: 130%
+        margin-bottom: 25px
+    p
+        // font-size: 30px
+        line-height: 200%
+
+.about_us_figures
+    display: grid
+    grid-template-columns: 33.3333% 33.3333% 33.3333%
+    margin-top: 75px
+    &>div
+        text-align: center
+        h4
+            font-size: 60px
+            margin-bottom: 5px
+            font-family: nunito
+        p
+            // font-size: 30px
+            line-height: 200%
+            letter-spacing: 3px
+
+
+/* End of About Us Page Style */
 
 /* ======================End of DASHBOARD Style=================== */
     
