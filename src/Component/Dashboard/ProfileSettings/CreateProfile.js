@@ -225,12 +225,12 @@ const CreateProfile = ({
   const onSubmit5 = e => {
     e.preventDefault();
     const formData = new FormData();
-    const timenew = [start, end];
+    const daysArr = [monday, tuesday, wednesday, thursday, friday, saturday, sunday];
+    const timenew = {start: start, end: end};
     formData.append('coach_id', user && user.currentUser.id);
-    formData.append('days', [monday, tuesday, wednesday, thursday, friday, saturday, sunday]);
-    formData.append('time', timenew);
+    formData.append('days', JSON.stringify(daysArr));
+    formData.append('time', JSON.stringify(timenew));
     coachAvailability(formData);
-    console.log(wednesday, start, end)
   };
 
   return (

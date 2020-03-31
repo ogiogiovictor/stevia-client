@@ -15,19 +15,19 @@ class Footer extends Component {
                   <div className='flex_r_j_between_align_center footer_links'>
                     <div className='flex_r top_nav_links'>
                       <div>
-                        <Link to='#'> About Us </Link>
+                        <Link to='/aboutus'> About Us </Link>
                       </div>
                       <div>
-                        <Link to='#'> Term of Services </Link>
+                        <Link to='/terms'> Term of Services </Link>
                       </div>
                       <div>
-                        <Link to='#'> Privacy </Link>
+                        <Link to='/terms'> Privacy </Link>
                       </div>
                       <div>
-                        <Link to='#'> FAQ </Link>
+                        <Link to='/faq'> FAQ </Link>
                       </div>
                       <div>
-                        <Link to='#'> Contact Us </Link>
+                        <Link to='/contact'> Contact Us </Link>
                       </div>
                     </div>
 

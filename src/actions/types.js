@@ -25,3 +25,6 @@ export const ADD_COURSE = 'ADD_COURSE';
 export const ADD_VIDEOS = 'ADD_VIDEOS';
 export const BOOK_A_COACH = 'BOOK_A_COACH';
 export const COACH_AVAILABILITY = 'COACH_AVAILABILITY';
+export const POST_JOBS = 'POST_JOBS';
+export const VIEW_JOBS = 'VIEW_JOBS';
+export const JOBS_ERROR = 'JOBS_ERROR';

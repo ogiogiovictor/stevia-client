@@ -29,6 +29,10 @@ import { loadProgressBar } from 'axios-progress-bar';
 import CoachCourseDetails from './Component/Dashboard/Coaches/Courses/CourseDetails';
 import CoachDetails from './Component/Dashboard/Student/Coaches/CoachDetails';
 import BookCoach from './Component/Dashboard/Student/Coaches/BookCoach';
+import { NotFoundPage } from './Component/Landing/NotFoundPage';
+import Terms from './Component/Landing/Terms';
+import Aboutus from './Component/Landing/Aboutus';
+import Faq from './Component/Landing/Faq';
 
 if (localStorage.token) {
   setAuthToken(localStorage.token);
@@ -140,7 +144,11 @@ const App = () => {
             <PrivateRoute path='/dashboard/admin' exact component={Dashboard} />
             <PrivateRoute path='/logout' exact component={logout} />
             <PrivateRoute path='/dashboard' exact component={Dashboard} />
+            <Route path='/terms' exact component={Terms} />
+            <Route path='/aboutus' exact component={Aboutus} />
+            <Route path='/faq' exact component={Faq} />
             <Route path='/' exact component={Student} />
+            <Route path='*' component={NotFoundPage} />
           </Switch>
         </Fragment>
       </Router>
