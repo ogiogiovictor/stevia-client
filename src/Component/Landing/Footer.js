@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 class Footer extends Component {
     render() {
@@ -15,19 +15,19 @@ class Footer extends Component {
                   <div className='flex_r_j_between_align_center footer_links'>
                     <div className='flex_r top_nav_links'>
                       <div>
-                        <Link to='/aboutus'> About Us </Link>
+                        <NavLink to='/aboutus'> About Us </NavLink>
                       </div>
                       <div>
-                        <Link to='/terms'> Term of Services </Link>
+                        <NavLink to='/terms'> Term of Services </NavLink>
                       </div>
                       <div>
-                        <Link to='/terms'> Privacy </Link>
+                        <NavLink to='/terms'> Privacy </NavLink>
                       </div>
                       <div>
-                        <Link to='/faq'> FAQ </Link>
+                        <NavLink to='/faq'> FAQ </NavLink>
                       </div>
                       <div>
-                        <Link to='/contact'> Contact Us </Link>
+                        <NavLink to='/contact'> Contact Us </NavLink>
                       </div>
                     </div>
 

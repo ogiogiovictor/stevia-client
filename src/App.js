@@ -33,6 +33,9 @@ import { NotFoundPage } from './Component/Landing/NotFoundPage';
 import Terms from './Component/Landing/Terms';
 import Aboutus from './Component/Landing/Aboutus';
 import Faq from './Component/Landing/Faq';
+import Contact from './Component/Landing/Contact';
+import CoachesLand from './Component/Landing/Coaches';
+import CoursesLand from './Component/Landing/Courses';
 
 if (localStorage.token) {
   setAuthToken(localStorage.token);
@@ -147,6 +150,9 @@ const App = () => {
             <Route path='/terms' exact component={Terms} />
             <Route path='/aboutus' exact component={Aboutus} />
             <Route path='/faq' exact component={Faq} />
+            <Route path='/contact' exact component={Contact} />
+            <Route path='/coaches' exact component={CoachesLand} />
+            <Route path='/courses' exact component={CoursesLand} />
             <Route path='/' exact component={Student} />
             <Route path='*' component={NotFoundPage} />
           </Switch>

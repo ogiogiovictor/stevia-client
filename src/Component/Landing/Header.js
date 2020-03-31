@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { NavLink, Link } from 'react-router-dom';
 
 const Header = ({ auth: { loading, isAuthenticated } }) => {
   return (
@@ -25,19 +25,19 @@ const Header = ({ auth: { loading, isAuthenticated } }) => {
               <div className='flex_r_j_between_align_center top_nav_right'>
                 <div className='flex_r top_nav_links'>
                   <div>
-                    <Link to='/courses'> Courses </Link>
+                    <NavLink to='/courses'> Courses </NavLink>
                   </div>
                   <div>
-                    <Link to='/coaches'> Coaches </Link>
+                    <NavLink to='/coaches'> Coaches </NavLink>
                   </div>
                   <div>
-                    <Link to='/jobs'> Jobs </Link>
+                    <NavLink to='/jobs'> Jobs </NavLink>
                   </div>
                   <div>
-                    <Link to='/contact'> Contact Us </Link>
+                    <NavLink to='/contact'> Contact Us </NavLink>
                   </div>
                   <div>
-                    <Link to='/postajob'> Post a Job </Link>
+                    <NavLink to='/dashboard/recruiter/postajob'> Post a Job </NavLink>
                   </div>
                 </div>
                 <div className='flex_r nav_link_buttons'>
@@ -57,7 +57,9 @@ const Header = ({ auth: { loading, isAuthenticated } }) => {
                     ''
                   )}
                   {!loading && !isAuthenticated ? (
+                    <Link to='/coach'>
                     <button className='black_btn'>Become a coach</button>
+                    </Link>
                   ) : (
                     ''
                   )}

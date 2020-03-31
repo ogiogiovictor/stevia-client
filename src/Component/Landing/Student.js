@@ -9,10 +9,11 @@ import Header from './Header';
 const Student = ({auth: {loading, isAuthenticated}}) => {
   return (
     <Fragment>
+      <body>
       <Topnav />
       <section className='whole_page_wrapper'>
-        <Header />
         <header className='full_row site_header'>
+          <Header />
           <div className='full_row header_desc_wrapper'>
             <div className='flex_r_j_between_align_center header_desc_div'>
               <div className='header_desc_left'>
@@ -600,6 +601,7 @@ const Student = ({auth: {loading, isAuthenticated}}) => {
           <Footer />
         </footer>
       </section>
+      </body>
     </Fragment>
   );
 }
