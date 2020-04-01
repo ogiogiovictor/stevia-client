@@ -71,10 +71,9 @@ export const addCompany = formData => async dispatch => {
     dispatch(setAlert(res.data.msg, 'success'));
     dispatch(getCompany());
     dispatch(getCompany());
-    dispatch(getCompany());
-      // setTimeout(() => {
-      //   dispatch(window.location.reload())
-      // }, 3000);
+      setTimeout(() => {
+        dispatch(window.location.reload())
+      }, 3000);
     dispatch({
       type: ADD_COMPANY,
       payload: res.data.msg
