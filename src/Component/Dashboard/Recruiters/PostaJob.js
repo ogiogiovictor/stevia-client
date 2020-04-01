@@ -95,18 +95,6 @@ const PostaJob = ({
                   <div class='full_row form_header'>
                     <h5>Job Information</h5>
                     <p>Please enter the job details below</p>
-                  </div>{' '}
-                  <div class='full_row'>
-                    <div class='common_input_wrapper_2'>
-                      <input
-                        type='text'
-                        name='job_title'
-                        value={job_title}
-                        onChange={e => onChange(e)}
-                        placeholder='Job Title (e.g Business Development Executive)'
-                        required
-                      />
-                    </div>
                   </div>
                   <div class='full_row'>
                     <div class='common_input_wrapper_2'>
@@ -135,6 +123,18 @@ const PostaJob = ({
                       <a className='red_btn' href='#add-service-modal'>
                         Add Company
                       </a>
+                    </div>
+                  </div>
+                  <div class='full_row'>
+                    <div class='common_input_wrapper_2'>
+                      <input
+                        type='text'
+                        name='job_title'
+                        value={job_title}
+                        onChange={e => onChange(e)}
+                        placeholder='Job Title (e.g Business Development Executive)'
+                        required
+                      />
                     </div>
                   </div>
                   <div class='full_row'>
