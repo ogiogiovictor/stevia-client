@@ -71,6 +71,7 @@ export const addCompany = formData => async dispatch => {
     dispatch(setAlert(res.data.msg, 'success'));
     dispatch(getCompany());
     dispatch(getCompany());
+    dispatch(getCompany());
       // setTimeout(() => {
       //   dispatch(window.location.reload())
       // }, 3000);
@@ -78,6 +79,7 @@ export const addCompany = formData => async dispatch => {
       type: ADD_COMPANY,
       payload: res.data.msg
     });
+    dispatch(getCompany());
   } catch (error) {
     dispatch({
       type: JOBS_ERROR,
