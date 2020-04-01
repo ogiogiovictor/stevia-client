@@ -68,8 +68,12 @@ export const addCompany = formData => async dispatch => {
       }
     };
     const res = await Axios.post(`${url}/job/company`, formData, config);
-    dispatch(getCompany());
     dispatch(setAlert(res.data.msg, 'success'));
+    dispatch(getCompany());
+    dispatch(getCompany());
+      // setTimeout(() => {
+      //   dispatch(window.location.reload())
+      // }, 3000);
     dispatch({
       type: ADD_COMPANY,
       payload: res.data.msg
