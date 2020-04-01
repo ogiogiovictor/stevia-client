@@ -14,6 +14,7 @@ import store from './store';
 import { loadUser } from './actions/auth';
 import setAuthToken from './Utils/setAuthToken';
 import PrivateRoute from './routing/PrivateRoute';
+import PrivateRouteStudent from './routing/PrivateRouteStudent';
 import Dashboard from './Component/Dashboard';
 import Alert from './Component/Alert/Alert';
 import Studentcoaches from './Component/Dashboard/Student//Coaches/Coaches';
@@ -24,6 +25,7 @@ import CoachServices from './Component/Dashboard/Coaches/Services/CoachServices'
 import Courses from './Component/Dashboard/Coaches/Courses/Courses';
 import CreateCourse from './Component/Dashboard/Coaches/Courses/CreateCourse';
 import PostaJob from './Component/Dashboard/Recruiters/PostaJob';
+import Overview from './Component/Dashboard/Recruiters';
 import logout from './Component/Auth/logout';
 import { loadProgressBar } from 'axios-progress-bar';
 import CoachCourseDetails from './Component/Dashboard/Coaches/Courses/CourseDetails';
@@ -36,6 +38,7 @@ import Faq from './Component/Landing/Faq';
 import Contact from './Component/Landing/Contact';
 import CoachesLand from './Component/Landing/Coaches';
 import CoursesLand from './Component/Landing/Courses';
+import ViewJobs from './Component/Dashboard/Recruiters/ViewJobs';
 
 if (localStorage.token) {
   setAuthToken(localStorage.token);
@@ -69,12 +72,12 @@ const App = () => {
             <Route path='/success' exact component={Success} />
             <Route path='/coach' exact component={Coach} />
             <Route path='/login' exact component={Login} />
-            <PrivateRoute
+            <PrivateRouteStudent
               path='/dashboard/student/coaches'
               exact
               component={Studentcoaches}
             />
-            <PrivateRoute
+            <PrivateRouteStudent
               path='/dashboard/student/coaches/book/:id'
               exact
               component={BookCoach}
@@ -99,12 +102,12 @@ const App = () => {
               exact
               component={CoachCourseDetails}
             />
-            <PrivateRoute
+            <PrivateRouteStudent
               path='/dashboard/student/coaches/:id'
               exact
               component={CoachDetails}
             />
-            <PrivateRoute
+            <PrivateRouteStudent
               path='/dashboard/student/courses'
               exact
               component={StudentCourses}
@@ -130,11 +133,21 @@ const App = () => {
               component={PostaJob}
             />
             <PrivateRoute
+              path='/dashboard/recruiter/overview'
+              exact
+              component={Overview}
+            />
+            <PrivateRoute
+              path='/dashboard/recruiter/viewjobs'
+              exact
+              component={ViewJobs}
+            />
+            <PrivateRoute
               path='/dashboard/admin/settings'
               exact
               component={CreateProfile}
             />
-            <PrivateRoute
+            <PrivateRouteStudent
               path='/dashboard/student/overview'
               exact
               component={Dashboard}

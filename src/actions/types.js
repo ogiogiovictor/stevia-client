@@ -28,3 +28,6 @@ export const COACH_AVAILABILITY = 'COACH_AVAILABILITY';
 export const POST_JOBS = 'POST_JOBS';
 export const VIEW_JOBS = 'VIEW_JOBS';
 export const JOBS_ERROR = 'JOBS_ERROR';
+export const ADD_COMPANY = 'ADD_COMPANY';
+export const GET_COMPANY = 'GET_COMPANY';
+export const GET_JOB_CATEGORIES = 'GET_JOB_CATEGORIES';

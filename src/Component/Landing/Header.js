@@ -44,7 +44,7 @@ const Header = ({ auth: { loading, isAuthenticated } }) => {
                   {!loading && isAuthenticated ? (
                     <Link to='/dashboard'>
                       {' '}
-                      <button className='mr-3 red_btn'>My Account</button>
+                      <button className='mr-3 black_btn'>My Account</button>
                     </Link>
                   ) : (
                     ''

@@ -75,11 +75,14 @@ export const signup = ({
 
   } catch (error) {
     dispatch(setAlert(error.response.data.email[0], 'error'));
+    setTimeout(() => {
+      dispatch(window.location.reload())
+    }, 3000); 
     dispatch({
       type: REGISTER_FAIL
     });
   }
-};
+}; 
 
 // Login User
 

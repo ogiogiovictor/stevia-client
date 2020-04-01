@@ -1,23 +1,24 @@
 import React, { Fragment, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import Footer from './Footer';
 import Header from './Header';
 import Topnav from './Topnav';
 import { getCoachesProfile } from '../../actions/profile';
-import CoachItem from './CoachItem'
+import CoachItem from './CoachItem';
 
 const Coaches = ({ getCoachesProfile, profile: { coaches, loading } }) => {
-    useEffect(() => {
-        getCoachesProfile();
-      }, [getCoachesProfile]);
+  useEffect(() => {
+    getCoachesProfile();
+  }, [getCoachesProfile]);
   return (
     <Fragment>
       <body>
         <Topnav />
         <section className='whole_page_wrapper'>
           <header className='full_row site_header_4_coaches'>
-              <Header />
+            <Header />
             <div className='full_row header_desc_wrapper'>
               <div className='flex_r_j_between_align_center site_center1'>
                 <div className='header_desc_left'>
@@ -78,10 +79,17 @@ const Coaches = ({ getCoachesProfile, profile: { coaches, loading } }) => {
                   </div>
                 </div>
                 <div className='coaches_wrapper_div'>
-                {coaches.length > 0 ? (coaches.map(coach => 
-                            <CoachItem key={coach.id} coach={coach} loading={loading} />
-                        )) : 
-                        <h4>Loading...</h4>}
+                  {coaches.length > 0 ? (
+                    coaches.map(coach => (
+                      <CoachItem
+                        key={coach.id}
+                        coach={coach}
+                        loading={loading}
+                      />
+                    ))
+                  ) : (
+                    <h4>Loading...</h4>
+                  )}
                 </div>
 
                 {/* <div className="flex_r_j_center_align_center full_row pagination_div">
@@ -130,8 +138,9 @@ const Coaches = ({ getCoachesProfile, profile: { coaches, loading } }) => {
             <div className='full_row sixth_section_wrapper_div'>
               <div className='site_center1 text-center'>
                 <h5>Do you want to become a coach on Stevia?</h5>
-
-                <button className='black_btn'>Become a coach</button>
+                <Link to='/coach'>
+                  <button className='black_btn'>Become a coach</button>
+                </Link>
               </div>
             </div>
           </section>
@@ -145,12 +154,12 @@ const Coaches = ({ getCoachesProfile, profile: { coaches, loading } }) => {
 };
 
 Coaches.propTypes = {
-    getCoachesProfile: PropTypes.func.isRequired,
-    profile: PropTypes.object.isRequired
-  };
-  
-  const mapStateToProps = state => ({
-    profile: state.profile
-  });
-  
-  export default connect(mapStateToProps, { getCoachesProfile })(Coaches);
+  getCoachesProfile: PropTypes.func.isRequired,
+  profile: PropTypes.object.isRequired
+};
+
+const mapStateToProps = state => ({
+  profile: state.profile
+});
+
+export default connect(mapStateToProps, { getCoachesProfile })(Coaches);

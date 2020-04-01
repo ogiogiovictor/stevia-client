@@ -5,7 +5,6 @@ import { bookACoach } from '../../../../actions/service';
 import { connect } from 'react-redux';
 import Header from '../../Layout/Header';
 import Topnav from '../../Layout/Topnav';
-import { render } from 'react-dom';
 import { Wizard, Steps, Step, Navigation, Progress } from 'react-wizr';
 import { useForm } from 'react-hook-form';
 import './Style.css';

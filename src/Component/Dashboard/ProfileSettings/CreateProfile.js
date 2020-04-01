@@ -119,8 +119,8 @@ const CreateProfile = ({
 
   useEffect(() => {
     getCurrentProfile();
-    setFormData({
-      dob: loading || !profile.dob ? '' : profile.dob,
+     setFormData({
+      dob: profile && !profile.dob ? '' : profile && profile.dob,
       sex: loading || !profile.sex ? '' : profile.sex,
       qualitifcation:
         loading || !profile.qualitifcation ? '' : profile.qualitifcation,
@@ -129,7 +129,7 @@ const CreateProfile = ({
       lastname: loading || !profile.lastname ? '' : profile.lastname,
       phone_number:
         loading || !profile.phone_number ? '' : profile.phone_number,
-      email: loading || !profile.email ? '' : profile.email,
+      email: profile && !profile.email ? '' : profile && profile.email,
       job_title: loading || !profile.job_title ? '' : profile.job_title,
       bank: loading || !profile.bank ? '' : profile.bank,
       account_number:
@@ -962,7 +962,7 @@ const CreateProfile = ({
                             </div>
                           </div>
                           <div className='full_row button text-right'>
-                            <button type='submit' className='red_btn'>
+                            <button type='submit' className='mr-3 red_btn'>
                               Update Availability
                             </button>
                           </div>

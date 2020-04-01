@@ -1,11 +1,11 @@
 import React, { Fragment, useEffect } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { Redirect } from 'react-router-dom';
 
 import StudentIndex from './Student';
 import CoachesIndex from './Coaches';
 import AdminDashboard from './Admin';
+import RecruiterDashboard from './Recruiters';
 import Header from './Layout/Header';
 import Topnav from './Layout/Topnav';
 import { Maintitle } from '../Maintitle';
@@ -24,15 +24,8 @@ const Dashboard = ({ getCurrentProfile, auth: { user }, profile:{ profile, loadi
     return <Spinner />;
   }
 
-  let newProfile = null;
 
-  const { dob, state, country, sex, qualitifcation, location } = profile;
-  newProfile = { dob, state, country, sex, qualitifcation, location };
-  let prof = Object.values(newProfile).every(item => item !== null);
-  return !prof && user.currentUser.role.name === 'STUDENT' ? (
-    setAlert('You need to complete your profile', 'error'),
-    <Redirect to='/dashboard/student/settings' />
-  ) : (
+  return (
     <Fragment>
       {user && user.currentUser.role.name !== 'STUDENT' ? (
       ''
@@ -48,6 +41,11 @@ const Dashboard = ({ getCurrentProfile, auth: { user }, profile:{ profile, loadi
       ''
     ) : (
       <Maintitle title='Stevia: Admin Dashboard' />
+    )}
+    {user && user.currentUser.role.name !== 'RECRUITER' ? (
+      ''
+    ) : (
+      <Maintitle title='Stevia: Recruiter Dashboard' />
     )}
 
     <section className='whole_page_wrapper'>
@@ -70,6 +68,11 @@ const Dashboard = ({ getCurrentProfile, auth: { user }, profile:{ profile, loadi
           ''
         ) : (
           <AdminDashboard />
+        )}
+        {user && user.currentUser.role.name !== 'RECRUITER' ? (
+          ''
+        ) : (
+          <RecruiterDashboard />
         )}
       </section>
     </section>
