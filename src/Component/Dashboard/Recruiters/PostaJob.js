@@ -98,20 +98,29 @@ const PostaJob = ({
                         onChange={e => onChange(e)}
                         required
                       >
-                        <option defaultValue={selectedOption}>
+                        <option
+                          selected='true'
+                          disabled='disabled'
+                          defaultValue={selectedOption}
+                        >
                           {selectedOption}
                         </option>
                         {companies ? (
-                          companies.sort((a, b) =>
-                          lowerCase(a.company_name) > lowerCase(b.company_name) ? 1 : -1
-                        ).map(company => (
-                            <option
-                              key={company && company.id}
-                              value={company && company.company_name}
-                            >
-                              {startCase(company.company_name)}
-                            </option>
-                          ))
+                          companies
+                            .sort((a, b) =>
+                              lowerCase(a.company_name) >
+                              lowerCase(b.company_name)
+                                ? 1
+                                : -1
+                            )
+                            .map(company => (
+                              <option
+                                key={company && company.id}
+                                value={company && company.company_name}
+                              >
+                                {startCase(company.company_name)}
+                              </option>
+                            ))
                         ) : (
                           <option>No Companies Found...</option>
                         )}
