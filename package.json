@@ -21,6 +21,7 @@
     "date-fns": "^2.11.1",
     "framer-motion": "^1.8.4",
     "jquery": "^3.4.1",
+    "lodash": "^4.17.15",
     "moment": "^2.24.0",
     "react": "^16.12.0",
     "react-big-calendar-like-google": "0.0.3",

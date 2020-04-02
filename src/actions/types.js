@@ -31,3 +31,4 @@ export const JOBS_ERROR = 'JOBS_ERROR';
 export const ADD_COMPANY = 'ADD_COMPANY';
 export const GET_COMPANY = 'GET_COMPANY';
 export const GET_JOB_CATEGORIES = 'GET_JOB_CATEGORIES';
+export const CLEAR_JOBS = 'CLEAR_JOBS';

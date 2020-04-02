@@ -21,14 +21,14 @@ export const postJobs = formData => async dispatch => {
   };
   try {
     const res = await Axios.post(`${url}/job/post_jobs`, formData, config);
-    dispatch(setAlert(res.data.msg, 'success'));
-    window.location.href='../recruiter/viewjobs';
     dispatch({
       type: POST_JOBS,
       payload: res.data
     });
+    dispatch(setAlert(res.data.msg, 'success'));
+    window.location.href = '../recruiter/viewjobs';
   } catch (error) {
-    console.log(error)
+    console.log(error);
     // const errors = error.response.data;
     // if (errors) {
     //   Object.keys(errors).map(fieldName => {
@@ -46,7 +46,6 @@ export const postJobs = formData => async dispatch => {
 export const viewJobs = () => async dispatch => {
   try {
     const res = await Axios.get(`${url}/job/myjobs`);
-
     dispatch({
       type: VIEW_JOBS,
       payload: res.data
@@ -68,16 +67,11 @@ export const addCompany = formData => async dispatch => {
       }
     };
     const res = await Axios.post(`${url}/job/company`, formData, config);
-    dispatch(setAlert(res.data.msg, 'success'));
-    dispatch(getCompany());
-    dispatch(getCompany());
-      setTimeout(() => {
-        dispatch(window.location.reload())
-      }, 3000);
     dispatch({
       type: ADD_COMPANY,
-      payload: res.data.msg
+      payload: res.data
     });
+    dispatch(setAlert(res.data.msg, 'success'));
     dispatch(getCompany());
   } catch (error) {
     dispatch({
@@ -90,7 +84,13 @@ export const addCompany = formData => async dispatch => {
 // Get Company Name
 export const getCompany = () => async dispatch => {
   try {
-    const res = await Axios.get(`${url}/job/mycompany`);
+    const config = {
+      headers: {
+        'Cache-Control': 'no-cache',
+        // 'Cache-Control': 'max-age=0'
+      }
+    };
+    const res = await Axios.get(`${url}/job/mycompany`, config);
     dispatch({
       type: GET_COMPANY,
       payload: res.data

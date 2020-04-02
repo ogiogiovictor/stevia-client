@@ -1,28 +1,22 @@
 import React, { Fragment, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { startCase, lowerCase } from 'lodash';
 
 import Header from '../Layout/Header';
 import Topnav from '../Layout/Topnav';
-import {
-  getCompany,
-  addCompany,
-  getJobCategories,
-  postJobs
-} from '../../../actions/jobs';
+import { getCompany, addCompany, postJobs } from '../../../actions/jobs';
 
 const PostaJob = ({
   user,
   getCompany,
-  getJobCategories,
   addCompany,
   postJobs,
-  jobs: { companies, categories }
+  jobs: { companies, categories, loading }
 }) => {
   useEffect(() => {
     getCompany();
-    getJobCategories();
-  }, [getCompany, getJobCategories]);
+  }, [getCompany]);
 
   const [formData, setFormData] = useState({
     company_name: '',
@@ -39,7 +33,7 @@ const PostaJob = ({
     job_type: '',
     job_description: '',
     website: '',
-    appMode: '',
+    appMode: ''
   });
 
   const {
@@ -90,7 +84,7 @@ const PostaJob = ({
           <Topnav user={user} htitle='Post A Job' />
           <section>
             <div class='full_row form_section_wrapper'>
-            <form onSubmit={e => onSubmit1(e)}>
+              <form onSubmit={e => onSubmit1(e)}>
                 <div class='form_div'>
                   <div class='full_row form_header'>
                     <h5>Job Information</h5>
@@ -107,13 +101,15 @@ const PostaJob = ({
                         <option defaultValue={selectedOption}>
                           {selectedOption}
                         </option>
-                        {companies.length > 0 ? (
-                          companies.map(company => (
+                        {companies ? (
+                          companies.sort((a, b) =>
+                          lowerCase(a.company_name) > lowerCase(b.company_name) ? 1 : -1
+                        ).map(company => (
                             <option
                               key={company && company.id}
-                              value={company &&  company.company_name}
+                              value={company && company.company_name}
                             >
-                              {company && company.company_name}
+                              {startCase(company.company_name)}
                             </option>
                           ))
                         ) : (
@@ -178,24 +174,24 @@ const PostaJob = ({
                     <div>
                       <div class='common_input_wrapper_2'>
                         <input
-                        type='text'
-                        name='city'
-                        value={city}
-                        onChange={e => onChange(e)}
-                        placeholder='City'
-                        required
+                          type='text'
+                          name='city'
+                          value={city}
+                          onChange={e => onChange(e)}
+                          placeholder='City'
+                          required
                         />
                       </div>
                     </div>
                     <div>
                       <div class='common_input_wrapper_2'>
                         <input
-                        type='text'
-                        name='state'
-                        value={state}
-                        onChange={e => onChange(e)}
-                        placeholder='State'
-                        required
+                          type='text'
+                          name='state'
+                          value={state}
+                          onChange={e => onChange(e)}
+                          placeholder='State'
+                          required
                         />
                       </div>
                     </div>
@@ -204,12 +200,12 @@ const PostaJob = ({
                     <div>
                       <div class='common_input_wrapper_2'>
                         <input
-                        type='text'
-                        name='salary'
-                        value={salary}
-                        onChange={e => onChange(e)}
-                        placeholder='Salary'
-                        required
+                          type='text'
+                          name='salary'
+                          value={salary}
+                          onChange={e => onChange(e)}
+                          placeholder='Salary'
+                          required
                         />
                       </div>
                     </div>
@@ -335,7 +331,7 @@ const PostaJob = ({
                               value={website}
                               onChange={e => onChange(e)}
                               placeholder='Website URL'
-                              disabled= {email ? true : false}
+                              disabled={email ? true : false}
                             />
                           </div>
                         </div>
@@ -348,19 +344,24 @@ const PostaJob = ({
                     </div>
                     <div class='full_row'>
                       <div class='common_input_wrapper_2'>
-                        <input type='text'
-                        name='job_description'
-                        value={job_description}
-                        onChange={e => onChange(e)}
-                        placeholder=''
-                        required
+                        <input
+                          type='text'
+                          name='job_description'
+                          value={job_description}
+                          onChange={e => onChange(e)}
+                          placeholder=''
+                          required
                         />
                       </div>
                     </div>
                   </div>
                   <div class='flex_r_j_center_align_center form_buttons'>
-                    <button type='reset' class='cancel_btn'>Cancel</button>
-                    <button type='submit' class='black_btn'>post job</button>
+                    <button type='reset' class='cancel_btn'>
+                      Cancel
+                    </button>
+                    <button type='submit' class='black_btn'>
+                      post job
+                    </button>
                   </div>
                 </div>
               </form>
@@ -440,7 +441,6 @@ PostaJob.propTypes = {
   user: PropTypes.object.isRequired,
   getCompany: PropTypes.func.isRequired,
   addCompany: PropTypes.func.isRequired,
-  getJobCategories: PropTypes.func.isRequired,
   postJobs: PropTypes.func.isRequired
 };
 
@@ -452,6 +452,5 @@ const mapStateToProps = state => ({
 export default connect(mapStateToProps, {
   getCompany,
   addCompany,
-  getJobCategories,
   postJobs
 })(PostaJob);

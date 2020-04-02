@@ -1,4 +1,4 @@
-import { POST_JOBS, VIEW_JOBS, JOBS_ERROR, ADD_COMPANY, GET_COMPANY, GET_JOB_CATEGORIES } from "../actions/types";
+import { POST_JOBS, VIEW_JOBS, JOBS_ERROR, ADD_COMPANY, GET_COMPANY, GET_JOB_CATEGORIES, CLEAR_JOBS } from "../actions/types";
 
 const initialState = {
     jobs: [],
@@ -42,13 +42,20 @@ export default function(state = initialState, action) {
             categories: payload,
             loading: false
           };
-      case JOBS_ERROR:
-        return {
-          ...state,
-          error: payload,
-          jobs: [],
-          loading: false
-        };
+          case JOBS_ERROR:
+            return {
+              ...state,
+              error: payload,
+              loading: false,
+              jobs: []
+            };
+          case CLEAR_JOBS:
+            return {
+              ...state,
+              jobs: [],
+              companies: [],
+              loading: false
+            };
       default:
         return state;
     }
