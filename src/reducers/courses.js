@@ -1,7 +1,8 @@
-import { GET_COURSES, COURSE_ERROR,ADD_COURSE, ADD_VIDEOS } from '../actions/types';
+import { GET_COURSES, COURSE_ERROR,ADD_COURSE, ADD_VIDEOS, GET_COURSES_LANDING } from '../actions/types';
 
 const initialState = {
   courses: [],
+  coursesland: [],
   course: null,
   loading: true,
   error: {}
@@ -15,6 +16,12 @@ export default function(state = initialState, action) {
       return {
         ...state,
         courses: payload,
+        loading: false
+      };
+    case GET_COURSES_LANDING:
+      return {
+        ...state,
+        coursesland: payload,
         loading: false
       };
     case ADD_COURSE:

@@ -1,6 +1,6 @@
 import Axios from "axios";
 import { setAlert } from "./alert";
-import { GET_COURSES, COURSE_ERROR, ADD_COURSE, ADD_VIDEOS } from '../actions/types';
+import { GET_COURSES, COURSE_ERROR, ADD_COURSE, ADD_VIDEOS, GET_COURSES_LANDING } from '../actions/types';
 
 // const url = 'http://127.0.0.1:8000/api';
 const url = 'https://omareservations.com/stevia/api';
@@ -15,6 +15,24 @@ export const getCourses = () => async dispatch => {
       dispatch({
         type: GET_COURSES,
         payload: res.data.data
+      });
+    } catch (error) {
+      dispatch({
+        type: COURSE_ERROR,
+        payload: { msg: error.response.data, status: error.response.data.status }
+      });
+    }
+  };
+
+export const getCoursesLand = () => async dispatch => {
+    try {
+      const res = await Axios.get(
+        `${url}/role/courses`
+      );
+  
+      dispatch({
+        type: GET_COURSES_LANDING,
+        payload: res.data
       });
     } catch (error) {
       dispatch({

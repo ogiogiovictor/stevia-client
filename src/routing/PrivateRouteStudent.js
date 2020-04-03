@@ -33,7 +33,8 @@ const PrivateRouteStudent = ({
       {...rest}
       render={props =>
         !isAuthenticated && !user  ? (
-          <Redirect to='/login' />
+          (setAlert('Please signin to continue', 'error'),
+          (<Redirect to='/login' />))
         ) : user && user.currentUser.role.name !== 'STUDENT' ? (
           (setAlert('Please Signin has a Student', 'error'),
           (<Redirect to='/dashboard' />))

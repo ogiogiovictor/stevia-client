@@ -5,13 +5,13 @@ import { Link } from 'react-router-dom';
 import Footer from './Footer';
 import Header from './Header';
 import Topnav from './Topnav';
-import { getCourses } from '../../actions/course';
+import { getCoursesLand } from '../../actions/course';
 import CourseItem from './CourseItem';
 
-const Courses = ({ getCourses, courses: { courses, loading } }) => {
+const Courses = ({ getCoursesLand, courses: { coursesland, loading } }) => {
   useEffect(() => {
-    getCourses();
-  }, [getCourses]);
+    getCoursesLand();
+  }, [getCoursesLand]);
   return (
     <Fragment>
       <body>
@@ -75,16 +75,16 @@ const Courses = ({ getCourses, courses: { courses, loading } }) => {
                 </div>
 
                 <div class='courses_wrapper_div'>
-                {courses.length > 0 ? (
-                    courses.map(course => (
+                  {coursesland.length > 0 ? (
+                    coursesland.map(course => (
                       <CourseItem
                         key={course.id}
                         course={course}
-                        loading = {loading}
+                        loading={loading}
                       />
                     ))
                   ) : (
-                    <h4>No Courses Found...</h4>
+                    <h4>{loading ? 'Loading...' : 'No Courses Found...'}</h4>
                   )}
                 </div>
 
@@ -151,12 +151,12 @@ const Courses = ({ getCourses, courses: { courses, loading } }) => {
 };
 
 Courses.propTypes = {
-    getCourses: PropTypes.func.isRequired,
-    courses: PropTypes.object.isRequired
+  getCoursesLand: PropTypes.func.isRequired,
+  coursesland: PropTypes.object.isRequired
 };
 
 const mapStateToProps = state => ({
-    courses: state.courses
+  courses: state.courses
 });
 
-export default connect(mapStateToProps, { getCourses })(Courses);
+export default connect(mapStateToProps, { getCoursesLand })(Courses);

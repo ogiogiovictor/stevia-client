@@ -88,7 +88,7 @@ const Coaches = ({ getCoachesProfileLand, profile: { coachesland, loading } }) =
                       />
                     ))
                   ) : (
-                    <h4>Loading...</h4>
+                    <h4>{loading ? 'Loading...' : 'No Coaches Found'}</h4>
                   )}
                 </div>
 

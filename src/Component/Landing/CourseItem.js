@@ -7,7 +7,9 @@ const CourseItem = ({
   loading,
   course: { price_per_session, image, course_description, title, coach_id }
 }) => {
-  return loading ? <Spinner /> : (
+  return loading ? (
+    <Spinner />
+  ) : (
     <Fragment>
       <div className='each_course'>
         <div className='flex_r_j_between_align_center'>
@@ -19,14 +21,14 @@ const CourseItem = ({
               <i className='fas fa-tag'></i>
             </div>
             <div className='course_amount'>
-              <p>₦ {price_per_session}</p>
+              <p>₦{price_per_session}</p>
             </div>
           </div>
         </div>
         <div className='flex_r_a_center course_icon_n_name'>
           <div className='course_image_wrapper'>
             <div className='course_image'>
-            <img src={image} alt='' />
+              <img src={image} alt='' />
             </div>
           </div>
           <div className='course_name'>
@@ -34,21 +36,7 @@ const CourseItem = ({
           </div>
         </div>
         <div className='full_row course_description'>
-          <p>
-            {course_description}
-          </p>
-        </div>
-        <div className='flex_r_j_between_align_center seats_left'>
-          <div className='stud_images'>
-            <img src='../utils/images/40.png' alt='' />
-            <img src='../utils/images/41.png' alt='' />
-            <img src='../utils/images/42.png' alt='' />
-            <img src='../utils/images/43.png' alt='' />
-            <img src='../utils/images/44.png' alt='' />
-          </div>
-          <div>
-            <p>8 Seats left</p>
-          </div>
+          <p>{course_description}</p>
         </div>
         <div className='full_row'>
           <button className='black_btn full_width_btn'>Enrol Now</button>
