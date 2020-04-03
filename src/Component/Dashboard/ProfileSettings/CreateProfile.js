@@ -225,7 +225,7 @@ const CreateProfile = ({
   const onSubmit5 = e => {
     e.preventDefault();
     const formData = new FormData();
-    const daysArr = [monday, tuesday, wednesday, thursday, friday, saturday, sunday];
+    const daysArr = {0:sunday, 1:monday, 2:tuesday, 3:wednesday, 4:thursday, 5:friday, 6:saturday};
     const timenew = {start: start, end: end};
     formData.append('coach_id', user && user.currentUser.id);
     formData.append('days', JSON.stringify(daysArr));

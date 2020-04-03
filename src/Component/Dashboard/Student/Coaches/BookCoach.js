@@ -8,12 +8,14 @@ import Topnav from '../../Layout/Topnav';
 import { Wizard, Steps, Step, Navigation, Progress } from 'react-wizr';
 import { useForm } from 'react-hook-form';
 import './Style.css';
+import moment from 'moment';
 import FullCalendar from '@fullcalendar/react';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import timeGridPlugin from '@fullcalendar/timegrid';
 import interactionPlugin from '@fullcalendar/interaction'; // needed for dayClick
 import '@fullcalendar/core/main.css';
 import '@fullcalendar/daygrid/main.css';
+import '@fullcalendar/timegrid/main.css';
 
 const BookCoach = ({
   getCoachesProfile,
@@ -50,6 +52,8 @@ const BookCoach = ({
   const coach = coaches
     ? coaches.find(({ id }) => id === parseInt(match.params.id))
     : '';
+
+  console.log(moment());
 
   const findservice = coach
     ? coach.services.find(({ id }) => id === parseInt(service_id))
@@ -338,14 +342,16 @@ const BookCoach = ({
                                 range.
                               </h3>
                             </div>
-                            <div class='settings_content'>
-                              <div class='left'>
+                            <div>
+                              <div>
                                 <div>
                                   <FullCalendar
-                                    defaultView='dayGridWeek'
+                                    defaultView='timeGridWeek'
+                                    selectable={true}
                                     header={{
                                       left: 'prev,next today',
                                       center: 'title',
+                                      allDaySlot: false,
                                       right:
                                         'dayGridMonth,timeGridWeek,timeGridDay,listWeek'
                                     }}
@@ -354,11 +360,49 @@ const BookCoach = ({
                                       timeGridPlugin,
                                       interactionPlugin
                                     ]}
+                                    selectAllow={function(selectInfo) {
+                                      return moment().diff(selectInfo.start) <= 0
+                                    }}
+                                    dateClick= {function(info) {
+                                      alert('Clicked on: ' + info.dateStr);
+                                      alert('Coordinates: ' + info.jsEvent.pageX + ',' + info.jsEvent.pageY);
+                                      alert('Current view: ' + info.view.type);
+                                      // change the day's background color just for fun
+                                      info.dayEl.style.backgroundColor = 'red';
+                                    }}
                                     weekends={true}
-                                    events={[
-                                      { title: 'event 1', date: '2020-04-01' },
-                                      { title: 'event 2', date: '2020-04-02' }
-                                    ]}
+                                    allDaySlot={false}
+                                    businessHours= {{
+                                      // days of week. an array of zero-based day of week integers (0=Sunday)
+                                      daysOfWeek: [ 1, 2, 3, 4 ], // Monday - Thursday
+                                    
+                                      startTime: '10:00', // a start time (10am in this example)
+                                      endTime: '18:00', // an end time (6pm in this example)
+                                    }}
+                                    // events={[
+                                    //   {
+                                    //     title: 'Available',
+                                    //     daysOfWeek:
+                                    //       coach &&
+                                    //       Object.keys(
+                                    //         JSON.parse(coach.appointment[0].day)
+                                    //       ), // these recurrent events move separately
+                                    //     startTime:
+                                    //       coach &&
+                                    //       JSON.parse(coach.appointment[0].time)
+                                    //         .start,
+                                    //     endTime:
+                                    //       coach &&
+                                    //       JSON.parse(coach.appointment[0].time)
+                                    //         .end,
+                                    //     color: 'red',
+                                    //     textColor: 'white',
+                                    //     rendering: 'background'
+                                    //   }
+                                    // ]}
+                                    // selectOverlap= {function(event) {
+                                    //   return event.rendering === 'background';
+                                    // }}
                                   />
                                 </div>
                                 <SimpleNavigation />

@@ -138,7 +138,7 @@ export const getCoachesProfile = () => async dispatch => {
 export const getCoachesProfileLand = () => async dispatch => {
   try {
     const res = await Axios.get(
-      `${url}/role/coach`
+      `${url}/role/coaches`
     );
     dispatch({
       type: GET_COACHES_PROFILES_LAND,
