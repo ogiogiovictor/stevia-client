@@ -1,7 +1,7 @@
 import Axios from 'axios';
 import { setAlert } from './alert';
 
-import { GET_PROFILE, PROFILE_ERROR, CLEAR_PROFILE, GET_COACHES_PROFILE, UPLOAD_PROFILE_IMAGE, COACH_AVAILABILITY } from './types';
+import { GET_PROFILE, PROFILE_ERROR, CLEAR_PROFILE, GET_COACHES_PROFILE, UPLOAD_PROFILE_IMAGE, COACH_AVAILABILITY, GET_COACHES_PROFILES_LAND } from './types';
 import { loadUser } from './auth';
 
 const url = 'https://omareservations.com/stevia/api';
@@ -124,6 +124,25 @@ export const getCoachesProfile = () => async dispatch => {
     dispatch({
       type: GET_COACHES_PROFILE,
       payload: res.data.data
+    });
+  } catch (error) {
+    dispatch({ type: CLEAR_PROFILE });
+    dispatch({
+      type: PROFILE_ERROR,
+      payload: { msg: error }
+    });
+  }
+};
+// Get Coaches Profiles Landing
+
+export const getCoachesProfileLand = () => async dispatch => {
+  try {
+    const res = await Axios.get(
+      `${url}/role/coach`
+    );
+    dispatch({
+      type: GET_COACHES_PROFILES_LAND,
+      payload: res.data
     });
   } catch (error) {
     dispatch({ type: CLEAR_PROFILE });

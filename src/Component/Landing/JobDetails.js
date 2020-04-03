@@ -7,6 +7,7 @@ import Topnav from './Topnav';
 import Header from './Header';
 import Footer from './Footer';
 import { getLandingJob } from '../../actions/jobs';
+import Spinner from '../Spinner/Spinner'
 
 const JobDetails = ({ getLandingJob, jobs: { landjobs, loading }, match }) => {
   useEffect(() => {
@@ -18,8 +19,8 @@ const JobDetails = ({ getLandingJob, jobs: { landjobs, loading }, match }) => {
   const presentDate = moment().format('MM/DD/YYYY');
   const postedDate = moment(job && job.created_at).format('MM/DD/YYYY');
   const postedDays = moment(presentDate).day() - moment(postedDate).day();
-
-  return (
+  return loading ? <Spinner /> :
+   (
     <Fragment>
       <body>
         <Topnav />

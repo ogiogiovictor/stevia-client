@@ -5,13 +5,13 @@ import { Link } from 'react-router-dom';
 import Footer from './Footer';
 import Header from './Header';
 import Topnav from './Topnav';
-import { getCoachesProfile } from '../../actions/profile';
+import {getCoachesProfileLand } from '../../actions/profile';
 import CoachItem from './CoachItem';
 
-const Coaches = ({ getCoachesProfile, profile: { coaches, loading } }) => {
+const Coaches = ({ getCoachesProfileLand, profile: { coachesland, loading } }) => {
   useEffect(() => {
-    getCoachesProfile();
-  }, [getCoachesProfile]);
+    getCoachesProfileLand();
+  }, [getCoachesProfileLand]);
   return (
     <Fragment>
       <body>
@@ -79,8 +79,8 @@ const Coaches = ({ getCoachesProfile, profile: { coaches, loading } }) => {
                   </div>
                 </div>
                 <div className='coaches_wrapper_div'>
-                  {coaches.length > 0 ? (
-                    coaches.map(coach => (
+                  {coachesland.length > 0 ? (
+                    coachesland.map(coach => (
                       <CoachItem
                         key={coach.id}
                         coach={coach}
@@ -154,7 +154,7 @@ const Coaches = ({ getCoachesProfile, profile: { coaches, loading } }) => {
 };
 
 Coaches.propTypes = {
-  getCoachesProfile: PropTypes.func.isRequired,
+  getCoachesProfileLand: PropTypes.func.isRequired,
   profile: PropTypes.object.isRequired
 };
 
@@ -162,4 +162,4 @@ const mapStateToProps = state => ({
   profile: state.profile
 });
 
-export default connect(mapStateToProps, { getCoachesProfile })(Coaches);
+export default connect(mapStateToProps, { getCoachesProfileLand })(Coaches);

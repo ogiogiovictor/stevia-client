@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { setAlert } from '../actions/alert';
 import { getCurrentProfile } from '../actions/profile';
+import Spinner from '../Component/Spinner/Spinner';
 
 const PrivateRouteStudent = ({
   component: Component,
@@ -27,11 +28,11 @@ const PrivateRouteStudent = ({
   };
   let prof = Object.values(newProfile).every(item => item !== null);
 
-  return (
+  return loading ? <Spinner /> : (
     <Route
       {...rest}
       render={props =>
-        loading && !isAuthenticated ? (
+        !isAuthenticated && !user  ? (
           <Redirect to='/login' />
         ) : user && user.currentUser.role.name !== 'STUDENT' ? (
           (setAlert('Please Signin has a Student', 'error'),
