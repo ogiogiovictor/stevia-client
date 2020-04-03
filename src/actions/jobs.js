@@ -6,11 +6,12 @@ import {
   JOBS_ERROR,
   ADD_COMPANY,
   GET_COMPANY,
-  GET_JOB_CATEGORIES
+  GET_JOB_CATEGORIES,
+  GET_JOBS_LANDING
 } from './types';
 
-// const url = 'http://127.0.0.1:8000/api';
-const url = 'https://omareservations.com/stevia/api';
+const url = 'http://127.0.0.1:8000/api';
+// const url = 'https://omareservations.com/stevia/api';
 
 // Post Jobs
 export const postJobs = formData => async dispatch => {
@@ -118,3 +119,20 @@ export const getJobCategories = () => async dispatch => {
     });
   }
 };
+
+// Get Landing Jobs
+export const getLandingJob = () => async dispatch => {
+  try {
+    const res = await Axios.get(`${url}/role/jobs`);
+    dispatch({
+      type: GET_JOBS_LANDING,
+      payload: res.data
+    });
+  } catch (error) {
+    dispatch({
+      type: JOBS_ERROR,
+      payload: { msg: error }
+    });
+  }
+};
+

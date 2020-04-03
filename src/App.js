@@ -38,7 +38,10 @@ import Faq from './Component/Landing/Faq';
 import Contact from './Component/Landing/Contact';
 import CoachesLand from './Component/Landing/Coaches';
 import CoursesLand from './Component/Landing/Courses';
+import LandJobs from './Component/Landing/Jobs';
+import LandJobDetails from './Component/Landing/JobDetails';
 import ViewJobs from './Component/Dashboard/Recruiters/ViewJobs';
+import ScrollToTop from './Component/ScrollToTop';
 
 if (localStorage.token) {
   setAuthToken(localStorage.token);
@@ -53,123 +56,135 @@ const App = () => {
   return (
     <Provider store={store}>
       <Router>
-        <Fragment>
-          <ToastContainer
-            position='top-right'
-            autoClose={100}
-            hideProgressBar={false}
-            newestOnTop={false}
-            closeOnClick
-            rtl={false}
-            pauseOnVisibilityChange
-            draggable
-            pauseOnHover
-          />
-          <ToastContainer />
-          <Alert />
-          <Switch>
-            <Route path='/signup' exact component={Signup} />
-            <Route path='/success' exact component={Success} />
-            <Route path='/coach' exact component={Coach} />
-            <Route path='/login' exact component={Login} />
-            <PrivateRouteStudent
-              path='/dashboard/student/coaches'
-              exact
-              component={Studentcoaches}
+        <ScrollToTop>
+          <Fragment>
+            <ToastContainer
+              position='top-right'
+              autoClose={100}
+              hideProgressBar={false}
+              newestOnTop={false}
+              closeOnClick
+              rtl={false}
+              pauseOnVisibilityChange
+              draggable
+              pauseOnHover
             />
-            <PrivateRouteStudent
-              path='/dashboard/student/coaches/book/:id'
-              exact
-              component={BookCoach}
-            />
-            <PrivateRoute
-              path='/dashboard/admin/services'
-              exact
-              component={AdminServices}
-            />
-            <PrivateRoute
-              path='/dashboard/coaches/services'
-              exact
-              component={CoachServices}
-            />
-            <PrivateRoute
-              path='/dashboard/coaches/courses'
-              exact
-              component={Courses}
-            />
-            <PrivateRoute
-              path='/dashboard/coaches/courses/details/:id'
-              exact
-              component={CoachCourseDetails}
-            />
-            <PrivateRouteStudent
-              path='/dashboard/student/coaches/:id'
-              exact
-              component={CoachDetails}
-            />
-            <PrivateRouteStudent
-              path='/dashboard/student/courses'
-              exact
-              component={StudentCourses}
-            />
-            <PrivateRoute
-              path='/dashboard/coaches/courses/create'
-              exact
-              component={CreateCourse}
-            />
-            <PrivateRoute
-              path='/dashboard/student/settings'
-              exact
-              component={CreateProfile}
-            />
-            <PrivateRoute
-              path='/dashboard/coaches/settings'
-              exact
-              component={CreateProfile}
-            />
-            <PrivateRoute
-              path='/dashboard/recruiter/postajob'
-              exact
-              component={PostaJob}
-            />
-            <PrivateRoute
-              path='/dashboard/recruiter/overview'
-              exact
-              component={Overview}
-            />
-            <PrivateRoute
-              path='/dashboard/recruiter/viewjobs'
-              exact
-              component={ViewJobs}
-            />
-            <PrivateRoute
-              path='/dashboard/admin/settings'
-              exact
-              component={CreateProfile}
-            />
-            <PrivateRouteStudent
-              path='/dashboard/student/overview'
-              exact
-              component={Dashboard}
-            />
-            <PrivateRoute
-              path='/dashboard/coaches/overview'
-              exact
-              component={Dashboard}
-            />
-            <PrivateRoute path='/dashboard/admin' exact component={Dashboard} />
-            <PrivateRoute path='/logout' exact component={logout} />
-            <PrivateRoute path='/dashboard' exact component={Dashboard} />
-            <Route path='/terms' exact component={Terms} />
-            <Route path='/aboutus' exact component={Aboutus} />
-            <Route path='/faq' exact component={Faq} />
-            <Route path='/contact' exact component={Contact} />
-            <Route path='/coaches' exact component={CoachesLand} />
-            <Route path='/courses' exact component={CoursesLand} />
-            <Route path='/' exact component={Student} />
-            <Route path='*' component={NotFoundPage} />
-          </Switch>
-        </Fragment>
+            <ToastContainer />
+            <Alert />
+            <Switch>
+              <Route path='/signup' exact component={Signup} />
+              <Route path='/success' exact component={Success} />
+              <Route path='/coach' exact component={Coach} />
+              <Route path='/login' exact component={Login} />
+              <PrivateRouteStudent
+                path='/dashboard/student/coaches'
+                exact
+                component={Studentcoaches}
+              />
+              <PrivateRouteStudent
+                path='/dashboard/student/coaches/book/:id'
+                exact
+                component={BookCoach}
+              />
+              <PrivateRoute
+                path='/dashboard/admin/services'
+                exact
+                component={AdminServices}
+              />
+              <PrivateRoute
+                path='/dashboard/coaches/services'
+                exact
+                component={CoachServices}
+              />
+              <PrivateRoute
+                path='/dashboard/coaches/courses'
+                exact
+                component={Courses}
+              />
+              <PrivateRoute
+                path='/dashboard/coaches/courses/details/:id'
+                exact
+                component={CoachCourseDetails}
+              />
+              <PrivateRouteStudent
+                path='/dashboard/student/coaches/:id'
+                exact
+                component={CoachDetails}
+              />
+              <PrivateRouteStudent
+                path='/dashboard/student/courses'
+                exact
+                component={StudentCourses}
+              />
+              <PrivateRoute
+                path='/dashboard/coaches/courses/create'
+                exact
+                component={CreateCourse}
+              />
+              <PrivateRoute
+                path='/dashboard/student/settings'
+                exact
+                component={CreateProfile}
+              />
+              <PrivateRoute
+                path='/dashboard/coaches/settings'
+                exact
+                component={CreateProfile}
+              />
+              <PrivateRoute
+                path='/dashboard/recruiter/postajob'
+                exact
+                component={PostaJob}
+              />
+              <PrivateRoute
+                path='/dashboard/recruiter/overview'
+                exact
+                component={Overview}
+              />
+              <PrivateRoute
+                path='/dashboard/recruiter/viewjobs'
+                exact
+                component={ViewJobs}
+              />
+              <PrivateRoute
+                path='/dashboard/admin/settings'
+                exact
+                component={CreateProfile}
+              />
+              <PrivateRouteStudent
+                path='/dashboard/student/overview'
+                exact
+                component={Dashboard}
+              />
+              <PrivateRoute
+                path='/dashboard/coaches/overview'
+                exact
+                component={Dashboard}
+              />
+              <PrivateRoute
+                path='/dashboard/admin'
+                exact
+                component={Dashboard}
+              />
+              <PrivateRoute path='/logout' exact component={logout} />
+              <PrivateRoute path='/dashboard' exact component={Dashboard} />
+              <Route path='/terms' exact component={Terms} />
+              <Route path='/aboutus' exact component={Aboutus} />
+              <Route path='/faq' exact component={Faq} />
+              <Route path='/contact' exact component={Contact} />
+              <Route path='/coaches' exact component={CoachesLand} />
+              <Route path='/courses' exact component={CoursesLand} />
+              <Route path='/jobs' exact component={LandJobs} />
+              <Route
+                path='/jobs/details/:id'
+                exact
+                component={LandJobDetails}
+              />
+              <Route path='/' exact component={Student} />
+              <Route path='*' component={NotFoundPage} />
+            </Switch>
+          </Fragment>
+        </ScrollToTop>
       </Router>
     </Provider>
   );

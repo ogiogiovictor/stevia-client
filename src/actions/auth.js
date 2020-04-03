@@ -26,7 +26,12 @@ export const loadUser = () => async dispatch => {
   const loadUserApi = `${url}/dashboard/currentuser`;
   
   try {
-    const res = await Axios.get(loadUserApi);
+    const config = {
+      headers: {
+        'Cache-Control': 'no-cache',
+      }
+    };
+    const res = await Axios.get(loadUserApi, config);
 
     dispatch({
       type: USER_LOADED,

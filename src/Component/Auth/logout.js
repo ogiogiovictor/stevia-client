@@ -5,9 +5,9 @@ import { Link } from 'react-router-dom'
 import Spinner from '../Spinner/Spinner'
 
 
-const logoutEnd = ({auth: {loading}, logout}) => {
+const logoutEnd = ({auth: {loading, isAuthenticated}, logout}) => {
 
-    return loading ? <Spinner /> : (
+      return loading && isAuthenticated ? <Spinner /> : (
         <div>
         <div className='flex_c_align_center recruiters_success'>
           <div className='success_div'>
