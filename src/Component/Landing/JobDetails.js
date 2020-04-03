@@ -81,7 +81,7 @@ const JobDetails = ({ getLandingJob, jobs: { landjobs, loading }, match }) => {
                         </div>
                       </div>
                       <div className='full_row share_btn'>
-                        <a href={job && job.email ? (`mailto:${job.email}`) : (`${job && job.website}`)}><button className='red_btn'>Apply for job</button></a>
+                        <a href={job && job.email !== 'null' ? (`mailto:${job.email}`) : (`${job && job.website}`)}><button className='red_btn'>Apply for job</button></a>
                       </div>
                       <div className='full_row save_later'>
                         <h6>
