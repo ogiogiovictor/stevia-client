@@ -28,7 +28,7 @@ const CourseItem = ({
         <div className='flex_r_a_center course_icon_n_name'>
           <div className='course_image_wrapper'>
             <div className='course_image'>
-              <img src={image} alt='' />
+              <img src={`https://omareservations.com/stevia/images/courses/${image}`} alt='' />
             </div>
           </div>
           <div className='course_name'>
