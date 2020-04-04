@@ -433,6 +433,10 @@ button.red_btn {
 button.red_btn:hover {
   background-color: #da2f2f;
 }
+button.red_btn:disabled {
+  background-color: #dddddd;
+  cursor: progress;
+}
 
 button.black_btn {
   background-color: #303037;
@@ -4116,7 +4120,6 @@ section.dashboard_body .appointments_part .appointment_container .empty_content 
 }
 
 .other_information_section, .other_coach_details {
-  display: none;
   padding: 25px 0 100px;
 }
 
@@ -4153,7 +4156,6 @@ section.dashboard_body .appointments_part .appointment_container .empty_content 
 
 .notification_section {
   padding: 25px 0 100px;
-  display: none;
 }
 
 .notification_section .profile_details {

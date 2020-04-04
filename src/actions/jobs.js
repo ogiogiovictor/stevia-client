@@ -10,8 +10,8 @@ import {
   GET_JOBS_LANDING
 } from './types';
 
-// const url = 'http://127.0.0.1:8000/api';
-const url = 'https://omareservations.com/stevia/api';
+const url = 'http://127.0.0.1:8000/api';
+// const url = 'https://omareservations.com/stevia/api';
 
 // Post Jobs
 export const postJobs = formData => async dispatch => {

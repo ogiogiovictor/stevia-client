@@ -34,11 +34,14 @@ const BookCoach = ({
     note: '',
     amount: '',
     date: '',
-    start_date: '',
-    end_date: ''
+    start_time: '',
+    end_time: '',
+  });
+  const [dateData, setDateData] = useState({
+    startTime: '', endTime: '', newdate: ''
   });
 
-  const { service_id, note, amount, date, start_date, end_date } = formData;
+  const { service_id, note, amount } = formData;
 
   const onChange = e =>
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -53,19 +56,30 @@ const BookCoach = ({
     ? coaches.find(({ id }) => id === parseInt(match.params.id))
     : '';
 
-  console.log(moment());
-
   const findservice = coach
     ? coach.services.find(({ id }) => id === parseInt(service_id))
     : '';
 
+    
+    // const handleDateClick = (arg) => {
+    //     setDateData({
+    //         startDate: arg && arg.startStr,
+    //         endDate: arg && arg.endStr
+    //       })
+    //   }
+    console.log(dateData)
+    
   const onSubmit = e => {
     e.preventDefault();
     formData.coach_id = match.params.id;
     formData.channel_id = service_id;
     formData.student_id = user.currentUser.id;
     formData.course_type = 'appointment';
+    formData.start_time = dateData.startTime;
+    formData.end_time = dateData.endTime;
+    formData.date = dateData.newdate;
     bookACoach(formData);
+    console.log(formData)
   };
 
   const SimpleNavigation = () => (
@@ -272,7 +286,7 @@ const BookCoach = ({
                                         onChange={e => onChange(e)}
                                         readOnly
                                       />
-                                      Price Per Session:{' '}
+                                      Price Per Session:
                                       {findservice &&
                                         findservice.price_per_session}
                                     </label>
@@ -293,7 +307,7 @@ const BookCoach = ({
                                         onChange={e => onChange(e)}
                                         readOnly
                                       />
-                                      Price Per Hour:{' '}
+                                      Price Per Hour:
                                       {findservice &&
                                         findservice.price_per_hour}
                                     </label>
@@ -363,22 +377,22 @@ const BookCoach = ({
                                     selectAllow={function(selectInfo) {
                                       return moment().diff(selectInfo.start) <= 0
                                     }}
-                                    dateClick= {function(info) {
-                                      alert('Clicked on: ' + info.dateStr);
-                                      alert('Coordinates: ' + info.jsEvent.pageX + ',' + info.jsEvent.pageY);
-                                      alert('Current view: ' + info.view.type);
-                                      // change the day's background color just for fun
-                                      info.dayEl.style.backgroundColor = 'red';
+                                    select= {function(info) {
+                                      dateData.startTime = info && moment(info.startStr).format('HH.mm');
+                                      dateData.endTime = info && moment(info.endStr).format('HH.mm');
+                                      dateData.newdate = info && moment(info.startStr).format('YYYY-MM-DD');
+                                      alert('selected ' + info.startStr + ' to ' + info.endStr);
                                     }}
                                     weekends={true}
                                     allDaySlot={false}
                                     businessHours= {{
-                                      // days of week. an array of zero-based day of week integers (0=Sunday)
-                                      daysOfWeek: [ 1, 2, 3, 4 ], // Monday - Thursday
-                                    
-                                      startTime: '10:00', // a start time (10am in this example)
-                                      endTime: '18:00', // an end time (6pm in this example)
+                                      daysOfWeek: coach && Object.keys(JSON.parse(coach.appointment[0].day)),
+                                      startTime: coach && JSON.parse(coach.appointment[0].time).start,
+                                      endTime: coach && JSON.parse(coach.appointment[0].time).end,
+                                      color: 'red'
                                     }}
+                                    selectConstraint={"businessHours"}
+
                                     // events={[
                                     //   {
                                     //     title: 'Available',
@@ -457,12 +471,12 @@ const BookCoach = ({
                                           <div class='name'>
                                             <h4>
                                               {user &&
-                                                user.currentUser.firstname}{' '}
+                                                user.currentUser.firstname}
                                               {user &&
                                                 user.currentUser.lastname}
                                             </h4>
                                             <p>
-                                              {' '}
+                                              
                                               {findservice &&
                                                 findservice.service}
                                             </p>
@@ -482,38 +496,38 @@ const BookCoach = ({
                                         <div class='flex_r_j_between_align_center date_top'>
                                           <div class='flex_r_a_center'>
                                             <div>
-                                              {' '}
-                                              <i class='far fa-calendar'></i>{' '}
+                                              
+                                              <i class='far fa-calendar'></i>
                                             </div>
                                             <div>
-                                              {' '}
-                                              <span> {date} </span>{' '}
+                                              
+                                              <span> {dateData && dateData.newdate} </span>
                                             </div>
                                           </div>
                                           <div class='flex_r_a_center'>
                                             <div>
-                                              {' '}
-                                              <i class='far fa-clock'></i>{' '}
+                                              
+                                              <i class='far fa-clock'></i>
                                             </div>
                                             <div>
-                                              {' '}
+                                              
                                               <span>
-                                                {' '}
-                                                {start_date} - {end_date}{' '}
-                                              </span>{' '}
+                                                
+                                                {dateData.startTime} - {dateData.endTime}
+                                              </span>
                                             </div>
                                           </div>
                                         </div>
                                         <div class='flex_r_j_between_align_center date_bottom'>
                                           <div class='flex_r_a_center'>
                                             <div>
-                                              {' '}
-                                              <i class='far fa-building'></i>{' '}
+                                              
+                                              <i class='far fa-building'></i>
                                             </div>
                                             <div>
-                                              {' '}
+                                              
                                               <span>
-                                                {' '}
+                                                
                                                 {findservice &&
                                                 amount ===
                                                   findservice.price_per_hour
@@ -521,8 +535,8 @@ const BookCoach = ({
                                                     ' per hour'
                                                   : findservice &&
                                                     findservice.price_per_session +
-                                                      ' per session'}{' '}
-                                              </span>{' '}
+                                                      ' per session'}
+                                              </span>
                                             </div>
                                           </div>
                                         </div>
@@ -537,6 +551,7 @@ const BookCoach = ({
                                     >
                                       Pay
                                     </button>
+                                    <SimpleNavigation />
                                   </div>
                                 </div>
                                 <div class='right'>
@@ -557,7 +572,6 @@ const BookCoach = ({
                                 </div>
                               </div>
                             </div>
-                            <SimpleNavigation />
                           </form>
                         </section>
                       </Step>

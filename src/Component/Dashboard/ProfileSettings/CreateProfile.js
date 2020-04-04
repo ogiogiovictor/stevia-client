@@ -119,8 +119,8 @@ const CreateProfile = ({
 
   useEffect(() => {
     getCurrentProfile();
-     setFormData({
-      dob: profile && !profile.dob ? '' : profile && profile.dob,
+    setFormData({
+      dob: loading || !profile.dob ? '' : profile && profile.dob,
       sex: loading || !profile.sex ? '' : profile.sex,
       qualitifcation:
         loading || !profile.qualitifcation ? '' : profile.qualitifcation,
@@ -221,12 +221,20 @@ const CreateProfile = ({
     formDataCoach.append('linkedin', linkedin);
     coachOtherInfo(formDataCoach, history, true);
   };
-  
+
   const onSubmit5 = e => {
     e.preventDefault();
     const formData = new FormData();
-    const daysArr = {0:sunday, 1:monday, 2:tuesday, 3:wednesday, 4:thursday, 5:friday, 6:saturday};
-    const timenew = {start: start, end: end};
+    const daysArr = {
+      0: sunday,
+      1: monday,
+      2: tuesday,
+      3: wednesday,
+      4: thursday,
+      5: friday,
+      6: saturday
+    };
+    const timenew = { start: start, end: end };
     formData.append('coach_id', user && user.currentUser.id);
     formData.append('days', JSON.stringify(daysArr));
     formData.append('time', JSON.stringify(timenew));
@@ -252,16 +260,6 @@ const CreateProfile = ({
 
                 {user && user.currentUser.role.name === 'STUDENT' ? (
                   <Tab>
-                    <span>Other Information</span>
-                  </Tab>
-                ) : (
-                  <div style={{ display: 'none' }}>
-                    <Tab></Tab>
-                  </div>
-                )}
-
-                {user && user.currentUser.role.name === 'STUDENT' ? (
-                  <Tab>
                     <span>Notification</span>
                   </Tab>
                 ) : (
@@ -273,16 +271,6 @@ const CreateProfile = ({
                 {user && user.currentUser.role.name === 'COACH' ? (
                   <Tab>
                     <span>Bank</span>
-                  </Tab>
-                ) : (
-                  <div style={{ display: 'none' }}>
-                    <Tab></Tab>
-                  </div>
-                )}
-
-                {user && user.currentUser.role.name === 'COACH' ? (
-                  <Tab>
-                    <span>Other Information</span>
                   </Tab>
                 ) : (
                   <div style={{ display: 'none' }}>
@@ -437,84 +425,196 @@ const CreateProfile = ({
                         </div>
                       </div>
                     </div>
-                  </section>
-                </Panel>
-
-                {user && user.currentUser.role.name === 'STUDENT' ? (
-                  <Panel>
-                    <section className='other_information_section'>
-                      <div className='full_row settings_box profile_details'>
-                        <div className=''>
-                          <div className='full_row each_student_sett_header'>
-                            <p> Other Information </p>
-                            <span>
-                              {' '}
-                              Your personal information is never shown to other
-                              users{' '}
-                            </span>
-                          </div>
-                          <form onSubmit={e => onSubmit(e)}>
-                            <div className='full_row setings_form_wrapper'>
-                              <div className='full_row cols-2'>
+                    {user && user.currentUser.role.name === 'STUDENT' ? (
+                      <div className='full_row other_coach_details'>
+                        <div className='full_row settings_box profile_details'>
+                          <div className=''>
+                            <div className='full_row each_student_sett_header'>
+                              <p> Other Information </p>
+                              <span>
+                                {' '}
+                                Your personal information is never shown to
+                                other users{' '}
+                              </span>
+                            </div>
+                            <form onSubmit={e => onSubmit(e)}>
+                              <div className='full_row setings_form_wrapper'>
+                                <div className='full_row cols-2'>
+                                  <div className='common_input_wrapper_2'>
+                                    <input
+                                      type='date'
+                                      name='dob'
+                                      placeholder='Date of Birth'
+                                      value={dob}
+                                      onChange={e => onChange(e)}
+                                      required
+                                    />
+                                  </div>
+                                  <div className='common_input_wrapper_2'>
+                                    <select
+                                      type='text'
+                                      name='sex'
+                                      placeholder='Sex'
+                                      value={sex}
+                                      onChange={e => onChange(e)}
+                                      required
+                                    >
+                                      <option defaultValue='Sex'>Sex</option>
+                                      <option value='male'>Male</option>
+                                      <option value='Female'>Female</option>
+                                    </select>
+                                  </div>
+                                </div>
                                 <div className='common_input_wrapper_2'>
+                                  <label></label>
                                   <input
-                                    type='date'
-                                    name='dob'
-                                    placeholder='Date of Birth'
-                                    value={dob}
+                                    type='text'
+                                    name='qualitifcation'
+                                    placeholder='Qualification'
+                                    value={qualitifcation}
                                     onChange={e => onChange(e)}
                                     required
                                   />
                                 </div>
                                 <div className='common_input_wrapper_2'>
-                                  <select
+                                  <label></label>
+                                  <input
                                     type='text'
-                                    name='sex'
-                                    placeholder='Sex'
-                                    value={sex}
+                                    name='job_title'
+                                    placeholder='Job Title'
+                                    value={job_title}
                                     onChange={e => onChange(e)}
                                     required
+                                  />
+                                </div>
+                                <div className='common_input_wrapper_2'>
+                                  <label></label>
+                                  <input
+                                    type='text'
+                                    name='location'
+                                    placeholder='Location'
+                                    value={location}
+                                    onChange={e => onChange(e)}
+                                    required
+                                  />
+                                </div>
+                                <div className='full_row button'>
+                                  <button
+                                    type='submit'
+                                    className='full_width_btn red_btn'
                                   >
-                                    <option defaultValue='Sex'>Sex</option>
-                                    <option value='male'>Male</option>
-                                    <option value='Female'>Female</option>
-                                  </select>
+                                    Update profile information
+                                  </button>
                                 </div>
                               </div>
-                              <div className='common_input_wrapper_2'>
-                                <label></label>
-                                <input
+                            </form>
+                          </div>
+                        </div>
+                      </div>
+                    ) : (
+                      <div style={{ display: 'none' }}>
+                        <div></div>
+                      </div>
+                    )}
+
+                    {user && user.currentUser.role.name === 'COACH' ? (
+                      <form onSubmit={e => onSubmit4(e)}>
+                        <div className='full_row other_coach_details'>
+                          <div class='full_row cols-2'>
+                            <div class='common_input_wrapper_2'>
+                              <input
+                                type='text'
+                                name='specialization'
+                                placeholder='Specialization'
+                                value={specialization}
+                                onChange={e => onChange(e)}
+                                required
+                              />
+                            </div>
+                            <div class='common_input_wrapper_2'>
+                              <input
+                                type='text'
+                                name='certifications'
+                                placeholder='Certifications'
+                                value={certifications}
+                                onChange={e => onChange(e)}
+                                required
+                              />
+                            </div>
+                          </div>
+                          <div class='full_row'>
+                            <div>
+                              <div class='full_row header header2'>
+                                <p> Coach full Description </p>
+                              </div>
+                              <div class='common_input_wrapper_2'>
+                                <textarea
                                   type='text'
-                                  name='qualitifcation'
-                                  placeholder='Qualification'
-                                  value={qualitifcation}
+                                  rows='5'
+                                  cols='70'
+                                  name='about_me'
+                                  value={about_me}
+                                  placeholder='All About Coach'
                                   onChange={e => onChange(e)}
                                   required
                                 />
                               </div>
-                              <div className='common_input_wrapper_2'>
-                                <label></label>
-                                <input
-                                  type='text'
-                                  name='job_title'
-                                  placeholder='Job Title'
-                                  value={job_title}
-                                  onChange={e => onChange(e)}
-                                  required
-                                />
+                            </div>
+                          </div>
+                          <div class='full_row cols-2'>
+                            <div>
+                              <div class='full_row header header2'>
+                                <p> Social media links </p>
                               </div>
-                              <div className='common_input_wrapper_2'>
-                                <label></label>
-                                <input
-                                  type='text'
-                                  name='location'
-                                  placeholder='Location'
-                                  value={location}
-                                  onChange={e => onChange(e)}
-                                  required
-                                />
+                              <div class='social_input_wrapper'>
+                                <div class='common_input_wrapper_2'>
+                                  <input
+                                    type='text'
+                                    name='facebook'
+                                    placeholder='Facebook'
+                                    value={facebook}
+                                    onChange={e => onChange(e)}
+                                    required
+                                  />
+                                </div>
+                                <div class='common_input_wrapper_2'>
+                                  <input
+                                    type='text'
+                                    name='twitter'
+                                    placeholder='twitter'
+                                    value={twitter}
+                                    onChange={e => onChange(e)}
+                                    required
+                                  />
+                                </div>
+                                <div class='common_input_wrapper_2'>
+                                  <input
+                                    type='text'
+                                    name='linkedin'
+                                    placeholder='Linkedin'
+                                    value={linkedin}
+                                    onChange={e => onChange(e)}
+                                    required
+                                  />
+                                </div>
                               </div>
-                              <div className='full_row button'>
+                            </div>
+                            <div>
+                              <div>
+                                <div class='full_row header header2'>
+                                  <p> Short Description </p>
+                                </div>
+                                <div class='common_input_wrapper_2'>
+                                  <textarea
+                                    name=''
+                                    id=''
+                                    cols='10'
+                                    rows='5'
+                                    placeholder='Enter the topics covered in this course'
+                                  ></textarea>
+                                </div>
+                              </div>
+                              <div className='full_row button mt-40'>
                                 <button
                                   type='submit'
                                   className='full_width_btn red_btn'
@@ -523,16 +623,16 @@ const CreateProfile = ({
                                 </button>
                               </div>
                             </div>
-                          </form>
+                          </div>
                         </div>
+                      </form>
+                    ) : (
+                      <div style={{ display: 'none' }}>
+                        <div></div>
                       </div>
-                    </section>
-                  </Panel>
-                ) : (
-                  <div style={{ display: 'none' }}>
-                    <Panel></Panel>
-                  </div>
-                )}
+                    )}
+                  </section>
+                </Panel>
 
                 {user && user.currentUser.role.name === 'STUDENT' ? (
                   <Panel>
@@ -642,114 +742,6 @@ const CreateProfile = ({
                                   name='account_name'
                                   placeholder='Account Name'
                                   value={account_name}
-                                  onChange={e => onChange(e)}
-                                  required
-                                />
-                              </div>
-                              <div className='full_row button'>
-                                <button
-                                  type='submit'
-                                  className='full_width_btn red_btn'
-                                >
-                                  Update profile information
-                                </button>
-                              </div>
-                            </div>
-                          </form>
-                        </div>
-                      </div>
-                    </section>
-                  </Panel>
-                ) : (
-                  <div style={{ display: 'none' }}>
-                    <Panel></Panel>
-                  </div>
-                )}
-                {user && user.currentUser.role.name === 'COACH' ? (
-                  <Panel>
-                    <section className='other_information_section'>
-                      <div className='full_row settings_box profile_details'>
-                        <div className=''>
-                          <form onSubmit={e => onSubmit4(e)}>
-                            <div className='full_row each_student_sett_header'>
-                              <p> Other Information </p>
-                            </div>
-                            <div className='full_row setings_form_wrapper'>
-                              <div className='common_input_wrapper_2'>
-                                <label></label>
-                                <textarea
-                                  type='text'
-                                  rows='5'
-                                  cols='70'
-                                  name='about_me'
-                                  value={about_me}
-                                  placeholder='More about you'
-                                  onChange={e => onChange(e)}
-                                  required
-                                />
-                              </div>
-                              <div className='common_input_wrapper_2'>
-                                <label></label>
-                                <input
-                                  type='text'
-                                  name='specialization'
-                                  placeholder='Specialization'
-                                  value={specialization}
-                                  onChange={e => onChange(e)}
-                                  required
-                                />
-                              </div>
-                              <div className='common_input_wrapper_2'>
-                                <label></label>
-                                <input
-                                  type='text'
-                                  name='certifications'
-                                  placeholder='Certifications'
-                                  value={certifications}
-                                  onChange={e => onChange(e)}
-                                  required
-                                />
-                              </div>
-                              <div className='common_input_wrapper_2'>
-                                <label></label>
-                                <input
-                                  type='text'
-                                  name='youtube_link'
-                                  placeholder='Youtube Link'
-                                  value={youtube_link}
-                                  onChange={e => onChange(e)}
-                                  required
-                                />
-                              </div>
-                              <div className='common_input_wrapper_2'>
-                                <label></label>
-                                <input
-                                  type='text'
-                                  name='facebook'
-                                  placeholder='Facebook'
-                                  value={facebook}
-                                  onChange={e => onChange(e)}
-                                  required
-                                />
-                              </div>
-                              <div className='common_input_wrapper_2'>
-                                <label></label>
-                                <input
-                                  type='text'
-                                  name='twitter'
-                                  placeholder='twitter'
-                                  value={twitter}
-                                  onChange={e => onChange(e)}
-                                  required
-                                />
-                              </div>
-                              <div className='common_input_wrapper_2'>
-                                <label></label>
-                                <input
-                                  type='text'
-                                  name='linkedin'
-                                  placeholder='Linkedin'
-                                  value={linkedin}
                                   onChange={e => onChange(e)}
                                   required
                                 />
