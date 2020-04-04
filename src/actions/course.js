@@ -2,8 +2,8 @@ import Axios from "axios";
 import { setAlert } from "./alert";
 import { GET_COURSES, COURSE_ERROR, ADD_COURSE, ADD_VIDEOS, GET_COURSES_LANDING } from '../actions/types';
 
-// const url = 'http://127.0.0.1:8000/api';
-const url = 'https://omareservations.com/stevia/api';
+const url = 'http://127.0.0.1:8000/api';
+// const url = 'https://omareservations.com/stevia/api';
 // Get Courses
 
 export const getCourses = () => async dispatch => {

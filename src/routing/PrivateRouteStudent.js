@@ -20,8 +20,6 @@ const PrivateRouteStudent = ({
   let newProfile = null;
   newProfile = {
     dob: profile && profile.dob,
-    state: profile && profile.state,
-    country: profile && profile.country,
     sex: profile && profile.sex,
     qualitifcation: profile && profile.qualitifcation,
     location: profile && profile.location
