@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import FullCalendar from '@fullcalendar/react';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import timeGridPlugin from '@fullcalendar/timegrid';
@@ -10,62 +10,42 @@ import moment from 'moment';
 
 // import './main.scss'
 export default class DemoApp extends React.Component {
-  calendarComponentRef = React.createRef();
-  state = {
-    calendarWeekends: true,
-    calendarEvents: [
-      // initial event data
-      { title: 'Event Now', start: '' }
-    ]
-  };
+  state = { startTime: '', endTime: '' };
+
+    handleSelect = selectedInfo => {
+      //alert(selectedInfo.startStr)
+      this.setState({
+        startTime: selectedInfo.startStr,
+        endTime: selectedInfo.endStr
+      });
+      console.log('working!!', this.state.startTime, this.state.endTime);
+    };
 
   render() {
-    console.log(this.state.calendarEvents)
-    const { coach } = this.props;
     return (
-      <FullCalendar
-        defaultView='dayGridWeek'
-        selectable={true}
-        header={{
-          left: 'prev,next today',
-          center: 'title',
-          right: 'dayGridMonth,timeGridWeek,timeGridDay,listWeek',
-          allDaySlot: false
-        }}
-        plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
-        ref={this.calendarComponentRef}
-        weekends={this.state.calendarWeekends}
-        allDaySlot={false}
-        businessHours={{
-          daysOfWeek:
-            coach && Object.keys(JSON.parse(coach.appointment[0].day)),
-          startTime: coach && JSON.parse(coach.appointment[0].time).start,
-          endTime: coach && JSON.parse(coach.appointment[0].time).end,
-          color: 'red'
-        }}
-        selectConstraint={'businessHours'}
-        dateClick={this.handleDateClick}
-        select={this.handleDateClick}
-        selectAllow={function(selectInfo) {
-          return moment().diff(selectInfo.start) <= 0;
-        }}
-      />
+      <Fragment>
+        <FullCalendar
+          defaultView='listWeek'
+          weekends={false}
+          allDaySlot={false}
+          plugins={[timeGridPlugin, dayGridPlugin, interactionPlugin]}
+          selectAllow={function(selectInfo) {
+            return (
+              moment().diff(selectInfo.start) <= 0
+            );
+          }}
+          selectable={true}
+          selectMirror={true}
+          selectOverlap={false}
+          select={this.handleSelect}
+          header={{
+            left: 'prev,next today',
+            center: 'title',
+            right: 'dayGridMonth,timeGridWeek,timeGridDay,listWeek'
+          }}
+        />
+        <div>{this.state.startTime}</div>
+      </Fragment>
     );
   }
-
-  handleDateClick = arg => {
-    if (alert('selected ' + arg.startStr + ' to ' + arg.endStr)) {
-      this.setState({
-        // add new event data
-        calendarEvents: this.state.calendarEvents.concat({
-          // creates a new array
-          title: 'New Event',
-          start: arg.date,
-          allDay: arg.allDay,
-          startStr: arg.startStr,
-          endStr: arg.endStr
-        })
-      });
-    }
-  };
 }

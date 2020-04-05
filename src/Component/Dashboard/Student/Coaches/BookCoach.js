@@ -1,192 +1,214 @@
-import React, { Fragment, useEffect, useState } from 'react';
+import React, { Component, Fragment, useState } from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import PaystackButton from 'react-paystack';
 import { getCoachesProfile } from '../../../../actions/profile';
 import { bookACoach } from '../../../../actions/service';
-import { connect } from 'react-redux';
 import Header from '../../Layout/Header';
 import Topnav from '../../Layout/Topnav';
 import { Wizard, Steps, Step, Navigation, Progress } from 'react-wizr';
 import { useForm } from 'react-hook-form';
 import './Style.css';
+import { Redirect, Link } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import moment from 'moment';
 import FullCalendar from '@fullcalendar/react';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import timeGridPlugin from '@fullcalendar/timegrid';
-import interactionPlugin from '@fullcalendar/interaction'; // needed for dayClick
+import interactionPlugin from '@fullcalendar/interaction';
+import '@fullcalendar/timegrid/main.css';
 import '@fullcalendar/core/main.css';
 import '@fullcalendar/daygrid/main.css';
-import '@fullcalendar/timegrid/main.css';
 
-const BookCoach = ({
-  getCoachesProfile,
-  bookACoach,
-  profile: { coaches, loading },
-  user,
-  match
-}) => {
-  const { register, errors, formState } = useForm({
-    mode: 'onChange'
-  });
-  const [formData, setFormData] = useState({
-    coach_id: '',
-    service_id: '',
-    channel_id: '',
-    note: '',
-    amount: '',
-    date: '',
-    start_time: '',
-    end_time: '',
-  });
-  const [dateData, setDateData] = useState({
-    startTime: '', endTime: '', newdate: ''
-  });
+class BookCoach extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      coach_id: '',
+      service_id: 'null',
+      channel_id: '',
+      note: '',
+      amount: '',
+      date: '',
+      start_time: '',
+      end_time: '',
+      key: 'pk_test_6a77ff890624b4ac9ffc399d415bbc4eff082d9f',
+      email: this.props.user.currentUser.email,
+      payResponse: {}
+    };
+  }
 
-  const { service_id, note, amount } = formData;
+  componentDidMount() {
+    this.props.getCoachesProfile();
+  }
 
-  const onChange = e =>
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-
-  useEffect(() => {
-    getCoachesProfile();
-  }, [getCoachesProfile]);
-
-  let selectedOption = 'Pick a Service';
-
-  const coach = coaches
-    ? coaches.find(({ id }) => id === parseInt(match.params.id))
-    : '';
-
-  const findservice = coach
-    ? coach.services.find(({ id }) => id === parseInt(service_id))
-    : '';
-
-    
-    // const handleDateClick = (arg) => {
-    //     setDateData({
-    //         startDate: arg && arg.startStr,
-    //         endDate: arg && arg.endStr
-    //       })
-    //   }
-    console.log(dateData)
-    
-  const onSubmit = e => {
-    e.preventDefault();
-    formData.coach_id = match.params.id;
-    formData.channel_id = service_id;
-    formData.student_id = user.currentUser.id;
-    formData.course_type = 'appointment';
-    formData.start_time = dateData.startTime;
-    formData.end_time = dateData.endTime;
-    formData.date = dateData.newdate;
-    bookACoach(formData);
-    console.log(formData)
+  handleSelect = selectedInfo => {
+    this.setState({
+      date: moment(selectedInfo.startStr).format('YYYY-MM-DD'),
+      start_time: moment(selectedInfo.startStr).format('HH.mm'),
+      end_time: moment(selectedInfo.endStr).format('HH.mm')
+    });
+    console.log('working!!', this.state.start_time, this.state.end_time);
   };
 
-  const SimpleNavigation = () => (
-    <Navigation
-      render={({ activeStepIndex, goToNextStep, goToPrevStep, totalSteps }) => (
-        <div className='flex_r_j_end_align_center btn'>
-          {activeStepIndex > 0 && (
-            <button className='grey_btn' onClick={goToPrevStep}>
-              Go Back
-            </button>
-          )}
-          {activeStepIndex < totalSteps - 1 && (
-            <button
-              type='submit'
-              disabled={!formState.isValid}
-              className='black_btn'
-              onClick={goToNextStep}
-            >
-              Continue
-            </button>
-          )}
-        </div>
-      )}
-    />
-  );
+  handleChange = event => {
+    const { value, name } = event.target;
+    this.setState({ [name]: value });
+  };
 
-  const ProgressBar = () => (
-    <Progress
-      render={({ percentage }) => {
-        const styles = {
-          width: `${percentage}%`
-        };
+  callback = response => {
+    this.setState({ payResponse: response });
+    console.log(response);
+    if (response.status === 'success') {
+      const formData = {
+        coach_id: this.props.match.params.id,
+        service_id: this.state.service_id,
+        channel_id: this.state.service_id,
+        student_id: this.props.user.currentUser.id,
+        course_type: 'appointment',
+        start_time: this.state.start_time,
+        end_time: this.state.end_time,
+        date: this.state.date,
+        amount: parseInt(this.state.amount),
+        note: this.state.note
+      };
+      this.props.bookACoach(formData);
+    }
+  };
 
-        return (
-          <div className='ProgressBar no-print'>
-            <span className='ProgressBar-value' style={styles} />
+  close = () => {
+    console.log('window closed');
+  };
+
+  getReference = () => {
+    //you can put any unique reference implementation code here
+    let text = '';
+    let possible =
+      'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-.=';
+
+    for (let i = 0; i < 15; i++)
+      text += possible.charAt(Math.floor(Math.random() * possible.length));
+
+    return text;
+  };
+
+  render() {
+    const { user, profile, match } = this.props;
+
+    const { service_id, note, amount, date, start_time, end_time } = this.state;
+
+    const coach = profile
+      ? profile.coaches.find(({ id }) => id === parseInt(match.params.id))
+      : '';
+
+    if (coach && !coach.appointment.length > 0) {
+      const tmsg = `${coach.firstname} ${coach.lastname} is not available`;
+      toast(tmsg, 'error');
+      return <Redirect to='/dashboard/student/coaches' />;
+    }
+
+    let selectedOption = 'Pick a Service';
+
+    const findservice = coach
+      ? coach.services.find(({ id }) => id === parseInt(service_id))
+      : '';
+
+    const SimpleNavigation = () => (
+      <Navigation
+        render={({
+          activeStepIndex,
+          goToNextStep,
+          goToPrevStep,
+          totalSteps
+        }) => (
+          <div className='flex_r_j_end_align_center btn'>
+            {activeStepIndex > 0 && (
+              <button className='grey_btn' onClick={goToPrevStep}>
+                Go Back
+              </button>
+            )}
+            {activeStepIndex < totalSteps - 1 && (
+              <button
+                type='submit'
+                className='black_btn'
+                onClick={goToNextStep}
+              >
+                Continue
+              </button>
+            )}
           </div>
-        );
-      }}
-    />
-  );
-  return (
-    <Fragment>
-      <section className='whole_page_wrapper'>
-        <Header menu={user && user.menu} />
-        <section className='dashboard_body'>
-          <Topnav
-            user={user}
-            htitle='Create Appointment'
-            back='Back to Coaches'
-          />
-          <div class='full_row appointment_setting_wrapper'>
-            <div class='dashboard_center'>
-              <div class='appointment_setting'>
-                <div class='settings_progress'>
-                  <div class='active'>
-                    <span> Select Service </span>
+        )}
+      />
+    );
+
+    const ProgressBar = () => (
+      <Progress
+        render={({ percentage }) => {
+          const styles = {
+            width: `${percentage}%`
+          };
+
+          return (
+            <div className='ProgressBar no-print'>
+              <span className='ProgressBar-value' style={styles} />
+            </div>
+          );
+        }}
+      />
+    );
+
+    return (
+      <Fragment>
+        <section className='whole_page_wrapper'>
+          <Header menu={user && user.menu} />
+          <section className='dashboard_body'>
+            <Topnav
+              user={user}
+              htitle='Create Appointment'
+              back='Back to Coaches'
+            />
+            <div class='full_row appointment_setting_wrapper'>
+              <div class='dashboard_center'>
+                <div class='appointment_setting'>
+                  <div class='settings_progress'>
+                    <div class='active'>
+                      <span> Select Service </span>
+                    </div>
+                    <div>
+                      <span> Appointment Type </span>
+                    </div>
+                    <div>
+                      <span> Set Date and Time </span>
+                    </div>
+                    <div>
+                      <span> Review and Pay </span>
+                    </div>
+                    <div>
+                      <span> Status </span>
+                    </div>
                   </div>
-                  <div>
-                    <span> Appointment Type </span>
-                  </div>
-                  <div>
-                    <span> Set Date and Time </span>
-                  </div>
-                  <div>
-                    <span> Review and Pay </span>
-                  </div>
-                  <div>
-                    <span> Status </span>
-                  </div>
-                </div>
-                <div class='full_row settings_container'>
-                  <Wizard
-                    onStepChanged={({ step }) =>
-                      console.log(`Step changed: ${step.id}`)
-                    }
-                  >
-                    <ProgressBar />
-                    <Steps>
-                      <Step id='first'>
-                        <section>
-                          <form action=''>
+                  <div class='full_row settings_container'>
+                    <Wizard
+                      onStepChanged={({ step }) =>
+                        console.log(`Step changed: ${step.id}`)
+                      }
+                    >
+                      <ProgressBar />
+                      <Steps>
+                        <Step id='first'>
+                          <section>
                             <div class='full_row select_service'>
                               <div class='heder_text_div'>
                                 <p>Select which service you want to book</p>
                               </div>
                               <div class='settings_content'>
                                 <div class='left'>
-                                  <div
-                                    className={
-                                      !errors.service_id
-                                        ? ''
-                                        : 'alert alert-danger'
-                                    }
-                                  >
-                                    {errors.service_id &&
-                                      errors.service_id.message}
-                                  </div>
                                   <div class='flex_r_wrap service_select'>
                                     <select
                                       name='service_id'
                                       className='search_select search_select2'
-                                      onChange={e => onChange(e)}
-                                      value={service_id}
-                                      ref={register({
-                                        required: 'Choose a Service'
-                                      })}
+                                      onChange={this.handleChange}
+                                      value={this.state.service_id}
                                     >
                                       <option defaultValue>
                                         {selectedOption}
@@ -217,19 +239,9 @@ const BookCoach = ({
                                         cols='20'
                                         rows='5'
                                         value={note}
-                                        onChange={e => onChange(e)}
-                                        ref={register({
-                                          required: 'This Field is required'
-                                        })}
+                                        onChange={this.handleChange}
                                         required
                                       ></textarea>
-                                    </div>
-                                    <div
-                                      className={
-                                        !errors.note ? '' : 'alert alert-danger'
-                                      }
-                                    >
-                                      {errors.note && errors.note.message}
                                     </div>
                                   </div>
                                   <SimpleNavigation />
@@ -256,196 +268,169 @@ const BookCoach = ({
                                 </div>
                               </div>
                             </div>
-                          </form>
-                        </section>
-                      </Step>
-                      <Step id='second'>
-                        <section>
-                          <div class='full_row appointment_types'>
-                            <div class='heder_text_div'>
-                              <p>
-                                Select appointment type that fits your budget.
-                              </p>
-                            </div>
-                            <div class='settings_content'>
-                              <div class='left'>
-                                <div class='flex_r_wrap app_type'>
-                                  <div className='form-check'>
-                                    <label>
-                                      <input
-                                        type='radio'
-                                        name='amount'
-                                        value={
-                                          findservice &&
-                                          findservice.price_per_session
-                                        }
-                                        ref={register({
-                                          required: 'This Field is required'
-                                        })}
-                                        className='form-check-input'
-                                        onChange={e => onChange(e)}
-                                        readOnly
-                                      />
-                                      Price Per Session:
-                                      {findservice &&
-                                        findservice.price_per_session}
-                                    </label>
+                          </section>
+                        </Step>
+                        <Step id='second'>
+                          <section>
+                            <div class='full_row appointment_types'>
+                              <div class='heder_text_div'>
+                                <p>
+                                  Select appointment type that fits your budget.
+                                </p>
+                              </div>
+                              <div class='settings_content'>
+                                <div class='left'>
+                                  <div class='flex_r_wrap app_type'>
+                                    <div className='form-check'>
+                                      <label>
+                                        <input
+                                          type='radio'
+                                          name='amount'
+                                          value={
+                                            findservice &&
+                                            findservice.price_per_session
+                                          }
+                                          className='form-check-input'
+                                          onChange={this.handleChange}
+                                          readOnly
+                                        />
+                                        Price Per Session:
+                                        {findservice &&
+                                          findservice.price_per_session}
+                                      </label>
+                                    </div>
+                                    <div className='form-check'>
+                                      <label>
+                                        <input
+                                          type='radio'
+                                          name='amount'
+                                          value={
+                                            findservice &&
+                                            findservice.price_per_hour
+                                          }
+                                          className='form-check-input'
+                                          onChange={this.handleChange}
+                                          readOnly
+                                        />
+                                        Price Per Hour:
+                                        {findservice &&
+                                          findservice.price_per_hour}
+                                      </label>
+                                    </div>
                                   </div>
-                                  <div className='form-check'>
-                                    <label>
-                                      <input
-                                        type='radio'
-                                        name='amount'
-                                        value={
-                                          findservice &&
-                                          findservice.price_per_hour
-                                        }
-                                        ref={register({
-                                          required: 'This Field is required'
-                                        })}
-                                        className='form-check-input'
-                                        onChange={e => onChange(e)}
-                                        readOnly
-                                      />
-                                      Price Per Hour:
-                                      {findservice &&
-                                        findservice.price_per_hour}
-                                    </label>
-                                    <div
-                                      className={
-                                        !errors.amount
-                                          ? ''
-                                          : 'alert alert-danger'
-                                      }
-                                    >
-                                      {errors.amount && errors.amount.message}
+                                  <SimpleNavigation />
+                                </div>
+                                <div class='right'>
+                                  <div class='full_row help_box'>
+                                    <div class='full_row flex_r_a_center head'>
+                                      <i class='far fa-lightbulb'></i>
+                                      <p>Help message</p>
+                                    </div>
+                                    <div class='full_row body'>
+                                      <p>
+                                        Booking a coach can be done in two
+                                        different ways, i.e per session or per
+                                        hour.
+                                      </p>
+                                      <p>
+                                        Select the appointment type that suits.
+                                      </p>
                                     </div>
                                   </div>
                                 </div>
-                                <SimpleNavigation />
-                              </div>
-                              <div class='right'>
-                                <div class='full_row help_box'>
-                                  <div class='full_row flex_r_a_center head'>
-                                    <i class='far fa-lightbulb'></i>
-                                    <p>Help message</p>
-                                  </div>
-                                  <div class='full_row body'>
-                                    <p>
-                                      Booking a coach can be done in two
-                                      different ways, i.e per session or per
-                                      hour.
-                                    </p>
-                                    <p>
-                                      Select the appointment type that suits.
-                                    </p>
-                                  </div>
-                                </div>
                               </div>
                             </div>
-                          </div>
-                        </section>
-                      </Step>
-                      <Step id='third'>
-                        <section>
-                          <div class='full_row date_n_time'>
-                            <div class='heder_text_div'>
-                              <h3 className='callout'>
-                                Click an event to see more info, or drag the
-                                mouse over the calendar to select a date/time
-                                range.
-                              </h3>
-                            </div>
-                            <div>
+                          </section>
+                        </Step>
+                        <Step id='third'>
+                          <section>
+                            <div class='full_row date_n_time'>
+                              <div class='heder_text_div'>
+                                <p className='callout'>
+                                  Click an event to see more info, or drag the
+                                  mouse over the calendar to select a date/time
+                                  range.
+                                </p>
+                              </div>
                               <div>
                                 <div>
-                                  <FullCalendar
-                                    defaultView='timeGridWeek'
-                                    selectable={true}
-                                    header={{
-                                      left: 'prev,next today',
-                                      center: 'title',
-                                      allDaySlot: false,
-                                      right:
-                                        'dayGridMonth,timeGridWeek,timeGridDay,listWeek'
-                                    }}
-                                    plugins={[
-                                      dayGridPlugin,
-                                      timeGridPlugin,
-                                      interactionPlugin
-                                    ]}
-                                    selectAllow={function(selectInfo) {
-                                      return moment().diff(selectInfo.start) <= 0
-                                    }}
-                                    select= {function(info) {
-                                      dateData.startTime = info && moment(info.startStr).format('HH.mm');
-                                      dateData.endTime = info && moment(info.endStr).format('HH.mm');
-                                      dateData.newdate = info && moment(info.startStr).format('YYYY-MM-DD');
-                                      alert('selected ' + info.startStr + ' to ' + info.endStr);
-                                    }}
-                                    weekends={true}
-                                    allDaySlot={false}
-                                    businessHours= {{
-                                      daysOfWeek: coach && Object.keys(JSON.parse(coach.appointment[0].day)),
-                                      startTime: coach && JSON.parse(coach.appointment[0].time).start,
-                                      endTime: coach && JSON.parse(coach.appointment[0].time).end,
-                                      color: 'red'
-                                    }}
-                                    selectConstraint={"businessHours"}
-
-                                    // events={[
-                                    //   {
-                                    //     title: 'Available',
-                                    //     daysOfWeek:
-                                    //       coach &&
-                                    //       Object.keys(
-                                    //         JSON.parse(coach.appointment[0].day)
-                                    //       ), // these recurrent events move separately
-                                    //     startTime:
-                                    //       coach &&
-                                    //       JSON.parse(coach.appointment[0].time)
-                                    //         .start,
-                                    //     endTime:
-                                    //       coach &&
-                                    //       JSON.parse(coach.appointment[0].time)
-                                    //         .end,
-                                    //     color: 'red',
-                                    //     textColor: 'white',
-                                    //     rendering: 'background'
-                                    //   }
-                                    // ]}
-                                    // selectOverlap= {function(event) {
-                                    //   return event.rendering === 'background';
-                                    // }}
-                                  />
-                                </div>
-                                <SimpleNavigation />
-                              </div>
-                              <div class='right'>
-                                <div class='full_row help_box'>
-                                  <div class='full_row flex_r_a_center head'>
-                                    <i class='far fa-lightbulb'></i>
-                                    <p>Help message</p>
+                                  <div>
+                                    <FullCalendar
+                                      defaultView='timeGridWeek'
+                                      weekends={true}
+                                      allDaySlot={false}
+                                      plugins={[
+                                        timeGridPlugin,
+                                        dayGridPlugin,
+                                        interactionPlugin
+                                      ]}
+                                      selectable={true}
+                                      selectMirror={true}
+                                      selectOverlap={false}
+                                      select={this.handleSelect}
+                                      height={650}
+                                      header={{
+                                        left: 'prev,next today',
+                                        center: 'title',
+                                        right:
+                                          'dayGridMonth,timeGridWeek,timeGridDay,listWeek'
+                                      }}
+                                      businessHours={{
+                                        daysOfWeek:
+                                          coach &&
+                                          Object.keys(
+                                            JSON.parse(coach.appointment[0].day)
+                                          ),
+                                        startTime:
+                                          coach &&
+                                          JSON.parse(coach.appointment[0].time)
+                                            .start,
+                                        endTime:
+                                          coach &&
+                                          JSON.parse(coach.appointment[0].time)
+                                            .end,
+                                        color: 'red'
+                                      }}
+                                      selectConstraint={'businessHours'}
+                                      slotDuration={'00:60:00'}
+                                    />
+                                    <div>
+                                      <br />{' '}
+                                      {start_time && end_time
+                                        ? `Your Appointment will be on ${moment(
+                                            date
+                                          ).format(
+                                            'MMMM Do YYYY'
+                                          )} From: ${start_time} To: ${end_time}`
+                                        : ''}
+                                    </div>
                                   </div>
-                                  <div class='full_row body'>
-                                    <p>
-                                      Booking a coach can be done in two
-                                      different ways, i.e per session or per
-                                      hour.
-                                    </p>
-                                    <p>
-                                      Select the appointment type that suits.
-                                    </p>
+                                  <SimpleNavigation />
+                                </div>
+                                <div class='right'>
+                                  <div class='full_row help_box'>
+                                    <div class='full_row flex_r_a_center head'>
+                                      <i class='far fa-lightbulb'></i>
+                                      <p>Help message</p>
+                                    </div>
+                                    <div class='full_row body'>
+                                      <p>
+                                        Booking a coach can be done in two
+                                        different ways, i.e per session or per
+                                        hour.
+                                      </p>
+                                      <p>
+                                        Select the appointment type that suits.
+                                      </p>
+                                    </div>
                                   </div>
                                 </div>
                               </div>
                             </div>
-                          </div>
-                        </section>
-                      </Step>
-                      <Step id='fourth'>
-                        <section>
-                          <form onSubmit={e => onSubmit(e)}>
+                          </section>
+                        </Step>
+                        <Step id='fourth'>
+                          <section>
                             <div class='full_row review_n_pay'>
                               <div class='heder_text_div'>
                                 <p>
@@ -476,7 +461,6 @@ const BookCoach = ({
                                                 user.currentUser.lastname}
                                             </h4>
                                             <p>
-                                              
                                               {findservice &&
                                                 findservice.service}
                                             </p>
@@ -496,24 +480,23 @@ const BookCoach = ({
                                         <div class='flex_r_j_between_align_center date_top'>
                                           <div class='flex_r_a_center'>
                                             <div>
-                                              
                                               <i class='far fa-calendar'></i>
                                             </div>
                                             <div>
-                                              
-                                              <span> {dateData && dateData.newdate} </span>
+                                              <span>
+                                                {moment(date).format(
+                                                  'MMMM Do YYYY'
+                                                )}
+                                              </span>
                                             </div>
                                           </div>
                                           <div class='flex_r_a_center'>
                                             <div>
-                                              
                                               <i class='far fa-clock'></i>
                                             </div>
                                             <div>
-                                              
                                               <span>
-                                                
-                                                {dateData.startTime} - {dateData.endTime}
+                                                {start_time} - {end_time}
                                               </span>
                                             </div>
                                           </div>
@@ -521,13 +504,10 @@ const BookCoach = ({
                                         <div class='flex_r_j_between_align_center date_bottom'>
                                           <div class='flex_r_a_center'>
                                             <div>
-                                              
                                               <i class='far fa-building'></i>
                                             </div>
                                             <div>
-                                              
                                               <span>
-                                                
                                                 {findservice &&
                                                 amount ===
                                                   findservice.price_per_hour
@@ -543,16 +523,36 @@ const BookCoach = ({
                                       </div>
                                     </div>
                                   </div>
-                                  <div class='flex_r_j_end_align_center btn'>
-                                    <button
-                                      type='submit'
-                                      class='black_btn'
-                                      id='goto_status'
-                                    >
-                                      Pay
-                                    </button>
-                                    <SimpleNavigation />
-                                  </div>
+                                  {this.state.payResponse.status !==
+                                  'success' ? (
+                                    <div class='flex_r_j_end_align_center btn'>
+                                      <PaystackButton
+                                        text='Pay'
+                                        class='black_btn'
+                                        callback={this.callback}
+                                        close={this.close}
+                                        disabled={false}
+                                        embed={false}
+                                        reference={this.getReference()}
+                                        email={this.state.email}
+                                        amount={Number(this.state.amount) * 100}
+                                        paystackkey={this.state.key}
+                                        tag='button'
+                                      />
+                                    </div>
+                                  ) : (
+                                    ''
+                                  )}
+                                  {this.state.payResponse.status ===
+                                  'success' ? (
+                                    <div class='full_row body'>
+                                      <br />
+                                      <p>{`Your payment was successful your Reference No. is: ${this.state.payResponse.reference} click the continue button below to complete your transaction`}</p>
+                                      <SimpleNavigation />
+                                    </div>
+                                  ) : (
+                                    ''
+                                  )}
                                 </div>
                                 <div class='right'>
                                   <div class='full_row help_box'>
@@ -572,20 +572,43 @@ const BookCoach = ({
                                 </div>
                               </div>
                             </div>
-                          </form>
-                        </section>
-                      </Step>
-                    </Steps>
-                  </Wizard>
+                          </section>
+                        </Step>
+                        <Step>
+                          <div class='full_row status text-center'>
+                            <h5>Appointment created successfully</h5>
+                            <p>
+                              You successfully made payment with Refrence No. ${this.state.payResponse.reference} of ₦
+                              {findservice &&
+                              amount === findservice.price_per_hour
+                                ? findservice.price_per_hour +
+                                  ' to book a one hour'
+                                : findservice &&
+                                  findservice.price_per_session +
+                                    ' to book a session'} 
+                            </p>
+                            <p>
+                              appointment. wait for the coach to confirm
+                              appointment
+                            </p>
+
+                            <img src={process.env.PUBLIC_URL + '../../../../assets/utils/images/66.png'} alt='' />
+                            
+                            <Link to='/dashboard'><button class='black_btn'>continue</button></Link>
+                          </div>
+                        </Step>
+                      </Steps>
+                    </Wizard>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
+          </section>
         </section>
-      </section>
-    </Fragment>
-  );
-};
+      </Fragment>
+    );
+  }
+}
 
 BookCoach.propTypes = {
   getCoachesProfile: PropTypes.func.isRequired,
