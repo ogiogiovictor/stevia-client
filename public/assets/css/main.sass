@@ -643,7 +643,7 @@ input, select
 /* Second section Style
 
 .second_section_wrapper_div
-    background-color: #F8FAFE
+    background-color: $background-blue
 
 .second_section_header
     h5
@@ -755,7 +755,7 @@ input, select
 /* /Third section Style */
 /* Fourth section Style */
 .fourth_section_wrapper_div
-    background-color: #F8FAFE
+    background-color: $background-blue
 .courses_navigator
     border-bottom: 1px solid #E3E3E3
     margin: 40px 0 35px
@@ -3283,48 +3283,48 @@ section.dashboard_body
             border-radius: 5px
             padding: 40px 30px
 
-    .notification_option
-        margin-top: 40px
-        &>div
-            margin-bottom: 25px
-        .notification_label
-            p
-                font-family: circular
-                font-size: 18px
-                line-height: 21px
-                margin-bottom: 15px
+.notification_option
+    margin-top: 40px
+    &>div
+        margin-bottom: 25px
+    .notification_label
+        p
+            font-family: circular
+            font-size: 18px
+            line-height: 21px
+            margin-bottom: 15px
+        span
+            font-family: nunito
+            font-style: normal
+            font-weight: normal
+            font-size: 16px
+            line-height: 23px
+            color: #989898
+
+    .radio_option
+        margin-right: 25px
+        input[type="radio"]
+            display: none
+        label
+            display: flex
+            flex-direction: row
             span
-                font-family: nunito
-                font-style: normal
-                font-weight: normal
-                font-size: 16px
-                line-height: 23px
-                color: #989898
-
-        .radio_option
-            margin-right: 25px
-            input[type="radio"]
-                display: none
-            label
+                width: 20px
+                height: 20px
+                border-radius: 2px
+                border: 1px solid #EF4B4B                    
                 display: flex
-                flex-direction: row
-                span
-                    width: 20px
-                    height: 20px
-                    border-radius: 2px
-                    border: 1px solid #EF4B4B                    
-                    display: flex
-                    align-items: center
-                    justify-content: center
-                    cursor: pointer
-                    transition: .3s
+                align-items: center
+                justify-content: center
+                cursor: pointer
+                transition: .3s
 
-                    &::after
-                        content: "\2713"
-                        color: #fff
+                &::after
+                    content: "\2713"
+                    color: #fff
 
-            input[type="radio"]:checked + span
-                background-color: #EF4B4B
+        input[type="radio"]:checked + span
+            background-color: #EF4B4B
 
 /* /student dashboard Settings page style */
 /* Pending Appointment Page style */

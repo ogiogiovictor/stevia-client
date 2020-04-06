@@ -433,26 +433,13 @@ button.red_btn {
 button.red_btn:hover {
   background-color: #da2f2f;
 }
-button.red_btn:disabled {
-  background-color: #dddddd;
-  cursor: progress;
-}
 
 button.black_btn {
   background-color: #303037;
 }
-button.black_btn:disabled {
-  background-color: #dddddd;
-  cursor: progress;
-}
 
 button.black_btn:hover {
   background-color: #1b1b20;
-}
-
-button.black_btn:hover:disabled {
-  background-color: #dddddd;
-  cursor: progress;
 }
 
 button.grey_btn {
@@ -992,7 +979,7 @@ input:focus, select:focus {
 /* /General section style */
 /* Second section Style */
 .second_section_wrapper_div {
-  background-color: #F8FAFE;
+  background-color: #f0f3fc;
 }
 
 .second_section_header h5 {
@@ -1153,7 +1140,7 @@ input:focus, select:focus {
 /* /Third section Style */
 /* Fourth section Style */
 .fourth_section_wrapper_div {
-  background-color: #F8FAFE;
+  background-color: #f0f3fc;
 }
 
 .courses_navigator {
@@ -4120,6 +4107,7 @@ section.dashboard_body .appointments_part .appointment_container .empty_content 
 }
 
 .other_information_section, .other_coach_details {
+  display: none;
   padding: 25px 0 100px;
 }
 
@@ -4156,6 +4144,7 @@ section.dashboard_body .appointments_part .appointment_container .empty_content 
 
 .notification_section {
   padding: 25px 0 100px;
+  display: none;
 }
 
 .notification_section .profile_details {
@@ -4173,22 +4162,22 @@ section.dashboard_body .appointments_part .appointment_container .empty_content 
   padding: 40px 30px;
 }
 
-.notification_section .notification_option {
+.notification_option {
   margin-top: 40px;
 }
 
-.notification_section .notification_option > div {
+.notification_option > div {
   margin-bottom: 25px;
 }
 
-.notification_section .notification_option .notification_label p {
+.notification_option .notification_label p {
   font-family: circular;
   font-size: 18px;
   line-height: 21px;
   margin-bottom: 15px;
 }
 
-.notification_section .notification_option .notification_label span {
+.notification_option .notification_label span {
   font-family: nunito;
   font-style: normal;
   font-weight: normal;
@@ -4197,15 +4186,15 @@ section.dashboard_body .appointments_part .appointment_container .empty_content 
   color: #989898;
 }
 
-.notification_section .notification_option .radio_option {
+.notification_option .radio_option {
   margin-right: 25px;
 }
 
-.notification_section .notification_option .radio_option input[type="radio"] {
+.notification_option .radio_option input[type="radio"] {
   display: none;
 }
 
-.notification_section .notification_option .radio_option label {
+.notification_option .radio_option label {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -4215,7 +4204,7 @@ section.dashboard_body .appointments_part .appointment_container .empty_content 
           flex-direction: row;
 }
 
-.notification_section .notification_option .radio_option label span {
+.notification_option .radio_option label span {
   width: 20px;
   height: 20px;
   border-radius: 2px;
@@ -4234,12 +4223,12 @@ section.dashboard_body .appointments_part .appointment_container .empty_content 
   transition: .3s;
 }
 
-.notification_section .notification_option .radio_option label span::after {
+.notification_option .radio_option label span::after {
   content: "\2713";
   color: #fff;
 }
 
-.notification_section .notification_option .radio_option input[type="radio"]:checked + span {
+.notification_option .radio_option input[type="radio"]:checked + span {
   background-color: #EF4B4B;
 }
 
@@ -7836,9 +7825,9 @@ section.dashboard_body .appointments_part .appointment_container .empty_content 
   line-height: 30px;
 }
 
-/* .appointment_setting_wrapper .appointment_setting .settings_container .appointment_types {
+.appointment_setting_wrapper .appointment_setting .settings_container .appointment_types {
   display: none;
-} */
+}
 
 .appointment_setting_wrapper .appointment_setting .settings_container .appointment_types .settings_content .left .app_type > div {
   border: 1px solid #E3E3E3;
@@ -7882,9 +7871,9 @@ section.dashboard_body .appointments_part .appointment_container .empty_content 
   color: #303037;
 }
 
-/* .appointment_setting_wrapper .appointment_setting .settings_container .review_n_pay {
+.appointment_setting_wrapper .appointment_setting .settings_container .review_n_pay {
   display: none;
-} */
+}
 
 .appointment_setting_wrapper .appointment_setting .settings_container .review_n_pay .settings_content .left .appointment > div {
   background: #FFFFFF;
@@ -8026,7 +8015,7 @@ section.dashboard_body .appointments_part .appointment_container .empty_content 
 
 .appointment_setting_wrapper .appointment_setting .settings_container .status {
   padding: 30px 10px;
-  /* display: none; */
+  display: none;
 }
 
 .appointment_setting_wrapper .appointment_setting .settings_container .status h5 {
@@ -8057,9 +8046,9 @@ section.dashboard_body .appointments_part .appointment_container .empty_content 
   margin: 0 auto;
 }
 
-/* .appointment_setting_wrapper .appointment_setting .settings_container .date_n_time {
+.appointment_setting_wrapper .appointment_setting .settings_container .date_n_time {
   display: none;
-} */
+}
 
 /* /Create appointment page style */
 /* Dashboard */
