@@ -179,9 +179,7 @@ class BookCoach extends Component {
             )}
             {activeStepIndex === 3 &&
             this.state.payResponse.status === 'success' ? (
-              <button className='black_btn' onClick={goToNextStep}>
-                Continue
-              </button>
+              goToNextStep()
             ) : (
               ''
             )}
