@@ -950,7 +950,7 @@ input:focus, select:focus {
 /* /General section style */
 /* Second section Style */
 .second_section_wrapper_div {
-  background-color: #F8FAFE;
+  background-color: #f0f3fc;
 }
 
 .second_section_header h5 {
@@ -1111,7 +1111,7 @@ input:focus, select:focus {
 /* /Third section Style */
 /* Fourth section Style */
 .fourth_section_wrapper_div {
-  background-color: #F8FAFE;
+  background-color: #f0f3fc;
 }
 
 .courses_navigator {
@@ -4133,22 +4133,22 @@ section.dashboard_body .appointments_part .appointment_container .empty_content 
   padding: 40px 30px;
 }
 
-.notification_section .notification_option {
+.notification_option {
   margin-top: 40px;
 }
 
-.notification_section .notification_option > div {
+.notification_option > div {
   margin-bottom: 25px;
 }
 
-.notification_section .notification_option .notification_label p {
+.notification_option .notification_label p {
   font-family: circular;
   font-size: 18px;
   line-height: 21px;
   margin-bottom: 15px;
 }
 
-.notification_section .notification_option .notification_label span {
+.notification_option .notification_label span {
   font-family: nunito;
   font-style: normal;
   font-weight: normal;
@@ -4157,15 +4157,15 @@ section.dashboard_body .appointments_part .appointment_container .empty_content 
   color: #989898;
 }
 
-.notification_section .notification_option .radio_option {
+.notification_option .radio_option {
   margin-right: 25px;
 }
 
-.notification_section .notification_option .radio_option input[type="radio"] {
+.notification_option .radio_option input[type="radio"] {
   display: none;
 }
 
-.notification_section .notification_option .radio_option label {
+.notification_option .radio_option label {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -4175,7 +4175,7 @@ section.dashboard_body .appointments_part .appointment_container .empty_content 
           flex-direction: row;
 }
 
-.notification_section .notification_option .radio_option label span {
+.notification_option .radio_option label span {
   width: 20px;
   height: 20px;
   border-radius: 2px;
@@ -4194,12 +4194,12 @@ section.dashboard_body .appointments_part .appointment_container .empty_content 
   transition: .3s;
 }
 
-.notification_section .notification_option .radio_option label span::after {
+.notification_option .radio_option label span::after {
   content: "\2713";
   color: #fff;
 }
 
-.notification_section .notification_option .radio_option input[type="radio"]:checked + span {
+.notification_option .radio_option input[type="radio"]:checked + span {
   background-color: #EF4B4B;
 }
 
@@ -8552,5 +8552,87 @@ h4.write_ratings_head {
 }
 
 /* End of Create Course Little fields Addition */
+/* Sign up form correction Style */
+.signup_option > div {
+  margin-bottom: 10px;
+  margin-right: 30px;
+}
+
+.signup_option .notification_label p {
+  font-family: circular;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 23px;
+  color: #4e4e4e;
+}
+
+.signup_option .notification_label span {
+  font-family: nunito;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 23px;
+  color: #989898;
+}
+
+.signup_option .radio_option {
+  margin-right: 5px;
+}
+
+.signup_option .radio_option input[type="radio"] {
+  display: none;
+}
+
+.signup_option .radio_option label {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+}
+
+.signup_option .radio_option label span {
+  width: 20px;
+  height: 20px;
+  border-radius: 2px;
+  border: 1px solid #EF4B4B;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  cursor: pointer;
+  -webkit-transition: .3s;
+  transition: .3s;
+}
+
+.signup_option .radio_option label span::after {
+  content: "\2713";
+  color: #fff;
+}
+
+.signup_option .radio_option input[type="radio"]:checked + span {
+  background-color: #EF4B4B;
+}
+
+.role_header {
+  margin-top: 40px;
+}
+
+.role_header p {
+  font-family: circular;
+  font-size: 18px;
+  line-height: 21px;
+  margin-bottom: 15px;
+}
+
+/* End of Sign up form correction Style */
 /* ======================End of DASHBOARD Style=================== */
 /*# sourceMappingURL=main.css.map */
