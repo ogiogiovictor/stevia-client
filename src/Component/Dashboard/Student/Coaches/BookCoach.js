@@ -595,6 +595,20 @@ class BookCoach extends Component {
                                           }
                                           paystackkey={this.state.key}
                                           tag='button'
+                                          metadata= {{
+                                            custom_fields: [
+                                               {
+                                                   display_name: "First Name",
+                                                   variable_name: "first_name",
+                                                   value: user && user.currentUser.firstname
+                                               },
+                                               {
+                                                   display_name: "Last Name",
+                                                   variable_name: "last_name",
+                                                   value: user && user.currentUser.lastname
+                                               }
+                                            ]
+                                         }}
                                         />
                                       </div>
                                       <SimpleNavigation />
