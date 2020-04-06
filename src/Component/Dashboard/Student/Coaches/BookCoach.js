@@ -19,19 +19,21 @@ import interactionPlugin from '@fullcalendar/interaction';
 import '@fullcalendar/timegrid/main.css';
 import '@fullcalendar/core/main.css';
 import '@fullcalendar/daygrid/main.css';
+import { v1 as uuidv1 } from 'uuid';
 
 class BookCoach extends Component {
   constructor(props) {
     super(props);
     this.state = {
       coach_id: '',
-      service_id: 'null',
+      service_id: '',
       channel_id: '',
       note: '',
-      amount: '',
+      amount: 0,
       date: '',
       start_time: '',
       end_time: '',
+      totalhours: 0,
       key: 'pk_test_6a77ff890624b4ac9ffc399d415bbc4eff082d9f',
       email: this.props.user.currentUser.email,
       payResponse: {}
@@ -42,13 +44,20 @@ class BookCoach extends Component {
     this.props.getCoachesProfile();
   }
 
+  findservice = {};
+
   handleSelect = selectedInfo => {
+    const startTime = moment(selectedInfo.startStr).format('HH.mm');
+    const endTime = moment(selectedInfo.endStr).format('HH.mm');
+    const totalhours = Number(endTime) - Number(startTime);
+
     this.setState({
       date: moment(selectedInfo.startStr).format('YYYY-MM-DD'),
-      start_time: moment(selectedInfo.startStr).format('HH.mm'),
-      end_time: moment(selectedInfo.endStr).format('HH.mm')
+      start_time: startTime,
+      end_time: endTime,
+      totalhours: totalhours
     });
-    console.log('working!!', this.state.start_time, this.state.end_time);
+    console.log(this.state.totalhours);
   };
 
   handleChange = event => {
@@ -58,7 +67,6 @@ class BookCoach extends Component {
 
   callback = response => {
     this.setState({ payResponse: response });
-    console.log(response);
     if (response.status === 'success') {
       const formData = {
         coach_id: this.props.match.params.id,
@@ -79,15 +87,14 @@ class BookCoach extends Component {
   close = () => {
     console.log('window closed');
   };
-
   getReference = () => {
     //you can put any unique reference implementation code here
-    let text = '';
-    let possible =
-      'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-.=';
+    let text = uuidv1();
+    // let possible =
+    //   'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-.=';
 
-    for (let i = 0; i < 15; i++)
-      text += possible.charAt(Math.floor(Math.random() * possible.length));
+    // for (let i = 0; i < 15; i++)
+    //   text += possible.charAt(Math.floor(Math.random() * possible.length));
 
     return text;
   };
@@ -96,6 +103,7 @@ class BookCoach extends Component {
     const { user, profile, match } = this.props;
 
     const { service_id, note, amount, date, start_time, end_time } = this.state;
+    console.log(amount);
 
     const coach = profile
       ? profile.coaches.find(({ id }) => id === parseInt(match.params.id))
@@ -109,7 +117,7 @@ class BookCoach extends Component {
 
     let selectedOption = 'Pick a Service';
 
-    const findservice = coach
+    this.findservice = coach
       ? coach.services.find(({ id }) => id === parseInt(service_id))
       : '';
 
@@ -122,7 +130,7 @@ class BookCoach extends Component {
           totalSteps
         }) => (
           <div className='flex_r_j_end_align_center btn'>
-            {activeStepIndex > 0 && (
+            {/* {activeStepIndex > 0 && (
               <button className='grey_btn' onClick={goToPrevStep}>
                 Go Back
               </button>
@@ -135,6 +143,47 @@ class BookCoach extends Component {
               >
                 Continue
               </button>
+            )} */}
+            {activeStepIndex === 0 && (
+              <button className='black_btn' onClick={goToNextStep}>
+                Continue
+              </button>
+            )}
+            {activeStepIndex === 1 && (
+              <div>
+                <button className='grey_btn' onClick={goToPrevStep}>
+                  Go Back
+                </button>
+                <button className='black_btn' onClick={goToNextStep}>
+                  Continue
+                </button>
+              </div>
+            )}
+            {activeStepIndex === 2 && (
+              <div>
+                <button className='grey_btn' onClick={goToPrevStep}>
+                  Go Back
+                </button>
+                <button className='black_btn' onClick={goToNextStep}>
+                  Continue
+                </button>
+              </div>
+            )}
+            {activeStepIndex === 3 &&
+            this.state.payResponse.status !== 'success' ? (
+              <button className='grey_btn' onClick={goToPrevStep}>
+                Go Back
+              </button>
+            ) : (
+              ''
+            )}
+            {activeStepIndex === 3 &&
+            this.state.payResponse.status === 'success' ? (
+              <button className='black_btn' onClick={goToNextStep}>
+                Continue
+              </button>
+            ) : (
+              ''
             )}
           </div>
         )}
@@ -175,10 +224,10 @@ class BookCoach extends Component {
                       <span> Select Service </span>
                     </div>
                     <div>
-                      <span> Appointment Type </span>
+                      <span> Set Date and Time </span>
                     </div>
                     <div>
-                      <span> Set Date and Time </span>
+                      <span> Appointment Type </span>
                     </div>
                     <div>
                       <span> Review and Pay </span>
@@ -272,78 +321,6 @@ class BookCoach extends Component {
                         </Step>
                         <Step id='second'>
                           <section>
-                            <div class='full_row appointment_types'>
-                              <div class='heder_text_div'>
-                                <p>
-                                  Select appointment type that fits your budget.
-                                </p>
-                              </div>
-                              <div class='settings_content'>
-                                <div class='left'>
-                                  <div class='flex_r_wrap app_type'>
-                                    <div className='form-check'>
-                                      <label>
-                                        <input
-                                          type='radio'
-                                          name='amount'
-                                          value={
-                                            findservice &&
-                                            findservice.price_per_session
-                                          }
-                                          className='form-check-input'
-                                          onChange={this.handleChange}
-                                          readOnly
-                                        />
-                                        Price Per Session:
-                                        {findservice &&
-                                          findservice.price_per_session}
-                                      </label>
-                                    </div>
-                                    <div className='form-check'>
-                                      <label>
-                                        <input
-                                          type='radio'
-                                          name='amount'
-                                          value={
-                                            findservice &&
-                                            findservice.price_per_hour
-                                          }
-                                          className='form-check-input'
-                                          onChange={this.handleChange}
-                                          readOnly
-                                        />
-                                        Price Per Hour:
-                                        {findservice &&
-                                          findservice.price_per_hour}
-                                      </label>
-                                    </div>
-                                  </div>
-                                  <SimpleNavigation />
-                                </div>
-                                <div class='right'>
-                                  <div class='full_row help_box'>
-                                    <div class='full_row flex_r_a_center head'>
-                                      <i class='far fa-lightbulb'></i>
-                                      <p>Help message</p>
-                                    </div>
-                                    <div class='full_row body'>
-                                      <p>
-                                        Booking a coach can be done in two
-                                        different ways, i.e per session or per
-                                        hour.
-                                      </p>
-                                      <p>
-                                        Select the appointment type that suits.
-                                      </p>
-                                    </div>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                          </section>
-                        </Step>
-                        <Step id='third'>
-                          <section>
                             <div class='full_row date_n_time'>
                               <div class='heder_text_div'>
                                 <p className='callout'>
@@ -429,6 +406,80 @@ class BookCoach extends Component {
                             </div>
                           </section>
                         </Step>
+                        <Step id='third'>
+                          <section>
+                            <div class='full_row appointment_types'>
+                              <div class='heder_text_div'>
+                                <p>
+                                  Select appointment type that fits your budget.
+                                </p>
+                              </div>
+                              <div class='settings_content'>
+                                <div class='left'>
+                                  <div class='flex_r_wrap app_type'>
+                                    <div className='form-check'>
+                                      <label>
+                                        <input
+                                          type='radio'
+                                          name='amount'
+                                          value={
+                                            this.findservice &&
+                                            this.findservice.price_per_session
+                                          }
+                                          className='form-check-input'
+                                          onChange={this.handleChange}
+                                          readOnly
+                                        />
+                                        Price Per Session:
+                                        {this.findservice &&
+                                          this.findservice.price_per_session}
+                                      </label>
+                                    </div>
+                                    <div className='form-check'>
+                                      <label>
+                                        <input
+                                          type='radio'
+                                          name='amount'
+                                          value={
+                                            this.findservice &&
+                                            this.findservice.price_per_hour *
+                                              this.state.totalhours
+                                          }
+                                          className='form-check-input'
+                                          onChange={this.handleChange}
+                                          readOnly
+                                        />
+                                        Price Per Hour:
+                                        {this.findservice &&
+                                          this.findservice.price_per_hour}
+                                      </label>
+                                    </div>
+                                  </div>
+                                  <SimpleNavigation />
+                                </div>
+                                <div class='right'>
+                                  <div class='full_row help_box'>
+                                    <div class='full_row flex_r_a_center head'>
+                                      <i class='far fa-lightbulb'></i>
+                                      <p>Help message</p>
+                                    </div>
+                                    <div class='full_row body'>
+                                      <p>
+                                        Booking a coach can be done in two
+                                        different ways, i.e per session or per
+                                        hour.
+                                      </p>
+                                      <p>
+                                        Select the appointment type that suits.
+                                      </p>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </section>
+                        </Step>
+
                         <Step id='fourth'>
                           <section>
                             <div class='full_row review_n_pay'>
@@ -461,8 +512,8 @@ class BookCoach extends Component {
                                                 user.currentUser.lastname}
                                             </h4>
                                             <p>
-                                              {findservice &&
-                                                findservice.service}
+                                              {this.findservice &&
+                                                this.findservice.service}
                                             </p>
                                           </div>
                                         </div>
@@ -473,8 +524,8 @@ class BookCoach extends Component {
                                         <div class='full_row channel'>
                                           <h4> Communication channel </h4>
                                           <p>
-                                            {findservice &&
-                                              findservice.communication}
+                                            {this.findservice &&
+                                              this.findservice.communication}
                                           </p>
                                         </div>
                                         <div class='flex_r_j_between_align_center date_top'>
@@ -508,14 +559,17 @@ class BookCoach extends Component {
                                             </div>
                                             <div>
                                               <span>
-                                                {findservice &&
+                                                {this.findservice &&
                                                 amount ===
-                                                  findservice.price_per_hour
-                                                  ? findservice.price_per_hour +
-                                                    ' per hour'
-                                                  : findservice &&
-                                                    findservice.price_per_session +
-                                                      ' per session'}
+                                                  this.findservice
+                                                    .price_per_session
+                                                  ? this.findservice &&
+                                                    '₦ ' +
+                                                      this.findservice
+                                                        .price_per_session +
+                                                      ' per session'
+                                                  : this.findservice &&
+                                                    `₦ ${this.findservice.price_per_hour} per hour * ${this.state.totalhours} = ₦ ${amount}`}
                                               </span>
                                             </div>
                                           </div>
@@ -525,20 +579,25 @@ class BookCoach extends Component {
                                   </div>
                                   {this.state.payResponse.status !==
                                   'success' ? (
-                                    <div class='flex_r_j_end_align_center btn'>
-                                      <PaystackButton
-                                        text='Pay'
-                                        class='black_btn'
-                                        callback={this.callback}
-                                        close={this.close}
-                                        disabled={false}
-                                        embed={false}
-                                        reference={this.getReference()}
-                                        email={this.state.email}
-                                        amount={Number(this.state.amount) * 100}
-                                        paystackkey={this.state.key}
-                                        tag='button'
-                                      />
+                                    <div>
+                                      <div class='flex_r_j_end_align_center btn'>
+                                        <PaystackButton
+                                          text='Pay'
+                                          class='black_btn'
+                                          callback={this.callback}
+                                          close={this.close}
+                                          disabled={false}
+                                          embed={false}
+                                          reference={this.getReference()}
+                                          email={this.state.email}
+                                          amount={
+                                            Number(this.state.amount) * 100
+                                          }
+                                          paystackkey={this.state.key}
+                                          tag='button'
+                                        />
+                                      </div>
+                                      <SimpleNavigation />
                                     </div>
                                   ) : (
                                     ''
@@ -578,23 +637,27 @@ class BookCoach extends Component {
                           <div class='full_row status text-center'>
                             <h5>Appointment created successfully</h5>
                             <p>
-                              You successfully made payment with Refrence No. ${this.state.payResponse.reference} of ₦
-                              {findservice &&
-                              amount === findservice.price_per_hour
-                                ? findservice.price_per_hour +
-                                  ' to book a one hour'
-                                : findservice &&
-                                  findservice.price_per_session +
-                                    ' to book a session'} 
+                              You successfully made payment of ₦
+                              {this.findservice &&
+                              amount === this.findservice.price_per_session
+                                ? this.findservice.price_per_session +
+                                  ` with Reference No. ${this.state.payResponse.reference} to book a session appointment.`
+                                : `${amount} with Reference No. ${this.state.payResponse.reference} to book a ${this.state.totalhours} hour(s) appointment.`}
                             </p>
                             <p>
-                              appointment. wait for the coach to confirm
-                              appointment
+                            <br />wait for the coach to confirm appointment
                             </p>
+                            <img
+                              src={
+                                process.env.PUBLIC_URL +
+                                '../../../../assets/utils/images/66.png'
+                              }
+                              alt=''
+                            />
 
-                            <img src={process.env.PUBLIC_URL + '../../../../assets/utils/images/66.png'} alt='' />
-                            
-                            <Link to='/dashboard'><button class='black_btn'>continue</button></Link>
+                            <Link to='/dashboard'>
+                              <button class='black_btn'>continue</button>
+                            </Link>
                           </div>
                         </Step>
                       </Steps>
