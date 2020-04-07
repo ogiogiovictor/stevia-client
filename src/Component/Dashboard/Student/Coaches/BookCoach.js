@@ -1,4 +1,4 @@
-import React, { Component, Fragment, useState } from 'react';
+import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import PaystackButton from 'react-paystack';
@@ -7,7 +7,6 @@ import { bookACoach, verifyPaystack } from '../../../../actions/service';
 import Header from '../../Layout/Header';
 import Topnav from '../../Layout/Topnav';
 import { Wizard, Steps, Step, Navigation, Progress } from 'react-wizr';
-import { useForm } from 'react-hook-form';
 import './Style.css';
 import { Redirect, Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
@@ -20,8 +19,6 @@ import '@fullcalendar/timegrid/main.css';
 import '@fullcalendar/core/main.css';
 import '@fullcalendar/daygrid/main.css';
 import { v1 as uuidv1 } from 'uuid';
-import { FormErrors } from '../../../FormErrors/FormErrors';
-import '../../../FormErrors/FormError.css';
 
 class BookCoach extends Component {
   constructor(props) {
