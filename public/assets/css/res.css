@@ -173,11 +173,22 @@
   }
 }
 
+@media only screen and (max-width: 1200px) {
+  .card_member_wrapper {
+    -ms-grid-columns: 31.3333% 31.3333% 31.3333%;
+        grid-template-columns: 31.3333% 31.3333% 31.3333%;
+    grid-gap: 20px 3%;
+  }
+}
+
 @media only screen and (max-width: 1181px) {
   .coach_overview_cards .cards_wrapper {
     -ms-grid-columns: 24% 24% 24% 24%;
         grid-template-columns: 24% 24% 24% 24%;
     grid-column-gap: 1.3333%;
+  }
+  [class*="about_card_"] {
+    padding: 20px;
   }
 }
 
@@ -241,7 +252,7 @@
     padding: 0 5px 0 30px;
   }
   .topics_covered span {
-    font-size: .8rem;
+    font-size: 0.8rem;
   }
   .right_side_headings h2 {
     font-size: 28px;
@@ -258,7 +269,10 @@
   .coach_box_details_container .coach_details_div {
     padding: 30px 30px;
   }
-  .coach_box_details_container .coach_details_div .coach_summary .coach_summary_n_specialization {
+  .coach_box_details_container
+.coach_details_div
+.coach_summary
+.coach_summary_n_specialization {
     padding-top: 20px;
     padding-right: 20px;
   }
@@ -274,6 +288,37 @@
             box-shadow: none;
     -ms-grid-columns: 33.3333% 33.3333% 33.3333%;
         grid-template-columns: 33.3333% 33.3333% 33.3333%;
+  }
+  .aboutUs_cards {
+    -ms-grid-columns: 50% 50%;
+        grid-template-columns: 50% 50%;
+  }
+  [class*="about_card_"] {
+    padding: 30px;
+  }
+  .about_card_one::after {
+    display: none;
+  }
+  .about_card_two::before {
+    display: none;
+  }
+  .about_card_two::after {
+    display: none;
+  }
+  .about_card_three::before {
+    display: none;
+  }
+  .about_card_four::after {
+    display: none;
+  }
+  .about_card_five::before {
+    display: none;
+  }
+  .about_card_five::after {
+    display: none;
+  }
+  .about_card_six::before {
+    display: none;
   }
 }
 
@@ -368,7 +413,7 @@
     margin-top: 60px;
   }
   .history_n_stream .activity_strem .each_activity:last-child {
-    border-bottom: 1px solid #E3E3E3;
+    border-bottom: 1px solid #e3e3e3;
   }
   .course_duration_and_price .each_div {
     -ms-grid-columns: 33.3333% 33.3333% 33.3333%;
@@ -458,8 +503,8 @@
     height: 350px;
   }
   .student_gallery {
-    -ms-grid-columns: calc( (100% - 60px) / 4) calc( (100% - 60px) / 4) calc( (100% - 60px) / 4) calc( (100% - 60px) / 4);
-        grid-template-columns: calc( (100% - 60px) / 4) calc( (100% - 60px) / 4) calc( (100% - 60px) / 4) calc( (100% - 60px) / 4);
+    -ms-grid-columns: calc((100% - 60px) / 4) calc((100% - 60px) / 4) calc((100% - 60px) / 4) calc((100% - 60px) / 4);
+        grid-template-columns: calc((100% - 60px) / 4) calc((100% - 60px) / 4) calc((100% - 60px) / 4) calc((100% - 60px) / 4);
   }
 }
 
@@ -642,7 +687,11 @@
 }
 
 @media only screen and (max-width: 901px) {
-  .appointment_setting_wrapper .appointment_setting .settings_progress > div span {
+  .appointment_setting_wrapper
+.appointment_setting
+.settings_progress
+> div
+span {
     font-size: 13px;
     line-height: 25px;
   }
@@ -660,15 +709,15 @@
   .course_n_category_wrapper .left > div {
     margin-bottom: 20px;
   }
-  .course_n_category_wrapper .left > div [class*='options_'] {
+  .course_n_category_wrapper .left > div [class*="options_"] {
     display: none;
   }
-  .course_n_category_wrapper .left > div [class*='_header'] {
-    border: 1px solid #E3E3E3;
+  .course_n_category_wrapper .left > div [class*="_header"] {
+    border: 1px solid #e3e3e3;
     padding: 20px;
     cursor: pointer;
   }
-  .course_n_category_wrapper .left > div [class*='_header'] i {
+  .course_n_category_wrapper .left > div [class*="_header"] i {
     display: block;
   }
   .all_jobs {
@@ -695,7 +744,7 @@
 @media only screen and (max-width: 884px) {
   .name_n_speciality > div .name_rate {
     padding: 0 45px 0 40px;
-    border-right: 1px solid #E3E3E3;
+    border-right: 1px solid #e3e3e3;
   }
   .name_n_speciality > div .speciality {
     padding: 0 85px 0 45px;
@@ -798,7 +847,10 @@
         -ms-flex-direction: column;
             flex-direction: column;
   }
-  .coach_details_container .coach_details_div .coach_summary .coach_summary_n_specialization {
+  .coach_details_container
+.coach_details_div
+.coach_summary
+.coach_summary_n_specialization {
     width: 100%;
     border-right: none;
     padding-top: 30px;
@@ -809,7 +861,10 @@
     padding-top: 40px;
     padding-left: 0;
   }
-  .coach_box_details_container .coach_details_div .coach_summary .coach_summary_n_specialization {
+  .coach_box_details_container
+.coach_details_div
+.coach_summary
+.coach_summary_n_specialization {
     border-right: none;
     width: 100%;
     padding-right: 0;
@@ -819,17 +874,32 @@
     padding-top: 30px;
     padding-left: 0;
   }
-  .coach_box_details_container .coach_details_div .coach_summary .coach_social .video {
+  .coach_box_details_container
+.coach_details_div
+.coach_summary
+.coach_social
+.video {
     width: 50%;
     height: auto;
   }
   .add-service-modal > div {
     width: 65%;
   }
-  .appointment_setting_wrapper .appointment_setting .settings_container .settings_content {
+  .appointment_setting_wrapper
+.appointment_setting
+.settings_container
+.settings_content {
     -ms-grid-columns: 100%;
         grid-template-columns: 100%;
     grid-gap: 30px 0;
+  }
+  .members_card {
+    height: 450px;
+  }
+  .card_member_wrapper {
+    -ms-grid-columns: 47% 47%;
+        grid-template-columns: 47% 47%;
+    grid-gap: 45px 6%;
   }
 }
 
@@ -840,10 +910,16 @@
   .third_section_wrapper_div .how_it_works_left_side p {
     font-size: 15px;
   }
-  .third_section_wrapper_div .how_it_works_right_side div[class*="how_it_work_step_"] p {
+  .third_section_wrapper_div
+.how_it_works_right_side
+div[class*="how_it_work_step_"]
+p {
     font-size: 13px;
   }
-  .third_section_wrapper_div .how_it_works_right_side div[class*="how_it_work_step_"] h4 {
+  .third_section_wrapper_div
+.how_it_works_right_side
+div[class*="how_it_work_step_"]
+h4 {
     font-size: 15px;
   }
   .post_a_job_login .form_wrapper {
@@ -881,6 +957,10 @@
   .settlement_card_wrapper .card_wrapper .card {
     padding: 25px;
   }
+  .about_us_figures > div {
+    width: 50%;
+    margin-bottom: 60px;
+  }
 }
 
 @media only screen and (max-width: 837px) {
@@ -914,12 +994,20 @@
         -ms-flex-pack: start;
             justify-content: flex-start;
   }
-  .course_banner_wrapper .details .Description_n_price .description .image_n_seat {
+  .course_banner_wrapper
+.details
+.Description_n_price
+.description
+.image_n_seat {
     width: 85%;
   }
   .jobs_wrapper_section .jobs_wrapper {
     padding: 30px;
     grid-gap: 25px 4%;
+  }
+  .aboutUs_cards {
+    -ms-grid-columns: 100%;
+        grid-template-columns: 100%;
   }
 }
 
@@ -960,8 +1048,8 @@
     padding: 30px 0px;
     margin: 30px 0px;
     width: 100%;
-    border-top: 1px solid #E3E3E3;
-    border-bottom: 1px solid #E3E3E3;
+    border-top: 1px solid #e3e3e3;
+    border-bottom: 1px solid #e3e3e3;
     text-align: center;
   }
   .profile_details_section .profile_details {
@@ -1053,17 +1141,23 @@
   .course_banner_wrapper .details .title {
     text-align: center;
   }
-  .course_banner_wrapper .details .Description_n_price .description .image_n_seat {
+  .course_banner_wrapper
+.details
+.Description_n_price
+.description
+.image_n_seat {
     width: 90%;
   }
-  .table_div_wrapper .table_div table th, .table_div_wrapper .table_div table td {
+  .table_div_wrapper .table_div table th,
+  .table_div_wrapper .table_div table td {
     text-align: center;
     padding: 20px 15px;
   }
 }
 
 @media only screen and (max-width: 810px) {
-  .header_desc_div, .mobile_header {
+  .header_desc_div,
+  .mobile_header {
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
         -ms-flex-direction: column;
@@ -1085,7 +1179,7 @@
     display: block;
   }
   .mobile_nav_toggler .bars_index {
-    background-color: #EF4B4B;
+    background-color: #ef4b4b;
   }
   .site_center1 {
     width: 80%;
@@ -1093,7 +1187,8 @@
   .site_center2 {
     width: 75%;
   }
-  .header_desc_wrapper .header_desc_div, .mobile_header {
+  .header_desc_wrapper .header_desc_div,
+  .mobile_header {
     width: 80%;
     margin-right: auto;
     margin-left: auto;
@@ -1156,8 +1251,8 @@
     width: 85%;
   }
   .student_gallery {
-    -ms-grid-columns: calc( (100% - 40px) / 3) calc( (100% - 40px) / 3) calc( (100% - 40px) / 3);
-        grid-template-columns: calc( (100% - 40px) / 3) calc( (100% - 40px) / 3) calc( (100% - 40px) / 3);
+    -ms-grid-columns: calc((100% - 40px) / 3) calc((100% - 40px) / 3) calc((100% - 40px) / 3);
+        grid-template-columns: calc((100% - 40px) / 3) calc((100% - 40px) / 3) calc((100% - 40px) / 3);
   }
 }
 
@@ -1224,10 +1319,21 @@
   .course_search_n_category .course_search {
     width: 100%;
   }
-  .post_a_job_page_wrapper .left_side .left_side_content_div .bottom .bottom_header h4 {
+  .post_a_job_page_wrapper
+.left_side
+.left_side_content_div
+.bottom
+.bottom_header
+h4 {
     font-size: 25px;
     line-height: 30px;
     margin-bottom: 37px;
+  }
+}
+
+@media only screen and (max-width: 778px) {
+  .figures_head p br {
+    display: none;
   }
 }
 
@@ -1252,6 +1358,14 @@
     -ms-grid-columns: 100%;
         grid-template-columns: 100%;
     grid-gap: 25px 0%;
+  }
+  .members_card {
+    height: 400px;
+  }
+  .card_member_wrapper {
+    -ms-grid-columns: 48% 48%;
+        grid-template-columns: 48% 48%;
+    grid-gap: 20px 4%;
   }
 }
 
@@ -1302,7 +1416,8 @@
     -webkit-transform: translateY(-10%);
             transform: translateY(-10%);
   }
-  .each_div div:nth-child(2), .each_div div:nth-child(4) {
+  .each_div div:nth-child(2),
+  .each_div div:nth-child(4) {
     border-right: none;
   }
   .each_div div:nth-child(3) {
@@ -1370,8 +1485,8 @@
     padding-bottom: 30px;
     margin-top: 30px;
     margin-bottom: 30px;
-    border-top: 1px solid #E3E3E3;
-    border-bottom: 1px solid #E3E3E3;
+    border-top: 1px solid #e3e3e3;
+    border-bottom: 1px solid #e3e3e3;
   }
 }
 
@@ -1417,6 +1532,15 @@
   .create_course_form_section .about_the_course .date_n_time .right {
     width: 100%;
   }
+  .other_coach_details .cols-2 {
+    display: -ms-grid;
+    display: grid;
+    -ms-grid-columns: 100%;
+        grid-template-columns: 100%;
+    grid-row-gap: 20px;
+    margin-top: -8px;
+    margin-bottom: -8px;
+  }
 }
 
 @media only screen and (max-width: 673px) {
@@ -1436,7 +1560,11 @@
     padding: 10px;
     margin-left: 0;
   }
-  .appointment_setting_wrapper .appointment_setting .settings_progress > div span {
+  .appointment_setting_wrapper
+.appointment_setting
+.settings_progress
+> div
+span {
     font-size: 11px;
     line-height: 20px;
   }
@@ -1497,6 +1625,12 @@
   .course_image {
     height: 140px;
   }
+  .about_us_head p br {
+    display: none;
+  }
+  .teamMember_head p br {
+    display: none;
+  }
 }
 
 @media only screen and (max-width: 654px) {
@@ -1532,6 +1666,10 @@
   }
   .third_section_wrapper_div .how_it_works_left_side {
     width: 90%;
+  }
+  .about_us_figures > div {
+    width: 100%;
+    margin-bottom: 60px;
   }
 }
 
@@ -1574,6 +1712,17 @@
   .course_name_and_signup .course_name_and_excerpt {
     width: 100%;
     margin-bottom: 50px;
+  }
+  .members_card {
+    height: 400px;
+    width: 60%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .card_member_wrapper {
+    -ms-grid-columns: 100%;
+        grid-template-columns: 100%;
+    grid-gap: 20px 0;
   }
 }
 
@@ -1795,8 +1944,14 @@
     grid-gap: 15px 0%;
   }
   .student_gallery {
-    -ms-grid-columns: calc( (100% - 20px) / 2) calc( (100% - 20px) / 2);
-        grid-template-columns: calc( (100% - 20px) / 2) calc( (100% - 20px) / 2);
+    -ms-grid-columns: calc((100% - 20px) / 2) calc((100% - 20px) / 2);
+        grid-template-columns: calc((100% - 20px) / 2) calc((100% - 20px) / 2);
+  }
+  .about_us_head h4 br {
+    display: none;
+  }
+  .members_card {
+    width: 70%;
   }
 }
 
@@ -1949,7 +2104,11 @@
   .create_course_form_section .about_the_course .date_n_time .right .to {
     width: 100%;
   }
-  .create_course_form_section .service_section .servive_type .servive_type_options > div {
+  .create_course_form_section
+.service_section
+.servive_type
+.servive_type_options
+> div {
     margin: 0 10px 10px 0;
     padding: 5px 10px;
   }
@@ -1988,7 +2147,12 @@
   .jobs_wrapper_section .jobs_wrapper {
     padding: 30px 15px;
   }
-  .course_banner_wrapper .details .Description_n_price .description .image_n_seat > div {
+  .course_banner_wrapper
+.details
+.Description_n_price
+.description
+.image_n_seat
+> div {
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
         -ms-flex-direction: column;
@@ -2000,7 +2164,13 @@
         -ms-flex-align: start;
             align-items: flex-start;
   }
-  .course_banner_wrapper .details .Description_n_price .description .image_n_seat > div .stud_images {
+  .course_banner_wrapper
+.details
+.Description_n_price
+.description
+.image_n_seat
+> div
+.stud_images {
     margin-bottom: 25px;
   }
   .settings_navigator .settings_navigator_link {
@@ -2043,7 +2213,9 @@
 }
 
 @media only screen and (max-width: 530px) {
-  .course_desc_header_text h3, .course_lessons_container .header h4, .review_section_wrapper_div h4 {
+  .course_desc_header_text h3,
+  .course_lessons_container .header h4,
+  .review_section_wrapper_div h4 {
     font-size: 25px;
   }
 }
@@ -2160,7 +2332,11 @@
             align-items: flex-start;
   }
   .course_list_wrapper .each_course .seats_left .stud_images,
-  .course_from_coach_section .course_list_wrapper .each_course .seats_left .stud_images {
+  .course_from_coach_section
+.course_list_wrapper
+.each_course
+.seats_left
+.stud_images {
     margin-bottom: 15px;
   }
   .course_list_wrapper .each_course .course_name,
@@ -2215,7 +2391,11 @@
   .coach_box_details_container .coach_image {
     width: 60%;
   }
-  .coach_box_details_container .coach_details_div .coach_summary .coach_social .video {
+  .coach_box_details_container
+.coach_details_div
+.coach_summary
+.coach_social
+.video {
     width: 100%;
     height: auto;
   }
@@ -2245,7 +2425,8 @@
   .settlement_card_wrapper .card_wrapper .card {
     padding: 25px;
   }
-  .table_div_wrapper .table_div table th, .table_div_wrapper .table_div table td {
+  .table_div_wrapper .table_div table th,
+  .table_div_wrapper .table_div table td {
     text-align: center;
     padding: 20px;
   }
@@ -2281,11 +2462,19 @@
     -ms-grid-columns: 100%;
         grid-template-columns: 100%;
   }
-  .appointment_setting_wrapper .appointment_setting .settings_container .status h5 {
+  .appointment_setting_wrapper
+.appointment_setting
+.settings_container
+.status
+h5 {
     font-size: 27px;
     line-height: 30px;
   }
-  .appointment_setting_wrapper .appointment_setting .settings_container .status p {
+  .appointment_setting_wrapper
+.appointment_setting
+.settings_container
+.status
+p {
     font-size: 15px;
     line-height: 27px;
   }
@@ -2304,6 +2493,9 @@
   }
   .availability_section .profile_details .top_part .time_zone .right {
     width: 100%;
+  }
+  .about_us_head h4 {
+    font-size: 25px;
   }
 }
 
@@ -2361,7 +2553,8 @@
     -webkit-transform: translateY(-5%);
             transform: translateY(-5%);
   }
-  .each_div div:nth-child(odd), .each_div div:nth-child(even) {
+  .each_div div:nth-child(odd),
+  .each_div div:nth-child(even) {
     border-right: none;
   }
   .course_video_container {
@@ -2372,6 +2565,9 @@
 @media only screen and (max-width: 451px) {
   .course_image {
     height: 120px;
+  }
+  .members_card {
+    width: 80%;
   }
 }
 
@@ -2401,6 +2597,16 @@
   }
   .student_gallery > div {
     height: 200px;
+  }
+  .error_wrapper img {
+    width: 232px;
+    height: 232px;
+  }
+  .error_wrapper h4 {
+    font-size: 28px;
+  }
+  .members_card {
+    width: 100%;
   }
 }
 

@@ -9050,15 +9050,12 @@ h4.write_ratings_head {
 }
 
 .about_us_figures {
-  display: -ms-grid;
-  display: grid;
-  -ms-grid-columns: 33.3333% 33.3333% 33.3333%;
-      grid-template-columns: 33.3333% 33.3333% 33.3333%;
   margin-top: 75px;
 }
 
 .about_us_figures > div {
   text-align: center;
+  width: 33.3333%;
 }
 
 .about_us_figures > div h4 {
@@ -9077,5 +9074,87 @@ h4.write_ratings_head {
 }
 
 /* End of About Us Page Style */
+/* SignUp option roles */
+.role_header {
+  margin-top: 40px;
+  margin-bottom: 15px;
+}
+
+.role_header p {
+  font-family: circular;
+  font-size: 18px;
+  line-height: 21px;
+}
+
+.signup_option > div {
+  margin-bottom: 10px;
+  margin-right: 25px;
+}
+
+.signup_option .notification_label p {
+  font-family: nunito;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 23px;
+  color: #525252;
+}
+
+.signup_option .notification_label span {
+  font-family: nunito;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 23px;
+  color: #989898;
+}
+
+.signup_option .radio_option {
+  margin-right: 5px;
+}
+
+.signup_option .radio_option input[type="radio"] {
+  display: none;
+}
+
+.signup_option .radio_option label {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+}
+
+.signup_option .radio_option label span {
+  width: 20px;
+  height: 20px;
+  border-radius: 2px;
+  border: 1px solid #EF4B4B;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  cursor: pointer;
+  -webkit-transition: .3s;
+  transition: .3s;
+}
+
+.signup_option .radio_option label span::after {
+  content: "\2713";
+  color: #fff;
+}
+
+.signup_option .radio_option input[type="radio"]:checked + span {
+  background-color: #EF4B4B;
+}
+
+/* End of SignUp option roles */
 /* ======================End of DASHBOARD Style=================== */
 /*# sourceMappingURL=main.css.map */
