@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import PaystackButton from 'react-paystack';
 import { getCoachesProfile } from '../../../../actions/profile';
-import { bookACoach } from '../../../../actions/service';
+import { bookACoach, verifyPaystack } from '../../../../actions/service';
 import Header from '../../Layout/Header';
 import Topnav from '../../Layout/Topnav';
 import { Wizard, Steps, Step, Navigation, Progress } from 'react-wizr';
@@ -20,6 +20,8 @@ import '@fullcalendar/timegrid/main.css';
 import '@fullcalendar/core/main.css';
 import '@fullcalendar/daygrid/main.css';
 import { v1 as uuidv1 } from 'uuid';
+import { FormErrors } from '../../../FormErrors/FormErrors';
+import '../../../FormErrors/FormError.css';
 
 class BookCoach extends Component {
   constructor(props) {
@@ -29,14 +31,32 @@ class BookCoach extends Component {
       service_id: '',
       channel_id: '',
       note: '',
-      amount: 0,
+      amount: '',
       date: '',
       start_time: '',
       end_time: '',
       totalhours: 0,
       key: 'pk_test_6a77ff890624b4ac9ffc399d415bbc4eff082d9f',
       email: this.props.user.currentUser.email,
-      payResponse: {}
+      payResponse: {},
+      paystack_reference: '',
+      paystack_status: '',
+      amount_paid: '',
+      formErrors: {
+        service_id: '',
+        note: '',
+        amount: '',
+        date: '',
+        start_time: '',
+        end_time: ''
+      },
+      service_idValid: false,
+      noteValid: false,
+      amountValid: false,
+      dateValid: false,
+      start_timeValid: false,
+      end_timeValid: false,
+      formValid: false
     };
   }
 
@@ -62,25 +82,64 @@ class BookCoach extends Component {
 
   handleChange = event => {
     const { value, name } = event.target;
-    this.setState({ [name]: value });
+    this.setState({ [name]: value }, () => {
+      this.validateField(name, value);
+    });
   };
 
+  validateField(fieldName, value) {
+    let fieldValidationErrors = this.state.formErrors;
+    let noteValid = this.state.noteValid;
+    let amountValid = this.state.amountValid;
+    let service_idValid = this.state.service_idValid;
+    let start_timeValid = this.state.start_timeValid;
+
+    switch (fieldName) {
+      case 'service_id':
+        service_idValid = isNaN(value);
+        fieldValidationErrors.note = noteValid ? '' : ' is invalid';
+        break;
+      case 'note':
+        noteValid = value;
+        fieldValidationErrors.note = noteValid ? '' : ' is invalid';
+        break;
+      case 'amount':
+        amountValid = value;
+        fieldValidationErrors.amount = amountValid ? '' : ' is too short';
+        break;
+      case 'start_time':
+        start_timeValid = value;
+        fieldValidationErrors.start_time = start_timeValid ? '' : ' is too short';
+        break;
+      default:
+        break;
+    }
+    this.setState(
+      {
+        formErrors: fieldValidationErrors,
+        service_idValid: service_idValid,
+        noteValid: noteValid,
+        amountValid: amountValid,
+        start_timeValid: start_timeValid
+      },
+      this.validateForm
+    );
+  }
+
+  validateForm() {
+    this.setState({
+      formValid: this.state.service_idValid && this.state.noteValid && this.state.amountValid && this.state.start_timeValid
+    });
+  }
+
+  errorClass(error) {
+    return error.length === 0 ? '' : 'has-error';
+  }
+
   callback = response => {
-    this.setState({ payResponse: response });
     if (response.status === 'success') {
-      const formData = {
-        coach_id: this.props.match.params.id,
-        service_id: this.state.service_id,
-        channel_id: this.state.service_id,
-        student_id: this.props.user.currentUser.id,
-        course_type: 'appointment',
-        start_time: this.state.start_time,
-        end_time: this.state.end_time,
-        date: this.state.date,
-        amount: parseInt(this.state.amount),
-        note: this.state.note
-      };
-      this.props.bookACoach(formData);
+      this.setState({ payResponse: response });
+      this.props.verifyPaystack(response.reference);
     }
   };
 
@@ -88,22 +147,47 @@ class BookCoach extends Component {
     console.log('window closed');
   };
   getReference = () => {
-    //you can put any unique reference implementation code here
     let text = uuidv1();
-    // let possible =
-    //   'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-.=';
-
-    // for (let i = 0; i < 15; i++)
-    //   text += possible.charAt(Math.floor(Math.random() * possible.length));
-
     return text;
   };
 
   render() {
-    const { user, profile, match } = this.props;
+    const { user, profile, match, services } = this.props;
+    const {
+      service_id,
+      note,
+      amount,
+      date,
+      start_time,
+      end_time,
+      payResponse,
+      email,
+      key,
+      totalhours
+    } = this.state;
 
-    const { service_id, note, amount, date, start_time, end_time } = this.state;
-    console.log(amount);
+    const postDataBooking = () => {
+      const formData = {
+        coach_id: match.params.id,
+        service_id: service_id,
+        channel_id: service_id,
+        student_id: user.currentUser.id,
+        course_type: 'appointment',
+        start_time: start_time,
+        end_time: end_time,
+        date: date,
+        amount:
+          amount === 'price_per_session'
+            ? this.findservice && parseInt(this.findservice.price_per_session)
+            : this.findservice &&
+              parseInt(this.findservice.price_per_hour) * parseInt(totalhours),
+        note: note,
+        paystack_reference: services.paystack.reference,
+        paystack_status: services.paystack.status,
+        amount_paid: services.paystack.amount
+      };
+      this.props.bookACoach(formData);
+    };
 
     const coach = profile
       ? profile.coaches.find(({ id }) => id === parseInt(match.params.id))
@@ -130,22 +214,8 @@ class BookCoach extends Component {
           totalSteps
         }) => (
           <div className='flex_r_j_end_align_center btn'>
-            {/* {activeStepIndex > 0 && (
-              <button className='grey_btn' onClick={goToPrevStep}>
-                Go Back
-              </button>
-            )}
-            {activeStepIndex < totalSteps - 1 && (
-              <button
-                type='submit'
-                className='black_btn'
-                onClick={goToNextStep}
-              >
-                Continue
-              </button>
-            )} */}
             {activeStepIndex === 0 && (
-              <button className='black_btn' onClick={goToNextStep}>
+              <button className='black_btn' disabled={!this.state.noteValid} onClick={goToNextStep}>
                 Continue
               </button>
             )}
@@ -154,7 +224,7 @@ class BookCoach extends Component {
                 <button className='grey_btn' onClick={goToPrevStep}>
                   Go Back
                 </button>
-                <button className='black_btn' onClick={goToNextStep}>
+                <button className='black_btn' disabled={!this.state.date} onClick={goToNextStep}>
                   Continue
                 </button>
               </div>
@@ -164,25 +234,24 @@ class BookCoach extends Component {
                 <button className='grey_btn' onClick={goToPrevStep}>
                   Go Back
                 </button>
-                <button className='black_btn' onClick={goToNextStep}>
+                <button className='black_btn' disabled={!this.state.amount} onClick={goToNextStep}>
                   Continue
                 </button>
               </div>
             )}
-            {activeStepIndex === 3 &&
-            this.state.payResponse.status !== 'success' ? (
+            {activeStepIndex === 3 && payResponse.status !== 'success' ? (
               <button className='grey_btn' onClick={goToPrevStep}>
                 Go Back
               </button>
             ) : (
               ''
             )}
-            {activeStepIndex === 3 &&
-            this.state.payResponse.status === 'success' ? (
-              goToNextStep()
-            ) : (
-              ''
-            )}
+            {activeStepIndex === 3 && services.paystack.status === 'success'
+              ? setTimeout(() => {
+                  postDataBooking();
+                  goToNextStep();
+                }, 3000)
+              : ''}
           </div>
         )}
       />
@@ -240,8 +309,11 @@ class BookCoach extends Component {
                         console.log(`Step changed: ${step.id}`)
                       }
                     >
+                      
                       <ProgressBar />
+                      
                       <Steps>
+                        
                         <Step id='first'>
                           <section>
                             <div class='full_row select_service'>
@@ -257,7 +329,10 @@ class BookCoach extends Component {
                                       onChange={this.handleChange}
                                       value={this.state.service_id}
                                     >
-                                      <option defaultValue>
+                                      <option
+                                        selected='false'
+                                        defaultValue={selectedOption}
+                                      >
                                         {selectedOption}
                                       </option>
                                       {coach ? (
@@ -420,10 +495,7 @@ class BookCoach extends Component {
                                         <input
                                           type='radio'
                                           name='amount'
-                                          value={
-                                            this.findservice &&
-                                            this.findservice.price_per_session
-                                          }
+                                          value='price_per_session'
                                           className='form-check-input'
                                           onChange={this.handleChange}
                                           readOnly
@@ -438,11 +510,7 @@ class BookCoach extends Component {
                                         <input
                                           type='radio'
                                           name='amount'
-                                          value={
-                                            this.findservice &&
-                                            this.findservice.price_per_hour *
-                                              this.state.totalhours
-                                          }
+                                          value='price_per_hour'
                                           className='form-check-input'
                                           onChange={this.handleChange}
                                           readOnly
@@ -515,7 +583,7 @@ class BookCoach extends Component {
                                             </p>
                                           </div>
                                         </div>
-                                        <div class='full_row note'>
+                                        <div class={`full_row note ${this.errorClass(this.state.formErrors.note)}`}>
                                           <h6> Note </h6>
                                           <p>{note}</p>
                                         </div>
@@ -557,17 +625,20 @@ class BookCoach extends Component {
                                             </div>
                                             <div>
                                               <span>
-                                                {this.findservice &&
-                                                amount ===
-                                                  this.findservice
-                                                    .price_per_session
+                                                {amount === 'price_per_session'
                                                   ? this.findservice &&
                                                     '₦ ' +
                                                       this.findservice
                                                         .price_per_session +
                                                       ' per session'
                                                   : this.findservice &&
-                                                    `₦ ${this.findservice.price_per_hour} per hour * ${this.state.totalhours} = ₦ ${amount}`}
+                                                    `₦ ${
+                                                      this.findservice
+                                                        .price_per_hour
+                                                    } per hour * ${totalhours} = ₦ ${this
+                                                      .findservice
+                                                      .price_per_hour *
+                                                      totalhours}`}
                                               </span>
                                             </div>
                                           </div>
@@ -575,8 +646,7 @@ class BookCoach extends Component {
                                       </div>
                                     </div>
                                   </div>
-                                  {this.state.payResponse.status !==
-                                  'success' ? (
+                                  {payResponse.status !== 'success' ? (
                                     <div>
                                       <div class='flex_r_j_end_align_center btn'>
                                         <PaystackButton
@@ -587,26 +657,31 @@ class BookCoach extends Component {
                                           disabled={false}
                                           embed={false}
                                           reference={this.getReference()}
-                                          email={this.state.email}
+                                          email={email}
                                           amount={
-                                            Number(this.state.amount) * 100
+                                            amount === 'price_per_session'
+                                              ? this.findservice &&
+                                                parseInt(
+                                                  this.findservice
+                                                    .price_per_session
+                                                ) * 100
+                                              : this.findservice &&
+                                                parseInt(
+                                                  this.findservice
+                                                    .price_per_hour
+                                                ) *
+                                                  parseInt(totalhours) *
+                                                  100
                                           }
-                                          paystackkey={this.state.key}
+                                          paystackkey={key}
                                           tag='button'
-                                          metadata= {{
-                                            custom_fields: [
-                                               {
-                                                   display_name: "First Name",
-                                                   variable_name: "first_name",
-                                                   value: user && user.currentUser.firstname
-                                               },
-                                               {
-                                                   display_name: "Last Name",
-                                                   variable_name: "last_name",
-                                                   value: user && user.currentUser.lastname
-                                               }
-                                            ]
-                                         }}
+                                          metadata={{
+                                            first_name:
+                                              user &&
+                                              user.currentUser.firstname,
+                                            last_name:
+                                              user && user.currentUser.lastname
+                                          }}
                                         />
                                       </div>
                                       <SimpleNavigation />
@@ -614,11 +689,10 @@ class BookCoach extends Component {
                                   ) : (
                                     ''
                                   )}
-                                  {this.state.payResponse.status ===
-                                  'success' ? (
+                                  {payResponse.status === 'success' ? (
                                     <div class='full_row body'>
                                       <br />
-                                      <p>{`Your payment was successful your Reference No. is: ${this.state.payResponse.reference} click the continue button below to complete your transaction`}</p>
+                                      <p>verifying payment please wait...</p>
                                       <SimpleNavigation />
                                     </div>
                                   ) : (
@@ -650,14 +724,19 @@ class BookCoach extends Component {
                             <h5>Appointment created successfully</h5>
                             <p>
                               You successfully made payment of ₦
-                              {this.findservice &&
-                              amount === this.findservice.price_per_session
-                                ? this.findservice.price_per_session +
-                                  ` with Reference No. ${this.state.payResponse.reference} to book a session appointment.`
-                                : `${amount} with Reference No. ${this.state.payResponse.reference} to book a ${this.state.totalhours} hour(s) appointment.`}
+                              {amount === 'price_per_session'
+                                ? `${this.findservice.price_per_session} with Reference No. ${payResponse.reference} to book a session appointment.`
+                                : `${this.findservice &&
+                                    parseInt(
+                                      this.findservice.price_per_hour *
+                                        totalhours
+                                    )} with Reference No. ${
+                                    payResponse.reference
+                                  } to book a ${totalhours} hour(s) appointment.`}
                             </p>
                             <p>
-                            <br />wait for the coach to confirm appointment
+                              <br />
+                              wait for the coach to confirm appointment
                             </p>
                             <img
                               src={
@@ -689,14 +768,19 @@ BookCoach.propTypes = {
   getCoachesProfile: PropTypes.func.isRequired,
   profile: PropTypes.object.isRequired,
   user: PropTypes.object.isRequired,
-  bookACoach: PropTypes.func.isRequired
+  services: PropTypes.object.isRequired,
+  bookACoach: PropTypes.func.isRequired,
+  verifyPaystack: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => ({
+  services: state.services,
   profile: state.profile,
   user: state.auth.user
 });
 
-export default connect(mapStateToProps, { getCoachesProfile, bookACoach })(
-  BookCoach
-);
+export default connect(mapStateToProps, {
+  getCoachesProfile,
+  bookACoach,
+  verifyPaystack
+})(BookCoach);

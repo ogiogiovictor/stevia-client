@@ -150,7 +150,9 @@ const PostaJob = ({
                         onChange={e => onChange(e)}
                         required
                       >
-                        <option defaultValue={selectedOption2}>
+                        <option selected='true'
+                          disabled='disabled'
+                          defaultValue={selectedOption2}>
                           {selectedOption2}
                         </option>
                         <option value='aviation'>Aviation</option>

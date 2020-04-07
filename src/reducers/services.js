@@ -1,9 +1,11 @@
-import { GET_SERVICES, SERVICE_ERROR, ADD_SERVICE, DELETE_SERVICE, GET_COACH_SERVICES } from '../actions/types';
+import { GET_SERVICES, SERVICE_ERROR, ADD_SERVICE, DELETE_SERVICE, GET_COACH_SERVICES, BOOK_A_COACH, GET_PAYSTACK_OBJECT } from '../actions/types';
 
 const initialState = {
   services: [],
   coachservices: [],
   service: null,
+  paystack: {},
+  bookings: null,
   loading: true,
   error: {}
 };
@@ -33,6 +35,18 @@ export default function(state = initialState, action) {
     case DELETE_SERVICE:
       return {
         ...state,
+        loading: false
+      };
+    case BOOK_A_COACH:
+      return {
+        ...state,
+        bookings: payload,
+        loading: false
+      };
+    case GET_PAYSTACK_OBJECT:
+      return {
+        ...state,
+        paystack: payload,
         loading: false
       };
     case SERVICE_ERROR:
