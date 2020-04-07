@@ -6743,9 +6743,7 @@ h4.write_ratings_head
         border-left: 1px solid #ef4b4b34
         border-top: 1px solid #ef4b4b34  
     &:hover              
-        &::before
-            // border-left-color: $default_red
-            // border-top-color: $default_red   
+        &::before  
             border-left: 2px solid $default_red
             border-top: 2px solid $default_red       
 
@@ -6890,11 +6888,11 @@ h4.write_ratings_head
         line-height: 200%
 
 .about_us_figures
-    display: grid
-    grid-template-columns: 33.3333% 33.3333% 33.3333%
     margin-top: 75px
+    
     &>div
         text-align: center
+        width: 33.3333%
         h4
             font-size: 60px
             margin-bottom: 5px

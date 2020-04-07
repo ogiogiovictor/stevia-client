@@ -9058,15 +9058,12 @@ h4.write_ratings_head {
 }
 
 .about_us_figures {
-  display: -ms-grid;
-  display: grid;
-  -ms-grid-columns: 33.3333% 33.3333% 33.3333%;
-      grid-template-columns: 33.3333% 33.3333% 33.3333%;
   margin-top: 75px;
 }
 
 .about_us_figures > div {
   text-align: center;
+  width: 33.3333%;
 }
 
 .about_us_figures > div h4 {
