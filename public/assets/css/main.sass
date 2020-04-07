@@ -6905,6 +6905,59 @@ h4.write_ratings_head
 .team_members_section2
     background-color: $background-blue
 /* End of About Us Page Style */
+/* SignUp option roles */
+.role_header
+    margin-top: 40px
+    margin-bottom: 15px
+    p
+        font-family: circular
+        font-size: 18px
+        line-height: 21px
+.signup_option
+    &>div
+        margin-bottom: 10px
+        margin-right: 25px
+    .notification_label
+        p
+            font-family: nunito
+            font-style: normal
+            font-weight: normal
+            font-size: 16px
+            line-height: 23px
+            color: #525252
+        span
+            font-family: nunito
+            font-style: normal
+            font-weight: normal
+            font-size: 16px
+            line-height: 23px
+            color: #989898
+
+    .radio_option
+        margin-right: 5px
+        input[type="radio"]
+            display: none
+        label
+            display: flex
+            flex-direction: row
+            span
+                width: 20px
+                height: 20px
+                border-radius: 2px
+                border: 1px solid #EF4B4B                    
+                display: flex
+                align-items: center
+                justify-content: center
+                cursor: pointer
+                transition: .3s
+
+                &::after
+                    content: "\2713"
+                    color: #fff
+
+        input[type="radio"]:checked + span
+            background-color: #EF4B4B
+/* End of SignUp option roles */
 
 /* ======================End of DASHBOARD Style=================== */
     
