@@ -1,6 +1,6 @@
 import Axios from 'axios';
 import { setAlert } from './alert';
-import { GET_SERVICES, ADD_COACH_SERVICE, GET_COACH_SERVICES, SERVICE_ERROR, ADD_SERVICE, DELETE_SERVICE, BOOK_A_COACH, GET_PAYSTACK_OBJECT } from './types';
+import { GET_SERVICES, ADD_COACH_SERVICE, GET_COACH_SERVICES, SERVICE_ERROR, ADD_SERVICE, DELETE_SERVICE, BOOK_A_COACH, GET_PAYSTACK_OBJECT, GET_COACH_APPOINTMENTS } from './types';
 import setAuthToken from '../Utils/setAuthToken';
 
 // const url = 'http://127.0.0.1:8000/api';
@@ -43,7 +43,26 @@ export const getCoachServices = () => async dispatch => {
   }
 };
 
-// Get Coach Services
+// Get Coach Appointments
+export const getAppointments = () => async dispatch => {
+  try {
+    const res = await Axios.get(
+      `${url}/coach-service/courses_appointments`
+    );
+    console.log(res.data.data);
+    dispatch({
+      type: GET_COACH_APPOINTMENTS,
+      payload: res.data.data
+    });
+  } catch (error) {
+    dispatch({
+      type: SERVICE_ERROR,
+      payload: { msg: error }
+    });
+  }
+};
+
+// Get Paystack Object
 export const verifyPaystack = (reference) => async dispatch => {
   try {
     const config = {

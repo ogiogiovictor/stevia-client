@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import PaystackButton from 'react-paystack';
 import { getCoachesProfile } from '../../../../actions/profile';
-import { bookACoach, verifyPaystack } from '../../../../actions/service';
+import { bookACoach, verifyPaystack, getAppointments } from '../../../../actions/service';
 import Header from '../../Layout/Header';
 import Topnav from '../../Layout/Topnav';
 import { Wizard, Steps, Step, Navigation, Progress } from 'react-wizr';
@@ -59,6 +59,7 @@ class BookCoach extends Component {
 
   componentDidMount() {
     this.props.getCoachesProfile();
+    this.props.getAppointments();
   }
 
   findservice = {};
@@ -243,7 +244,7 @@ class BookCoach extends Component {
             ) : (
               ''
             )}
-            {activeStepIndex === 3 && services.paystack.status === 'success'
+            {activeStepIndex === 3 && payResponse.status === 'success'
               ? setTimeout(() => {
                   postDataBooking();
                   goToNextStep();
@@ -767,7 +768,8 @@ BookCoach.propTypes = {
   user: PropTypes.object.isRequired,
   services: PropTypes.object.isRequired,
   bookACoach: PropTypes.func.isRequired,
-  verifyPaystack: PropTypes.func.isRequired
+  verifyPaystack: PropTypes.func.isRequired,
+  getAppointments: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => ({
@@ -779,5 +781,6 @@ const mapStateToProps = state => ({
 export default connect(mapStateToProps, {
   getCoachesProfile,
   bookACoach,
-  verifyPaystack
+  verifyPaystack,
+  getAppointments
 })(BookCoach);
