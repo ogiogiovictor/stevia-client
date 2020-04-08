@@ -42,6 +42,7 @@ import LandJobs from './Component/Landing/Jobs';
 import LandJobDetails from './Component/Landing/JobDetails';
 import ViewJobs from './Component/Dashboard/Recruiters/ViewJobs';
 import ScrollToTop from './Component/ScrollToTop';
+import Enrol from './Component/Dashboard/Student/Courses/Enrol';
 
 if (localStorage.token) {
   setAuthToken(localStorage.token);
@@ -115,6 +116,11 @@ const App = () => {
                 path='/dashboard/student/courses'
                 exact
                 component={StudentCourses}
+              />
+              <PrivateRouteStudent
+                path='/dashboard/student/courses/enrol/:id'
+                exact
+                component={Enrol}
               />
               <PrivateRoute
                 path='/dashboard/coaches/courses/create'

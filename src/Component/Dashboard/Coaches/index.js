@@ -1,8 +1,13 @@
-import React, { Fragment } from 'react';
-// import PropTypes from 'prop-types';
+import React, { Fragment, useEffect } from 'react';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import { getAppointments } from '../../../actions/service';
+import { connect } from 'react-redux';
 
-const CoachesIndex = props => {
+const CoachesIndex = ({ getAppointments, services: { appointments } }) => {
+  useEffect(() => {
+    getAppointments();
+  }, [getAppointments]);
   return (
     <Fragment>
       <div className='full_row coach_overview_cards' id='overview_cards'>
@@ -14,7 +19,11 @@ const CoachesIndex = props => {
                   <h6>Appointments</h6>
                 </div>
                 <div className='full_row'>
-                  <h2>23</h2>
+                  <h2>
+                    {appointments && appointments.total_appointments_count
+                      ? appointments.total_appointments_count
+                      : 0}
+                  </h2>
                 </div>
               </div>
             </div>
@@ -24,7 +33,11 @@ const CoachesIndex = props => {
                   <h6>Courses</h6>
                 </div>
                 <div className='full_row'>
-                  <h2>5</h2>
+                  <h2>
+                    {appointments && appointments.total_courses_count
+                      ? appointments.total_courses_count
+                      : 0}
+                  </h2>
                 </div>
               </div>
             </div>
@@ -110,34 +123,28 @@ const CoachesIndex = props => {
                 <div className='flex_r_j_between_align_center date_top'>
                   <div className='flex_r_a_center'>
                     <div>
-                      {' '}
-                      <i className='far fa-calendar'></i>{' '}
+                      <i className='far fa-calendar'></i>
                     </div>
                     <div>
-                      {' '}
-                      <span> 16-Dec-2019 </span>{' '}
+                      <span> 16-Dec-2019 </span>
                     </div>
                   </div>
                   <div className='flex_r_a_center'>
                     <div>
-                      {' '}
-                      <i className='far fa-clock'></i>{' '}
+                      <i className='far fa-clock'></i>
                     </div>
                     <div>
-                      {' '}
-                      <span> 2:30 - 3:30 PM </span>{' '}
+                      <span> 2:30 - 3:30 PM </span>
                     </div>
                   </div>
                 </div>
                 <div className='flex_r_j_between_align_center date_bottom'>
                   <div className='flex_r_a_center'>
                     <div>
-                      {' '}
-                      <i className='far fa-building'></i>{' '}
+                      <i className='far fa-building'></i>
                     </div>
                     <div>
-                      {' '}
-                      <span> 15,200 per hour </span>{' '}
+                      <span> 15,200 per hour </span>
                     </div>
                   </div>
                 </div>
@@ -145,8 +152,7 @@ const CoachesIndex = props => {
               <div className='full_row flex_r_j_center_align_center appointment_card_footer'>
                 <Link to=''> Confirm </Link>
                 <Link to='' className='reschedule'>
-                  {' '}
-                  Reschedule{' '}
+                  Reschedule
                 </Link>
               </div>
             </div>
@@ -180,34 +186,28 @@ const CoachesIndex = props => {
                 <div className='flex_r_j_between_align_center date_top'>
                   <div className='flex_r_a_center'>
                     <div>
-                      {' '}
-                      <i className='far fa-calendar'></i>{' '}
+                      <i className='far fa-calendar'></i>
                     </div>
                     <div>
-                      {' '}
-                      <span> 16-Dec-2019 </span>{' '}
+                      <span> 16-Dec-2019 </span>
                     </div>
                   </div>
                   <div className='flex_r_a_center'>
                     <div>
-                      {' '}
-                      <i className='far fa-clock'></i>{' '}
+                      <i className='far fa-clock'></i>
                     </div>
                     <div>
-                      {' '}
-                      <span> 2:30 - 3:30 PM </span>{' '}
+                      <span> 2:30 - 3:30 PM </span>
                     </div>
                   </div>
                 </div>
                 <div className='flex_r_j_between_align_center date_bottom'>
                   <div className='flex_r_a_center'>
                     <div>
-                      {' '}
-                      <i className='far fa-building'></i>{' '}
+                      <i className='far fa-building'></i>
                     </div>
                     <div>
-                      {' '}
-                      <span> 15,200 per hour </span>{' '}
+                      <span> 15,200 per hour </span>
                     </div>
                   </div>
                 </div>
@@ -215,8 +215,7 @@ const CoachesIndex = props => {
               <div className='full_row flex_r_j_center_align_center appointment_card_footer'>
                 <Link to=''> Confirm </Link>
                 <Link to='' className='reschedule'>
-                  {' '}
-                  Reschedule{' '}
+                  Reschedule
                 </Link>
               </div>
             </div>
@@ -250,34 +249,28 @@ const CoachesIndex = props => {
                 <div className='flex_r_j_between_align_center date_top'>
                   <div className='flex_r_a_center'>
                     <div>
-                      {' '}
-                      <i className='far fa-calendar'></i>{' '}
+                      <i className='far fa-calendar'></i>
                     </div>
                     <div>
-                      {' '}
-                      <span> 16-Dec-2019 </span>{' '}
+                      <span> 16-Dec-2019 </span>
                     </div>
                   </div>
                   <div className='flex_r_a_center'>
                     <div>
-                      {' '}
-                      <i className='far fa-clock'></i>{' '}
+                      <i className='far fa-clock'></i>
                     </div>
                     <div>
-                      {' '}
-                      <span> 2:30 - 3:30 PM </span>{' '}
+                      <span> 2:30 - 3:30 PM </span>
                     </div>
                   </div>
                 </div>
                 <div className='flex_r_j_between_align_center date_bottom'>
                   <div className='flex_r_a_center'>
                     <div>
-                      {' '}
-                      <i className='far fa-building'></i>{' '}
+                      <i className='far fa-building'></i>
                     </div>
                     <div>
-                      {' '}
-                      <span> 15,200 per hour </span>{' '}
+                      <span> 15,200 per hour </span>
                     </div>
                   </div>
                 </div>
@@ -285,8 +278,7 @@ const CoachesIndex = props => {
               <div className='full_row flex_r_j_center_align_center appointment_card_footer'>
                 <Link to=''> Confirm </Link>
                 <Link to='' className='reschedule'>
-                  {' '}
-                  Reschedule{' '}
+                  Reschedule
                 </Link>
               </div>
             </div>
@@ -297,6 +289,13 @@ const CoachesIndex = props => {
   );
 };
 
-// CoachesIndex.propTypes = {};
+CoachesIndex.propTypes = {
+  getAppointments: PropTypes.func.isRequired,
+  service: PropTypes.object.isRequired
+};
 
-export default CoachesIndex;
+const mapStateToProps = state => ({
+  services: state.services
+});
+
+export default connect(mapStateToProps, { getAppointments })(CoachesIndex);

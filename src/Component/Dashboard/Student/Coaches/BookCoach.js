@@ -59,7 +59,6 @@ class BookCoach extends Component {
 
   componentDidMount() {
     this.props.getCoachesProfile();
-    this.props.getAppointments();
   }
 
   findservice = {};
@@ -75,7 +74,6 @@ class BookCoach extends Component {
       end_time: endTime,
       totalhours: totalhours
     });
-    console.log(this.state.totalhours);
   };
 
   handleChange = event => {
@@ -134,10 +132,33 @@ class BookCoach extends Component {
     return error.length === 0 ? '' : 'has-error';
   }
 
-  callback = response => {
+  callback = async (response) =>  {
     if (response.status === 'success') {
       this.setState({ payResponse: response });
-      this.props.verifyPaystack(response.reference);
+      const paystack = await verifyPaystack(response.reference);
+      console.log(paystack)
+      const formData = {
+        coach_id: this.props.match.params.id,
+        service_id: this.state.service_id,
+        channel_id: this.state.service_id,
+        student_id: this.props.user.currentUser.id,
+        course_type: 'appointment',
+        start_time: this.state.start_time,
+        end_time: this.state.end_time,
+        date: this.state.date,
+        amount:
+        this.state.amount === 'price_per_session'
+            ? this.findservice && parseInt(this.findservice.price_per_session)
+            : this.findservice &&
+              parseInt(this.findservice.price_per_hour) * parseInt(this.state.totalhours),
+        note: this.state.note,
+        paystack_reference: paystack.reference,
+        paystack_status: paystack.status,
+        amount_paid: paystack.amount
+      };
+      if(paystack.status === 'success'){
+        this.props.bookACoach(formData)
+      };
     }
   };
 
@@ -163,29 +184,6 @@ class BookCoach extends Component {
       key,
       totalhours
     } = this.state;
-
-    const postDataBooking = () => {
-      const formData = {
-        coach_id: match.params.id,
-        service_id: service_id,
-        channel_id: service_id,
-        student_id: user.currentUser.id,
-        course_type: 'appointment',
-        start_time: start_time,
-        end_time: end_time,
-        date: date,
-        amount:
-          amount === 'price_per_session'
-            ? this.findservice && parseInt(this.findservice.price_per_session)
-            : this.findservice &&
-              parseInt(this.findservice.price_per_hour) * parseInt(totalhours),
-        note: note,
-        paystack_reference: services.paystack.reference,
-        paystack_status: services.paystack.status,
-        amount_paid: services.paystack.amount
-      };
-      this.props.bookACoach(formData);
-    };
 
     const coach = profile
       ? profile.coaches.find(({ id }) => id === parseInt(match.params.id))
@@ -246,7 +244,6 @@ class BookCoach extends Component {
             )}
             {activeStepIndex === 3 && payResponse.status === 'success'
               ? setTimeout(() => {
-                  postDataBooking();
                   goToNextStep();
                 }, 3000)
               : ''}
@@ -768,7 +765,6 @@ BookCoach.propTypes = {
   user: PropTypes.object.isRequired,
   services: PropTypes.object.isRequired,
   bookACoach: PropTypes.func.isRequired,
-  verifyPaystack: PropTypes.func.isRequired,
   getAppointments: PropTypes.func.isRequired
 };
 
@@ -781,6 +777,5 @@ const mapStateToProps = state => ({
 export default connect(mapStateToProps, {
   getCoachesProfile,
   bookACoach,
-  verifyPaystack,
   getAppointments
 })(BookCoach);

@@ -1,9 +1,10 @@
 import Axios from "axios";
 import { setAlert } from "./alert";
-import { GET_COURSES, COURSE_ERROR, ADD_COURSE, ADD_VIDEOS, GET_COURSES_LANDING } from '../actions/types';
+import setAuthToken from "../Utils/setAuthToken";
+import { GET_COURSES, COURSE_ERROR, ADD_COURSE, ADD_VIDEOS, GET_COURSES_LANDING, COURSE_ENROLLMENT } from '../actions/types';
 
-// const url = 'http://127.0.0.1:8000/api';
-const url = 'https://omareservations.com/stevia/api';
+const url = 'http://127.0.0.1:8000/api';
+// const url = 'https://omareservations.com/stevia/api';
 // Get Courses
 
 export const getCourses = () => async dispatch => {
@@ -114,6 +115,43 @@ export const addVideos = (formData, config) => async dispatch => {
     dispatch({
       type: COURSE_ERROR,
       payload: { msg: error }
+    });
+  }
+};
+
+// Enroll in Course
+export const courseEnrollment = (formData) => async dispatch => {
+  if (localStorage.token) {
+    setAuthToken(localStorage.token);
+  }else{
+    console.log('no token')
+  }
+  const config = {
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  };
+  try {
+    const res = await Axios.post(
+      `${url}/coach-service/coachenrollappoint`,
+      formData,
+      config
+    );
+    dispatch(setAlert(res.data.msg, 'success'));
+    dispatch({
+      type: COURSE_ENROLLMENT,
+      payload: res.data.data
+    });
+  } catch (error) {
+    const errors = error.response.data;
+    if (errors) {
+      Object.keys(errors).map(fieldName => {
+        return errors[fieldName].map(err => dispatch(setAlert(err, 'error')));
+      });
+    }
+    dispatch({
+      type: COURSE_ERROR,
+      payload: { msg: error.response.data, status: error.response.data.status }
     });
   }
 };

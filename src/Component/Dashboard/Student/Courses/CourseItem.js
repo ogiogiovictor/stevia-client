@@ -2,12 +2,13 @@ import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Spinner from '../../../Spinner/Spinner';
+import { Link } from 'react-router-dom';
 // import { deleteService } from '../../../../actions/service';
 // import './Service.css'
 
 const CourseItem = ({
   loading,
-  course: { price_per_session, image, course_description, title, coach_id }
+  course: { id, price_per_session, image, course_description, title, coach_id }
 }) => {
   return loading ? <Spinner /> : (
     <Fragment>
@@ -53,7 +54,11 @@ const CourseItem = ({
           </div>
         </div>
         <div className='full_row'>
-          <button className='black_btn full_width_btn'>Enrol Now</button>
+          <Link to={`/dashboard/student/courses/enrol/${id}`}>
+            <button className='black_btn full_width_btn'>
+              Enrol Now
+            </button>
+          </Link>
         </div>
       </div>
     </Fragment>

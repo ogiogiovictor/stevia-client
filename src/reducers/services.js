@@ -1,4 +1,4 @@
-import { GET_SERVICES, SERVICE_ERROR, ADD_SERVICE, DELETE_SERVICE, GET_COACH_SERVICES, BOOK_A_COACH, GET_PAYSTACK_OBJECT, GET_COACH_APPOINTMENTS } from '../actions/types';
+import { GET_SERVICES, SERVICE_ERROR, ADD_SERVICE, DELETE_SERVICE, GET_COACH_SERVICES, BOOK_A_COACH, GET_COACH_APPOINTMENTS } from '../actions/types';
 
 const initialState = {
   services: [],
@@ -42,12 +42,6 @@ export default function(state = initialState, action) {
       return {
         ...state,
         bookings: payload,
-        loading: false
-      };
-    case GET_PAYSTACK_OBJECT:
-      return {
-        ...state,
-        paystack: payload,
         loading: false
       };
     case GET_COACH_APPOINTMENTS:
