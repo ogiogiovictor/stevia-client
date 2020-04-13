@@ -3,7 +3,11 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import PaystackButton from 'react-paystack';
 import { getCoachesProfile } from '../../../../actions/profile';
-import { bookACoach, verifyPaystack, getAppointments } from '../../../../actions/service';
+import {
+  bookACoach,
+  verifyPaystack,
+  getAppointments,
+} from '../../../../actions/service';
 import Header from '../../Layout/Header';
 import Topnav from '../../Layout/Topnav';
 import { Wizard, Steps, Step, Navigation, Progress } from 'react-wizr';
@@ -45,7 +49,7 @@ class BookCoach extends Component {
         amount: '',
         date: '',
         start_time: '',
-        end_time: ''
+        end_time: '',
       },
       service_idValid: false,
       noteValid: false,
@@ -53,7 +57,7 @@ class BookCoach extends Component {
       dateValid: false,
       start_timeValid: false,
       end_timeValid: false,
-      formValid: false
+      formValid: false,
     };
   }
 
@@ -63,7 +67,7 @@ class BookCoach extends Component {
 
   findservice = {};
 
-  handleSelect = selectedInfo => {
+  handleSelect = (selectedInfo) => {
     const startTime = moment(selectedInfo.startStr).format('HH.mm');
     const endTime = moment(selectedInfo.endStr).format('HH.mm');
     const totalhours = Number(endTime) - Number(startTime);
@@ -72,11 +76,11 @@ class BookCoach extends Component {
       date: moment(selectedInfo.startStr).format('YYYY-MM-DD'),
       start_time: startTime,
       end_time: endTime,
-      totalhours: totalhours
+      totalhours: totalhours,
     });
   };
 
-  handleChange = event => {
+  handleChange = (event) => {
     const { value, name } = event.target;
     this.setState({ [name]: value }, () => {
       this.validateField(name, value);
@@ -105,7 +109,9 @@ class BookCoach extends Component {
         break;
       case 'start_time':
         start_timeValid = value;
-        fieldValidationErrors.start_time = start_timeValid ? '' : ' is too short';
+        fieldValidationErrors.start_time = start_timeValid
+          ? ''
+          : ' is too short';
         break;
       default:
         break;
@@ -116,7 +122,7 @@ class BookCoach extends Component {
         service_idValid: service_idValid,
         noteValid: noteValid,
         amountValid: amountValid,
-        start_timeValid: start_timeValid
+        start_timeValid: start_timeValid,
       },
       this.validateForm
     );
@@ -124,7 +130,11 @@ class BookCoach extends Component {
 
   validateForm() {
     this.setState({
-      formValid: this.state.service_idValid && this.state.noteValid && this.state.amountValid && this.state.start_timeValid
+      formValid:
+        this.state.service_idValid &&
+        this.state.noteValid &&
+        this.state.amountValid &&
+        this.state.start_timeValid,
     });
   }
 
@@ -132,11 +142,11 @@ class BookCoach extends Component {
     return error.length === 0 ? '' : 'has-error';
   }
 
-  callback = async (response) =>  {
+  callback = async (response) => {
     if (response.status === 'success') {
       this.setState({ payResponse: response });
       const paystack = await verifyPaystack(response.reference);
-      console.log(paystack)
+      console.log(paystack);
       const formData = {
         coach_id: this.props.match.params.id,
         service_id: this.state.service_id,
@@ -147,18 +157,19 @@ class BookCoach extends Component {
         end_time: this.state.end_time,
         date: this.state.date,
         amount:
-        this.state.amount === 'price_per_session'
+          this.state.amount === 'price_per_session'
             ? this.findservice && parseInt(this.findservice.price_per_session)
             : this.findservice &&
-              parseInt(this.findservice.price_per_hour) * parseInt(this.state.totalhours),
+              parseInt(this.findservice.price_per_hour) *
+                parseInt(this.state.totalhours),
         note: this.state.note,
         paystack_reference: paystack.reference,
         paystack_status: paystack.status,
-        amount_paid: paystack.amount
+        amount_paid: paystack.amount,
       };
-      if(paystack.status === 'success'){
-        this.props.bookACoach(formData)
-      };
+      if (paystack.status === 'success') {
+        this.props.bookACoach(formData);
+      }
     }
   };
 
@@ -182,7 +193,7 @@ class BookCoach extends Component {
       payResponse,
       email,
       key,
-      totalhours
+      totalhours,
     } = this.state;
 
     const coach = profile
@@ -207,11 +218,15 @@ class BookCoach extends Component {
           activeStepIndex,
           goToNextStep,
           goToPrevStep,
-          totalSteps
+          totalSteps,
         }) => (
           <div className='flex_r_j_end_align_center btn'>
             {activeStepIndex === 0 && (
-              <button className='black_btn' disabled={!this.state.noteValid} onClick={goToNextStep}>
+              <button
+                className='black_btn'
+                disabled={!this.state.noteValid}
+                onClick={goToNextStep}
+              >
                 Continue
               </button>
             )}
@@ -220,7 +235,11 @@ class BookCoach extends Component {
                 <button className='grey_btn' onClick={goToPrevStep}>
                   Go Back
                 </button>
-                <button className='black_btn' disabled={!this.state.date} onClick={goToNextStep}>
+                <button
+                  className='black_btn'
+                  disabled={!this.state.date}
+                  onClick={goToNextStep}
+                >
                   Continue
                 </button>
               </div>
@@ -230,7 +249,11 @@ class BookCoach extends Component {
                 <button className='grey_btn' onClick={goToPrevStep}>
                   Go Back
                 </button>
-                <button className='black_btn' disabled={!this.state.amount} onClick={goToNextStep}>
+                <button
+                  className='black_btn'
+                  disabled={!this.state.amount}
+                  onClick={goToNextStep}
+                >
                   Continue
                 </button>
               </div>
@@ -256,7 +279,7 @@ class BookCoach extends Component {
       <Progress
         render={({ percentage }) => {
           const styles = {
-            width: `${percentage}%`
+            width: `${percentage}%`,
           };
 
           return (
@@ -304,11 +327,9 @@ class BookCoach extends Component {
                         console.log(`Step changed: ${step.id}`)
                       }
                     >
-                      
                       <ProgressBar />
-                      
+
                       <Steps>
-                        
                         <Step id='first'>
                           <section>
                             <div class='full_row select_service'>
@@ -331,7 +352,7 @@ class BookCoach extends Component {
                                         {selectedOption}
                                       </option>
                                       {coach ? (
-                                        coach.services.map(service => (
+                                        coach.services.map((service) => (
                                           <option
                                             key={service.id}
                                             value={service.id}
@@ -407,7 +428,7 @@ class BookCoach extends Component {
                                       plugins={[
                                         timeGridPlugin,
                                         dayGridPlugin,
-                                        interactionPlugin
+                                        interactionPlugin,
                                       ]}
                                       selectable={true}
                                       selectMirror={true}
@@ -418,7 +439,7 @@ class BookCoach extends Component {
                                         left: 'prev,next today',
                                         center: 'title',
                                         right:
-                                          'dayGridMonth,timeGridWeek,timeGridDay,listWeek'
+                                          'dayGridMonth,timeGridWeek,timeGridDay,listWeek',
                                       }}
                                       businessHours={{
                                         daysOfWeek:
@@ -434,7 +455,7 @@ class BookCoach extends Component {
                                           coach &&
                                           JSON.parse(coach.appointment[0].time)
                                             .end,
-                                        color: 'red'
+                                        color: 'red',
                                       }}
                                       selectConstraint={'businessHours'}
                                       slotDuration={'00:60:00'}
@@ -560,9 +581,9 @@ class BookCoach extends Component {
                                           <div class='image'>
                                             <img
                                               src={
-                                                user && user.currentUser.image
+                                                user && user.currentUser.userpic
                                               }
-                                              alt=''
+                                              alt='userpic'
                                             />
                                           </div>
                                           <div class='name'>
@@ -578,7 +599,11 @@ class BookCoach extends Component {
                                             </p>
                                           </div>
                                         </div>
-                                        <div class={`full_row note ${this.errorClass(this.state.formErrors.note)}`}>
+                                        <div
+                                          class={`full_row note ${this.errorClass(
+                                            this.state.formErrors.note
+                                          )}`}
+                                        >
                                           <h6> Note </h6>
                                           <p>{note}</p>
                                         </div>
@@ -630,10 +655,11 @@ class BookCoach extends Component {
                                                     `₦ ${
                                                       this.findservice
                                                         .price_per_hour
-                                                    } per hour * ${totalhours} = ₦ ${this
-                                                      .findservice
-                                                      .price_per_hour *
-                                                      totalhours}`}
+                                                    } per hour * ${totalhours} = ₦ ${
+                                                      this.findservice
+                                                        .price_per_hour *
+                                                      totalhours
+                                                    }`}
                                               </span>
                                             </div>
                                           </div>
@@ -675,7 +701,7 @@ class BookCoach extends Component {
                                               user &&
                                               user.currentUser.firstname,
                                             last_name:
-                                              user && user.currentUser.lastname
+                                              user && user.currentUser.lastname,
                                           }}
                                         />
                                       </div>
@@ -721,11 +747,13 @@ class BookCoach extends Component {
                               You successfully made payment of ₦
                               {amount === 'price_per_session'
                                 ? `${this.findservice.price_per_session} with Reference No. ${payResponse.reference} to book a session appointment.`
-                                : `${this.findservice &&
+                                : `${
+                                    this.findservice &&
                                     parseInt(
                                       this.findservice.price_per_hour *
                                         totalhours
-                                    )} with Reference No. ${
+                                    )
+                                  } with Reference No. ${
                                     payResponse.reference
                                   } to book a ${totalhours} hour(s) appointment.`}
                             </p>
@@ -765,17 +793,17 @@ BookCoach.propTypes = {
   user: PropTypes.object.isRequired,
   services: PropTypes.object.isRequired,
   bookACoach: PropTypes.func.isRequired,
-  getAppointments: PropTypes.func.isRequired
+  getAppointments: PropTypes.func.isRequired,
 };
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   services: state.services,
   profile: state.profile,
-  user: state.auth.user
+  user: state.auth.user,
 });
 
 export default connect(mapStateToProps, {
   getCoachesProfile,
   bookACoach,
-  getAppointments
+  getAppointments,
 })(BookCoach);

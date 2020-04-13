@@ -116,8 +116,10 @@ const Enrol = ({ getCourses, user, courses: { courses, loading }, match }) => {
                                       <div class='flex_r_a_center'>
                                         <div class='image'>
                                           <img
-                                            src={user && user.currentUser.image}
-                                            alt=''
+                                            src={
+                                              user && user.currentUser.userpic
+                                            }
+                                            alt='userpic'
                                           />
                                         </div>
                                         <div class='name'>
@@ -139,7 +141,7 @@ const Enrol = ({ getCourses, user, courses: { courses, loading }, match }) => {
                                         <h4> Communication channel </h4>
                                         <p>
                                           {course &&
-                                            course.medium_of_communication}
+                                            course.medium_of_communication_text}
                                         </p>
                                       </div>
                                       <div class='flex_r_j_between_align_center date_top'>
@@ -183,39 +185,42 @@ const Enrol = ({ getCourses, user, courses: { courses, loading }, match }) => {
                                 {}
                                 {}
                                 <div class='flex_r_j_end_align_center btn'>
-                                  {payResponse.r.status !== 'success' ?
-                                  <PaystackButton
-                                    text='Pay'
-                                    class='black_btn'
-                                    callback={callback}
-                                    close={close}
-                                    disabled={false}
-                                    embed={false}
-                                    reference={getReference()}
-                                    email={user.currentUser.email}
-                                    amount={
-                                      course &&
-                                      Number(course.price_per_session) * 100
-                                    }
-                                    paystackkey={key}
-                                    tag='button'
-                                    metadata={{
-                                      first_name:
-                                        user && user.currentUser.firstname,
-                                      last_name:
-                                        user && user.currentUser.lastname,
-                                    }}
-                                  /> : ''}
-                                </div>
-                                {payResponse.r.status === 'success' ? (
-                                    <div class='full_row body'>
-                                      <br />
-                                      <p>verifying payment please wait...</p>
-                                      <SimpleNavigation />
-                                    </div>
+                                  {payResponse.r.status !== 'success' ? (
+                                    <PaystackButton
+                                      text='Pay'
+                                      class='black_btn'
+                                      callback={callback}
+                                      close={close}
+                                      disabled={false}
+                                      embed={false}
+                                      reference={getReference()}
+                                      email={user.currentUser.email}
+                                      amount={
+                                        course &&
+                                        Number(course.price_per_session) * 100
+                                      }
+                                      paystackkey={key}
+                                      tag='button'
+                                      metadata={{
+                                        first_name:
+                                          user && user.currentUser.firstname,
+                                        last_name:
+                                          user && user.currentUser.lastname,
+                                      }}
+                                    />
                                   ) : (
                                     ''
                                   )}
+                                </div>
+                                {payResponse.r.status === 'success' ? (
+                                  <div class='full_row body'>
+                                    <br />
+                                    <p>verifying payment please wait...</p>
+                                    <SimpleNavigation />
+                                  </div>
+                                ) : (
+                                  ''
+                                )}
                               </div>
                               <div class='right'>
                                 <div class='full_row help_box'>
@@ -229,7 +234,9 @@ const Enrol = ({ getCourses, user, courses: { courses, loading }, match }) => {
                                       kindly go through to ensure all the
                                       details provided is accurate.
                                     </p>
-                                    <p>Click on pay make payment for the course.</p>
+                                    <p>
+                                      Click on pay make payment for the course.
+                                    </p>
                                   </div>
                                 </div>
                               </div>
@@ -240,7 +247,12 @@ const Enrol = ({ getCourses, user, courses: { courses, loading }, match }) => {
                       <Step id='second'>
                         <div class='full_row status text-center'>
                           <h5>Appointment created successfully</h5>
-                                  <p>You successfully made payment of ₦{course && course.price_per_session} with reference no. {payResponse.r.reference} for {course && course.title} course</p>
+                          <p>
+                            You successfully made payment of ₦
+                            {course && course.price_per_session} with reference
+                            no. {payResponse.r.reference} for{' '}
+                            {course && course.title} course
+                          </p>
                           <p>
                             <br />
                             wait for the coach to activate your course

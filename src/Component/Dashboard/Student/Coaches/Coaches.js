@@ -55,7 +55,7 @@ const Coaches = ({
                         <i className='far fa-bell'></i>
                       </div>
                       <div className='flex_r_j_between_align_center username'>
-                        <span>IU</span>
+                        <img src={user && user.currentUser.userpic} alt="userpic" />
                         <h6>
                           {user && user.currentUser.firstname}{' '}
                           {user && user.currentUser.lastname}

@@ -1,7 +1,13 @@
-import React, { Fragment } from 'react';
-// import PropTypes from 'prop-types';
+import React, { Fragment, useEffect } from 'react';
+import { getStudentProfile } from '../../../actions/profile';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import AppointmentItem from './AppointmentItem';
 
-const StudentIndex = props => {
+const StudentIndex = ({ getStudentProfile, profile: { student }, user }) => {
+  useEffect(() => {
+    getStudentProfile(user && user.currentUser.id);
+  }, [getStudentProfile, user]);
   return (
     <Fragment>
       <div className='full_row overview_cards'>
@@ -9,8 +15,12 @@ const StudentIndex = props => {
           <div className='full_row cards_wrapper'>
             <div className='flex_r_j_between_align_center'>
               <div className='left'>
-                <h6>Ongoing Courses</h6>
-                <h2>2</h2>
+                <h6>Pending Courses</h6>
+                <h2>
+                  {student && student.pending_courses > 0
+                    ? student.pending_courses
+                    : 0}
+                </h2>
               </div>
               <div className='right'>
                 <img
@@ -22,7 +32,11 @@ const StudentIndex = props => {
             <div className='flex_r_j_between_align_center'>
               <div className='left'>
                 <h6>Ongoing Courses</h6>
-                <h2>0</h2>
+                <h2>
+                  {student && student.ongoing_courses > 0
+                    ? student.ongoing_courses
+                    : 0}
+                </h2>
               </div>
               <div className='right'>
                 <img
@@ -33,8 +47,12 @@ const StudentIndex = props => {
             </div>
             <div className='flex_r_j_between_align_center'>
               <div className='left'>
-                <h6>Ongoing Courses</h6>
-                <h2>3</h2>
+                <h6>Completed Courses</h6>
+                <h2>
+                  {student && student.completed_courses > 0
+                    ? student.completed_courses
+                    : 0}
+                </h2>
               </div>
               <div className='right'>
                 <img
@@ -60,14 +78,24 @@ const StudentIndex = props => {
               <span> Completed </span>
             </div>
           </div>
-          <div className='full_row flex_r_j_center_align_center appointment_container'>
-            <div className='empty_content text-center'>
-              <img
-                src={process.env.PUBLIC_URL + '../assets/utils/images/39.png'}
-                alt=''
-              />
-              <p>You have no appointments yet</p>
-            </div>
+          <div className='full_row pending_appointment_container'>
+            {student && student.student_appointment.length > 0 ? (
+              student.student_appointment.map((appointment) => (
+                <AppointmentItem
+                  key={appointment.id}
+                  appointment={appointment}
+                  user={user}
+                />
+              ))
+            ) : (
+              <div className='empty_content text-center'>
+                <img
+                  src={process.env.PUBLIC_URL + '../assets/utils/images/39.png'}
+                  alt=''
+                />
+                <p>You have no appointments yet</p>
+              </div>
+            )}
           </div>
         </div>
       </div>
@@ -76,8 +104,13 @@ const StudentIndex = props => {
   );
 };
 
-// StudentIndex.propTypes = {
+StudentIndex.propTypes = {
+  getStudentProfile: PropTypes.func.isRequired,
+};
 
-// };
+const mapStateToProps = (state) => ({
+  profile: state.profile,
+  user: state.auth.user,
+});
 
-export default StudentIndex;
+export default connect(mapStateToProps, { getStudentProfile })(StudentIndex);

@@ -3459,6 +3459,13 @@ section.dashboard_body .top_nav .right_side .username h6 {
   line-height: 30px;
   text-transform: capitalize;
 }
+section.dashboard_body .top_nav .right_side .username img {
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  background-color: #FFE3E3;
+  margin-right: 15px;
+}
 
 section.dashboard_body .overview_cards {
   margin: 100px 0 60px;

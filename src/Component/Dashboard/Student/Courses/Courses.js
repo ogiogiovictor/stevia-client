@@ -77,41 +77,41 @@ const StudentCourses = ({
                 </div>
                 <div className='flex_r_j_end_align_center pagination'>
                   <div>
-                    {' '}
+                    
                     <Link to='#'>
-                      {' '}
-                      <i className='fas fa-chevron-left'></i>{' '}
-                    </Link>{' '}
+                      
+                      <i className='fas fa-chevron-left'></i>
+                    </Link>
                   </div>
                   <div>
-                    {' '}
+                    
                     <Link to='#' className='active'>
-                      {' '}
-                      1{' '}
-                    </Link>{' '}
+                      
+                      1
+                    </Link>
                   </div>
                   <div>
-                    {' '}
-                    <Link to='#'> 2 </Link>{' '}
+                    
+                    <Link to='#'> 2 </Link>
                   </div>
                   <div>
-                    {' '}
-                    <Link to='#'> 3 </Link>{' '}
+                    
+                    <Link to='#'> 3 </Link>
                   </div>
                   <div>
-                    {' '}
-                    <Link to='#'> 4 </Link>{' '}
+                    
+                    <Link to='#'> 4 </Link>
                   </div>
                   <div>
-                    {' '}
-                    <Link to='#'> 5 </Link>{' '}
+                    
+                    <Link to='#'> 5 </Link>
                   </div>
                   <div>
-                    {' '}
+                    
                     <Link to='#'>
-                      {' '}
-                      <i className='fas fa-chevron-right'></i>{' '}
-                    </Link>{' '}
+                      
+                      <i className='fas fa-chevron-right'></i>
+                    </Link>
                   </div>
                 </div>
               </div>
