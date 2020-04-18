@@ -8,9 +8,9 @@ import { connect } from 'react-redux';
 
 const Signup = ({ signup, isAuthenticated, role }) => {
   const { handleSubmit, register, errors } = useForm({
-    mode: 'onChange'
+    mode: 'onChange',
   });
-  const onSubmit = async values => {
+  const onSubmit = async (values) => {
     setDouble(true);
     const {
       firstname,
@@ -18,7 +18,7 @@ const Signup = ({ signup, isAuthenticated, role }) => {
       email,
       phone_number,
       password,
-      account_type
+      account_type,
     } = values;
     signup({
       firstname,
@@ -26,7 +26,7 @@ const Signup = ({ signup, isAuthenticated, role }) => {
       email,
       phone_number,
       password,
-      account_type
+      account_type,
     });
   };
 
@@ -55,52 +55,71 @@ const Signup = ({ signup, isAuthenticated, role }) => {
               <p>to continue to your dashboard</p>
             </div>
             <form onSubmit={handleSubmit(onSubmit)}>
-              <p>
-                <strong>Choose your role:</strong>
-              </p>
-              <div className={!errors.account_type ? '' : 'alert alert-danger'}>
-                {errors.account_type && errors.account_type.message}
+              <div class='full_row role_header'>
+                <p>Choose your role</p>
               </div>
-              <div className='form-check'>
-                <label>
-                  <input
-                    type='radio'
-                    name='account_type'
-                    value='3'
-                    className='form-check-input'
-                    ref={register({ required: 'Choose desired role' })}
-                    readOnly
-                  />
-                  Student
-                </label>
-              </div>
+              <div class='full_row signup_option flex_r_wrap'>
+                <div
+                  className={!errors.account_type ? '' : 'alert alert-danger'}
+                >
+                  {errors.account_type && errors.account_type.message}
+                </div>
+                <div className='flex_r'>
+                  <div className='radio_option'>
+                    <label htmlFor='student'>
+                      <input
+                        type='radio'
+                        name='account_type'
+                        value='3'
+                        id='student'
+                        ref={register({ required: 'Choose desired role' })}
+                        readOnly
+                      />
+                      <span></span>
+                    </label>
+                  </div>
+                  <div class='notification_label'>
+                    <p>Student</p>
+                  </div>
+                </div>
 
-              <div className='form-check'>
-                <label>
-                  <input
-                    type='radio'
-                    name='account_type'
-                    value='2'
-                    className='form-check-input'
-                    ref={register({ required: 'Choose desired role' })}
-                    readOnly
-                  />
-                  Coach
-                </label>
-              </div>
+                <div className='flex_r'>
+                  <div className='radio_option'>
+                    <label htmlFor='coach'>
+                      <input
+                        type='radio'
+                        name='account_type'
+                        value='2'
+                        id='coach'
+                        ref={register({ required: 'Choose desired role' })}
+                        readOnly
+                      />
+                      <span></span>
+                    </label>
+                  </div>
+                  <div class='notification_label'>
+                    <p>Coach</p>
+                  </div>
+                </div>
 
-              <div className='form-check'>
-                <label>
-                  <input
-                    type='radio'
-                    name='account_type'
-                    value='4'
-                    className='form-check-input'
-                    ref={register({ required: 'Choose desired role' })}
-                    readOnly
-                  />
-                  Recruiter
-                </label>
+                <div className='flex_r'>
+                  <div className='radio_option'>
+                    <label htmlFor='recruiter'>
+                      <input
+                        type='radio'
+                        name='account_type'
+                        id='recruiter'
+                        value='4'
+                        ref={register({ required: 'Choose desired role' })}
+                        readOnly
+                      />
+                      <span></span>
+                    </label>
+                  </div>
+                  <div class='notification_label'>
+                    <p>Recruiter</p>
+                  </div>
+                </div>
               </div>
               <div className='full_row common_input_wrapper_2'>
                 <input
@@ -143,8 +162,8 @@ const Signup = ({ signup, isAuthenticated, role }) => {
                     required: 'Email is Required',
                     pattern: {
                       value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
-                      message: 'invalid email address'
-                    }
+                      message: 'invalid email address',
+                    },
                   })}
                 />
                 <div className={!errors.email ? '' : 'alert alert-danger'}>
@@ -160,7 +179,7 @@ const Signup = ({ signup, isAuthenticated, role }) => {
                     placeholder='Password'
                     ref={register({
                       required: 'Password is Required',
-                      validate: value => value.length >= 6
+                      validate: (value) => value.length >= 6,
                     })}
                   />
                 </div>
@@ -176,7 +195,7 @@ const Signup = ({ signup, isAuthenticated, role }) => {
                     name='confirmPassword'
                     placeholder='Confirm Password'
                     ref={register({
-                      required: 'Password is Required'
+                      required: 'Password is Required',
                     })}
                   />
                 </div>
@@ -188,9 +207,9 @@ const Signup = ({ signup, isAuthenticated, role }) => {
               </div>
 
               <div className='full_row login_button'>
-              <CustomButton type='submit' disabled={double}>
-                {double ? 'Loading please wait!!!' : 'Sign up'}
-              </CustomButton>
+                <CustomButton type='submit' disabled={double}>
+                  {double ? 'Loading please wait!!!' : 'Sign up'}
+                </CustomButton>
               </div>
               <div className='full_row site_terms'>
                 <p>
@@ -220,12 +239,12 @@ const Signup = ({ signup, isAuthenticated, role }) => {
 
 Signup.protoTypes = {
   signup: PropTypes.func.isRequired,
-  isAuthenticated: PropTypes.bool
+  isAuthenticated: PropTypes.bool,
 };
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   isAuthenticated: state.auth.isAuthenticated,
-  role: state.auth.role
+  role: state.auth.role,
 });
 
 export default connect(mapStateToProps, { signup })(Signup);

@@ -44,10 +44,12 @@
     "redux-thunk": "^2.3.0",
     "reselect": "^4.0.0",
     "serve": "^11.3.0",
+    "sweetalert2": "^9.10.12",
+    "sweetalert2-react-content": "^3.0.1",
     "uuid": "^3.4.0"
   },
   "scripts": {
-    "start": "serve -s build",
+    "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"

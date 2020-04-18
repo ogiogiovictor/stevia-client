@@ -8,9 +8,9 @@ import PaystackButton from 'react-paystack';
 import { getCourses } from '../../../../actions/course';
 import { v1 as uuidv1 } from 'uuid';
 import { Wizard, Steps, Step, Navigation, Progress } from 'react-wizr';
-import { verifyPaystack } from '../../../../actions/service';
+import { verifyPaystack, bookACoach } from '../../../../actions/service';
 
-const Enrol = ({ getCourses, user, courses: { courses, loading }, match }) => {
+const Enrol = ({ getCourses, user, courses: { courses, loading }, match, bookACoach }) => {
   useEffect(() => {
     getCourses();
   }, [getCourses]);
@@ -25,11 +25,28 @@ const Enrol = ({ getCourses, user, courses: { courses, loading }, match }) => {
     : '';
 
   const callback = async (response) => {
-    console.log(response);
+    if(response.status === 'success'){
     setPayResponse({ r: response });
     const payStack = await verifyPaystack(response.reference);
     console.log(payStack);
-  };
+    const formData = {
+      course_id: match.params.id,
+      coach_id: course && course.service_id,
+      student_id: user && user.currentUser.id,
+      course_type: 'fullcourse',
+      // start_time: this.state.start_time,
+      // end_time: this.state.end_time,
+      // date: this.state.date,
+      paystack_reference: payStack.reference,
+      paystack_status: payStack.status,
+      amount_paid: payStack.amount,
+      allresponse: JSON.stringify(payStack)
+    };
+    if (payStack.status === 'success') {
+      bookACoach(formData);
+    }
+  }
+};
 
   const close = () => {
     console.log('window closed');
@@ -297,4 +314,4 @@ const mapStateToProps = (state) => ({
   courses: state.courses,
 });
 
-export default connect(mapStateToProps, { getCourses })(Enrol);
+export default connect(mapStateToProps, { getCourses, bookACoach })(Enrol);

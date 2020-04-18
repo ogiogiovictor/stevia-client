@@ -11,10 +11,13 @@ import {
 } from './types';
 import setAuthToken from '../Utils/setAuthToken';
 import { setAlert } from './alert';
+import Swal from 'sweetalert2'
+import withReactContent from 'sweetalert2-react-content'
+const MySwal = withReactContent(Swal)
 
 // Load User
-const url = 'https://omareservations.com/stevia/api';
-// const url = 'http://127.0.0.1:8000/api';
+// const url = 'https://omareservations.com/stevia/api';
+const url = 'http://127.0.0.1:8000/api';
 
 export const loadUser = () => async dispatch => {
   
@@ -72,12 +75,25 @@ export const signup = ({
   try {
     const registerApi = `${url}/register/store`;
     const res = await Axios.post(registerApi, body, config);
+    console.log(res.data)
     dispatch(setAlert(res.data.message, 'success'));
     dispatch({
       type: REGISTER_SUCCESS,
       payload: res.data
     });
-
+    dispatch(
+      MySwal.fire({
+        title: 'Hello World',
+        footer: 'Copyright 2018',
+        onOpen: () => {
+          // `MySwal` is a subclass of `Swal`
+          //   with all the same instance & static methods
+          MySwal.clickConfirm()
+        }
+      }).then(() => {
+        return MySwal.fire('Shorthand works too')
+      })
+    );
   } catch (error) {
     dispatch(setAlert(error.response.data.email[0], 'error'));
     setTimeout(() => {
@@ -134,5 +150,5 @@ export const logout = () => async dispatch => {
   dispatch(setAlert(res.data.message, 'success'));
   dispatch({ type: CLEAR_PROFILE });
   dispatch({ type: LOGOUT });
- 
+  dispatch(window.location.href='/');
 };

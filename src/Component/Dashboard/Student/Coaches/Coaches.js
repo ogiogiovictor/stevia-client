@@ -15,6 +15,9 @@ const Coaches = ({
   useEffect(() => {
     getCoachesProfile();
   }, [getCoachesProfile]);
+
+  
+
   return (
     <Fragment>
       {loading ? (

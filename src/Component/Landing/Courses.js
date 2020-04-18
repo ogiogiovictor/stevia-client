@@ -37,9 +37,7 @@ const Courses = ({ getCoursesLand, courses: { coursesland, loading } }) => {
                 </div>
                 <div className='header_desc_right'>
                   <img
-                    src={process.env.PUBLIC_URL + 'assets/utils/images/17.png'}
-                    alt=''
-                  />
+                    src={process.env.PUBLIC_URL + 'assets/utils/images/17.png'} alt='' />
                 </div>
               </div>
             </div>

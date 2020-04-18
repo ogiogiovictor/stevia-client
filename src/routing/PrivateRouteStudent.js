@@ -6,6 +6,7 @@ import { setAlert } from '../actions/alert';
 import { getCurrentProfile } from '../actions/profile';
 import Spinner from '../Component/Spinner/Spinner';
 
+
 const PrivateRouteStudent = ({
   component: Component,
   auth: { isAuthenticated, loading, user },
@@ -31,8 +32,10 @@ const PrivateRouteStudent = ({
       {...rest}
       render={props =>
         !isAuthenticated && !user  ? (
-          (setAlert('Please signin to continue', 'error'),
-          (<Redirect to='/login' />))
+          (<Redirect to={{
+            pathname: '/login?autherror=1' ,
+            state: { from: props.location },
+          }} />)
         ) : user && user.currentUser.role.name !== 'STUDENT' ? (
           (setAlert('Please Signin has a Student', 'error'),
           (<Redirect to='/dashboard' />))

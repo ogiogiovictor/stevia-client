@@ -13,7 +13,6 @@ import Topnav from '../../Layout/Topnav';
 import { Wizard, Steps, Step, Navigation, Progress } from 'react-wizr';
 import './Style.css';
 import { Redirect, Link } from 'react-router-dom';
-import { toast } from 'react-toastify';
 import moment from 'moment';
 import FullCalendar from '@fullcalendar/react';
 import dayGridPlugin from '@fullcalendar/daygrid';
@@ -182,7 +181,7 @@ class BookCoach extends Component {
   };
 
   render() {
-    const { user, profile, match, services } = this.props;
+    const { user, profile, match} = this.props;
     const {
       service_id,
       note,
@@ -201,9 +200,10 @@ class BookCoach extends Component {
       : '';
 
     if (coach && !coach.appointment.length > 0) {
-      const tmsg = `${coach.firstname} ${coach.lastname} is not available`;
-      toast(tmsg, 'error');
-      return <Redirect to='/dashboard/student/coaches' />;
+      return <Redirect to={{
+        pathname: '/dashboard/student/coaches?availerror=1' ,
+        state: { from: this.props.location },
+      }} />;
     }
 
     let selectedOption = 'Pick a Service';

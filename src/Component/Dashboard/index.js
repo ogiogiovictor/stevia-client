@@ -11,84 +11,109 @@ import Topnav from './Layout/Topnav';
 import { Maintitle } from '../Maintitle';
 import Spinner from '../Spinner/Spinner';
 import { getCurrentProfile } from '../../actions/profile';
-import { setAlert } from '../../actions/alert';
+import { logout } from '../../actions/auth';
+import Swal from 'sweetalert2';
+import withReactContent from 'sweetalert2-react-content';
+const MySwal = withReactContent(Swal);
 
-const Dashboard = ({ getCurrentProfile, auth: { user }, profile:{ profile, loading }, setAlert, }) => {
-
+const Dashboard = ({
+  getCurrentProfile,
+  auth: { user },
+  profile: { profile, loading },
+  logout,
+}) => {
   useEffect(() => {
     getCurrentProfile();
-  }, [getCurrentProfile]);
-
+    if (window.location.pathname === '/logout') {
+      MySwal.fire({
+        title: 'Are you want to signout?',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes',
+      }).then((result) => {
+        if (result.value) {
+          MySwal.fire({
+            onRender: logout,
+            title: 'Signing Out...',
+            showConfirmButton: false,
+          });
+        }
+      });
+    }
+  }, [getCurrentProfile, logout]);
 
   if (loading && profile === null) {
     return <Spinner />;
   }
 
-
   return (
     <Fragment>
       {user && user.currentUser.role.name !== 'STUDENT' ? (
-      ''
-    ) : (
-      <Maintitle title='Stevia: Student Dashboard' />
-    )}
-    {user && user.currentUser.role.name !== 'COACH' ? (
-      ''
-    ) : (
-      <Maintitle title='Stevia: Coach Dashboard' />
-    )}
-    {user && user.currentUser.role.name !== 'ADMIN' ? (
-      ''
-    ) : (
-      <Maintitle title='Stevia: Admin Dashboard' />
-    )}
-    {user && user.currentUser.role.name !== 'RECRUITER' ? (
-      ''
-    ) : (
-      <Maintitle title='Stevia: Recruiter Dashboard' />
-    )}
+        ''
+      ) : (
+        <Maintitle title='Stevia: Student Dashboard' />
+      )}
+      {user && user.currentUser.role.name !== 'COACH' ? (
+        ''
+      ) : (
+        <Maintitle title='Stevia: Coach Dashboard' />
+      )}
+      {user && user.currentUser.role.name !== 'ADMIN' ? (
+        ''
+      ) : (
+        <Maintitle title='Stevia: Admin Dashboard' />
+      )}
+      {user && user.currentUser.role.name !== 'RECRUITER' ? (
+        ''
+      ) : (
+        <Maintitle title='Stevia: Recruiter Dashboard' />
+      )}
 
-    <section className='whole_page_wrapper'>
-      <Header menu={user && user.menu} />
+      <section className='whole_page_wrapper'>
+        <Header menu={user && user.menu} />
 
-      <section className='dashboard_body'>
-        <Topnav user={user} htitle='Overview' />
+        <section className='dashboard_body'>
+          <Topnav user={user} htitle='Overview' />
 
-        {user && user.currentUser.role.name !== 'STUDENT' ? (
-          ''
-        ) : (
-          <StudentIndex />
-        )}
-        {user && user.currentUser.role.name !== 'COACH' ? (
-          ''
-        ) : (
-          <CoachesIndex />
-        )}
-        {user && user.currentUser.role.name !== 'ADMIN' ? (
-          ''
-        ) : (
-          <AdminDashboard />
-        )}
-        {user && user.currentUser.role.name !== 'RECRUITER' ? (
-          ''
-        ) : (
-          <RecruiterDashboard />
-        )}
+          {user && user.currentUser.role.name !== 'STUDENT' ? (
+            ''
+          ) : (
+            <StudentIndex />
+          )}
+          {user && user.currentUser.role.name !== 'COACH' ? (
+            ''
+          ) : (
+            <CoachesIndex />
+          )}
+          {user && user.currentUser.role.name !== 'ADMIN' ? (
+            ''
+          ) : (
+            <AdminDashboard />
+          )}
+          {user && user.currentUser.role.name !== 'RECRUITER' ? (
+            ''
+          ) : (
+            <RecruiterDashboard />
+          )}
+        </section>
       </section>
-    </section>
-  </Fragment>
-  )
+    </Fragment>
+  );
 };
 
 Dashboard.propTypes = {
   getCurrentProfile: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired,
-  profile: PropTypes.object.isRequired  
+  profile: PropTypes.object.isRequired,
 };
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   auth: state.auth,
-  profile: state.profile
+  profile: state.profile,
 });
 
-export default connect(mapStateToProps, { getCurrentProfile, setAlert })(Dashboard);
+export default connect(mapStateToProps, { getCurrentProfile, logout })(
+  Dashboard
+);

@@ -1,25 +1,53 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import Spinner from '../../../Spinner/Spinner';
+import Swal from 'sweetalert2';
+import withReactContent from 'sweetalert2-react-content';
+const MySwal = withReactContent(Swal);
 
 const CoachItem = ({ 
     loading,
     coach: {
         id,
         firstname,
-        lastname
+        lastname,
+        profile
     }
  }) => {
+
+  const { search } = window.location;
+  const availerror = new URLSearchParams(search).get('availerror');
+
+  useEffect(() => {
+    if(availerror === '1'){
+      const tmsg = `${firstname} ${lastname} is not available`;
+      const Toast = MySwal.mixin({
+        toast: true,
+        position: 'top-end',
+        showConfirmButton: false,
+        timer: 3000,
+        timerProgressBar: true,
+        onOpen: (toast) => {
+          toast.addEventListener('mouseenter', Swal.stopTimer)
+          toast.addEventListener('mouseleave', Swal.resumeTimer)
+        }
+      })
+      
+      Toast.fire({
+        icon: 'error',
+        title: tmsg
+      })
+  
+  }
+  }, [firstname, lastname, availerror])
+
   return loading ? <Spinner /> : (
       <Fragment>
           <div className='flex_r each_coach'>
                         <div className='coach_image'>
                           <img
-                            src={
-                              process.env.PUBLIC_URL +
-                              '../../assets/utils/images/7.png'
-                            }
+                            src={profile && profile.image}
                             alt=''
                           />
                         </div>

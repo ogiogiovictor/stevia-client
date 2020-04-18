@@ -78,16 +78,21 @@ const StudentIndex = ({ getStudentProfile, profile: { student }, user }) => {
               <span> Completed </span>
             </div>
           </div>
-          <div className='full_row pending_appointment_container'>
-            {student && student.student_appointment.length > 0 ? (
-              student.student_appointment.map((appointment) => (
-                <AppointmentItem
-                  key={appointment.id}
-                  appointment={appointment}
-                  user={user}
-                />
-              ))
-            ) : (
+          
+            {student && student.student_appointment.length > 0
+              ? student.student_appointment.map((appointment) => (
+              <div className='full_row pending_appointment_container'>
+                  <AppointmentItem
+                    key={appointment.id}
+                    appointment={appointment}
+                    user={user}
+                  />
+              </div>
+                ))
+              : ''}
+              
+          {student && student.student_appointment.length <= 0 ? (
+            <div class='full_row flex_r_j_center_align_center appointment_container'>
               <div className='empty_content text-center'>
                 <img
                   src={process.env.PUBLIC_URL + '../assets/utils/images/39.png'}
@@ -95,8 +100,10 @@ const StudentIndex = ({ getStudentProfile, profile: { student }, user }) => {
                 />
                 <p>You have no appointments yet</p>
               </div>
-            )}
-          </div>
+            </div>
+          ) : (
+            ''
+          )}
         </div>
       </div>
       {/* <!-- Overview cards --> */}

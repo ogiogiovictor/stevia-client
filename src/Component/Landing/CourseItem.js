@@ -40,9 +40,9 @@ const CourseItem = ({
           <p>{course_description}</p>
         </div>
         <div className='full_row'>
-        <Link to={`/dashboard/student/courses/enrol/${id}`}>
+        <Link to={`/courses/details/${id}`}>
             <button className='black_btn full_width_btn'>
-              Enrol Now
+              View Course
             </button>
           </Link>
         </div>

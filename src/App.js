@@ -26,7 +26,6 @@ import Courses from './Component/Dashboard/Coaches/Courses/Courses';
 import CreateCourse from './Component/Dashboard/Coaches/Courses/CreateCourse';
 import PostaJob from './Component/Dashboard/Recruiters/PostaJob';
 import Overview from './Component/Dashboard/Recruiters';
-import logout from './Component/Auth/logout';
 import { loadProgressBar } from 'axios-progress-bar';
 import CoachCourseDetails from './Component/Dashboard/Coaches/Courses/CourseDetails';
 import CoachDetails from './Component/Dashboard/Student/Coaches/CoachDetails';
@@ -38,6 +37,7 @@ import Faq from './Component/Landing/Faq';
 import Contact from './Component/Landing/Contact';
 import CoachesLand from './Component/Landing/Coaches';
 import CoursesLand from './Component/Landing/Courses';
+import CoursesDetailsLand from './Component/Landing/CourseDetails';
 import LandJobs from './Component/Landing/Jobs';
 import LandJobDetails from './Component/Landing/JobDetails';
 import ViewJobs from './Component/Dashboard/Recruiters/ViewJobs';
@@ -56,7 +56,7 @@ const App = () => {
 
   return (
     <Provider store={store}>
-      <Router>
+      <Router forceRefresh={true}>
         <ScrollToTop>
           <Fragment>
             <ToastContainer
@@ -172,7 +172,7 @@ const App = () => {
                 exact
                 component={Dashboard}
               />
-              <PrivateRoute path='/logout' exact component={logout} />
+              <PrivateRoute path='/logout' exact component={Dashboard} />
               <PrivateRoute path='/dashboard' exact component={Dashboard} />
               <Route path='/terms' exact component={Terms} />
               <Route path='/aboutus' exact component={Aboutus} />
@@ -180,6 +180,7 @@ const App = () => {
               <Route path='/contact' exact component={Contact} />
               <Route path='/coaches' exact component={CoachesLand} />
               <Route path='/courses' exact component={CoursesLand} />
+              <Route path='/courses/details/:id' exact component={CoursesDetailsLand} />
               <Route path='/jobs' exact component={LandJobs} />
               <Route
                 path='/jobs/details/:id'

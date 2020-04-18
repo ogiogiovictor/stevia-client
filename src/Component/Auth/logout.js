@@ -1,51 +1,39 @@
-import React from 'react'
-import { connect } from 'react-redux'
-import {logout} from '../../actions/auth'
-import { Link } from 'react-router-dom'
-import Spinner from '../Spinner/Spinner'
+// import React, {Fragment} from 'react'
+// import { connect } from 'react-redux'
+// import {logout} from '../../actions/auth'
+// import { Link, Redirect } from 'react-router-dom'
+// import Spinner from '../Spinner/Spinner'
+// import Swal from 'sweetalert2'
+// import withReactContent from 'sweetalert2-react-content'
+// const MySwal = withReactContent(Swal)
 
 
-const logoutEnd = ({auth: {loading, isAuthenticated}, logout}) => {
+// const logoutEnd = ({auth: {loading, isAuthenticated}, logout}) => {
 
-      return loading && isAuthenticated ? <Spinner /> : (
-        <div>
-        <div className='flex_c_align_center recruiters_success'>
-          <div className='success_div'>
-            <div className='full_row'>
-              <Link to='/'>
-                <img
-                  src={process.env.PUBLIC_URL + 'assets/utils/images/15.png'}
-                  width='100px'
-                  alt=''
-                />
-              </Link>
-            </div>
-            <div className='full_row success_text'>
-              <h3>You have successfully signed out</h3>
-            </div>
-            <div className='full_row'>
-              <Link to='/login'>
-                <img
-                  src={process.env.PUBLIC_URL + 'assets/utils/images/31.png'}
-                  alt=''
-                />
-              </Link>
-            </div>
-            <div className='full_row success_btn'>
-              <Link to='/login'>
-                <button className='red_btn full_width_btn'>
-                  Log in again
-                </button>
-              </Link>
-            </div>
-          </div>
-        </div>
-      </div>
-    )
-}
+//   MySwal.fire({
+//     title: 'Are you sure?',
+//     text: "You won't be able to revert this!",
+//     icon: 'warning',
+//     showCancelButton: true,
+//     confirmButtonColor: '#3085d6',
+//     cancelButtonColor: '#d33',
+//     confirmButtonText: 'Yes, delete it!',
+//     onClose: <Redirect to='/' />
+//   }).then((result) => {
+//     if (result.value) {
+//       MySwal.fire({onRender: logout})
+//     }
+//   })
 
-const mapStateToProps = state => ({
-    auth: state.auth
-  });
+//       return loading && isAuthenticated ? <Spinner /> : (
+//         <Fragment>
+          
+//       </Fragment>
+//     )
+// }
 
-export default connect(mapStateToProps, logout)(logoutEnd)
+// const mapStateToProps = state => ({
+//     auth: state.auth
+//   });
+
+// export default connect(mapStateToProps, {logout})(logoutEnd)
