@@ -3,8 +3,8 @@ import { setAlert } from "./alert";
 import setAuthToken from "../Utils/setAuthToken";
 import { GET_COURSES, COURSE_ERROR, ADD_COURSE, ADD_VIDEOS, GET_COURSES_LANDING, COURSE_ENROLLMENT } from '../actions/types';
 
-const url = 'http://127.0.0.1:8000/api';
-// const url = 'https://omareservations.com/stevia/api';
+// const url = 'http://127.0.0.1:8000/api';
+const url = 'https://omareservations.com/stevia/api';
 
 // Get Courses
 
