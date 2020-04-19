@@ -26,17 +26,18 @@ const Dashboard = ({
     getCurrentProfile();
     if (window.location.pathname === '/logout') {
       MySwal.fire({
-        title: 'Are you want to signout?',
+        title: `${user && user.currentUser.firstname} do you want to signout?`,
         icon: 'warning',
         showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
+        confirmButtonColor: '#EF4B4B',
+        cancelButtonColor: '#303037',
         confirmButtonText: 'Yes',
+        cancelButtonText: 'No',
       }).then((result) => {
         if (result.value) {
           MySwal.fire({
             onRender: logout,
-            title: 'Signing Out...',
+            title: 'signing out...',
             showConfirmButton: false,
           });
         }
