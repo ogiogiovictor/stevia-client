@@ -43,7 +43,7 @@ const Dashboard = ({
         }
       });
     }
-  }, [getCurrentProfile, profile, logout]);
+  }, [getCurrentProfile, logout]);
 
   if (loading && profile === null) {
     return <Spinner />;
