@@ -37,7 +37,7 @@ const Dashboard = ({
         if (result.value) {
           MySwal.fire({
             onRender: logout,
-            title: 'signing out...',
+            title: 'signing out bye...',
             showConfirmButton: false,
           });
         }
