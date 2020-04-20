@@ -26,7 +26,7 @@ const Dashboard = ({
     getCurrentProfile();
     if (window.location.pathname === '/logout') {
       MySwal.fire({
-        title: `${user && user.currentUser.firstname} do you want to signout?`,
+        title: `${profile && profile.firstname} do you want to signout?`,
         icon: 'warning',
         showCancelButton: true,
         confirmButtonColor: '#EF4B4B',
@@ -43,7 +43,7 @@ const Dashboard = ({
         }
       });
     }
-  }, [getCurrentProfile, logout]);
+  }, [getCurrentProfile, profile, logout]);
 
   if (loading && profile === null) {
     return <Spinner />;
