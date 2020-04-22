@@ -11,7 +11,7 @@ import Spinner from '../../../Spinner/Spinner';
 const StudentCourses = ({
   getCourses,
   courses: { courses, loading },
-  user
+  user,
 }) => {
   useEffect(() => {
     getCourses();
@@ -38,13 +38,13 @@ const StudentCourses = ({
                       type='text'
                       name=''
                       id=''
-                      placeholder='Search courses…'
+                      placeholder='Search my courses…'
                     />
                     <button>
                       <i className='fas fa-search'></i>
                     </button>
                   </div>
-                  <div className='coach_select'>
+                  {/* <div className='coach_select'>
                     <select name='' id='' className='search_select'>
                       <option value=''> Coach </option>
                     </select>
@@ -53,7 +53,8 @@ const StudentCourses = ({
                     <select name='' id='' className='search_select'>
                       <option value=''> Cost </option>
                     </select>
-                  </div>
+                  </div> */}
+                  <Link to='/courses'><button className='black_btn'>New Courses</button></Link>
                 </div>
               </div>
             </div>
@@ -61,55 +62,70 @@ const StudentCourses = ({
           <div className='full_row course_list_section'>
             <div className='dashboard_center'>
               <div className='full_row course_list_n_pagination_wrapper'>
-                <div className='full_row course_list_wrapper'>
-                  {courses.length > 0 ? (
-                    courses.map(course => (
-                      <CourseItem
-                        key={course.id}
-                        course={course}
-                        loading = {loading}
-                      />
-                    ))
-                  ) : (
-                    <h4>No Courses Found...</h4>
-                  )}
-                  
+              <div class="full_row ongoing_course_list_wrapper">
+              <div class="each_course">
+                  <div class="flex_r_j_between_align_center">
+                      <div class="lecturer">
+                          <p>
+                              By Strive Masayiwa
+                          </p>
+                      </div>
+                  </div>
+                  <div class="flex_r_a_center course_icon_n_name">
+                      <div class="course_image_wrapper">                                
+                          <div class="course_image">
+                              <img src={process.env.PUBLIC_URL + '../../assets/utils/images/Bitmap.png'} alt="" />
+                          </div>
+                      </div>
+                      <div class="course_name">
+                          <h5>
+                              Skillsets to shift your career
+                          </h5>                                
+                      </div>
+                  </div>
+                  <div class="full_row course_description">
+                      <p>
+                          A course for anyone who’s ready 
+                          to find their dream job. Covering 
+                          everything from resumes to job 
+                          applications.
+                      </p>
+                  </div>
+                  <div class="flex_r_j_between_align_center seats_left">
+                    <div class="stud_images">
+                      <img src={process.env.PUBLIC_URL + '../../assets/utils/images/40.png'} alt="" />
+                    </div>
+                  </div>
+                  <div class="full_row flex_r_j_center_align_center ongoing_course_card_footer">
+                    <a href="#course-complete-modal"> Pending </a>                  
+                  </div>                       
+              </div>
                 </div>
                 <div className='flex_r_j_end_align_center pagination'>
                   <div>
-                    
                     <Link to='#'>
-                      
                       <i className='fas fa-chevron-left'></i>
                     </Link>
                   </div>
                   <div>
-                    
                     <Link to='#' className='active'>
-                      
                       1
                     </Link>
                   </div>
                   <div>
-                    
                     <Link to='#'> 2 </Link>
                   </div>
                   <div>
-                    
                     <Link to='#'> 3 </Link>
                   </div>
                   <div>
-                    
                     <Link to='#'> 4 </Link>
                   </div>
                   <div>
-                    
                     <Link to='#'> 5 </Link>
                   </div>
                   <div>
-                    
                     <Link to='#'>
-                      
                       <i className='fas fa-chevron-right'></i>
                     </Link>
                   </div>
@@ -126,12 +142,12 @@ const StudentCourses = ({
 StudentCourses.propTypes = {
   getCourses: PropTypes.func.isRequired,
   user: PropTypes.object.isRequired,
-  courses: PropTypes.object.isRequired
+  courses: PropTypes.object.isRequired,
 };
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   courses: state.courses,
-  user: state.auth.user
+  user: state.auth.user,
 });
 
 export default connect(mapStateToProps, { getCourses })(StudentCourses);

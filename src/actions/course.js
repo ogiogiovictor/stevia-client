@@ -39,7 +39,7 @@ export const getCoursesLand = () => async dispatch => {
     } catch (error) {
       dispatch({
         type: COURSE_ERROR,
-        payload: { msg: error.response.data, status: error.response.data.status }
+        payload: { msg: error }
       });
     }
   };

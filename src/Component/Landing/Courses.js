@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect } from 'react';
+import React, { Fragment, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
@@ -7,12 +7,23 @@ import Header from './Header';
 import Topnav from './Topnav';
 import { getCoursesLand } from '../../actions/course';
 import CourseItem from './CourseItem';
+import FilterResults from 'react-filter-search';
 
 const Courses = ({ getCoursesLand, courses: { coursesland, loading } }) => {
   useEffect(() => {
     getCoursesLand();
   }, [getCoursesLand]);
-  return (
+
+  const [formData, setFormData] = useState({
+    value: '',
+    coachesland: [],
+  });
+  const { value } = formData;
+  const onChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  return(
     <Fragment>
       <body>
         <Topnav />
@@ -37,7 +48,9 @@ const Courses = ({ getCoursesLand, courses: { coursesland, loading } }) => {
                 </div>
                 <div className='header_desc_right'>
                   <img
-                    src={process.env.PUBLIC_URL + 'assets/utils/images/17.png'} alt='' />
+                    src={process.env.PUBLIC_URL + 'assets/utils/images/17.png'}
+                    alt=''
+                  />
                 </div>
               </div>
             </div>
@@ -49,7 +62,7 @@ const Courses = ({ getCoursesLand, courses: { coursesland, loading } }) => {
                   <h4>Access all our courses</h4>
                 </div>
                 <div class='flex_r_j_between course_search_n_category'>
-                  <div class='flex_r_a_center course_category'>
+                  {/* <div class='flex_r_a_center course_category'>
                     <div>
                       <h6>Pick Category:</h6>
                     </div>
@@ -58,13 +71,14 @@ const Courses = ({ getCoursesLand, courses: { coursesland, loading } }) => {
                         <option value=''>All Category</option>
                       </select>
                     </div>
-                  </div>
+                  </div> */}
                   <div class='flex_r_j_between_align_center course_search'>
-                    <input
+                  <input
                       type='text'
-                      name=''
-                      id=''
-                      placeholder='Search job title and keyword'
+                      name='value'
+                      value={value}
+                      onChange={(e) => onChange(e)}
+                      placeholder='Search Courses...'
                     />
                     <button>
                       <i class='fas fa-search'></i>
@@ -74,13 +88,19 @@ const Courses = ({ getCoursesLand, courses: { coursesland, loading } }) => {
 
                 <div class='courses_wrapper_div'>
                   {coursesland.length > 0 ? (
-                    coursesland.map(course => (
-                      <CourseItem
-                        key={course.id}
-                        course={course}
-                        loading={loading}
-                      />
-                    ))
+                    <FilterResults
+                      value={value}
+                      data={coursesland}
+                      renderResults={(results) =>
+                        results.length > 0 ? (
+                          results.map(course => (
+                            <CourseItem key={course.id} course={course} />
+                          ))
+                        ) : (
+                          <h4>{loading ? 'Loading...' : 'No Courses Found'}</h4>
+                        )
+                      }
+                    />
                   ) : (
                     <h4>{loading ? 'Loading...' : 'No Courses Found...'}</h4>
                   )}
@@ -150,11 +170,11 @@ const Courses = ({ getCoursesLand, courses: { coursesland, loading } }) => {
 
 Courses.propTypes = {
   getCoursesLand: PropTypes.func.isRequired,
-  coursesland: PropTypes.object.isRequired
+  coursesland: PropTypes.object.isRequired,
 };
 
-const mapStateToProps = state => ({
-  courses: state.courses
+const mapStateToProps = (state) => ({
+  courses: state.courses,
 });
 
 export default connect(mapStateToProps, { getCoursesLand })(Courses);

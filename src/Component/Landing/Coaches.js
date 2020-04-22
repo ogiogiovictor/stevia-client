@@ -1,18 +1,37 @@
-import React, { Fragment, useEffect } from 'react';
+import React, { Fragment, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import Footer from './Footer';
 import Header from './Header';
 import Topnav from './Topnav';
-import {getCoachesProfileLand } from '../../actions/profile';
+import { getCoachesProfileLand } from '../../actions/profile';
 import CoachItem from './CoachItem';
+import FilterResults from 'react-filter-search';
 
-const Coaches = ({ getCoachesProfileLand, profile: { coachesland, loading } }) => {
+const Coaches = ({
+  getCoachesProfileLand,
+  profile: { coachesland, loading },
+}) => {
   useEffect(() => {
     getCoachesProfileLand();
   }, [getCoachesProfileLand]);
-  return (
+  const [formData, setFormData] = useState({
+    value: '',
+    coachesland: [],
+  });
+  const { value } = formData;
+  const onChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const formatCoaches = coachesland.map((coachesland) => ({
+    name: `${coachesland.firstname} ${coachesland.lastname}`,
+    image: coachesland.user_pic,
+    ...coachesland,
+  }));
+
+  return(
     <Fragment>
       <body>
         <Topnav />
@@ -45,7 +64,7 @@ const Coaches = ({ getCoachesProfileLand, profile: { coachesland, loading } }) =
                   <h4>All Coaches</h4>
                 </div>
                 <div className='flex_r_j_between course_search_n_category coach_search_n_category'>
-                  <div className='flex_r_a_center coaches_category'>
+                  {/* <div className='flex_r_a_center coaches_category'>
                     <div>
                       <h6>Filter Coaches:</h6>
                     </div>
@@ -65,28 +84,35 @@ const Coaches = ({ getCoachesProfileLand, profile: { coachesland, loading } }) =
                         <option value=''>Cost</option>
                       </select>
                     </div>
-                  </div>
-                  <div className='flex_r_j_between_align_center course_search'>
+                  </div> */}
+                  <div className='full_row flex_r_j_between_align_center course_search'>
                     <input
                       type='text'
-                      name=''
-                      id=''
-                      placeholder='Search job title and keyword'
+                      name='value'
+                      value={value}
+                      onChange={(e) => onChange(e)}
+                      placeholder='Search Coaches...'
                     />
                     <button>
-                      <i className='fas fa-search'></i>
+                      <i class='fas fa-search'></i>
                     </button>
                   </div>
                 </div>
                 <div className='coaches_wrapper_div'>
                   {coachesland.length > 0 ? (
-                    coachesland.map(coach => (
-                      <CoachItem
-                        key={coach.id}
-                        coach={coach}
-                        loading={loading}
-                      />
-                    ))
+                    <FilterResults
+                      value={value}
+                      data={formatCoaches}
+                      renderResults={(results) =>
+                        results.length > 0 ? (
+                          results.map((coach) => (
+                            <CoachItem key={coach.id} coach={coach} />
+                          ))
+                        ) : (
+                          <h4>{loading ? 'Loading...' : 'No Coaches Found'}</h4>
+                        )
+                      }
+                    />
                   ) : (
                     <h4>{loading ? 'Loading...' : 'No Coaches Found'}</h4>
                   )}
@@ -155,11 +181,11 @@ const Coaches = ({ getCoachesProfileLand, profile: { coachesland, loading } }) =
 
 Coaches.propTypes = {
   getCoachesProfileLand: PropTypes.func.isRequired,
-  profile: PropTypes.object.isRequired
+  profile: PropTypes.object.isRequired,
 };
 
-const mapStateToProps = state => ({
-  profile: state.profile
+const mapStateToProps = (state) => ({
+  profile: state.profile,
 });
 
 export default connect(mapStateToProps, { getCoachesProfileLand })(Coaches);

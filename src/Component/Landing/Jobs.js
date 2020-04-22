@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect } from 'react';
+import React, { Fragment, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
@@ -7,11 +7,22 @@ import Header from './Header';
 import Footer from './Footer';
 import { getLandingJob } from '../../actions/jobs';
 import AllJobsItem from './AllJobsItem';
+import FilterResults from 'react-filter-search';
 
-const Jobs = ({getLandingJob, jobs: {landjobs, loading}}) => {
-    useEffect(() => {
-        getLandingJob();
-    }, [getLandingJob])
+const Jobs = ({ getLandingJob, jobs: { landjobs, loading } }) => {
+  useEffect(() => {
+    getLandingJob();
+  }, [getLandingJob]);
+
+  const [formData, setFormData] = useState({
+    value: '',
+    coachesland: [],
+  });
+  const { value } = formData;
+  const onChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
   return (
     <Fragment>
       <body>
@@ -32,8 +43,9 @@ const Jobs = ({getLandingJob, jobs: {landjobs, loading}}) => {
                 <div className='search_input'>
                   <input
                     type='text'
-                    name=''
-                    id=''
+                    name='value'
+                    value={value}
+                    onChange={(e) => onChange(e)}
                     placeholder='Search job title and keyword'
                   />
                 </div>
@@ -183,19 +195,29 @@ const Jobs = ({getLandingJob, jobs: {landjobs, loading}}) => {
                       <h4>All Jobs</h4>
                     </div>
                     <div className='full_row all_jobs'>
-                    {landjobs.length > 0 ? (
-                    landjobs.sort((a, b) => a.created_at > b.created_at
-                      ? -1
-                      : 1
-                  ).map(job => (
-                      <AllJobsItem
-                        key={job.id}
-                        job={job}
-                      />
-                    ))
-                  ) : (
-                    <h4>{loading ? 'Loading' : 'No Jobs Found...'}</h4>
-                  )}
+                      {landjobs.length > 0 ? (
+                        <FilterResults
+                          value={value}
+                          data={landjobs}
+                          renderResults={(results) =>
+                            results.length > 0 ? (
+                              results
+                                .sort((a, b) =>
+                                  a.created_at > b.created_at ? -1 : 1
+                                )
+                                .map((job) => (
+                                  <AllJobsItem key={job.id} job={job} />
+                                ))
+                            ) : (
+                              <h4>
+                                {loading ? 'Loading...' : 'No Jobs Found'}
+                              </h4>
+                            )
+                          }
+                        />
+                      ) : (
+                        <h4>{loading ? 'Loading' : 'No Jobs Found...'}</h4>
+                      )}
                     </div>
 
                     <div className='full_row text-center'>
@@ -244,11 +266,11 @@ const Jobs = ({getLandingJob, jobs: {landjobs, loading}}) => {
 };
 
 Jobs.propTypes = {
-    getLandingJob: PropTypes.func.isRequired,
+  getLandingJob: PropTypes.func.isRequired,
 };
 
-const mapStateToProps = state => ({
-    jobs: state.jobs
+const mapStateToProps = (state) => ({
+  jobs: state.jobs,
 });
 
-export default connect(mapStateToProps, {getLandingJob})(Jobs);
+export default connect(mapStateToProps, { getLandingJob })(Jobs);

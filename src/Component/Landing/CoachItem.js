@@ -7,8 +7,7 @@ const CoachItem = ({
     loading,
     coach: {
         id,
-        firstname,
-        lastname,
+        name,
         image
     }
  }) => {
@@ -17,14 +16,14 @@ const CoachItem = ({
           <div className='flex_r each_coach'>
                         <div className='coach_image'>
                           <img
-                            src={image}
+                            src={image ? image : 'https://via.placeholder.com/150'}
                             alt=''
                           />
                         </div>
                         <div className='flex_c_j_between coach_features'>
                           <div className='full_row coach_features_top'>
                             <div className='full_row coach_name'>
-                              <h5>{firstname} {lastname}</h5>
+                              <h5>{name}</h5>
                             </div>
                             <div className='full_row star_rating'>
                               <i className='fas fa-star'></i>

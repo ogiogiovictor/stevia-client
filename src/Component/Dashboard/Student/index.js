@@ -95,7 +95,7 @@ const StudentIndex = ({ getStudentProfile, profile: { student }, user }) => {
             <div class='full_row flex_r_j_center_align_center appointment_container'>
               <div className='empty_content text-center'>
                 <img
-                  src={process.env.PUBLIC_URL + '../assets/utils/images/39.png'}
+                  src={process.env.PUBLIC_URL + '../../assets/utils/images/39.png'}
                   alt=''
                 />
                 <p>You have no appointments yet</p>
