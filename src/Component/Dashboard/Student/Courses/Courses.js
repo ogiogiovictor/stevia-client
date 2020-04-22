@@ -5,17 +5,21 @@ import { Link } from 'react-router-dom';
 import Header from '../../Layout/Header';
 import Topnav from '../../Layout/Topnav';
 import { getCourses } from '../../../../actions/course';
+import { getStudentProfile } from '../../../../actions/profile';
 import CourseItem from './CourseItem';
 import Spinner from '../../../Spinner/Spinner';
 
 const StudentCourses = ({
+  getStudentProfile,
   getCourses,
   courses: { courses, loading },
+  profile: { student },
   user,
 }) => {
   useEffect(() => {
     getCourses();
-  }, [getCourses]);
+    getStudentProfile(user && user.currentUser.id);
+  }, [getStudentProfile, user, getCourses]);
   return loading ? (
     <Spinner />
   ) : (
@@ -63,44 +67,16 @@ const StudentCourses = ({
             <div className='dashboard_center'>
               <div className='full_row course_list_n_pagination_wrapper'>
               <div class="full_row ongoing_course_list_wrapper">
-              <div class="each_course">
-                  <div class="flex_r_j_between_align_center">
-                      <div class="lecturer">
-                          <p>
-                              By Strive Masayiwa
-                          </p>
-                      </div>
-                  </div>
-                  <div class="flex_r_a_center course_icon_n_name">
-                      <div class="course_image_wrapper">                                
-                          <div class="course_image">
-                              <img src={process.env.PUBLIC_URL + '../../assets/utils/images/Bitmap.png'} alt="" />
-                          </div>
-                      </div>
-                      <div class="course_name">
-                          <h5>
-                              Skillsets to shift your career
-                          </h5>                                
-                      </div>
-                  </div>
-                  <div class="full_row course_description">
-                      <p>
-                          A course for anyone who’s ready 
-                          to find their dream job. Covering 
-                          everything from resumes to job 
-                          applications.
-                      </p>
-                  </div>
-                  <div class="flex_r_j_between_align_center seats_left">
-                    <div class="stud_images">
-                      <img src={process.env.PUBLIC_URL + '../../assets/utils/images/40.png'} alt="" />
-                    </div>
-                  </div>
-                  <div class="full_row flex_r_j_center_align_center ongoing_course_card_footer">
-                    <a href="#course-complete-modal"> Pending </a>                  
-                  </div>                       
+              {student && student.student_course.length > 0
+              ? student.student_course.map((course) => (
+                  <CourseItem
+                    key={course.id}
+                    course={course}
+                    user={user}
+                  />
+                ))
+              : (<p>You have no courses yet</p>)}
               </div>
-                </div>
                 <div className='flex_r_j_end_align_center pagination'>
                   <div>
                     <Link to='#'>
@@ -141,6 +117,7 @@ const StudentCourses = ({
 
 StudentCourses.propTypes = {
   getCourses: PropTypes.func.isRequired,
+  getStudentProfile: PropTypes.func.isRequired,
   user: PropTypes.object.isRequired,
   courses: PropTypes.object.isRequired,
 };
@@ -148,6 +125,7 @@ StudentCourses.propTypes = {
 const mapStateToProps = (state) => ({
   courses: state.courses,
   user: state.auth.user,
+  profile: state.profile
 });
 
-export default connect(mapStateToProps, { getCourses })(StudentCourses);
+export default connect(mapStateToProps, { getStudentProfile, getCourses })(StudentCourses);
