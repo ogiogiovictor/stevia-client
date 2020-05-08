@@ -37,7 +37,7 @@ const Header = ({ auth: { loading, isAuthenticated } }) => {
                     <NavLink to='/contact'> Contact Us </NavLink>
                   </div>
                   <div>
-                    <NavLink to='/dashboard/recruiter/postajob'> Post a Job </NavLink>
+                    <NavLink to='/postjobs'> Post a Job </NavLink>
                   </div>
                 </div>
                 <div className='flex_r nav_link_buttons'>

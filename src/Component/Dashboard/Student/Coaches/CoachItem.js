@@ -12,7 +12,8 @@ const CoachItem = ({
         id,
         firstname,
         lastname,
-        profile
+        profile,
+        userpic
     }
  }) => {
 
@@ -47,7 +48,7 @@ const CoachItem = ({
           <div className='flex_r each_coach'>
                         <div className='coach_image'>
                           <img
-                            src={profile && profile.image}
+                            src={userpic}
                             alt=''
                           />
                         </div>

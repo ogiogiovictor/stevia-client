@@ -43,6 +43,7 @@ import LandJobDetails from './Component/Landing/JobDetails';
 import ViewJobs from './Component/Dashboard/Recruiters/ViewJobs';
 import ScrollToTop from './Component/ScrollToTop';
 import Enrol from './Component/Dashboard/Student/Courses/Enrol';
+import PostJobLand from './Component/Landing/PostAJob';
 
 if (localStorage.token) {
   setAuthToken(localStorage.token);
@@ -175,6 +176,7 @@ const App = () => {
               <PrivateRoute path='/logout' exact component={Dashboard} />
               <PrivateRoute path='/dashboard' exact component={Dashboard} />
               <Route path='/terms' exact component={Terms} />
+              <Route path='/postjobs' exact component={PostJobLand} />
               <Route path='/aboutus' exact component={Aboutus} />
               <Route path='/faq' exact component={Faq} />
               <Route path='/contact' exact component={Contact} />
