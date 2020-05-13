@@ -3,8 +3,8 @@ import { setAlert } from './alert';
 import { GET_SERVICES, ADD_COACH_SERVICE, GET_COACH_SERVICES, SERVICE_ERROR, ADD_SERVICE, DELETE_SERVICE, BOOK_A_COACH, GET_COACH_APPOINTMENTS } from './types';
 import setAuthToken from '../Utils/setAuthToken';
 
-// const url = 'https://kyc.c-ileasing.com/stevia/api';
-const url = 'http://127.0.0.1:8000/api';
+const url = 'https://kyc.c-ileasing.com/stevia/api';
+// const url = 'http://127.0.0.1:8000/api';
 
 // Get Admin Services
 export const getServices = () => async dispatch => {
