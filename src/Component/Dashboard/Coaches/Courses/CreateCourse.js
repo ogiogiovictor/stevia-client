@@ -1,41 +1,33 @@
-import React, { Fragment, useEffect, useState } from 'react';
+import React, { Fragment, useState } from 'react';
 import PropTypes from 'prop-types';
 import Header from '../../Layout/Header';
 import Topnav from '../../Layout/Topnav';
 import { connect } from 'react-redux';
-import { getCoachServices } from '../../../../actions/service';
 import { addCourse } from '../../../../actions/course';
-import Spinner from '../../../Spinner/Spinner';
 import Progress from '../../ProfileSettings/Progress';
 import { withRouter } from 'react-router-dom';
 
-const CreateCourse = ({
-  user,
-  getCoachServices,
-  addCourse,
-  services: { coachservices, loading, history }
-}) => {
+const CreateCourse = ({ user, addCourse }) => {
   const [formData, setFormData] = useState({
     coach_id: '',
-    service_id: '',
+    category: '',
     title: '',
     no_of_student: '',
     course_description: '',
-    price_per_session: '',
+    price: '',
     medium_of_communication: '',
     date: '',
     from_time: '',
     to_time: '',
     course_duration: '',
     brief_description: '',
-    youtube_video_preview: '',
-    course_type: ''
+    youtube_video_link: '',
+    course_type: 'fullcourse',
   });
   const [file, setFile] = useState('');
   const [uploadPercentage, setUploadPercentage] = useState(0);
 
   const {
-    service_id,
     title,
     no_of_student,
     course_description,
@@ -44,32 +36,24 @@ const CreateCourse = ({
     to_time,
     course_duration,
     brief_description,
-    youtube_video_preview,
-    course_type
+    youtube_video_link,
+    course_type,
+    price,
+    medium_of_communication,
+    category
   } = formData;
 
-  const onChange = e =>
+  const onChange = (e) =>
     setFormData({ ...formData, [e.target.name]: e.target.value });
 
-  const handleFile = e => {
+  const handleFile = (e) => {
     setFile(e.target.files[0]);
   };
 
-  useEffect(() => {
-    getCoachServices();
-  }, [getCoachServices]);
-
-  let selectedOption = 'Pick a Service';
-
-  const findservice = coachservices.find(
-    ({ id }) => id === parseInt(service_id)
-  );
-
-  const onSubmit = e => {
+  const onSubmit = (e) => {
     e.preventDefault();
     const formDataImg = new FormData();
     formDataImg.append('image', file);
-    formDataImg.append('service_id', service_id);
     formDataImg.append('title', title);
     formDataImg.append('no_of_student', no_of_student);
     formDataImg.append('course_description', course_description);
@@ -78,23 +62,20 @@ const CreateCourse = ({
     formDataImg.append('to_time', to_time);
     formDataImg.append('course_duration', course_duration);
     formDataImg.append('brief_description', brief_description);
-    formDataImg.append('youtube_video_preview', youtube_video_preview);
+    formDataImg.append('youtube_video_link', youtube_video_link);
     formDataImg.append('course_type', course_type);
-    formDataImg.append(
-      'price_per_session',
-      service_id && findservice.price_per_session
-    );
-    formDataImg.append(
-      'medium_of_communication',
-      service_id && findservice.medium_of_communication
-    );
+    formDataImg.append('price', price);
+    formDataImg.append('medium_of_communication', medium_of_communication);
     formDataImg.append('coach_id', user && user.currentUser.id);
+    formDataImg.append('category', user && category);
+
+    console.log(formData);
 
     const config = {
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
       },
-      onUploadProgress: ProgressEvent => {
+      onUploadProgress: (ProgressEvent) => {
         setUploadPercentage(
           parseInt(Math.round(ProgressEvent.loaded * 100) / ProgressEvent.total)
         );
@@ -102,15 +83,13 @@ const CreateCourse = ({
         setTimeout(() => {
           setUploadPercentage(0);
         }, 10000);
-      }
+      },
     };
-    console.log(formData);
-    addCourse(formDataImg, config, history);
+    console.log(formDataImg);
+    addCourse(formDataImg, config);
   };
 
-  return loading ? (
-    <Spinner />
-  ) : (
+  return (
     <Fragment>
       <section className='whole_page_wrapper'>
         <Header menu={user && user.menu} />
@@ -118,48 +97,115 @@ const CreateCourse = ({
           <Topnav user={user} htitle='Course Details' back='Back to Course' />
           <div className='full_row create_course_form_section'>
             <div className='dashboard_center'>
-              <form onSubmit={e => onSubmit(e)}>
+              <form onSubmit={(e) => onSubmit(e)}>
                 <div className='full_row create_course_form'>
-                  <div className='full_row service_section'>
-                    <div className='full_row servive_type'>
-                      <div className='common_input_wrapper_2'>
-                        <select
-                          name='course_type'
-                          className='search_select search_select2'
-                          onChange={e => onChange(e)}
-                          required
-                        >
-                          <option selected>Select Type</option>
-                          <option value='fullcourse'>Full Course</option>
-                          <option value='appointment'>Short Session</option>
-                        </select>
+                  <div class='full_row service_section'>
+                    <div class='full_row header'>
+                      <p>Course Category</p>
+                    </div>
+                    <div class='full_row signup_option flex_r_wrap'>
+                      <div className='flex_r'>
+                        <div className='radio_option'>
+                          <label htmlFor='marketing'>
+                            <input
+                              type='radio'
+                              name='category'
+                              value='marketing'
+                              id='marketing'
+                              onChange={(e) => onChange(e)}
+                            />
+                            <span></span>
+                          </label>
+                        </div>
+                        <div class='notification_label'>
+                          <p>Marketing</p>
+                        </div>
                       </div>
-                    </div>
-                    <div className='full_row header'>
-                      <p>Select which service you want to book</p>
-                    </div>
-                    <div className='full_row servive_type'>
-                      <div className='common_input_wrapper_2'>
-                        <select
-                          name='service_id'
-                          className='search_select search_select2'
-                          onChange={e => onChange(e)}
-                          required
-                        >
-                          <option selected>{selectedOption}</option>
-                          {coachservices.length > 0 ? (
-                            coachservices.map(coachservice => (
-                              <option
-                                key={coachservice.id}
-                                value={coachservice.id}
-                              >
-                                {coachservice.service[0].name}
-                              </option>
-                            ))
-                          ) : (
-                            <option>No Services Found...</option>
-                          )}
-                        </select>
+
+                      <div className='flex_r'>
+                        <div className='radio_option'>
+                          <label htmlFor='design'>
+                            <input
+                              type='radio'
+                              name='category'
+                              value='design'
+                              id='design'
+                              onChange={(e) => onChange(e)}
+                            />
+                            <span></span>
+                          </label>
+                        </div>
+                        <div class='notification_label'>
+                          <p>Design</p>
+                        </div>
+                      </div>
+                      <div className='flex_r'>
+                        <div className='radio_option'>
+                          <label htmlFor='softwaredevelopment'>
+                            <input
+                              type='radio'
+                              name='category'
+                              value='Software Development'
+                              id='softwaredevelopment'
+                              onChange={(e) => onChange(e)}
+                            />
+                            <span></span>
+                          </label>
+                        </div>
+                        <div class='notification_label'>
+                          <p>Software Development</p>
+                        </div>
+                      </div>
+                      <div className='flex_r'>
+                        <div className='radio_option'>
+                          <label htmlFor='creative'>
+                            <input
+                              type='radio'
+                              name='category'
+                              value='Creative'
+                              id='creative'
+                              onChange={(e) => onChange(e)}
+                            />
+                            <span></span>
+                          </label>
+                        </div>
+                        <div class='notification_label'>
+                          <p>Creative</p>
+                        </div>
+                      </div>
+                      <div className='flex_r'>
+                        <div className='radio_option'>
+                          <label htmlFor='datascience'>
+                            <input
+                              type='radio'
+                              name='category'
+                              value='Data Science'
+                              id='datascience'
+                              onChange={(e) => onChange(e)}
+                            />
+                            <span></span>
+                          </label>
+                        </div>
+                        <div class='notification_label'>
+                          <p>Data Science</p>
+                        </div>
+                      </div>
+                      <div className='flex_r'>
+                        <div className='radio_option'>
+                          <label htmlFor='productdevelopment'>
+                            <input
+                              type='radio'
+                              name='category'
+                              value='Product Development'
+                              id='productdevelopment'
+                              onChange={(e) => onChange(e)}
+                            />
+                            <span></span>
+                          </label>
+                        </div>
+                        <div class='notification_label'>
+                          <p>Product Development</p>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -171,20 +217,28 @@ const CreateCourse = ({
                       <input
                         type='text'
                         name='title'
-                        placeholder='Title'
+                        placeholder='Course Name'
                         value={title}
-                        onChange={e => onChange(e)}
+                        onChange={(e) => onChange(e)}
                         required
                       />
                     </div>
                     <div className='common_input_wrapper_2'>
-                      <input
-                        type='file'
-                        name='image'
-                        id='image'
-                        onChange={handleFile}
-                        required
-                      />
+                      <div class='custum_file_input'>
+                        <div class='flex_r_a_center input_file_dummy'>
+                          <div class='file_btn'>Upload</div>
+                          <div class='file_input_label'>
+                            <span>Add logo</span>
+                          </div>
+                        </div>
+                        <input
+                          type='file'
+                          name='image'
+                          id='image'
+                          onChange={handleFile}
+                          required
+                        />
+                      </div>
                     </div>
                     {uploadPercentage > 0 ? (
                       <Progress percentage={uploadPercentage} />
@@ -195,10 +249,10 @@ const CreateCourse = ({
                       <div class='common_input_wrapper_2'>
                         <input
                           type='text'
-                          name='youtube_video_preview'
+                          name='youtube_video_link'
                           placeholder='Course Youtube Video Link'
-                          value={youtube_video_preview}
-                          onChange={e => onChange(e)}
+                          value={youtube_video_link}
+                          onChange={(e) => onChange(e)}
                           required
                         />
                       </div>
@@ -206,9 +260,9 @@ const CreateCourse = ({
                         <input
                           type='number'
                           name='course_duration'
-                          placeholder='Course Duration'
+                          placeholder='Course Duration (in minutes)'
                           value={course_duration}
-                          onChange={e => onChange(e)}
+                          onChange={(e) => onChange(e)}
                           required
                         />
                       </div>
@@ -217,11 +271,10 @@ const CreateCourse = ({
                       <div className='common_input_wrapper_2'>
                         <input
                           type='number'
-                          name='price_per_session'
-                          placeholder='Price per session'
-                          value={findservice && findservice.price_per_session}
-                          onChange={e => onChange(e)}
-                          disabled
+                          name='price'
+                          placeholder='Price'
+                          value={price}
+                          onChange={(e) => onChange(e)}
                           required
                         />
                       </div>
@@ -231,7 +284,7 @@ const CreateCourse = ({
                           name='no_of_student'
                           placeholder='Number of student'
                           value={no_of_student}
-                          onChange={e => onChange(e)}
+                          onChange={(e) => onChange(e)}
                           required
                         />
                       </div>
@@ -243,7 +296,7 @@ const CreateCourse = ({
                         rows='2'
                         placeholder='Brief Course description'
                         value={brief_description}
-                        onChange={e => onChange(e)}
+                        onChange={(e) => onChange(e)}
                         required
                       />
                     </div>
@@ -254,40 +307,38 @@ const CreateCourse = ({
                         rows='5'
                         placeholder='Course description'
                         value={course_description}
-                        onChange={e => onChange(e)}
+                        onChange={(e) => onChange(e)}
                         required
                       ></textarea>
                     </div>
-                    <div className='common_input_wrapper_2'>
-                      <input
-                        type='text'
-                        name='medium_of_communication'
-                        placeholder='Medium of Communication'
-                        value={
-                          findservice && findservice.medium_of_communication
-                        }
-                        onChange={e => onChange(e)}
-                        disabled
-                        required
-                      />
-                    </div>
-                    <div className='common_input_wrapper_2'>
-                      <p> Topics Covered </p>
-                    </div>
-                    <div className='common_input_wrapper_2'>
-                      <textarea
-                        name=''
-                        id=''
-                        cols='10'
-                        rows='2'
-                        placeholder='Enter the topics covered in this course'
-                      />
+                    <div>
+                      <div class='full_row header header2'>
+                        <p>Select Communication channel</p>
+                      </div>
+
+                      <div class='common_input_wrapper_2'>
+                        <select
+                          name='medium_of_communication'
+                          id='medium_of_communication'
+                          onChange={(e) => onChange(e)}
+                          class='search_select search_select2'
+                        >
+                          <option> Communication Channel</option>
+                          <option value='Zoom'> Zoom </option>
+                          <option value='Google Meet'> Google Meet </option>
+                          <option value='Webex '> Webex </option>
+                          <option value='Microsoft Teams'>
+                            ]Microsoft Teams
+                          </option>
+                          <option value='Skype'> Skype </option>
+                          <option value='Bitpaper '> Bitpaper </option>
+                        </select>
+                      </div>
                     </div>
                     <div className='flex_r_j_between_align_center date_n_time'>
                       <div className='flex_r_a_center left'>
                         <div className='label'>
-                          {' '}
-                          <p> Date </p>{' '}
+                          <p> Date </p>
                         </div>
                         <div className='common_input_wrapper_2'>
                           <input
@@ -295,7 +346,7 @@ const CreateCourse = ({
                             name='date'
                             value={date}
                             placeholder='MM / DD / YY'
-                            onChange={e => onChange(e)}
+                            onChange={(e) => onChange(e)}
                             required
                           />
                         </div>
@@ -303,8 +354,7 @@ const CreateCourse = ({
                       <div className='flex_r_j_end_align_center right'>
                         <div className='flex_r_a_center time'>
                           <div className='label'>
-                            {' '}
-                            <p> Time </p>{' '}
+                            <p> Time </p>
                           </div>
                           <div className='common_input_wrapper_2'>
                             <input
@@ -312,15 +362,14 @@ const CreateCourse = ({
                               name='from_time'
                               value={from_time}
                               placeholder='00:00 AM'
-                              onChange={e => onChange(e)}
+                              onChange={(e) => onChange(e)}
                               required
                             />
                           </div>
                         </div>
                         <div className='flex_r_a_center to'>
                           <div className='label'>
-                            {' '}
-                            <p> To </p>{' '}
+                            <p> To </p>
                           </div>
                           <div className='common_input_wrapper_2'>
                             <input
@@ -328,7 +377,7 @@ const CreateCourse = ({
                               name='to_time'
                               value={to_time}
                               placeholder='00:00 AM'
-                              onChange={e => onChange(e)}
+                              onChange={(e) => onChange(e)}
                               required
                             />
                           </div>
@@ -337,8 +386,7 @@ const CreateCourse = ({
                     </div>
                     <div className='flex_r_j_end_align_center form_buttons'>
                       <button type='submit' className='black_btn'>
-                        {' '}
-                        add{' '}
+                        Continue
                       </button>
                     </div>
                   </div>
@@ -354,16 +402,13 @@ const CreateCourse = ({
 
 CreateCourse.propTypes = {
   user: PropTypes.object.isRequired,
-  getCoachServices: PropTypes.func.isRequired,
-  services: PropTypes.object.isRequired,
-  addCourse: PropTypes.func.isRequired
+  addCourse: PropTypes.func.isRequired,
 };
 
-const mapStateToProps = state => ({
-  services: state.services,
-  user: state.auth.user
+const mapStateToProps = (state) => ({
+  user: state.auth.user,
 });
 
-export default connect(mapStateToProps, { getCoachServices, addCourse })(
+export default connect(mapStateToProps, { addCourse })(
   withRouter(CreateCourse)
 );

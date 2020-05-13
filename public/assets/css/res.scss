@@ -78,6 +78,14 @@
   .topics_covered span {
     padding: 10px 20px;
   }
+  .index_header_wrapper {
+    background-size: 68% 85%;
+    padding-top: 25px;
+  }
+  .header_left_col .welcome_note_head h5 {
+    font-size: 35px;
+    line-height: 40px;
+  }
 }
 
 @media only screen and (max-width: 1310px) {
@@ -176,6 +184,10 @@
     grid-template-columns: 31.3333% 31.3333% 31.3333%;
     grid-gap: 20px 3%;
   }
+  .wantToBecomeAcoach_index_sections .question_card h5 {
+    font-size: 28px;
+    line-height: 32px;
+  }
 }
 
 @media only screen and (max-width: 1181px) {
@@ -248,6 +260,18 @@
   }
 }
 
+@media only screen and (max-width: 1126px) {
+  .header_left_col .welcome_note_head h5 {
+    font-size: 31px;
+    line-height: 40px;
+  }
+  .header_left_col .welcome_note_paragraph p {
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 28px;
+  }
+}
+
 @media only screen and (max-width: 1110px) {
   .course_image {
     height: 270px;
@@ -264,6 +288,10 @@
     .coach_summary_n_specialization {
     padding-top: 20px;
     padding-right: 20px;
+  }
+  .header_left_col .welcome_note_head {
+    margin-top: 15px;
+    margin-bottom: 15px;
   }
 }
 
@@ -332,6 +360,9 @@
   .jobs_wrapper_section .jobs_wrapper {
     padding: 40px;
     grid-gap: 30px 4%;
+  }
+  .benefits_in_details {
+    grid-template-columns: 50% 46%;
   }
 }
 
@@ -475,6 +506,34 @@
     $width: calc((100% - 60px) / 4);
     grid-template-columns: $width $width $width $width;
   }
+  .benefit_breakdown_icon {
+    margin-right: 20px;
+    width: 55px;
+    height: 55px;
+  }
+  .benefit_breakdown_text p {
+    font-size: 15px;
+    line-height: 18px;
+    margin-top: 3px;
+  }
+  .coaches_index_sections .header {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  .coaches_index_sections .header .slider_toggler {
+    margin-top: 35px;
+  }
+  .slider_toggler .slider_toggler_container {
+    margin-left: 0;
+  }
+  #coachMoveRight {
+    margin-left: 30px;
+  }
+  .wantToBecomeAcoach_index_sections .question_card h5 {
+    font-size: 25px;
+    line-height: 30px;
+  }
 }
 
 @media only screen and (max-width: 968px) {
@@ -585,6 +644,10 @@
     grid-template-columns: 48.5% 48.5%;
     grid-column-gap: 3%;
   }
+  .benefits_index_sections .header h5 {
+    font-size: 30px;
+    line-height: 33px;
+  }
 }
 
 @media only screen and (max-width: 922px) {
@@ -616,6 +679,9 @@
     grid-template-columns: 100%;
     grid-gap: 25px 0;
   }
+  .interests_index_sections .header p br {
+    display: none;
+  }
 }
 
 @media only screen and (max-width: 910px) {
@@ -631,6 +697,10 @@
   .transaction_card_wrapper .card_wrapper {
     grid-template-columns: 50% 50%;
   }
+
+  .wantToBecomeAcoach_index_sections .question_card {
+    padding: 25px 40px;
+  }
 }
 
 @media only screen and (max-width: 901px) {
@@ -644,6 +714,19 @@
   }
   .course_image {
     height: 200px;
+  }
+  .header_left_col .welcome_note_head h5 {
+    font-size: 27px;
+    line-height: 32px;
+  }
+  .header_left_col .welcome_note_paragraph p {
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 23px;
+  }
+  .interest_options_wrapper {
+    grid-template-columns: 49% 49%;
+    grid-gap: 15px 2%;
   }
 }
 
@@ -685,6 +768,10 @@
   .course-complete-modal > div {
     width: 60%;
   }
+  .how_to_connect_options_wrapper {
+    grid-template-columns: 100%;
+    grid-gap: 35px 0;
+  }
 }
 
 @media only screen and (max-width: 884px) {
@@ -694,6 +781,19 @@
   }
   .name_n_speciality > div .speciality {
     padding: 0 85px 0 45px;
+  }
+  .wantToBecomeAcoach_index_sections .question_card h5 {
+    font-size: 20px;
+    line-height: 25px;
+  }
+  .wantToBecomeAcoach_index_sections .question_card {
+    padding: 22px 35px;
+  }
+  .wantToBecomeAcoach_index_sections .wrapper {
+    background-size: 145px auto;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    padding-left: 30px;
   }
 }
 
@@ -749,6 +849,10 @@
   }
   .name_n_qualification > div .qualification {
     padding: 0;
+  }
+  .howToConnect_index_sections .header h5 {
+    font-size: 30px;
+    line-height: 34px;
   }
 }
 
@@ -964,6 +1068,29 @@
     grid-template-columns: 100%;
     grid-gap: 30px 0%;
   }
+  .benefits_in_details {
+    display: grid;
+    grid-template-columns: 100%;
+    grid-gap: 35px 0;
+  }
+  .benefits_in_details_image img {
+    width: 70%;
+    margin-right: 15%;
+    margin-left: 15%;
+  }
+  .benefit_breakdown_icon {
+    margin-right: 25px;
+    width: 60px;
+    height: 60px;
+  }
+  .benefit_breakdown_text p {
+    font-size: 16px;
+    line-height: 23px;
+    margin-top: 8px;
+  }
+  .coaches_index_sections .header p br {
+    display: none;
+  }
 }
 
 @media only screen and (max-width: 817px) {
@@ -1042,6 +1169,26 @@
   .table_div_wrapper .table_div table td {
     text-align: center;
     padding: 20px 15px;
+  }
+  .interests_index_sections .header p br {
+    display: none;
+  }
+  .interests_index_sections .header p {
+    font-weight: 500;
+    font-size: 15px;
+    line-height: 20px;
+  }
+  .interests_index_sections .header h5 {
+    font-size: 30px;
+    line-height: 34px;
+  }
+  .howToConnect_index_sections .header p {
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 22px;
+  }
+  .howToConnect_index_sections .header p br {
+    display: none;
   }
 }
 
@@ -1128,6 +1275,32 @@
   .student_gallery {
     $width: calc((100% - 40px) / 3);
     grid-template-columns: $width $width $width;
+  }
+  .index_header_wrapper {
+    background-size: 68% 100%;
+  }
+  .header_left_col .welcome_note_head h5 {
+    font-size: 25px;
+    line-height: 30px;
+  }
+  .header_left_col .welcome_note_paragraph p {
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 21px;
+  }
+  .wantToBecomeAcoach_index_sections .wrapper {
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+  }
+  .wantToBecomeAcoach_index_sections .wrapper {
+    background-size: 125px auto;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    padding-left: 30px;
+  }
+  .wantToBecomeAcoach_index_sections .wrapper button {
+    margin-top: 35px;
   }
 }
 
@@ -1239,6 +1412,16 @@
   }
 }
 
+@media only screen and (max-width: 755px) {
+  .benefits_index_sections .header h5 {
+    font-size: 27px;
+    line-height: 29px;
+  }
+  .benefits_index_sections .header p br {
+    display: none;
+  }
+}
+
 @media only screen and (max-width: 751px) {
   section.dashboard_body .top_nav .left_side h4 {
     font-size: 23px;
@@ -1314,6 +1497,10 @@
   .add-service-modal > div {
     width: 75%;
   }
+  .interest_options_wrapper {
+    grid-template-columns: 100%;
+    grid-gap: 15px 0;
+  }
 }
 
 @media only screen and (max-width: 720px) {
@@ -1323,6 +1510,23 @@
   }
   .subscribe_input_wrapper {
     width: 70%;
+  }
+  .index_header_columns {
+    display: grid;
+    grid-template-columns: 100%;
+    grid-gap: 30px 0;
+    // justify-content: space-between;
+  }
+  .index_header_wrapper {
+    background-size: 100% 75%;
+  }
+  .header_right_col {
+    width: 100%;
+  }
+  .header_right_col img {
+    width: 60%;
+    margin-left: 20%;
+    margin-right: 20%;
   }
 }
 
@@ -1423,6 +1627,11 @@
   .availability_section .profile_details .bottom_part .top .right .to p {
     margin: 0 10px;
   }
+  .benefits_in_details_image img {
+    width: 80%;
+    margin-right: 10%;
+    margin-left: 10%;
+  }
 }
 
 @media only screen and (max-width: 665px) {
@@ -1476,6 +1685,10 @@
   }
   .teamMember_head p br {
     display: none;
+  }
+  .jobs_index_sections .header h5 {
+    font-size: 28px;
+    line-height: 34px;
   }
 }
 
@@ -1628,6 +1841,13 @@
   section.dashboard_body .appointments_part .top .left {
     margin-bottom: 25px;
   }
+  .wantToBecomeAcoach_index_sections .question_card h5 {
+    font-size: 17px;
+    line-height: 24px;
+  }
+  .wantToBecomeAcoach_index_sections .question_card {
+    padding: 20px 0 20px 33px;
+  }
 }
 
 @media only screen and (max-width: 620px) {
@@ -1732,6 +1952,11 @@
   .members_card {
     width: 70%;
   }
+  .header_right_col img {
+    width: 70%;
+    margin-left: 15%;
+    margin-right: 15%;
+  }
 }
 
 @media only screen and (max-width: 585px) {
@@ -1823,6 +2048,15 @@
   .need_help {
     width: 80%;
   }
+  .benefits_in_details_image img {
+    width: 100%;
+    margin-right: 0;
+    margin-left: 0;
+  }
+  .coaches_index_sections .header h5 {
+    font-size: 27px;
+    line-height: 30px;
+  }
 }
 
 @media only screen and (max-width: 554px) {
@@ -1864,8 +2098,8 @@
     grid-template-columns: 100%;
     grid-column-gap: 0;
     /* 
-        margin-top: -8px;
-        margin-bottom: -8px; */
+          margin-top: -8px;
+          margin-bottom: -8px; */
   }
   .create_course_form_section .about_the_course .date_n_time .right {
     flex-direction: column;
@@ -2229,7 +2463,7 @@
 }
 
 @media only screen and (max-width: 500px) {
-  .header_desc_right img {
+  s .header_desc_right img {
     width: 280px;
     height: 190px;
   }
@@ -2288,6 +2522,63 @@
   .course_video_container {
     height: 300px;
   }
+  .header_right_col img {
+    width: 80%;
+    margin-left: 10%;
+    margin-right: 10%;
+  }
+  .benefits_index_sections .header p {
+    font-size: 15px;
+    line-height: 22px;
+    margin-top: 20px;
+  }
+  .interests_index_sections .header p {
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 20px;
+  }
+  .interests_index_sections .header h5 {
+    font-size: 27px;
+    line-height: 32px;
+  }
+  .howToConnect_index_sections .header h5 {
+    font-size: 26px;
+    line-height: 31px;
+  }
+  .how_to_connect_options .how_to_connect_option_card .link {
+    margin-top: 20px;
+  }
+  .how_to_connect_options_wrapper {
+    margin-top: 50px;
+  }
+  .coaches_wrapper_div2 .each_coach {
+    width: 355px;
+    margin-right: 10px;
+  }
+  .coaches_wrapper_div2 .each_coach .coach_features_middle {
+    margin: 17px 0;
+  }
+  .jobs_index_sections .header {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+  .slider_toggler2 {
+    margin-top: 30px;
+  }
+  .slider_toggler2 .slider_toggler_container {
+    margin-left: 0;
+  }
+  #jobsMoveRight {
+    margin-left: 30px;
+  }
+  .wantToBecomeAcoach_index_sections .wrapper {
+    background-size: 125px auto;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    padding-left: 15px;
+  }
 }
 
 @media only screen and (max-width: 451px) {
@@ -2296,6 +2587,41 @@
   }
   .members_card {
     width: 80%;
+  }
+  .howToConnect_index_sections .header h5 {
+    font-size: 23px;
+    line-height: 27px;
+  }
+  .interests_index_sections .header h5 {
+    font-size: 23px;
+    line-height: 27px;
+  }
+}
+
+@media only screen and (max-width: 430px) {
+  .interest_options_wrapper .interest_options span {
+    font-size: 15px;
+    line-height: 20px;
+  }
+}
+
+@media only screen and (max-width: 407px) {
+  .benefit_breakdown_icon {
+    margin-right: 15px;
+    width: 45px;
+    height: 45px;
+  }
+  .benefit_breakdown_text h5 {
+    font-size: 16px;
+    line-height: 24px;
+  }
+  .benefit_breakdown_text p {
+    font-size: 14px;
+    line-height: 20px;
+    margin-top: 5px;
+  }
+  .job_opnenings_wrapper > div .desc_texts {
+    margin: 20px 0;
   }
 }
 
@@ -2335,6 +2661,24 @@
   .members_card {
     width: 100%;
   }
+  .header_right_col img {
+    width: 90%;
+    margin-left: 5%;
+    margin-right: 5%;
+  }
+  .header_left_col .welcome_note_head h5 {
+    font-size: 22px;
+    line-height: 24px;
+  }
+  .header_left_col .welcome_note_paragraph p {
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 19px;
+  }
+  .benefits_index_sections .header h5 {
+    font-size: 24px;
+    line-height: 25px;
+  }
 }
 
 @media only screen and (max-width: 320px) {
@@ -2342,6 +2686,12 @@
     font-size: 12px;
     padding: 10px;
     font-weight: 700;
+  }
+}
+@media only screen and (max-width: 320px) {
+  .benefits_index_sections .header h5 {
+    font-size: 22px;
+    line-height: 24px;
   }
 }
 /* End Widths */

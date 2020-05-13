@@ -16,8 +16,8 @@ import withReactContent from 'sweetalert2-react-content'
 const MySwal = withReactContent(Swal)
 
 // Load User
-const url = 'https://kyc.c-ileasing.com/stevia/api';
-// const url = 'http://127.0.0.1:8000/api';
+// const url = 'https://kyc.c-ileasing.com/stevia/api';
+const url = 'http://127.0.0.1:8000/api';
 
 export const loadUser = () => async dispatch => {
   

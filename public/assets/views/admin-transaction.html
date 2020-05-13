@@ -3,7 +3,7 @@
   <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no" />
 
     <!-- Bootstrap CSS --> 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
@@ -28,8 +28,11 @@
   <!-- Dashboard side Navigation -->
   <aside class="side_nav">
     <!-- dashboard logo -->
-    <div class="full_row logo_div">
+    <div class="full_row flex_r_a_center logo_div">
       <img src="../utils/images/51.png" alt="">
+      <div class="close_sideNav ml_auto">
+        <i class="far fa-times-circle"></i>
+      </div>
     </div>
     <!-- /dashboard logo -->
     <!-- Side Navs -->
@@ -73,7 +76,14 @@
         <!-- top nav container -->
         <div class="flex_r_j_between_align_center">
           <!-- left side -->
-          <div class="left_side">
+          <div class="flex_r_a_center left_side">
+               <!-- mobile toggler -->
+             <div class="dashboard_sidenav_toggler">
+                <div class="bars"></div>
+                <div class="bars"></div>
+                <div class="bars"></div>
+              </div>          
+              <!-- mobile toggler -->
             <h4>
                 Transaction
             </h4>
@@ -108,17 +118,23 @@
     <div class="full_row days_option_section">
         <div class="dashboard_center">
             <div class="flex_r_j_end_align_center days_option">
-                <a href=""> Today </a>
-                <a href="" class="active"> 30 days ago </a>
-                <a href=""> 90 days ago </a>
-                <button>
-                    <i class="far fa-calendar-minus"></i>
-                    <span> 29 June 2018 </span>
-                </button>
-                <button>
-                    <i class="far fa-calendar-minus"></i>
-                    <span> 21 June 2018 </span>
-                </button>
+                <div class="flex_r_a_center">
+                    <a href=""> Today </a>
+                    <a href="" class="active"> 30 days ago </a>
+                    <a href=""> 90 days ago </a>
+                </div>
+                
+                <div class="flex_r_a_center">
+                    <button>
+                        <i class="far fa-calendar-minus"></i>
+                        <span> 29 June 2018 </span>
+                    </button>
+                    <button>
+                        <i class="far fa-calendar-minus"></i>
+                        <span> 21 June 2018 </span>
+                    </button> 
+                </div>
+
             </div>
         </div>
     </div>

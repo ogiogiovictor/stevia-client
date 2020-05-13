@@ -43,6 +43,7 @@ $background-blue: #f0f3fc
     --default_black: #303037
     --default_red: #EF4B4B
 $default_red: #EF4B4B
+$default_black: #303037
 
 /* Fonts */
 
@@ -137,6 +138,12 @@ body
     :justify-content space-between
     :align-items center
 
+.flex_r_wrap_j_between_align_end
+    :display flex
+    :flex-flow row wrap
+    :justify-content space-between
+    :align-items flex-end
+
 .flex_r_wrap_j_center_align_center
     :display flex
     :flex-flow row wrap
@@ -169,11 +176,6 @@ body
     flex-direction: column
     justify-content: space-between 
 
-.flex_c_a_end
-    display: flex
-    flex-direction: column
-    align-items: flex-end
-
 .flex_c_align_center
     :display flex
     flex-direction: column
@@ -185,11 +187,11 @@ body
     flex-direction: column
     justify-content: center
 
-.flex_c_center_all
-    :display flex
+.flex_c_a_end
+    display: flex
     flex-direction: column
-    justify-content: center
-    align-items: center
+    align-items: flex-end
+
 
 /* /Flex col */
 
@@ -487,7 +489,6 @@ input, select
             color: #EF4B4B
             cursor: pointer
 /* Site Header Style
-
 .site_header    
     background:
         :image url("../utils/images/1.png")      
@@ -894,12 +895,12 @@ input, select
 
 .footer_section
     padding: 40px 0
-    background-color: #fff
+    background-color: $default_black
 .copy_right
     @media only screen and ( max-width: 1216px )
         margin-top: 50px
     p
-        color: var(--default_black)
+        color: #fff
         font-size: 16px
         line-height: 26px
 .footer_social_icons 
@@ -916,6 +917,8 @@ input, select
         @media only screen and ( max-width: 877px )
             flex-direction: column-reverse
             justify-content: center
+        a
+            color: #fff
     
     .footer_social_icons
         @media only screen and ( max-width: 877px )
@@ -943,6 +946,7 @@ input, select
     // grid-template-columns: auto auto auto
     // grid-gap: 25px 25px
     // width: 2000px
+    transition: 1.2s
 
     &>div
         background: #FFFFFF
@@ -2072,6 +2076,36 @@ input, select
 .course_from_coach_section_landing_page
     background-color: $background-blue
     padding-bottom: 100px
+
+.sessionList_section_wrapper_div
+    // background-color: $background-blue
+    .section_title
+        margin-bottom: 60px
+
+.session_sections
+    padding-bottom: 25px
+    padding-top: 25px
+    border-bottom: 1px solid #d1d1d1
+    .session_title
+    .session_details
+        margin-top: 25px
+        margin-bottom: 25px
+        &>div
+            margin:
+                right: 40px
+        p
+            color: #838383
+            font-size: 15px
+            line-height: 120%
+    .session_description
+        width: 70%
+        margin-right: auto
+        p
+            color: #616161
+        
+.session_price
+    // margin-left: 10px
+
 
 
 
@@ -3769,7 +3803,7 @@ section.dashboard_body
      
 .about_coach_section
     background-color: $background-blue
-    // padding-bottom: 100px
+    padding-bottom: 100px
 
 ._more_about_coach
     margin: 70px 0 70px
@@ -4345,7 +4379,7 @@ section.dashboard_body
             grid-column-gap: 4%
         .date_n_time
             .left
-                width: 40%
+                width: 45%
             .right
                 width: 50%
                 .time
@@ -4354,7 +4388,8 @@ section.dashboard_body
                     width: 50%
                     margin-left: 20px
             .label
-                margin-right: 20px
+                margin-right: 5px
+                width: 35%
                 p
                     font-style: normal
                     font-weight: 600
@@ -4455,6 +4490,7 @@ section.dashboard_body
         box-shadow: 0px 12px 15px rgba(0, 0, 0, 0.266772)
         border-radius: 5px
         padding: 40px 35px
+
 
     .head
         margin-bottom: 30px
@@ -5981,10 +6017,10 @@ section.dashboard_body
                                     line-height: 23px
                                     margin-top: 6px
                                 &.active
-                                    background: #F0F7F2;
-                                    border: 1px solid #75B07B;
-                                    box-shadow: 0px 0px 10px rgba(86, 86, 86, 0.15);
-                                    border-radius: 3px;
+                                    background: #F0F7F2
+                                    border: 1px solid #75B07B
+                                    box-shadow: 0px 0px 10px rgba(86, 86, 86, 0.15)
+                                    border-radius: 3px
                                     span                                        
                                         color: #303037
             .review_n_pay
@@ -6505,6 +6541,7 @@ h4.write_ratings_head
                 line-height: 30px
                 color: #686868
 /* End of Create Course Little fields Addition */
+
 /* Additional Coach Settings */
 .other_coach_details
     @extend .other_information_section
@@ -6749,7 +6786,6 @@ h4.write_ratings_head
 
 .team_members_section
     // background-color: #f0f3fc
-
 .teamMember_head
     text-align: center
     h4
@@ -6794,13 +6830,11 @@ h4.write_ratings_head
         background-color: #ef4b4b38
         transition: .5s
         // opacity: 0
-
     .social_media_icons_wrapper
         right: 0
         top: 35%
         width: 100%
         // background-color: green
-
         .member_facebook_link
             width: 20%
             border-radius: 30px 0 0 30px
@@ -6958,6 +6992,549 @@ h4.write_ratings_head
         input[type="radio"]:checked + span
             background-color: #EF4B4B
 /* End of SignUp option roles */
+
+/* Sign up form correction Style */
+.signup_option
+    &>div
+        margin-bottom: 10px
+        margin-right: 30px
+    .notification_label
+        p
+            font-family: circular
+            font-style: normal
+            font-weight: normal
+            font-size: 16px
+            line-height: 23px
+            color: #4e4e4e
+        span
+            font-family: nunito
+            font-style: normal
+            font-weight: normal
+            font-size: 16px
+            line-height: 23px
+            color: #989898
+
+    .radio_option
+        margin-right: 5px
+        input[type="radio"]
+            display: none
+        label
+            display: flex
+            flex-direction: row
+            span
+                width: 20px
+                height: 20px
+                border-radius: 2px
+                border: 1px solid #EF4B4B                    
+                display: flex
+                align-items: center
+                justify-content: center
+                cursor: pointer
+                transition: .3s
+
+                &::after
+                    content: "\2713"
+                    color: #fff
+
+        input[type="radio"]:checked + span
+            background-color: #EF4B4B
+
+.role_header
+    margin-top: 40px
+    p
+        font-family: circular
+        font-size: 18px
+        line-height: 21px
+        margin-bottom: 15px
+
+/* End of Sign up form correction Style */
+/* Create course form Navigator */
+.course_navigator
+    border-bottom: 1px solid #E3E3E3
+    margin-bottom: 30px
+    &>div
+        padding: 5px 15px
+        cursor: pointer
+        border: 1px solid transparent
+        border-radius: 3px 3px 0 0
+    .active
+        border-color: #E3E3E3
+        border-bottom-color: white
+        position: relative
+        &::after
+            content: ''
+            position: absolute
+            left: 0
+            bottom: -2px
+            width: 100%
+            height: 2px
+            background-color: white
+            z-index: 1
+    
+#course_links_form
+    display: none
+/* End of Create course form Navigator */
+
+/* Custom File input Design */
+.custum_file_input
+    :width 100%
+    height: 65px
+    position: relative
+    border: 1px solid #E3E3E3
+    border-radius: 4px
+    background-color: #fff
+    padding: 10px
+    transition: .6s
+    input[type='file']
+        width: 100%
+        height: 100%
+        opacity: 0
+        padding: 0
+        position: absolute
+        top: 0
+        left: 0
+        cursor: pointer
+        z-index: 1
+    .input_file_dummy
+        width: 100%
+        height: 100%
+        padding:
+            left: 15px
+            right: 15px
+        position: absolute
+        top: 0
+        left: 0
+        border-radius: 4px
+        cursor: pointer
+        .file_input_label
+            margin-left: 15px
+            span
+                font-family: nunito
+                font-style: normal
+                font-weight: 600
+                font-size: 16px
+                line-height: 23px
+                color: #989898
+/* End of Custom File input Design */
+
+/* New Index Page Style */
+.index_nav
+    border-bottom: 1px solid #EFEFEF
+
+[class*='_index_sections']
+    padding-top: 50px
+    padding-bottom: 50px
+.index_header_wrapper
+    background:
+        image: url("../utils/images/new/Shape.png")
+        position: top left
+        repeat: no-repeat
+        size: 68% 80%
+    padding:
+        top: 35px
+        bottom: 70px
+
+.index_header_columns
+    display: grid
+    grid-template-columns: 45% 50%
+    grid-column-gap: 5%
+    // align-items: center
+    justify-content: space-between
+
+.header_left_col
+    padding-top: 40px
+    span
+        font-family: Nunito
+        font-style: normal
+        font-weight: 600
+        font-size: 16px
+        line-height: 31px
+        color: #FFFFFF
+    .welcome_note_head
+        margin:
+            top: 25px
+            bottom: 25px
+        h5
+            font-family: circular
+            font-size: 42px
+            line-height: 49px
+            color: #FFFFFF
+    .welcome_note_paragraph
+        margin-bottom: 25px
+        p
+            font-family: nunito
+            font-style: normal
+            font-weight: 600
+            font-size: 20px
+            line-height: 31px
+            color: #FFFFFF
+    
+.header_right_col
+    img
+        width: 100%
+    
+.benefits_index_sections
+    padding-bottom: 100px
+    .header
+        h5
+            font-family: circular
+            font-size: 32px
+            line-height: 37px
+        p
+            font-family: nunito
+            font-style: normal
+            font-weight: 600
+            font-size: 18px
+            line-height: 30px
+            margin-top: 25px
+    
+.benefits_in_details
+    display: grid
+    grid-template-columns: 48% 48%
+    grid-column-gap: 4%
+    justify-content: space-between
+
+    margin-top: 60px
+
+.benefits_in_details_image
+    img
+        width: 100%
+        height: auto
+
+.benefit_breakdown
+    padding:
+        top: 20px
+        bottom: 20px
+    &:nth-child(2)
+        border-top: 1px solid #DEE8EF
+        border-bottom: 1px solid #DEE8EF
+        
+.benefit_breakdown_icon
+    margin-right: 25px
+    width: 60px
+    height: 60px
+.benefit_breakdown_text
+    h5
+        font-size: 18px
+        line-height: 31px
+    p
+        
+        font-family: Nunito
+        font-style: normal
+        font-weight: normal
+        font-size: 16px
+        line-height: 23px
+        color: rgba(48, 48, 55, 0.7)
+        margin-top: 8px
+
+.interests_index_sections
+    background:
+        image: url("../utils/images/new/ShapeCopy.png")
+        position: top left
+        repeat: no-repeat
+        size: cover
+    padding:
+        top: 100px
+        bottom: 100px
+    .header
+        margin-bottom: 50px
+        h5
+            font-family: circular
+            font-size: 32px
+            line-height: 37px
+            color: #FFFFFF
+        p
+            font-style: normal
+            font-weight: 600
+            font-size: 18px
+            line-height: 24px
+            color: #FFFFFF
+            margin-top: 16px
+
+.interest_options_wrapper
+    display: grid
+    grid-template-columns: 32.3333% 32.3333% 32.3333%
+    grid-gap: 15px 1.5%
+
+    .interest_options
+        background: #FFFFFF
+        border-radius: 10px
+        padding: 15px 25px
+        span
+            font-family: circular
+            font-size: 18px
+            line-height: 21px
+            color: #303037
+            margin-left: 14px
+        i
+            color: #979797
+
+.howToConnect_index_sections
+    padding:
+        top: 100px
+        bottom: 100px
+    margin-bottom: 50px
+    .header
+        h5
+            font-family: circular
+            font-size: 32px
+            line-height: 37px
+        p
+            font-family: nunito
+            font-style: normal
+            font-weight: 600
+            font-size: 18px
+            line-height: 24px
+            margin-top: 16px
+        
+.how_to_connect_options_wrapper
+    display: grid
+    grid-template-columns: 48% 48%
+    grid-column-gap: 4%
+    margin-top: 70px
+
+.how_to_connect_options
+    background:
+        image: url("../utils/images/new/Group5.4.png")
+        position: top right
+        repeat: no-repeat
+        size: 133px 133px
+    .how_to_connect_option_card
+        margin-top: 30px
+        width: calc(100% - 30px)
+        padding: 25px 35px
+        background: #FFFFFF
+        border: 1px solid rgba(239, 75, 75, 0.1)
+        box-shadow: 0px 10px 20px rgba(14, 14, 103, 0.05)
+        border-radius: 5px
+        transition: .3s
+        &:hover
+            box-shadow: 0px 2px 10px rgba(14, 14, 103, 0.05)           
+
+        img
+            width: 54px
+            height: 54px
+        .title_n_description
+            h5
+                font-family: circular
+                font-size: 18px
+                line-height: 21px
+                margin-top: 15px
+                margin-bottom: 20px
+            p
+                font-family: nunito
+                font-style: normal
+                font-weight: normal
+                font-size: 14px
+                line-height: 24px
+        .link
+            margin-top: 30px
+            a
+                font-family: circular
+                font-size: 14px
+                line-height: 24px
+                text-transform: uppercase
+                color: $default_red
+                position: relative
+                &::after
+                    content: ""
+                    position: absolute
+                    left: 0
+                    bottom: 0
+                    width: 100%
+                    height: 2px
+                    background-color: $default_red
+                    transform: translateY(2px)
+                    transition: .4s
+                    opacity: 0
+
+                &:hover
+                    text-decoration: none
+                    &::after
+                        // background-color: $default_red
+                        transform: translateY(8px)
+                        opacity: 1
+
+.coaches_index_sections
+    background:
+        image: url("../utils/images/new/ShapeCopy2.png")
+        position: top left
+        repeat: no-repeat
+        size: cover
+    padding:
+        top: 100px
+        bottom: 100px
+    .header
+        margin-bottom: 50px
+        h5
+            font-family: circular
+            font-size: 32px
+            line-height: 37px
+            color: #FFFFFF
+        p
+            font-style: normal
+            font-weight: 600
+            font-size: 18px
+            line-height: 24px
+            color: #FFFFFF
+            margin-top: 16px
+
+.slider_toggler
+    .slider_toggler_container        
+        background-color: #fff
+        width: 40px
+        height: 40px
+        border-radius: 50%
+        margin-left: 30px
+        cursor: pointer
+        i
+            color: $default_black
+            font-size: 12px
+
+.slider_full_row
+    overflow-x: scroll
+    &::-webkit-scrollbar
+        display: none
+
+.coaches_wrapper_div2
+    transition: 1.2s   
+
+    .each_coach
+        background: #FFFFFF
+        box-shadow: 0px 0px 24px rgba(86, 86, 86, 0.15)
+        border-radius: 5px 
+        width: 390px   
+        float: left
+        margin-right: 20px 
+
+        .coach_image
+            width: 39%
+
+            img
+                width: 100%
+                height: 100%
+
+        .coach_features
+            width: 61%
+            padding: 25px 10px 25px 15px
+            display: flex
+            flex-direction: column
+            justify-content: space-between
+
+            .coach_name
+
+                h5
+                    font-size: 18px
+                    line-height: 21px
+                    color: var(--default_black)
+
+            .star_rating
+                color: #EF4B4B
+
+        
+        .coach_features_middle
+            margin: 30px 0
+
+            p
+                color: var(--default_black)
+                font-style: normal
+                // font-weight: 600
+                font-size: 14px
+                line-height: 20px
+
+
+                &.specialty_txt
+                    font-style: normal
+                    font-weight: 600
+                    font-size: 14px
+                    line-height: 20px
+                    color: #989898
+                    margin-bottom: 10px
+
+        .coach_features_bottom
+
+            a
+                font-style: normal
+                font-weight: 600
+                font-size: 14px
+                line-height: 20px
+                color: #989898
+                transition: .5s
+
+                &:hover
+                    text-decoration: none
+                    color: #656565
+
+.slider_toggler2
+    .slider_toggler_container        
+        background-color: $default_black
+        width: 40px
+        height: 40px
+        border-radius: 50%
+        margin-left: 30px
+        cursor: pointer
+        i
+            color: #fff
+            font-size: 12px
+
+.jobs_index_sections
+    padding-bottom: 100px
+    padding-top: 100px
+    .header
+        margin-bottom: 50px
+        h5
+            font-family: circular
+            font-size: 32px
+            line-height: 37px
+
+.wantToBecomeAcoach_index_sections
+    padding-top: 0
+    padding-bottom: 0
+    margin-bottom: 100px
+    .wrapper
+        background:
+            image: url("../utils/images/new/Bitmapfooter.png")
+            position: top left
+            repeat: no-repeat
+            size: 185px 100%
+        padding:
+            top: 60px
+            bottom: 60px
+            left: 60px
+    .question_card
+        background: #FFFFFF
+        padding: 30px 50px
+        h5
+            font-size: 32px
+            line-height: 37px
+
+
+/* End of New Index Page Style */
+
+#video_links_form
+    display: none
+
+.file_btn
+    border-radius: 3px
+    font-size: 14px
+    // line-height: 16px
+    letter-spacing: 1.5px
+    text-transform: uppercase
+    text-align: center
+    padding: 9px 18px
+    // height: 44px
+    color: #ffffff
+    cursor: pointer
+    transition: .5s
+    background-color: $default_red
+
+.free_label
+    font-style: normal
+    font-weight: 600
+    font-size: 18px
+    line-height: 30px
+    color: #989898
+    font-family: nunito
 
 /* ======================End of DASHBOARD Style=================== */
     
