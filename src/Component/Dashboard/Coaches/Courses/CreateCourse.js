@@ -6,9 +6,17 @@ import { connect } from 'react-redux';
 import { addCourse } from '../../../../actions/course';
 import Progress2 from '../../ProfileSettings/Progress';
 import { withRouter } from 'react-router-dom';
+import { useForm } from 'react-hook-form';
 import { Wizard, Steps, Step, Navigation, Progress } from 'react-wizr';
+import TagsInput from './Tags';
 
 const CreateCourse = ({ user, addCourse }) => {
+  const { formState } = useForm({
+    mode: 'onChange',
+  });
+  const selectedTags = tags => {
+    console.log(tags);
+};
   const [formData, setFormData] = useState({
     coach_id: '',
     category: '',
@@ -95,7 +103,13 @@ const CreateCourse = ({ user, addCourse }) => {
       render={({ activeStepIndex, goToNextStep, goToPrevStep, totalSteps }) => (
         <div className='flex_r_j_end_align_center btn'>
           {activeStepIndex === 0 && (
-            <button type='submit' className='black_btn' onClick={goToNextStep}>
+            <button type='submit'
+            className='black_btn'
+            disabled={!formState.isValid}
+            onClick={(e) => {
+              onSubmit(e);
+              goToNextStep();
+            }}>
               Continue
             </button>
           )}
@@ -464,18 +478,13 @@ const CreateCourse = ({ user, addCourse }) => {
                                 <p>Topics Covered</p>
                               </div>
                               <div class='common_input_wrapper_2'>
-                                <textarea
-                                  name=''
-                                  id=''
-                                  cols='10'
-                                  rows='10'
-                                  placeholder='Enter the topics covered in this course'
-                                ></textarea>
+                              <TagsInput selectedTags={selectedTags}  tags={['Sample']}/>
                               </div>
                             </div>
                           </div>
-                          <SimpleNavigation />
+                          
                         </div>
+                        <SimpleNavigation />
                       </Step>
                       <Step id='third'>
                         <div>
