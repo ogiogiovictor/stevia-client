@@ -76,7 +76,7 @@ export const addCourse = (formDataImg, config, history) => async dispatch => {
       payload: res.data.data
     });
     dispatch(setAlert(res.data.message, 'success'));
-    window.location.href='../courses';
+    // window.location.href='../courses';
   } catch (error) {
     // const errors = error && error.response.data;
     // if (errors) {
