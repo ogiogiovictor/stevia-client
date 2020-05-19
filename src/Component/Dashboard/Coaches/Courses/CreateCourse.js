@@ -9,6 +9,7 @@ import { withRouter } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { Wizard, Steps, Step, Navigation, Progress } from 'react-wizr';
 import TagsInput from './Tags';
+import DynamicInput from './DynamicInput';
 
 const CreateCourse = ({ user, addCourse }) => {
   const { formState } = useForm({
@@ -123,7 +124,7 @@ const CreateCourse = ({ user, addCourse }) => {
           {activeStepIndex === 2 && (
             <div>
               <button className='black_btn' onClick={goToNextStep}>
-                Continue
+                {/* Continue */}
               </button>
             </div>
           )}
@@ -493,7 +494,8 @@ const CreateCourse = ({ user, addCourse }) => {
                           </div>
                           <div class='file_input_wrapper'>
                             <div class='course_link' id=''>
-                              <div class='common_input_wrapper_2'>
+                              <DynamicInput />
+                              {/* <div class='common_input_wrapper_2'>
                                 <input
                                   type='text'
                                   name=''
@@ -503,8 +505,9 @@ const CreateCourse = ({ user, addCourse }) => {
                               </div>
                               <div class='full_row text-right addMore_course_documents'>
                                 <span> Add More </span>
-                              </div>
+                              </div> */}
                             </div>
+                            
                           </div>
                           <SimpleNavigation />
                         </div>
