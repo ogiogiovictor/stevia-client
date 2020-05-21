@@ -9,7 +9,7 @@ const TagsInput = props => {
     const addTags = event => {
         if (event.target.value !== "") {
             setTags([...tags, event.target.value]);
-            props.selectedTags([...tags, event.target.value]);
+            props.selectedTags([...tags, event.target.value]);  
             event.target.value = "";
         }
     };

@@ -3,21 +3,20 @@ import PropTypes from 'prop-types';
 import Header from '../../Layout/Header';
 import Topnav from '../../Layout/Topnav';
 import { connect } from 'react-redux';
-import { addCourse } from '../../../../actions/course';
+import { addCourse, addTopics } from '../../../../actions/course';
 import Progress2 from '../../ProfileSettings/Progress';
 import { withRouter } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { Wizard, Steps, Step, Navigation, Progress } from 'react-wizr';
 import TagsInput from './Tags';
 import DynamicInput from './DynamicInput';
+import DynamicUpload from './DynamicUpload';
 
-const CreateCourse = ({ user, addCourse }) => {
+const CreateCourse = ({ user, addCourse, addTopics, courses: {courses} }) => {
   const { formState } = useForm({
     mode: 'onChange',
   });
-  const selectedTags = tags => {
-    console.log(tags);
-};
+  
   const [formData, setFormData] = useState({
     coach_id: '',
     category: '',
@@ -32,7 +31,9 @@ const CreateCourse = ({ user, addCourse }) => {
     course_duration: '',
     brief_description: '',
     youtube_video_link: '',
+    time_zone: '',
     course_type: 'fullcourse',
+    topics: [],
   });
   const [file, setFile] = useState('');
   const [uploadPercentage, setUploadPercentage] = useState(0);
@@ -51,6 +52,8 @@ const CreateCourse = ({ user, addCourse }) => {
     price,
     medium_of_communication,
     category,
+    time_zone,
+    topics
   } = formData;
 
   const onChange = (e) =>
@@ -77,9 +80,8 @@ const CreateCourse = ({ user, addCourse }) => {
     formDataImg.append('price', price);
     formDataImg.append('medium_of_communication', medium_of_communication);
     formDataImg.append('coach_id', user && user.currentUser.id);
-    formDataImg.append('category', user && category);
-
-    console.log(formData);
+    formDataImg.append('category', category);
+    formDataImg.append('time_zone', time_zone);
 
     const config = {
       headers: {
@@ -95,8 +97,21 @@ const CreateCourse = ({ user, addCourse }) => {
         }, 10000);
       },
     };
-    console.log(formDataImg);
     addCourse(formDataImg, config);
+  };
+
+  const selectedTags = (tags) => {
+    setFormData({
+      topics: tags
+    })
+  };
+
+  const postSelectedTags = () => {
+    const formData = new FormData();
+    formData.append('coach_id', courses && courses[0].coach_id);
+    formData.append('course_id', courses && courses[0].id);
+    formData.append('topics', JSON.stringify(topics));
+    addTopics(formData);
   };
 
   const SimpleNavigation = () => (
@@ -104,19 +119,29 @@ const CreateCourse = ({ user, addCourse }) => {
       render={({ activeStepIndex, goToNextStep, goToPrevStep, totalSteps }) => (
         <div className='flex_r_j_end_align_center btn'>
           {activeStepIndex === 0 && (
-            <button type='submit'
-            className='black_btn'
-            disabled={!formState.isValid}
-            onClick={(e) => {
-              onSubmit(e);
-              goToNextStep();
-            }}>
+            <button
+              type='submit'
+              className='black_btn'
+              disabled={!formState.isValid}
+              onClick={(e) => {
+                onSubmit(e);
+                goToNextStep();
+              }}
+            >
               Continue
             </button>
           )}
           {activeStepIndex === 1 && (
             <div>
-              <button className='black_btn' onClick={goToNextStep}>
+               <button
+              type='submit'
+              className='black_btn'
+              disabled={!formState.isValid}
+              onClick={() => {
+                postSelectedTags();
+                goToNextStep();
+              }}
+            >
                 Continue
               </button>
             </div>
@@ -124,7 +149,7 @@ const CreateCourse = ({ user, addCourse }) => {
           {activeStepIndex === 2 && (
             <div>
               <button className='black_btn' onClick={goToNextStep}>
-                {/* Continue */}
+                Continue
               </button>
             </div>
           )}
@@ -463,10 +488,26 @@ const CreateCourse = ({ user, addCourse }) => {
                               </div>
                             </div>
                           </div>
+                          <div class='flex_r_j_between_align_center date_n_time'>
+                            <div class='flex_r_a_center left'>
+                              <div class='label'>
+                                <p>Time Zone</p>
+                              </div>
+                              <div class='common_input_wrapper_2'>
+                                <select
+                                  name='time_zone'
+                                  onChange={(e) => onChange(e)}
+                                  class='search_select search_select2'
+                                >
+                                  <option value='+1'>
+                                    {' '}
+                                    (+01:00) West Central Africa{' '}
+                                  </option>
+                                </select>
+                              </div>
+                            </div>
+                          </div>
                           <div className='flex_r_j_end_align_center form_buttons'>
-                            {/* <button type='submit' className='black_btn'>
-                        Continue
-                      </button> */}
                             <SimpleNavigation />
                           </div>
                         </div>
@@ -479,11 +520,14 @@ const CreateCourse = ({ user, addCourse }) => {
                                 <p>Topics Covered</p>
                               </div>
                               <div class='common_input_wrapper_2'>
-                              <TagsInput selectedTags={selectedTags}  tags={['Sample']}/>
+                                <TagsInput
+                                  selectedTags={selectedTags}
+                                  tags={['Sample']}
+                                  course={courses && courses[0]}
+                                />
                               </div>
                             </div>
                           </div>
-                          
                         </div>
                         <SimpleNavigation />
                       </Step>
@@ -494,20 +538,10 @@ const CreateCourse = ({ user, addCourse }) => {
                           </div>
                           <div class='file_input_wrapper'>
                             <div class='course_link' id=''>
-                              <DynamicInput />
-                              {/* <div class='common_input_wrapper_2'>
-                                <input
-                                  type='text'
-                                  name=''
-                                  id=''
-                                  placeholder='Members Name'
-                                />
-                              </div>
-                              <div class='full_row text-right addMore_course_documents'>
-                                <span> Add More </span>
-                              </div> */}
+                              <DynamicInput
+                              course={courses}
+                              />
                             </div>
-                            
                           </div>
                           <SimpleNavigation />
                         </div>
@@ -519,73 +553,11 @@ const CreateCourse = ({ user, addCourse }) => {
                           </div>
 
                           <div class='file_input_wrapper'>
-                            <div class='flex_r_a_center course_navigator'>
-                              <div class='active' id='docs_form_button'>
-                                <span>Documents</span>
-                              </div>
-                              <div id='link_form_button'>
-                                <span>Links</span>
-                              </div>
-                            </div>
                             <div class='course_docs' id='course_docs_form'>
-                              <div class='common_input_wrapper_2'>
-                                <div class='custum_file_input'>
-                                  <div class='flex_r_a_center input_file_dummy'>
-                                    <div class='file_btn'>Upload</div>
-                                    <div class='file_input_label'>
-                                      <span>Add Document</span>
-                                    </div>
-                                  </div>
-                                  <input
-                                    type='file'
-                                    name=''
-                                    id=''
-                                    title='Upload Course Document'
-                                  />
-                                </div>
-                              </div>
-                              <div class='common_input_wrapper_2'>
-                                <div class='custum_file_input'>
-                                  <div class='flex_r_a_center input_file_dummy'>
-                                    <div class='file_btn'>Upload</div>
-                                    <div class='file_input_label'>
-                                      <span>Add Document</span>
-                                    </div>
-                                  </div>
-                                  <input
-                                    type='file'
-                                    name=''
-                                    id=''
-                                    title='Upload Course Document'
-                                  />
-                                </div>
-                              </div>
-                              <div class='full_row text-right addMore_course_documents'>
-                                <span> Add More </span>
-                              </div>
-                            </div>
-                            <div class='course_link' id='course_links_form'>
-                              <div class='common_input_wrapper_2'>
-                                <input
-                                  type='text'
-                                  name=''
-                                  id=''
-                                  placeholder='Link 1'
-                                />
-                              </div>
-                              <div class='common_input_wrapper_2'>
-                                <input
-                                  type='text'
-                                  name=''
-                                  id=''
-                                  placeholder='Link 2'
-                                />
-                              </div>
-                              <div class='full_row text-right addMore_course_documents'>
-                                <span> Add More </span>
-                              </div>
+                              <DynamicUpload />
                             </div>
                           </div>
+
                           <SimpleNavigation />
                         </div>
                       </Step>
@@ -680,12 +652,14 @@ const CreateCourse = ({ user, addCourse }) => {
 CreateCourse.propTypes = {
   user: PropTypes.object.isRequired,
   addCourse: PropTypes.func.isRequired,
+  addTopics: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   user: state.auth.user,
+  courses: state.courses
 });
 
-export default connect(mapStateToProps, { addCourse })(
+export default connect(mapStateToProps, { addCourse, addTopics })(
   withRouter(CreateCourse)
 );

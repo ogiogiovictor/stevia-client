@@ -1,7 +1,11 @@
-import React from 'react';
-import { useState } from 'react';
+import React, {useState} from 'react';
+import PropTypes from 'prop-types';
+import { addTeamMembers } from '../../../../actions/course';
+import { connect } from 'react-redux';
 
-function DynamicInput() {
+const DynamicInput = ({
+  course, addTeamMembers
+}) => {
 
     const [values, setValues] = useState({ val: []});
 
@@ -31,7 +35,11 @@ function DynamicInput() {
     }
 
     const handleSubmit = event => {
-      alert('A name was submitted: ' + values.val.join(', '));
+      const formData = new FormData();
+      formData.append('coach_id', course && course[0].coach_id);
+      formData.append('course_id', course && course[0].id);
+      formData.append('member_name', JSON.stringify(values.val.join(', ')));
+      addTeamMembers(formData);
       event.preventDefault();
     }
 
@@ -50,7 +58,7 @@ function DynamicInput() {
         
                           <div>
               <button className='black_btn' onClick={handleSubmit}>
-                Continue
+                Save
               </button>
             </div>
       </form>
@@ -58,4 +66,9 @@ function DynamicInput() {
 
 }
 
-export default DynamicInput;
+DynamicInput.propTypes = {
+  course: PropTypes.object.isRequired,
+  addTeamMembers: PropTypes.func.isRequired
+};
+
+export default connect(null, { addTeamMembers }) (DynamicInput);

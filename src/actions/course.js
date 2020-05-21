@@ -91,6 +91,45 @@ export const addCourse = (formDataImg, config, history) => async dispatch => {
   }
 };
 
+  // Add Topics
+export const addTopics = (formData) => async dispatch => {
+  try {
+    const res = await Axios.post(
+      `${url}/coach-service/topics_covered`,
+      formData
+    );
+    dispatch(setAlert(res.data.message, 'success'));
+  } catch (error) {
+    console.log(error);
+  }
+};
+  // Add Team Members
+export const addTeamMembers = (formData) => async dispatch => {
+  try {
+    const res = await Axios.post(
+      `${url}/coach-service/team_members`,
+      formData
+    );
+    dispatch(setAlert(res.data.message, 'success'));
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+  // Add Documents
+export const addDocuments = (formData, config) => async dispatch => {
+  try {
+    const res = await Axios.post(
+      `${url}/coach-service/createcoursedoc`,
+      formData,
+      config
+    );
+    dispatch(setAlert(res.data.message, 'success'));
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 // Add Videos
 export const addVideos = (formData, config) => async dispatch => {
   try {
