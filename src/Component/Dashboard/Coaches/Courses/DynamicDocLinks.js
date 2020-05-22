@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 
-const DynamicInput = (props) => {
+const DynamicDocLinks = (props) => {
 
     const [values, setValues] = useState({ val: []});
 
       function createInputs() {
         return values.val.map((el, i) =>
           <div key={i}>
-            <input type="text" value={el||''} placeholder='Members Name' onChange={handleChange.bind(i)} />
+            <input type="text" value={el||''} placeholder='Document Links' onChange={handleChange.bind(i)} />
             <span onClick={removeClick.bind(i)}> remove </span>
           </div>
         );
@@ -17,7 +17,7 @@ const DynamicInput = (props) => {
       let vals = [...values.val];
       vals[this] = event.target.value;
       setValues({ val: vals });
-      props.memberValues({ val: vals });
+      props.linksSet({ val: vals });
     }
 
     const addClick = () => {
@@ -29,6 +29,15 @@ const DynamicInput = (props) => {
       vals.splice(this,1);
       setValues({ val: vals });
     }
+
+    // const handleSubmit = event => {
+    //   const formData = new FormData();
+    //   formData.append('coach_id', course && course[0].coach_id);
+    //   formData.append('course_id', course && course[0].id);
+    //   formData.append('member_name', JSON.stringify(values.val.join(', ')));
+    //   addTeamMembers(formData)
+    //   event.preventDefault();
+    // }
 
     return (
       <form>
@@ -44,10 +53,13 @@ const DynamicInput = (props) => {
                           </div>
         
                           <div>
+              {/* <button className='black_btn' onClick={handleSubmit}>
+                Save
+              </button> */}
             </div>
       </form>
     );
 
 }
 
-export default DynamicInput;
+export default DynamicDocLinks;

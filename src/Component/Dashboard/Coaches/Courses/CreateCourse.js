@@ -11,12 +11,17 @@ import { Wizard, Steps, Step, Navigation, Progress } from 'react-wizr';
 import TagsInput from './Tags';
 import DynamicInput from './DynamicInput';
 import DynamicUpload from './DynamicUpload';
+import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
+import './tab.css';
+import DynamicDocLinks from './DynamicDocLinks';
+import UploadVideo from './UploadVideo';
+import VideoLinks from './VideoLinks';
 
-const CreateCourse = ({ user, addCourse, addTopics, courses: {courses} }) => {
+const CreateCourse = ({ user, addCourse }) => {
   const { formState } = useForm({
     mode: 'onChange',
   });
-  
+
   const [formData, setFormData] = useState({
     coach_id: '',
     category: '',
@@ -34,6 +39,11 @@ const CreateCourse = ({ user, addCourse, addTopics, courses: {courses} }) => {
     time_zone: '',
     course_type: 'fullcourse',
     topics: [],
+    member_name: '',
+    documents: [],
+    documentlinks: [],
+    videolinks: [],
+    videos: []
   });
   const [file, setFile] = useState('');
   const [uploadPercentage, setUploadPercentage] = useState(0);
@@ -53,7 +63,12 @@ const CreateCourse = ({ user, addCourse, addTopics, courses: {courses} }) => {
     medium_of_communication,
     category,
     time_zone,
-    topics
+    topics,
+    member_name,
+    documents,
+    documentlinks,
+    videolinks,
+    videos
   } = formData;
 
   const onChange = (e) =>
@@ -61,6 +76,39 @@ const CreateCourse = ({ user, addCourse, addTopics, courses: {courses} }) => {
 
   const handleFile = (e) => {
     setFile(e.target.files[0]);
+  };
+
+  const selectedTags = (tags) => {
+    setFormData({
+      topics: tags,
+    });
+  };
+
+  const memberValues = (values) => {
+    setFormData({
+      member_name: values,
+    });
+  };
+
+  const documentSet = (values) => {
+    setFormData({
+      documents: values,
+    });
+  };
+  const linksSet = (values) => {
+    setFormData({
+      documentlinks: values,
+    });
+  };
+  const VidLinksSet= (values) => {
+    setFormData({
+      videolinks: values,
+    });
+  };
+  const videoSet = (values) => {
+    setFormData({
+      videos: values,
+    });
   };
 
   const onSubmit = (e) => {
@@ -82,6 +130,16 @@ const CreateCourse = ({ user, addCourse, addTopics, courses: {courses} }) => {
     formDataImg.append('coach_id', user && user.currentUser.id);
     formDataImg.append('category', category);
     formDataImg.append('time_zone', time_zone);
+    formDataImg.append('topics', JSON.stringify(topics));
+    formDataImg.append('member_name', JSON.stringify(member_name));
+    formDataImg.append('documentlinks', JSON.stringify(documentlinks));
+    formDataImg.append('videolinks', JSON.stringify(videolinks));
+    documents.forEach((docs) => {
+      formDataImg.append('documents', docs);
+    });
+    videos.forEach((docs) => {
+      formDataImg.append('videos', docs);
+    });
 
     const config = {
       headers: {
@@ -98,21 +156,17 @@ const CreateCourse = ({ user, addCourse, addTopics, courses: {courses} }) => {
       },
     };
     addCourse(formDataImg, config);
+
+    console.log(formData);
   };
 
-  const selectedTags = (tags) => {
-    setFormData({
-      topics: tags
-    })
-  };
-
-  const postSelectedTags = () => {
-    const formData = new FormData();
-    formData.append('coach_id', courses && courses[0].coach_id);
-    formData.append('course_id', courses && courses[0].id);
-    formData.append('topics', JSON.stringify(topics));
-    addTopics(formData);
-  };
+  // const postSelectedTags = () => {
+  //   const formData = new FormData();
+  //   formData.append('coach_id', courses && courses[0].coach_id);
+  //   formData.append('course_id', courses && courses[0].id);
+  //   formData.append('topics', JSON.stringify(topics));
+  //   addTopics(formData);
+  // };
 
   const SimpleNavigation = () => (
     <Navigation
@@ -124,7 +178,7 @@ const CreateCourse = ({ user, addCourse, addTopics, courses: {courses} }) => {
               className='black_btn'
               disabled={!formState.isValid}
               onClick={(e) => {
-                onSubmit(e);
+                // onSubmit(e);
                 goToNextStep();
               }}
             >
@@ -133,21 +187,27 @@ const CreateCourse = ({ user, addCourse, addTopics, courses: {courses} }) => {
           )}
           {activeStepIndex === 1 && (
             <div>
-               <button
-              type='submit'
-              className='black_btn'
-              disabled={!formState.isValid}
-              onClick={() => {
-                postSelectedTags();
-                goToNextStep();
-              }}
-            >
+              <button className='grey_btn' onClick={goToPrevStep}>
+                Go Back
+              </button>
+              <button
+                type='submit'
+                className='black_btn'
+                disabled={!formState.isValid}
+                onClick={() => {
+                  // postSelectedTags();
+                  goToNextStep();
+                }}
+              >
                 Continue
               </button>
             </div>
           )}
           {activeStepIndex === 2 && (
             <div>
+              <button className='grey_btn' onClick={goToPrevStep}>
+                Go Back
+              </button>
               <button className='black_btn' onClick={goToNextStep}>
                 Continue
               </button>
@@ -155,8 +215,21 @@ const CreateCourse = ({ user, addCourse, addTopics, courses: {courses} }) => {
           )}
           {activeStepIndex === 3 && (
             <div>
+              <button className='grey_btn' onClick={goToPrevStep}>
+                Go Back
+              </button>
               <button className='black_btn' onClick={goToNextStep}>
                 Continue
+              </button>
+            </div>
+          )}
+          {activeStepIndex === 4 && (
+            <div>
+              <button className='grey_btn' onClick={goToPrevStep}>
+                Go Back
+              </button>
+              <button className='black_btn' onClick={goToNextStep}>
+                Finish
               </button>
             </div>
           )}
@@ -426,10 +499,7 @@ const CreateCourse = ({ user, addCourse, addTopics, courses: {courses} }) => {
                               >
                                 <option> Communication Channel</option>
                                 <option value='Zoom'> Zoom </option>
-                                <option value='Google Meet'>
-                                  {' '}
-                                  Google Meet{' '}
-                                </option>
+                                <option value='Google Meet'>Google Meet</option>
                                 <option value='Webex '> Webex </option>
                                 <option value='Microsoft Teams'>
                                   Microsoft Teams
@@ -500,8 +570,7 @@ const CreateCourse = ({ user, addCourse, addTopics, courses: {courses} }) => {
                                   class='search_select search_select2'
                                 >
                                   <option value='+1'>
-                                    {' '}
-                                    (+01:00) West Central Africa{' '}
+                                    (+01:00) West Central Africa
                                   </option>
                                 </select>
                               </div>
@@ -523,7 +592,6 @@ const CreateCourse = ({ user, addCourse, addTopics, courses: {courses} }) => {
                                 <TagsInput
                                   selectedTags={selectedTags}
                                   tags={['Sample']}
-                                  course={courses && courses[0]}
                                 />
                               </div>
                             </div>
@@ -538,9 +606,7 @@ const CreateCourse = ({ user, addCourse, addTopics, courses: {courses} }) => {
                           </div>
                           <div class='file_input_wrapper'>
                             <div class='course_link' id=''>
-                              <DynamicInput
-                              course={courses}
-                              />
+                              <DynamicInput memberValues={memberValues} />
                             </div>
                           </div>
                           <SimpleNavigation />
@@ -552,11 +618,30 @@ const CreateCourse = ({ user, addCourse, addTopics, courses: {courses} }) => {
                             <p>Course Documents / Links</p>
                           </div>
 
-                          <div class='file_input_wrapper'>
-                            <div class='course_docs' id='course_docs_form'>
-                              <DynamicUpload />
-                            </div>
-                          </div>
+                          <Tabs>
+                            <TabList>
+                              <Tab>Documents</Tab>
+                              <Tab>Links</Tab>
+                            </TabList>
+                            <TabPanel>
+                              <div class='file_input_wrapper'>
+                                <div class='course_link' id=''>
+                                  <div class='common_input_wrapper_2'>
+                                    <DynamicUpload documentSet={documentSet} />
+                                  </div>
+                                </div>
+                              </div>
+                            </TabPanel>
+                            <TabPanel>
+                              <div class='file_input_wrapper'>
+                                <div class='course_link' id=''>
+                                  <div class='common_input_wrapper_2'>
+                                  <DynamicDocLinks linksSet={linksSet} />
+                                  </div>
+                                </div>
+                              </div>
+                            </TabPanel>
+                          </Tabs>
 
                           <SimpleNavigation />
                         </div>
@@ -566,74 +651,30 @@ const CreateCourse = ({ user, addCourse, addTopics, courses: {courses} }) => {
                           <div class='full_row header header2'>
                             <p>Course Videos</p>
                           </div>
-                          <div class='file_input_wrapper'>
-                            <div class='flex_r_a_center course_navigator'>
-                              <div class='active' id='video_form_button'>
-                                <span>Videos</span>
-                              </div>
-                              <div id='video_link_form_button'>
-                                <span>Links</span>
-                              </div>
-                            </div>
-                            <div class='course_docs' id='video_file_form'>
-                              <div class='common_input_wrapper_2'>
-                                <div class='custum_file_input'>
-                                  <div class='flex_r_a_center input_file_dummy'>
-                                    <div class='file_btn'>Upload</div>
-                                    <div class='file_input_label'>
-                                      <span>Add Video</span>
-                                    </div>
+                          <Tabs>
+                            <TabList>
+                              <Tab>Videos</Tab>
+                              <Tab>Links</Tab>
+                            </TabList>
+                            <TabPanel>
+                              <div class='file_input_wrapper'>
+                                <div class='course_link' id=''>
+                                  <div class='common_input_wrapper_2'>
+                                    <UploadVideo videoSet={videoSet} />
                                   </div>
-                                  <input
-                                    type='file'
-                                    name=''
-                                    id=''
-                                    title='Upload Course Document'
-                                  />
                                 </div>
                               </div>
-                              <div class='common_input_wrapper_2'>
-                                <div class='custum_file_input'>
-                                  <div class='flex_r_a_center input_file_dummy'>
-                                    <div class='file_btn'>Upload</div>
-                                    <div class='file_input_label'>
-                                      <span>Add Video</span>
-                                    </div>
+                            </TabPanel>
+                            <TabPanel>
+                              <div class='file_input_wrapper'>
+                                <div class='course_link' id=''>
+                                  <div class='common_input_wrapper_2'>
+                                  <VideoLinks VidLinksSet={VidLinksSet} />
                                   </div>
-                                  <input
-                                    type='file'
-                                    name=''
-                                    id=''
-                                    title='Upload Course Document'
-                                  />
                                 </div>
                               </div>
-                              <div class='full_row text-right addMore_course_documents'>
-                                <span> Add More </span>
-                              </div>
-                            </div>
-                            <div class='course_link' id='video_links_form'>
-                              <div class='common_input_wrapper_2'>
-                                <input
-                                  type='text'
-                                  name=''
-                                  id=''
-                                  placeholder='Link 1'
-                                />
-                              </div>
-                              <div class='common_input_wrapper_2'>
-                                <input
-                                  type='text'
-                                  name=''
-                                  id=''
-                                  placeholder='Link 2'
-                                />
-                              </div>
-                              <div class='full_row text-right addMore_course_documents'>
-                                <span> Add More </span>
-                              </div>
-                            </div>
-                          </div>
+                            </TabPanel>
+                          </Tabs>
                           <SimpleNavigation />
                         </div>
                       </Step>
@@ -657,7 +698,7 @@ CreateCourse.propTypes = {
 
 const mapStateToProps = (state) => ({
   user: state.auth.user,
-  courses: state.courses
+  courses: state.courses,
 });
 
 export default connect(mapStateToProps, { addCourse, addTopics })(

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './tab.css';
 
-const DynamicUpload = (props) => {
+const UploadVideo = (props) => {
   const [values, setValues] = useState({ val: [] });
 
   function createInputs() {
@@ -11,15 +11,15 @@ const DynamicUpload = (props) => {
           <div class='flex_r_a_center input_file_dummy'>
             <div class='file_btn'>Upload</div>
             <div class='file_input_label'>
-              <span>Add Document</span>
+              <span>Add Video</span>
             </div>
           </div>
 
           <input
             type='file'
-            name='documents'
+            name='videos'
             value={el || ''}
-            placeholder='Add Document'
+            placeholder='Add Video'
             onChange={handleChange.bind(i)}
           />
         </div>
@@ -33,7 +33,7 @@ const DynamicUpload = (props) => {
     let vals = [...values.val];
     vals[this] = event.target.value;
     setValues({ val: vals });
-    props.documentSet({ val: vals });
+    props.videoSet({ val: vals });
   }
 
 
@@ -61,4 +61,4 @@ const DynamicUpload = (props) => {
   );
 };
 
-export default DynamicUpload;
+export default UploadVideo;

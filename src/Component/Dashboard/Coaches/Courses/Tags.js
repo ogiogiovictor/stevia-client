@@ -29,8 +29,8 @@ const TagsInput = props => {
             </ul>
             <input
                 type="text"
-                onKeyUp={event => event.key === "Shift" ? addTags(event) : null}
-                placeholder="Type and press shift to add topics"
+                onKeyUp={event => event.key === " " ? addTags(event) : null}
+                placeholder="Type and press spacebar to add topics"
             />
         </div>
     );
