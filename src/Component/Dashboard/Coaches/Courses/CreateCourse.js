@@ -86,12 +86,14 @@ const CreateCourse = ({ user, addCourse }) => {
 
   const documentSet = (values) => {
     setDocuments({ docs: values.val });
+    console.log(documents)
   };
   const linksSet = (values) => {
     setDocumentsLinks({ links: values.val });
   };
   const videoSet = (values) => {
     setVideos({ vids: values.val });
+    console.log(videos)
   };
   const VidLinksSet = (values) => {
     setvideoLinks({ vlinks: values.val });

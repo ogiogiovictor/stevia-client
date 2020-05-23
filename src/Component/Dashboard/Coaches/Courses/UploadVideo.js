@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, Fragment } from 'react';
 import './tab.css';
 
 const UploadVideo = (props) => {
@@ -52,7 +52,7 @@ const UploadVideo = (props) => {
   };
 
   return (
-    <form>
+    <Fragment>
           <div class='file_input_wrapper'>
             <div class='course_link' id=''>
               <div class='common_input_wrapper_2'>{createInputs()}</div>
@@ -61,7 +61,7 @@ const UploadVideo = (props) => {
               </div>
             </div>
           </div>
-    </form>
+    </Fragment>
   );
 };
 

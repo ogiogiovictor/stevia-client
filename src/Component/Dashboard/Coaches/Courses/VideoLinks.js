@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, Fragment } from 'react';
 
 const VideoLinks = (props) => {
   const [values, setValues] = useState({ val: props.vidlinks });
@@ -41,7 +41,7 @@ const VideoLinks = (props) => {
     props.VidLinksSet({ val: vals });
   };
   return (
-    <form>
+    <Fragment>
       <div class='file_input_wrapper'>
         <div class='course_link' id=''>
           <div class='common_input_wrapper_2'>{createInputs()}</div>
@@ -52,7 +52,7 @@ const VideoLinks = (props) => {
       </div>
 
       <div></div>
-    </form>
+    </Fragment>
   );
 };
 
