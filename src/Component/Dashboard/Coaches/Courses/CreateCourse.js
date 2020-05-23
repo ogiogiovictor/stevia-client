@@ -38,15 +38,15 @@ const CreateCourse = ({ user, addCourse }) => {
     youtube_video_link: '',
     time_zone: '',
     course_type: 'fullcourse',
-    topics: [],
-    member_name: '',
-    documents: [],
-    documentlinks: [],
     videolinks: [],
-    videos: []
+    videos: [],
   });
   const [file, setFile] = useState('');
   const [uploadPercentage, setUploadPercentage] = useState(0);
+  const [team, setTeamMember] = useState({ members: [] });
+  const [topics, setTopics] = useState({ topics: [] });
+  const [documents, setDocuments] = useState({ docs: [] });
+  const [documentlinks, setDocumentsLinks] = useState({ links: [] });
 
   const {
     title,
@@ -63,12 +63,8 @@ const CreateCourse = ({ user, addCourse }) => {
     medium_of_communication,
     category,
     time_zone,
-    topics,
-    member_name,
-    documents,
-    documentlinks,
     videolinks,
-    videos
+    videos,
   } = formData;
 
   const onChange = (e) =>
@@ -79,28 +75,28 @@ const CreateCourse = ({ user, addCourse }) => {
   };
 
   const selectedTags = (tags) => {
-    setFormData({
+    setTopics({
       topics: tags,
     });
   };
 
   const memberValues = (values) => {
-    setFormData({
-      member_name: values,
+    setTeamMember({
+      members: values.val,
     });
   };
 
   const documentSet = (values) => {
-    setFormData({
-      documents: values,
+    setDocuments({
+      docs: values.val,
     });
   };
   const linksSet = (values) => {
-    setFormData({
-      documentlinks: values,
+    setDocumentsLinks({
+      links: values.val,
     });
   };
-  const VidLinksSet= (values) => {
+  const VidLinksSet = (values) => {
     setFormData({
       videolinks: values,
     });
@@ -130,11 +126,11 @@ const CreateCourse = ({ user, addCourse }) => {
     formDataImg.append('coach_id', user && user.currentUser.id);
     formDataImg.append('category', category);
     formDataImg.append('time_zone', time_zone);
-    formDataImg.append('topics', JSON.stringify(topics));
-    formDataImg.append('member_name', JSON.stringify(member_name));
-    formDataImg.append('documentlinks', JSON.stringify(documentlinks));
+    formDataImg.append('topics', JSON.stringify(topics.topics));
+    formDataImg.append('member_name', JSON.stringify(team.members));
+    formDataImg.append('documentlinks', JSON.stringify(documentlinks.links));
     formDataImg.append('videolinks', JSON.stringify(videolinks));
-    documents.forEach((docs) => {
+    documents.docs.forEach((docs) => {
       formDataImg.append('documents', docs);
     });
     videos.forEach((docs) => {
@@ -174,7 +170,6 @@ const CreateCourse = ({ user, addCourse }) => {
         <div className='flex_r_j_end_align_center btn'>
           {activeStepIndex === 0 && (
             <button
-              type='submit'
               className='black_btn'
               disabled={!formState.isValid}
               onClick={(e) => {
@@ -191,11 +186,8 @@ const CreateCourse = ({ user, addCourse }) => {
                 Go Back
               </button>
               <button
-                type='submit'
                 className='black_btn'
-                disabled={!formState.isValid}
                 onClick={() => {
-                  // postSelectedTags();
                   goToNextStep();
                 }}
               >
@@ -591,7 +583,11 @@ const CreateCourse = ({ user, addCourse }) => {
                               <div class='common_input_wrapper_2'>
                                 <TagsInput
                                   selectedTags={selectedTags}
-                                  tags={['Sample']}
+                                  tags={
+                                    topics
+                                      ? [...topics.topics]
+                                      : []
+                                  }
                                 />
                               </div>
                             </div>
@@ -606,7 +602,10 @@ const CreateCourse = ({ user, addCourse }) => {
                           </div>
                           <div class='file_input_wrapper'>
                             <div class='course_link' id=''>
-                              <DynamicInput memberValues={memberValues} />
+                              <DynamicInput
+                                memberValues={memberValues}
+                                members={team.members && [...team.members]}
+                              />
                             </div>
                           </div>
                           <SimpleNavigation />
@@ -627,7 +626,10 @@ const CreateCourse = ({ user, addCourse }) => {
                               <div class='file_input_wrapper'>
                                 <div class='course_link' id=''>
                                   <div class='common_input_wrapper_2'>
-                                    <DynamicUpload documentSet={documentSet} />
+                                    <DynamicUpload 
+                                    documentSet={documentSet} 
+                                    docsupload={documents.docs && [...documents.docs]}
+                                    />
                                   </div>
                                 </div>
                               </div>
@@ -636,7 +638,10 @@ const CreateCourse = ({ user, addCourse }) => {
                               <div class='file_input_wrapper'>
                                 <div class='course_link' id=''>
                                   <div class='common_input_wrapper_2'>
-                                  <DynamicDocLinks linksSet={linksSet} />
+                                    <DynamicDocLinks
+                                    linksSet={linksSet}
+                                    doclinks={documentlinks.links && [...documentlinks.links]}
+                                    />
                                   </div>
                                 </div>
                               </div>
@@ -669,7 +674,7 @@ const CreateCourse = ({ user, addCourse }) => {
                               <div class='file_input_wrapper'>
                                 <div class='course_link' id=''>
                                   <div class='common_input_wrapper_2'>
-                                  <VideoLinks VidLinksSet={VidLinksSet} />
+                                    <VideoLinks VidLinksSet={VidLinksSet} />
                                   </div>
                                 </div>
                               </div>

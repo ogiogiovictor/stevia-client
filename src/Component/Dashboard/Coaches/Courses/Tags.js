@@ -5,6 +5,7 @@ const TagsInput = props => {
     const [tags, setTags] = useState(props.tags);
     const removeTags = indexToRemove => {
         setTags([...tags.filter((_, index) => index !== indexToRemove)]);
+        props.selectedTags([...tags.filter((_, index) => index !== indexToRemove)]);
     };
     const addTags = event => {
         if (event.target.value !== "") {
