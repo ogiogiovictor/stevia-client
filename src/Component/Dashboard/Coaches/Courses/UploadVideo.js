@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import './tab.css';
 
 const UploadVideo = (props) => {
-  const [values, setValues] = useState({ val: [] });
+  const [values, setValues] = useState({ val: props.vidupload });
 
   function createInputs() {
     return values.val.map((el, i) => (
@@ -11,27 +11,31 @@ const UploadVideo = (props) => {
           <div class='flex_r_a_center input_file_dummy'>
             <div class='file_btn'>Upload</div>
             <div class='file_input_label'>
-              <span>Add Video</span>
+              <span>{el ? el.name : 'Add Video'}</span>
             </div>
           </div>
 
           <input
             type='file'
+            className='form-control'
             name='videos'
-            value={el || ''}
+            value={''}
             placeholder='Add Video'
             onChange={handleChange.bind(i)}
           />
         </div>
-
-        <span onClick={removeClick.bind(i)}> remove </span>
+        <div class='input-group-prepend'>
+            <span onClick={() => removeClick(i)}>
+              <i className='far fa-times-circle'></i> remove
+            </span>
+          </div>
       </div>
     ));
   }
   
   function handleChange(event) {
     let vals = [...values.val];
-    vals[this] = event.target.value;
+    vals[this] = event.target.files[0];
     setValues({ val: vals });
     props.videoSet({ val: vals });
   }
@@ -41,10 +45,10 @@ const UploadVideo = (props) => {
     setValues({ val: [...values.val, ''] });
   };
 
-  const removeClick = () => {
-    let vals = [...values.val];
-    vals.splice(this, 1);
+  const removeClick = (i) => {
+    let vals = [...values.val.filter((_, index) => index !== i)];
     setValues({ val: vals });
+    props.videoSet({ val: vals });
   };
 
   return (

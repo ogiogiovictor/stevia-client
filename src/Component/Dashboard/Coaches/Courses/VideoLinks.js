@@ -1,18 +1,25 @@
 import React, { useState } from 'react';
 
 const VideoLinks = (props) => {
-  const [values, setValues] = useState({ val: [] });
+  const [values, setValues] = useState({ val: props.vidlinks });
 
   function createInputs() {
     return values.val.map((el, i) => (
       <div key={i}>
-        <input
-          type='text'
-          value={el || ''}
-          placeholder='Video Links'
-          onChange={handleChange.bind(i)}
-        />
-        <span onClick={removeClick.bind(i)}> remove </span>
+        <div class='input-group'>
+          <input
+            type='text'
+            className='form-control'
+            value={el || ''}
+            placeholder='Video Links'
+            onChange={handleChange.bind(i)}
+          />
+          <div class='input-group-prepend'>
+            <span onClick={() => removeClick(i)}>
+              <i className='far fa-times-circle'></i>
+            </span>
+          </div>
+        </div>
       </div>
     ));
   }
@@ -28,10 +35,10 @@ const VideoLinks = (props) => {
     setValues({ val: [...values.val, ''] });
   };
 
-  const removeClick = () => {
-    let vals = [...values.val];
-    vals.splice(this, 1);
+  const removeClick = (i) => {
+    let vals = [...values.val.filter((_, index) => index !== i)];
     setValues({ val: vals });
+    props.VidLinksSet({ val: vals });
   };
   return (
     <form>

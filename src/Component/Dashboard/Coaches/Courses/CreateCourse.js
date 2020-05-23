@@ -47,6 +47,8 @@ const CreateCourse = ({ user, addCourse }) => {
   const [topics, setTopics] = useState({ topics: [] });
   const [documents, setDocuments] = useState({ docs: [] });
   const [documentlinks, setDocumentsLinks] = useState({ links: [] });
+  const [videos, setVideos] = useState({ vids: [] });
+  const [videolinks, setvideoLinks] = useState({ vlinks: [] });
 
   const {
     title,
@@ -62,9 +64,7 @@ const CreateCourse = ({ user, addCourse }) => {
     price,
     medium_of_communication,
     category,
-    time_zone,
-    videolinks,
-    videos,
+    time_zone
   } = formData;
 
   const onChange = (e) =>
@@ -75,36 +75,24 @@ const CreateCourse = ({ user, addCourse }) => {
   };
 
   const selectedTags = (tags) => {
-    setTopics({
-      topics: tags,
-    });
+    setTopics({ topics: tags });
   };
 
   const memberValues = (values) => {
-    setTeamMember({
-      members: values.val,
-    });
+    setTeamMember({ members: values.val });
   };
 
   const documentSet = (values) => {
-    setDocuments({
-      docs: values.val,
-    });
+    setDocuments({ docs: values.val });
   };
   const linksSet = (values) => {
-    setDocumentsLinks({
-      links: values.val,
-    });
-  };
-  const VidLinksSet = (values) => {
-    setFormData({
-      videolinks: values,
-    });
+    setDocumentsLinks({ links: values.val});
   };
   const videoSet = (values) => {
-    setFormData({
-      videos: values,
-    });
+    setVideos({ vids: values.val });
+  };
+  const VidLinksSet = (values) => {
+    setvideoLinks({ vlinks: values.val });
   };
 
   const onSubmit = (e) => {
@@ -129,13 +117,12 @@ const CreateCourse = ({ user, addCourse }) => {
     formDataImg.append('topics', JSON.stringify(topics.topics));
     formDataImg.append('member_name', JSON.stringify(team.members));
     formDataImg.append('documentlinks', JSON.stringify(documentlinks.links));
-    formDataImg.append('videolinks', JSON.stringify(videolinks));
-    documents.docs.forEach((docs) => {
-      formDataImg.append('documents', docs);
-    });
-    videos.forEach((docs) => {
-      formDataImg.append('videos', docs);
-    });
+    formDataImg.append('videolinks', JSON.stringify(videolinks.vlinks));
+    formDataImg.append('documents', documents.docs);
+    formDataImg.append('videos', videos.vids);
+    // videos.vids.forEach((vid) => {
+    //   formDataImg.append('videos', vid);
+    // });
 
     const config = {
       headers: {
@@ -665,7 +652,10 @@ const CreateCourse = ({ user, addCourse }) => {
                               <div class='file_input_wrapper'>
                                 <div class='course_link' id=''>
                                   <div class='common_input_wrapper_2'>
-                                    <UploadVideo videoSet={videoSet} />
+                                    <UploadVideo
+                                    videoSet={videoSet}
+                                    vidupload={videos.vids && [...videos.vids]}
+                                    />
                                   </div>
                                 </div>
                               </div>
@@ -674,7 +664,10 @@ const CreateCourse = ({ user, addCourse }) => {
                               <div class='file_input_wrapper'>
                                 <div class='course_link' id=''>
                                   <div class='common_input_wrapper_2'>
-                                    <VideoLinks VidLinksSet={VidLinksSet} />
+                                    <VideoLinks
+                                    VidLinksSet={VidLinksSet}
+                                    vidlinks={videolinks.vlinks && [...videolinks.vlinks]}
+                                     />
                                   </div>
                                 </div>
                               </div>
