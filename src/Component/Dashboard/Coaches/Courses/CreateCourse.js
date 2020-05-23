@@ -42,6 +42,7 @@ const CreateCourse = ({ user, addCourse }) => {
     videos: [],
   });
   const [file, setFile] = useState('');
+  const [filename, setFilename] = useState('Add Logo');
   const [uploadPercentage, setUploadPercentage] = useState(0);
   const [team, setTeamMember] = useState({ members: [] });
   const [topics, setTopics] = useState({ topics: [] });
@@ -64,7 +65,7 @@ const CreateCourse = ({ user, addCourse }) => {
     price,
     medium_of_communication,
     category,
-    time_zone
+    time_zone,
   } = formData;
 
   const onChange = (e) =>
@@ -72,6 +73,7 @@ const CreateCourse = ({ user, addCourse }) => {
 
   const handleFile = (e) => {
     setFile(e.target.files[0]);
+    setFilename(e.target.files[0].name);
   };
 
   const selectedTags = (tags) => {
@@ -86,7 +88,7 @@ const CreateCourse = ({ user, addCourse }) => {
     setDocuments({ docs: values.val });
   };
   const linksSet = (values) => {
-    setDocumentsLinks({ links: values.val});
+    setDocumentsLinks({ links: values.val });
   };
   const videoSet = (values) => {
     setVideos({ vids: values.val });
@@ -381,7 +383,7 @@ const CreateCourse = ({ user, addCourse }) => {
                               <div class='flex_r_a_center input_file_dummy'>
                                 <div class='file_btn'>Upload</div>
                                 <div class='file_input_label'>
-                                  <span>Add logo</span>
+                                  <span>{filename}</span>
                                 </div>
                               </div>
                               <input
@@ -570,11 +572,7 @@ const CreateCourse = ({ user, addCourse }) => {
                               <div class='common_input_wrapper_2'>
                                 <TagsInput
                                   selectedTags={selectedTags}
-                                  tags={
-                                    topics
-                                      ? [...topics.topics]
-                                      : []
-                                  }
+                                  tags={topics ? [...topics.topics] : []}
                                 />
                               </div>
                             </div>
@@ -613,9 +611,11 @@ const CreateCourse = ({ user, addCourse }) => {
                               <div class='file_input_wrapper'>
                                 <div class='course_link' id=''>
                                   <div class='common_input_wrapper_2'>
-                                    <DynamicUpload 
-                                    documentSet={documentSet} 
-                                    docsupload={documents.docs && [...documents.docs]}
+                                    <DynamicUpload
+                                      documentSet={documentSet}
+                                      docsupload={
+                                        documents.docs && [...documents.docs]
+                                      }
                                     />
                                   </div>
                                 </div>
@@ -626,8 +626,12 @@ const CreateCourse = ({ user, addCourse }) => {
                                 <div class='course_link' id=''>
                                   <div class='common_input_wrapper_2'>
                                     <DynamicDocLinks
-                                    linksSet={linksSet}
-                                    doclinks={documentlinks.links && [...documentlinks.links]}
+                                      linksSet={linksSet}
+                                      doclinks={
+                                        documentlinks.links && [
+                                          ...documentlinks.links,
+                                        ]
+                                      }
                                     />
                                   </div>
                                 </div>
@@ -653,8 +657,10 @@ const CreateCourse = ({ user, addCourse }) => {
                                 <div class='course_link' id=''>
                                   <div class='common_input_wrapper_2'>
                                     <UploadVideo
-                                    videoSet={videoSet}
-                                    vidupload={videos.vids && [...videos.vids]}
+                                      videoSet={videoSet}
+                                      vidupload={
+                                        videos.vids && [...videos.vids]
+                                      }
                                     />
                                   </div>
                                 </div>
@@ -665,9 +671,13 @@ const CreateCourse = ({ user, addCourse }) => {
                                 <div class='course_link' id=''>
                                   <div class='common_input_wrapper_2'>
                                     <VideoLinks
-                                    VidLinksSet={VidLinksSet}
-                                    vidlinks={videolinks.vlinks && [...videolinks.vlinks]}
-                                     />
+                                      VidLinksSet={VidLinksSet}
+                                      vidlinks={
+                                        videolinks.vlinks && [
+                                          ...videolinks.vlinks,
+                                        ]
+                                      }
+                                    />
                                   </div>
                                 </div>
                               </div>
