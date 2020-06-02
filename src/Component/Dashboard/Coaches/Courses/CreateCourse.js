@@ -31,8 +31,6 @@ const CreateCourse = ({ user, addCourse }) => {
     youtube_video_link: '',
     time_zone: '',
     course_type: 'fullcourse',
-    videolinks: [],
-    videos: [],
     levelofexpertise: '',
   });
   const [file, setFile] = useState('');
