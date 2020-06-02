@@ -30,7 +30,7 @@ const TagsInput = (props) => {
         <input
           type='text'
           onKeyUp={(event) => (event.key === ' ' ? addTags(event) : null)}
-          placeholder='Enter the topics covered in this course and press spacebar to add'
+          placeholder='Enter topics covered in this course & press spacebar to add'
         />
       </div>
     </div>

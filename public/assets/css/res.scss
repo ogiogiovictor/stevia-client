@@ -175,7 +175,8 @@
     grid-column-gap: 1.3333%;
   }
 }
-
+@media only screen and (max-width: 1206px) {
+}
 @media only screen and (max-width: 1200px) {
   .members_card {
     // height: 350px;
@@ -235,6 +236,9 @@
 @media only screen and (max-width: 1166px) {
   .availability_section .profile_details .bottom_part .top .right {
     width: 75%;
+  }
+  .center_form {
+    width: 70%;
   }
 }
 
@@ -520,6 +524,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    text-align: center;
   }
   .coaches_index_sections .header .slider_toggler {
     margin-top: 35px;
@@ -727,6 +732,9 @@
   .interest_options_wrapper {
     grid-template-columns: 49% 49%;
     grid-gap: 15px 2%;
+  }
+  .center_form {
+    width: 85%;
   }
 }
 
@@ -1598,6 +1606,9 @@
     grid-row-gap: 20px;
     margin-top: -8px;
     margin-bottom: -8px;
+  }
+  .center_form {
+    width: 100%;
   }
 }
 

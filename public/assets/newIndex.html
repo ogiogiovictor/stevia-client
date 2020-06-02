@@ -30,6 +30,9 @@
       crossorigin="anonymous"
     />
 
+    <!-- AOS Animation library css -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+
     <!-- CSS Files -->
     <link rel="stylesheet" href="css/main.css" />
     <link rel="stylesheet" href="css/res.css" />
@@ -39,7 +42,7 @@
   </head>
   <body>
     <!-- <section class="sideMenu_section"> -->
-    <div class="flex_c_j_between sideMenu_div">
+    <div class="flex_c sideMenu_div">
       <div class="flex_r_j_between_align_center">
         <div class="site_logo_div">
           <img src="utils/images/15.png" alt="" />
@@ -50,6 +53,9 @@
       </div>
 
       <div class="flex_c top_nav_links top_nav_links_mobile">
+        <div>
+          <a href="#howToConnect"> How it works </a>
+        </div>
         <div>
           <a href="views/courses.html"> Courses </a>
         </div>
@@ -97,6 +103,9 @@
               <div class="flex_r_j_between_align_center top_nav_right">
                 <div class="flex_r top_nav_links">
                   <div>
+                    <a href="#howToConnect"> How it works </a>
+                  </div>
+                  <div>
                     <a href="views/courses.html"> Courses </a>
                   </div>
                   <div>
@@ -140,7 +149,12 @@
           <div class="site_center1">
             <div class="full_row index_header_columns">
               <!-- Header left side -->
-              <div class="header_left_col">
+              <div
+                class="header_left_col"
+                data-aos="fade-right"
+                data-aos-delay="200"
+                data-aos-duration="900"
+              >
                 <div class="full_row">
                   <span> Welcome to Stevia 👋</span>
                 </div>
@@ -164,7 +178,12 @@
               </div>
               <!-- /Header left side -->
               <!-- Header Right side -->
-              <div class="header_right_col">
+              <div
+                class="header_right_col"
+                data-aos="zoom-in-up"
+                data-aos-delay="200"
+                data-aos-duration="900"
+              >
                 <img src="./utils/images/new/Group23.png" alt="" />
               </div>
               <!-- /Header Right side -->
@@ -180,7 +199,12 @@
         <div class="full_row benefits_index_sections">
           <div class="site_center1">
             <!-- Header -->
-            <div class="full_row text-center header">
+            <div
+              class="full_row text-center header"
+              data-aos="zoom-in"
+              data-aos-delay="200"
+              data-aos-duration="900"
+            >
               <h5>Benefits of using Stevia</h5>
               <p>
                 A 1 on 1 collaborative learning tool that connects you to
@@ -191,10 +215,20 @@
             <!-- End of Header -->
             <!-- Benefits in Details -->
             <div class="full_row benefits_in_details">
-              <div class="benefits_in_details_image">
+              <div
+                class="benefits_in_details_image"
+                data-aos="fade-right"
+                data-aos-delay="200"
+                data-aos-duration="900"
+              >
                 <img src="./utils/images/new/Group14.png" alt="" />
               </div>
-              <div class="benefit_breakdown_wrapper">
+              <div
+                class="benefit_breakdown_wrapper"
+                data-aos="fade-left"
+                data-aos-delay="200"
+                data-aos-duration="900"
+              >
                 <div class="full_row flex_r benefit_breakdown">
                   <img
                     src="./utils/images/new/Group2.png"
@@ -249,11 +283,16 @@
       <section>
         <div class="full_row interests_index_sections">
           <div class="site_center1">
-            <div class="full_row header">
+            <div
+              class="full_row header"
+              data-aos="fade-up"
+              data-aos-delay="200"
+              data-aos-duration="900"
+            >
               <h5>What do you Want to Learn?</h5>
               <p>
-                Our courses have been crafted to challenge you. Whether you a
-                beginner or looking to upskill, you will <br />
+                Our courses have been crafted to challenge you. Whether you are
+                a beginner or looking to upskill, you will <br />
                 be taught practical lessons that would help you build the
                 experience and motivation to achieve your desired goals.
               </p>
@@ -320,21 +359,26 @@
       <!-- /Your Interest Section -->
 
       <!-- How to connect with a coach Section -->
-      <section>
+      <section id="howToConnect">
         <div class="ful_row howToConnect_index_sections">
           <div class="site_center1">
-            <div class="full_row text-center header">
+            <div
+              class="full_row text-center header"
+              data-aos="fade-up"
+              data-aos-delay="200"
+              data-aos-duration="900"
+            >
               <h5>Why Stevia</h5>
               <p>
                 On stevia you can find the boost that you need for your career
-                by taking a course or connecting with a success leader who would
-                inspire you to create, develop and increase your professional
-                value
+                by taking a course or connecting <br />
+                with a success leader who would inspire you to create, develop
+                and increase your professional value
               </p>
             </div>
             <!-- How to connect options -->
             <div class="full_row how_to_connect_options_wrapper">
-              <div class="how_to_connect_options">
+              <div class="how_to_connect_options" data-aos="fade-down">
                 <div class="how_to_connect_option_card">
                   <div class="full_row">
                     <img src="./utils/images/new/Group223.png" alt="" />
@@ -352,7 +396,7 @@
                   </div>
                 </div>
               </div>
-              <div class="how_to_connect_options">
+              <div class="how_to_connect_options" data-aos="fade-down">
                 <div class="how_to_connect_option_card">
                   <div class="full_row">
                     <img src="./utils/images/new/Group224.png" alt="" />
@@ -381,7 +425,12 @@
       <section>
         <div class="full_row coaches_index_sections">
           <div class="site_center1">
-            <div class="flex_r_wrap_j_between_align_end header">
+            <div
+              class="flex_r_wrap_j_between_align_end header"
+              data-aos="fade-up"
+              data-aos-delay="200"
+              data-aos-duration="900"
+            >
               <div>
                 <h5>Meet our mentors and course Instructors.</h5>
                 <p>
@@ -987,6 +1036,10 @@
       crossorigin="anonymous"
     ></script>
     <script src="js/jQuery.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+      AOS.init();
+    </script>
     <script src="js/main.js"></script>
   </body>
 </html>

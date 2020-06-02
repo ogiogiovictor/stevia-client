@@ -198,7 +198,7 @@ body
 
 /* End of Flex Displays */
 
-/* Site Widths 
+/* Site Widths */
 
 .full_row
     :width 100%
@@ -223,7 +223,7 @@ body
         width: 90%
 /* End of Site widths
 
-/* Buttons
+/* Buttons */
 
 button
     :border none
@@ -276,7 +276,7 @@ button
 
 /* End of Buttons
 
-/* Links style
+/* Links style */
 
 .rubber_effect_link
     transition: .3s
@@ -291,13 +291,12 @@ button
         text-decoration: none
         letter-spacing: .2px
 
-/* End of Links style
+/* End of Links style */
 
 
-/* Form ELements
+/* Form ELements */
 
 input, select 
-
     &:focus
         outline: 0
 
@@ -309,9 +308,9 @@ input, select
     font-size: 14px
     line-height: 20px
     color: var(--default_black)
-    background: url(../utils/images/18.png)
-        repeat: no-repeat
-        position: 92% center
+    // background: url(../utils/images/18.png)
+    //     repeat: no-repeat
+    //     position: 92% center
     width: 100%    
     border: 1px solid #E3E3E3
     padding: 10px
@@ -463,10 +462,10 @@ input, select
             color: #989898
 
 
-/* End of --- Form ELements
+/* End of --- Form ELements */
 
 /* End of General Style */
-/* Mobile side menu
+/* Mobile side menu */
 .sideMenu_div
     width: 300px
     height: 100vh
@@ -488,7 +487,7 @@ input, select
             font-size: 30px
             color: #EF4B4B
             cursor: pointer
-/* Site Header Style
+/* Site Header Style */
 .site_header    
     background:
         :image url("../utils/images/1.png")      
@@ -531,7 +530,7 @@ input, select
         height: 28px
         width: 100px
 .top_nav_right
-    @media only screen and ( max-width: 969px )
+    @media only screen and ( max-width: 1206px )
         display: none
 .top_nav_links
     margin:
@@ -568,14 +567,14 @@ input, select
             margin: 6px 0
     .bars_index
         background-color: #fff
-    @media only screen and ( max-width: 969px )
+    @media only screen and ( max-width: 1206px )
         display: block
 
 .top_nav_links_mobile
-    margin: 20px 0
+    margin: 30px 0 50px
     &>div
         margin: 15px 0
-        text-align: center        
+        // text-align: center        
 
 
 .header_desc_wrapper
@@ -641,7 +640,7 @@ input, select
 
 /* /General section style */
 
-/* Second section Style
+/* Second section Style */
 
 .second_section_wrapper_div
     background-color: $background-blue
@@ -986,7 +985,7 @@ input, select
                 font-size: 14px
                 line-height: 23px
                 text-transform: uppercase
-                color: var(--default_black)
+                color: $default_red
                 transition: .4s
 
                 &:hover
@@ -1184,7 +1183,7 @@ input, select
     
 /* /Courses Section Style */
 
-/* Coaches Section Style
+/* Coaches Section Style */
 
 .coaches_category
     // display: grid
@@ -1205,7 +1204,7 @@ input, select
 
 /* /Coaches Section Style
 
-// Contact Page Style
+/* Contact Page Style */
 
 .contact_section_wrapper_div
     background-color: $background-blue
@@ -1523,7 +1522,7 @@ input, select
                 font-size: 14px
                 line-height: 23px
                 text-transform: uppercase
-                color: var(--default_black)
+                color: $default_red
                 transition: .4s
                 &:hover
                     text-decoration: none
@@ -2045,7 +2044,7 @@ input, select
         background: #FFFFFF
         box-shadow: 0px 7px 24px rgba(0, 0, 0, 0.15)
         border-radius: 5px
-        margin-left: 40px
+        margin-left: 30px
         // mix-blend-mode: normal
         // opacity: 0.4
         .review_text
@@ -7260,14 +7259,23 @@ h4.write_ratings_head
         background: #FFFFFF
         border-radius: 10px
         padding: 15px 25px
+        transition: .3s
         span
             font-family: circular
             font-size: 18px
             line-height: 21px
-            color: #303037
+            color: $default_black
             margin-left: 14px
+            transition: .4s
         i
             color: #979797
+        &:hover
+            img
+                // animation: bounce
+                // animation-duration: 2s
+            span
+                // color: $default_red
+
 
 .howToConnect_index_sections
     padding:
@@ -7308,6 +7316,8 @@ h4.write_ratings_head
         box-shadow: 0px 10px 20px rgba(14, 14, 103, 0.05)
         border-radius: 5px
         transition: .3s
+        position: relative
+        overflow: hidden
         &:hover
             box-shadow: 0px 2px 10px rgba(14, 14, 103, 0.05)           
 
@@ -7335,25 +7345,42 @@ h4.write_ratings_head
                 line-height: 24px
                 text-transform: uppercase
                 color: $default_red
-                position: relative
-                &::after
-                    content: ""
-                    position: absolute
-                    left: 0
-                    bottom: 0
-                    width: 100%
-                    height: 2px
-                    background-color: $default_red
-                    transform: translateY(2px)
-                    transition: .4s
-                    opacity: 0
+                transition: .3s
+                // position: relative
+                // &::after
+                //     content: ""
+                //     position: absolute
+                //     left: 0
+                //     bottom: 0
+                //     width: 100%
+                //     height: 2px
+                //     background-color: $default_red
+                //     transform: translateY(2px)
+                //     transition: .4s
+                //     opacity: 0
 
                 &:hover
                     text-decoration: none
+                    color: #575757
                     &::after
                         // background-color: $default_red
-                        transform: translateY(8px)
-                        opacity: 1
+                        // transform: translateY(8px)
+                        // opacity: 1
+        &::after
+            content: ""
+            position: absolute
+            top: 0
+            right: 0
+            width: 200px
+            height: 200px
+            clip-path: circle(50% at 50% 50%)
+            background-color: #ef4b4b15
+            transform: translate(100%, -100%)
+            transition: .4s
+        &:hover
+            &::after
+                transform: translate(40%,-40%)
+
 
 .coaches_index_sections
     background:
@@ -7387,9 +7414,14 @@ h4.write_ratings_head
         border-radius: 50%
         margin-left: 30px
         cursor: pointer
+        transition: .3s
         i
             color: $default_black
             font-size: 12px
+        &:hover
+            background-color: $default_black
+            i
+                color: #fff
 
 .slider_full_row
     overflow-x: scroll
@@ -7473,9 +7505,14 @@ h4.write_ratings_head
         border-radius: 50%
         margin-left: 30px
         cursor: pointer
+        transition: .3s
         i
             color: #fff
             font-size: 12px
+        &:hover
+            background-color: #fff
+            i
+                color: $default_black
 
 .jobs_index_sections
     padding-bottom: 100px
@@ -7535,6 +7572,44 @@ h4.write_ratings_head
     line-height: 30px
     color: #989898
     font-family: nunito
+
+/* Course creation form remodified */
+.center_form
+    width: 55%
+    margin:
+        left: auto
+        right: auto
+    
+.course_creation_flow
+    $circle-width: 30px
+    width: 70%
+    margin:
+        left: auto
+        right: auto
+        bottom: 50px
+    .flow_circle
+        width: $circle-width
+        height: 30px
+        border-radius: 50%
+        background-color: #e8e8e8
+        transition: .4s
+        cursor: pointer
+        &:hover
+            background-color: $default_red
+    .flow_circle_red
+        background-color: $default_red
+    .flow_line
+        border-radius: 9px
+        background-color: #e8e8e8
+        height: 5px
+        width: calc((100% - (#{$circle-width} * 3)) / 2.97)
+    
+.courseCreation_step_two, .courseCreation_step_three
+    display: none
+
+.label
+    width: 20%
+/* End of Course creation form remodified */
 
 /* ======================End of DASHBOARD Style=================== */
     

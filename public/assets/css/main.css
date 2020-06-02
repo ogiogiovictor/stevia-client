@@ -355,9 +355,6 @@ input:focus, select:focus {
   font-size: 14px;
   line-height: 20px;
   color: var(--default_black);
-  background: url(../utils/images/18.png);
-  background-repeat: no-repeat;
-  background-position: 92% center;
   width: 100%;
   border: 1px solid #E3E3E3;
   padding: 10px;
@@ -578,7 +575,7 @@ input:focus, select:focus {
   width: 100px;
 }
 
-@media only screen and (max-width: 969px) {
+@media only screen and (max-width: 1206px) {
   .top_nav_right {
     display: none;
   }
@@ -636,19 +633,18 @@ input:focus, select:focus {
   background-color: #fff;
 }
 
-@media only screen and (max-width: 969px) {
+@media only screen and (max-width: 1206px) {
   .mobile_nav_toggler {
     display: block;
   }
 }
 
 .top_nav_links_mobile {
-  margin: 20px 0;
+  margin: 30px 0 50px;
 }
 
 .top_nav_links_mobile > div {
   margin: 15px 0;
-  text-align: center;
 }
 
 .header_desc_wrapper {
@@ -1155,7 +1151,7 @@ input:focus, select:focus {
   font-size: 14px;
   line-height: 23px;
   text-transform: uppercase;
-  color: var(--default_black);
+  color: #EF4B4B;
   transition: .4s;
 }
 
@@ -1380,6 +1376,7 @@ input:focus, select:focus {
 }
 
 /* /Coaches Section Style */
+/* Contact Page Style */
 .contact_section_wrapper_div {
   background-color: #f0f3fc;
 }
@@ -1713,7 +1710,7 @@ input:focus, select:focus {
   font-size: 14px;
   line-height: 23px;
   text-transform: uppercase;
-  color: var(--default_black);
+  color: #EF4B4B;
   transition: .4s;
 }
 
@@ -2247,7 +2244,7 @@ input:focus, select:focus {
   background: #FFFFFF;
   box-shadow: 0px 7px 24px rgba(0, 0, 0, 0.15);
   border-radius: 5px;
-  margin-left: 40px;
+  margin-left: 30px;
 }
 
 .review_lists .each_review .review_text {
@@ -4940,13 +4937,19 @@ section.dashboard_body .appointments_part .appointment_container .empty_content 
   box-shadow: 0px 0px 15px rgba(117, 176, 123, 0.26);
 }
 
-.create_course_form_section .service_section .servive_type .servive_type_options > div p {
+.create_course_form_section .service_section .servive_type .servive_type_options > div label {
   font-style: normal;
   font-weight: normal;
   font-size: 14px;
   line-height: 20px;
   color: #989898;
+  cursor: pointer;
 }
+
+.create_course_form_section .service_section .servive_type .servive_type_options > div input[type="radio"] {
+  display: none;
+}
+
 
 .create_course_form_section .about_the_course {
   margin-top: 20px;
@@ -8681,6 +8684,7 @@ h4.write_ratings_head {
   background: #FFFFFF;
   border-radius: 10px;
   padding: 15px 25px;
+  transition: .3s;
 }
 
 .interest_options_wrapper .interest_options span {
@@ -8689,6 +8693,7 @@ h4.write_ratings_head {
   line-height: 21px;
   color: #303037;
   margin-left: 14px;
+  transition: .4s;
 }
 
 .interest_options_wrapper .interest_options i {
@@ -8739,6 +8744,8 @@ h4.write_ratings_head {
   box-shadow: 0px 10px 20px rgba(14, 14, 103, 0.05);
   border-radius: 5px;
   transition: .3s;
+  position: relative;
+  overflow: hidden;
 }
 
 .how_to_connect_options .how_to_connect_option_card:hover {
@@ -8776,29 +8783,29 @@ h4.write_ratings_head {
   line-height: 24px;
   text-transform: uppercase;
   color: #EF4B4B;
-  position: relative;
-}
-
-.how_to_connect_options .how_to_connect_option_card .link a::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  width: 100%;
-  height: 2px;
-  background-color: #EF4B4B;
-  transform: translateY(2px);
-  transition: .4s;
-  opacity: 0;
+  transition: .3s;
 }
 
 .how_to_connect_options .how_to_connect_option_card .link a:hover {
   text-decoration: none;
+  color: #575757;
 }
 
-.how_to_connect_options .how_to_connect_option_card .link a:hover::after {
-  transform: translateY(8px);
-  opacity: 1;
+.how_to_connect_options .how_to_connect_option_card::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 200px;
+  height: 200px;
+  clip-path: circle(50% at 50% 50%);
+  background-color: #ef4b4b15;
+  transform: translate(100%, -100%);
+  transition: .4s;
+}
+
+.how_to_connect_options .how_to_connect_option_card:hover::after {
+  transform: translate(40%, -40%);
 }
 
 .coaches_index_sections {
@@ -8837,11 +8844,20 @@ h4.write_ratings_head {
   border-radius: 50%;
   margin-left: 30px;
   cursor: pointer;
+  transition: .3s;
 }
 
 .slider_toggler .slider_toggler_container i {
   color: #303037;
   font-size: 12px;
+}
+
+.slider_toggler .slider_toggler_container:hover {
+  background-color: #303037;
+}
+
+.slider_toggler .slider_toggler_container:hover i {
+  color: #fff;
 }
 
 .slider_full_row {
@@ -8933,11 +8949,20 @@ h4.write_ratings_head {
   border-radius: 50%;
   margin-left: 30px;
   cursor: pointer;
+  transition: .3s;
 }
 
 .slider_toggler2 .slider_toggler_container i {
   color: #fff;
   font-size: 12px;
+}
+
+.slider_toggler2 .slider_toggler_container:hover {
+  background-color: #fff;
+}
+
+.slider_toggler2 .slider_toggler_container:hover i {
+  color: #303037;
 }
 
 .jobs_index_sections {
@@ -9008,4 +9033,51 @@ h4.write_ratings_head {
   font-family: nunito;
 }
 
+/* Course creation form remodified */
+.center_form {
+  width: 55%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.course_creation_flow {
+  width: 70%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 50px;
+}
+
+.course_creation_flow .flow_circle {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background-color: #e8e8e8;
+  transition: .4s;
+  cursor: pointer;
+}
+
+.course_creation_flow .flow_circle:hover {
+  background-color: #EF4B4B;
+}
+
+.course_creation_flow .flow_circle_red {
+  background-color: #EF4B4B;
+}
+
+.course_creation_flow .flow_line {
+  border-radius: 9px;
+  background-color: #e8e8e8;
+  height: 5px;
+  width: calc((100% - (30px * 3)) / 2.97);
+}
+
+.courseCreation_step_two, .courseCreation_step_three {
+  display: none;
+}
+
+.label {
+  width: 20%;
+}
+
+/* End of Course creation form remodified */
 /* ======================End of DASHBOARD Style=================== */

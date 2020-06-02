@@ -1,4 +1,4 @@
-window.$(document).ready(function () {
+jQuery(document).ready(function ($) {
   // Start of Input div with <label> effect
   $(
     ".common_input_wrapper_2 input, .common_input_wrapper_2 textarea, .common_input_wrapper_with_icon input, .common_input_wrapper_with_icon textarea"
@@ -55,7 +55,7 @@ window.$(document).ready(function () {
 
   // Start of review scroll
   var testi_width = 545 * $(".list_container .each_review").length;
-  $(".review_lists .list_container").css("width", testi_width + "px");
+  $(".review_lists .list_container").css({ width: testi_width + "px" });
   // End of review scroll
 
   // Start of landing page script
@@ -369,6 +369,40 @@ window.$(document).ready(function () {
     });
   });
   // End of Jobs Slider Toggler
+  // Interests animation
+  $(".interest_options").hover(function () {
+    $(this).find("img").toggleClass("shake_animate");
+  });
+  // End of Interests animation
+  $("#goToStepTwo").click(function () {
+    $(".courseCreation_step_one").fadeOut(200);
+    $(".courseCreation_step_two").delay(200).fadeIn();
+
+    $(".flow_circle1").addClass("flow_circle_red");
+  });
+
+  $("#backToStepOne").click(function () {
+    $(".courseCreation_step_two").fadeOut(200);
+    $(".courseCreation_step_one").delay(200).fadeIn();
+
+    $(".flow_circle1").removeClass("flow_circle_red");
+  });
+  $("#goToStepThree").click(function () {
+    $(".courseCreation_step_two").fadeOut(200);
+    $(".courseCreation_step_three").delay(200).fadeIn();
+
+    $(".flow_circle2").addClass("flow_circle_red");
+  });
+
+  $("#backToStepOTwo").click(function () {
+    $(".courseCreation_step_three").fadeOut(200);
+    $(".courseCreation_step_two").delay(200).fadeIn();
+
+    $(".flow_circle2").removeClass("flow_circle_red");
+  });
+  // Course Creation form
+  $("");
+  // End of Course Creation form
 });
 
 var w = window.innerWidth;

@@ -6,21 +6,14 @@ import { connect } from 'react-redux';
 import { addCourse, addTopics } from '../../../../actions/course';
 import Progress2 from '../../ProfileSettings/Progress';
 import { withRouter } from 'react-router-dom';
-import { useForm } from 'react-hook-form';
-import { Wizard, Steps, Step, Navigation, Progress } from 'react-wizr';
 import TagsInput from './Tags';
 import DynamicInput from './DynamicInput';
 import DynamicUpload from './DynamicUpload';
-import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
-import './tab.css';
 import DynamicDocLinks from './DynamicDocLinks';
 import UploadVideo from './UploadVideo';
 import VideoLinks from './VideoLinks';
 
 const CreateCourse = ({ user, addCourse }) => {
-  const { formState } = useForm({
-    mode: 'onChange',
-  });
 
   const [formData, setFormData] = useState({
     coach_id: '',
@@ -40,6 +33,7 @@ const CreateCourse = ({ user, addCourse }) => {
     course_type: 'fullcourse',
     videolinks: [],
     videos: [],
+    levelofexpertise: '',
   });
   const [file, setFile] = useState('');
   const [filename, setFilename] = useState('Add Logo');
@@ -66,10 +60,13 @@ const CreateCourse = ({ user, addCourse }) => {
     medium_of_communication,
     category,
     time_zone,
+    levelofexpertise,
   } = formData;
 
   const onChange = (e) =>
     setFormData({ ...formData, [e.target.name]: e.target.value });
+
+  console.log(category);
 
   const handleFile = (e) => {
     setFile(e.target.files[0]);
@@ -82,18 +79,19 @@ const CreateCourse = ({ user, addCourse }) => {
 
   const memberValues = (values) => {
     setTeamMember({ members: values.val });
+    console.log(team.members);
   };
 
   const documentSet = (values) => {
     setDocuments({ docs: values.val });
-    console.log(documents)
+    console.log(documents.docs);
   };
   const linksSet = (values) => {
     setDocumentsLinks({ links: values.val });
   };
   const videoSet = (values) => {
     setVideos({ vids: values.val });
-    console.log(videos)
+    console.log(videos.vids);
   };
   const VidLinksSet = (values) => {
     setvideoLinks({ vlinks: values.val });
@@ -124,6 +122,7 @@ const CreateCourse = ({ user, addCourse }) => {
     formDataImg.append('videolinks', JSON.stringify(videolinks.vlinks));
     formDataImg.append('documents', documents.docs);
     formDataImg.append('videos', videos.vids);
+    formDataImg.append('levelofexpertise', levelofexpertise);
     // videos.vids.forEach((vid) => {
     //   formDataImg.append('videos', vid);
     // });
@@ -145,329 +144,244 @@ const CreateCourse = ({ user, addCourse }) => {
     addCourse(formDataImg, config);
 
     console.log(formData);
-  };
-
-  // const postSelectedTags = () => {
-  //   const formData = new FormData();
-  //   formData.append('coach_id', courses && courses[0].coach_id);
-  //   formData.append('course_id', courses && courses[0].id);
-  //   formData.append('topics', JSON.stringify(topics));
-  //   addTopics(formData);
-  // };
-
-  const SimpleNavigation = () => (
-    <Navigation
-      render={({ activeStepIndex, goToNextStep, goToPrevStep, totalSteps }) => (
-        <div className='flex_r_j_end_align_center btn'>
-          {activeStepIndex === 0 && (
-            <button
-              className='black_btn'
-              disabled={!formState.isValid}
-              onClick={(e) => {
-                // onSubmit(e);
-                goToNextStep();
-              }}
-            >
-              Continue
-            </button>
-          )}
-          {activeStepIndex === 1 && (
-            <div>
-              <button className='grey_btn' onClick={goToPrevStep}>
-                Go Back
-              </button>
-              <button
-                className='black_btn'
-                onClick={() => {
-                  goToNextStep();
-                }}
-              >
-                Continue
-              </button>
-            </div>
-          )}
-          {activeStepIndex === 2 && (
-            <div>
-              <button className='grey_btn' onClick={goToPrevStep}>
-                Go Back
-              </button>
-              <button className='black_btn' onClick={goToNextStep}>
-                Continue
-              </button>
-            </div>
-          )}
-          {activeStepIndex === 3 && (
-            <div>
-              <button className='grey_btn' onClick={goToPrevStep}>
-                Go Back
-              </button>
-              <button className='black_btn' onClick={goToNextStep}>
-                Continue
-              </button>
-            </div>
-          )}
-          {activeStepIndex === 4 && (
-            <div>
-              <button className='grey_btn' onClick={goToPrevStep}>
-                Go Back
-              </button>
-              <button className='black_btn' onClick={goToNextStep}>
-                Finish
-              </button>
-            </div>
-          )}
-        </div>
-      )}
-    />
-  );
-
-  const ProgressBar = () => (
-    <Progress
-      render={({ percentage }) => {
-        const styles = {
-          width: `${percentage}%`,
-        };
-
-        return (
-          <div className='ProgressBar no-print'>
-            <span className='ProgressBar-value' style={styles} />
-          </div>
-        );
-      }}
-    />
-  );
-
+  };  
+  
   return (
     <Fragment>
       <section className='whole_page_wrapper'>
         <Header menu={user && user.menu} />
         <section className='dashboard_body'>
           <Topnav user={user} htitle='Course Details' back='Back to Course' />
-          <div className='full_row create_course_form_section'>
-            <div className='dashboard_center'>
-              <form onSubmit={(e) => onSubmit(e)}>
-                <div className='full_row create_course_form'>
-                  <Wizard
-                    onStepChanged={({ step }) =>
-                      console.log(`Step changed: ${step.id}`)
-                    }
-                  >
-                    <ProgressBar />
+          <div class='full_row create_course_form_section'>
+            <div class='dashboard_center'>
+              <div class='center_form'>
+                <div class='full_row create_course_form'>
+                  <div class='full_row flex_r_j_between_align_center course_creation_flow'>
+                    <div class='flow_circle flow_circle1'></div>
+                    <div class='flow_line'></div>
+                    <div class='flow_circle flow_circle2'></div>
+                    <div class='flow_line'></div>
+                    <div class='flow_circle flow_circle3'></div>
+                  </div>
 
-                    <Steps>
-                      <Step id='first'>
-                        <div class='full_row service_section'>
-                          <div class='full_row header'>
-                            <p>Course Category</p>
+                  <div class='courseCreation_step_one'>
+                    <div class='full_row service_section'>
+                      <div class='full_row header'>
+                        <p>Course Category</p>
+                      </div>
+                      <div class='full_row servive_type'>
+                        <div class='flex_r_wrap servive_type_options'>
+                          <div>
+                            <input
+                              type='radio'
+                              name='category'
+                              value='Marketing'
+                              id='marketing'
+                              onChange={(e) => onChange(e)}
+                            />
+                            <label for="marketing">Marketing</label>
                           </div>
-                          <div class='full_row signup_option flex_r_wrap'>
-                            <div className='flex_r'>
-                              <div className='radio_option'>
-                                <label htmlFor='marketing'>
-                                  <input
-                                    type='radio'
-                                    name='category'
-                                    value='marketing'
-                                    id='marketing'
-                                    onChange={(e) => onChange(e)}
-                                  />
-                                  <span></span>
-                                </label>
-                              </div>
-                              <div class='notification_label'>
-                                <p>Marketing</p>
-                              </div>
-                            </div>
+                          <div>
+                            <input
+                              type='radio'
+                              name='category'
+                              value='Design'
+                              id='design'
+                              onChange={(e) => onChange(e)}
+                            />
+                            <label for='design'>Design</label>
+                          </div>
+                          <div class='active'>
+                            <input
+                              type='radio'
+                              name='category'
+                              value='Software Development'
+                              id='softwaredevelopment'
+                              onChange={(e) => onChange(e)}
+                            />
+                            <label for='softwaredevelopment'>Software Development</label>
+                          </div>
+                          <div>
+                            <input
+                              type='radio'
+                              name='category'
+                              value='Creative'
+                              id='creative'
+                              onChange={(e) => onChange(e)}
+                            />
+                            <label for='creative'>Creative</label>
+                          </div>
+                          <div>
+                            <input
+                              type='radio'
+                              name='category'
+                              value='Data Science'
+                              id='datascience'
+                              onChange={(e) => onChange(e)}
+                            />
+                            <label for='datascience'>Data Science</label>
+                          </div>
+                          <div>
+                            <input
+                              type='radio'
+                              name='category'
+                              value='Product Development'
+                              id='productdevelopment'
+                              onChange={(e) => onChange(e)}
+                            />
+                            <label for='productdevelopment'>Product Development</label>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
 
-                            <div className='flex_r'>
-                              <div className='radio_option'>
-                                <label htmlFor='design'>
-                                  <input
-                                    type='radio'
-                                    name='category'
-                                    value='design'
-                                    id='design'
-                                    onChange={(e) => onChange(e)}
-                                  />
-                                  <span></span>
-                                </label>
-                              </div>
-                              <div class='notification_label'>
-                                <p>Design</p>
-                              </div>
+                  <div class='full_row about_the_course'>
+                    <div class='courseCreation_step_one'>
+                      <div class='full_row header'>
+                        <p>About the cousre</p>
+                      </div>
+                      <div class='common_input_wrapper_2'>
+                        <input
+                          type='text'
+                          name='title'
+                          placeholder='Course Name'
+                          value={title}
+                          onChange={(e) => onChange(e)}
+                          required
+                        />
+                      </div>
+                      <div class='common_input_wrapper_2'>
+                        <div class='custum_file_input'>
+                          <div class='flex_r_a_center input_file_dummy'>
+                            <div class='file_btn'>Upload</div>
+                            <div class='file_input_label'>
+                              <span>{filename}</span>
                             </div>
-                            <div className='flex_r'>
-                              <div className='radio_option'>
-                                <label htmlFor='softwaredevelopment'>
-                                  <input
-                                    type='radio'
-                                    name='category'
-                                    value='Software Development'
-                                    id='softwaredevelopment'
-                                    onChange={(e) => onChange(e)}
-                                  />
-                                  <span></span>
-                                </label>
+                          </div>
+                          <input
+                            type='file'
+                            name='image'
+                            id='image'
+                            onChange={handleFile}
+                            required
+                          />
+                        </div>
+                      </div>
+                      {uploadPercentage > 0 ? (
+                        <Progress2 percentage={uploadPercentage} />
+                      ) : (
+                        ''
+                      )}
+
+                      <div class='common_input_wrapper_2'>
+                        <input
+                          type='text'
+                          name='youtube_video_link'
+                          placeholder='Course Video Link'
+                          value={youtube_video_link}
+                          onChange={(e) => onChange(e)}
+                          required
+                        />
+                      </div>
+
+                      <div class='common_input_wrapper_2'>
+                        <select
+                          name='levelofexpertise'
+                          id='levelofexpertise'
+                          onChange={(e) => onChange(e)}
+                          class='search_select search_select2'
+                        >
+                          <option> Level of expertise </option>
+                          <option value='Beginner'> Beginner </option>
+                          <option value='Intermediate'> Intermediate </option>
+                          <option value='Expert'> Expert </option>
+                        </select>
+                      </div>
+
+                      <div class='flex_r_j_end_align_center form_buttons'>
+                        <button class='black_btn' id='goToStepTwo'>
+                          Next
+                        </button>
+                      </div>
+                    </div>
+
+                    <div class='courseCreation_step_two'>
+                      <div class='common_input_wrapper_2'>
+                        <input
+                          type='number'
+                          name='course_duration'
+                          placeholder='Course Duration (in weeks)'
+                          value={course_duration}
+                          onChange={(e) => onChange(e)}
+                          required
+                        />
+                      </div>
+
+                      <div class='common_input_wrapper_2'>
+                        <input
+                          type='number'
+                          name='price'
+                          placeholder='Price'
+                          value={price}
+                          onChange={(e) => onChange(e)}
+                          required
+                        />
+                      </div>
+
+                      <div class='common_input_wrapper_2'>
+                        <input
+                          type='number'
+                          name='no_of_student'
+                          placeholder='Number of student'
+                          value={no_of_student}
+                          onChange={(e) => onChange(e)}
+                          required
+                        />
+                      </div>
+
+                      <div class='common_input_wrapper_2'>
+                        <textarea
+                          name='brief_description'
+                          cols='10'
+                          rows='2'
+                          placeholder='Brief Course description'
+                          value={brief_description}
+                          onChange={(e) => onChange(e)}
+                          required
+                        />
+                      </div>
+
+                      <div class='common_input_wrapper_2'>
+                        <textarea
+                          name='course_description'
+                          cols='10'
+                          rows='5'
+                          placeholder='Full Course description'
+                          value={course_description}
+                          onChange={(e) => onChange(e)}
+                          required
+                        ></textarea>
+                      </div>
+
+                      <div class='full_row'>
+                        <div>
+                          <div>
+                            <div>
+                              <div class='full_row header header2'>
+                                <p>Topics Covered</p>
                               </div>
-                              <div class='notification_label'>
-                                <p>Software Development</p>
-                              </div>
-                            </div>
-                            <div className='flex_r'>
-                              <div className='radio_option'>
-                                <label htmlFor='creative'>
-                                  <input
-                                    type='radio'
-                                    name='category'
-                                    value='Creative'
-                                    id='creative'
-                                    onChange={(e) => onChange(e)}
-                                  />
-                                  <span></span>
-                                </label>
-                              </div>
-                              <div class='notification_label'>
-                                <p>Creative</p>
-                              </div>
-                            </div>
-                            <div className='flex_r'>
-                              <div className='radio_option'>
-                                <label htmlFor='datascience'>
-                                  <input
-                                    type='radio'
-                                    name='category'
-                                    value='Data Science'
-                                    id='datascience'
-                                    onChange={(e) => onChange(e)}
-                                  />
-                                  <span></span>
-                                </label>
-                              </div>
-                              <div class='notification_label'>
-                                <p>Data Science</p>
-                              </div>
-                            </div>
-                            <div className='flex_r'>
-                              <div className='radio_option'>
-                                <label htmlFor='productdevelopment'>
-                                  <input
-                                    type='radio'
-                                    name='category'
-                                    value='Product Development'
-                                    id='productdevelopment'
-                                    onChange={(e) => onChange(e)}
-                                  />
-                                  <span></span>
-                                </label>
-                              </div>
-                              <div class='notification_label'>
-                                <p>Product Development</p>
+                              <div class='common_input_wrapper_2'>
+                                <TagsInput
+                                  selectedTags={selectedTags}
+                                  tags={topics ? [...topics.topics] : []}
+                                />
                               </div>
                             </div>
                           </div>
                         </div>
-                        <div className='full_row about_the_course'>
-                          <div className='full_row header'>
-                            <p> About the course </p>
-                          </div>
-                          <div className='common_input_wrapper_2'>
-                            <input
-                              type='text'
-                              name='title'
-                              placeholder='Course Name'
-                              value={title}
-                              onChange={(e) => onChange(e)}
-                              required
-                            />
-                          </div>
-                          <div className='common_input_wrapper_2'>
-                            <div class='custum_file_input'>
-                              <div class='flex_r_a_center input_file_dummy'>
-                                <div class='file_btn'>Upload</div>
-                                <div class='file_input_label'>
-                                  <span>{filename}</span>
-                                </div>
-                              </div>
-                              <input
-                                type='file'
-                                name='image'
-                                id='image'
-                                onChange={handleFile}
-                                required
-                              />
-                            </div>
-                          </div>
-                          {uploadPercentage > 0 ? (
-                            <Progress2 percentage={uploadPercentage} />
-                          ) : (
-                            ''
-                          )}
-                          <div class='full_row cols-2'>
-                            <div class='common_input_wrapper_2'>
-                              <input
-                                type='text'
-                                name='youtube_video_link'
-                                placeholder='Course Youtube Video Link'
-                                value={youtube_video_link}
-                                onChange={(e) => onChange(e)}
-                                required
-                              />
-                            </div>
-                            <div class='common_input_wrapper_2'>
-                              <input
-                                type='number'
-                                name='course_duration'
-                                placeholder='Course Duration (in minutes)'
-                                value={course_duration}
-                                onChange={(e) => onChange(e)}
-                                required
-                              />
-                            </div>
-                          </div>
-                          <div className='full_row cols-2'>
-                            <div className='common_input_wrapper_2'>
-                              <input
-                                type='number'
-                                name='price'
-                                placeholder='Price'
-                                value={price}
-                                onChange={(e) => onChange(e)}
-                                required
-                              />
-                            </div>
-                            <div className='common_input_wrapper_2'>
-                              <input
-                                type='number'
-                                name='no_of_student'
-                                placeholder='Number of student'
-                                value={no_of_student}
-                                onChange={(e) => onChange(e)}
-                                required
-                              />
-                            </div>
-                          </div>
-                          <div className='common_input_wrapper_2'>
-                            <textarea
-                              name='brief_description'
-                              cols='10'
-                              rows='2'
-                              placeholder='Brief Course description'
-                              value={brief_description}
-                              onChange={(e) => onChange(e)}
-                              required
-                            />
-                          </div>
-                          <div className='common_input_wrapper_2'>
-                            <textarea
-                              name='course_description'
-                              cols='10'
-                              rows='5'
-                              placeholder='Course description'
-                              value={course_description}
-                              onChange={(e) => onChange(e)}
-                              required
-                            ></textarea>
-                          </div>
+
+                        <div>
                           <div>
                             <div class='full_row header header2'>
                               <p>Select Communication channel</p>
@@ -492,206 +406,240 @@ const CreateCourse = ({ user, addCourse }) => {
                               </select>
                             </div>
                           </div>
-                          <div className='flex_r_j_between_align_center date_n_time'>
-                            <div className='flex_r_a_center left'>
-                              <div className='label'>
-                                <p> Date </p>
-                              </div>
-                              <div className='common_input_wrapper_2'>
-                                <input
-                                  type='date'
-                                  name='date'
-                                  value={date}
-                                  placeholder='MM / DD / YY'
-                                  onChange={(e) => onChange(e)}
-                                  required
-                                />
-                              </div>
-                            </div>
-                            <div className='flex_r_j_end_align_center right'>
-                              <div className='flex_r_a_center time'>
-                                <div className='label'>
-                                  <p> Time </p>
-                                </div>
-                                <div className='common_input_wrapper_2'>
-                                  <input
-                                    type='time'
-                                    name='from_time'
-                                    value={from_time}
-                                    placeholder='00:00 AM'
-                                    onChange={(e) => onChange(e)}
-                                    required
-                                  />
-                                </div>
-                              </div>
-                              <div className='flex_r_a_center to'>
-                                <div className='label'>
-                                  <p> To </p>
-                                </div>
-                                <div className='common_input_wrapper_2'>
-                                  <input
-                                    type='time'
-                                    name='to_time'
-                                    value={to_time}
-                                    placeholder='00:00 AM'
-                                    onChange={(e) => onChange(e)}
-                                    required
-                                  />
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                          <div class='flex_r_j_between_align_center date_n_time'>
-                            <div class='flex_r_a_center left'>
-                              <div class='label'>
-                                <p>Time Zone</p>
-                              </div>
-                              <div class='common_input_wrapper_2'>
-                                <select
-                                  name='time_zone'
-                                  onChange={(e) => onChange(e)}
-                                  class='search_select search_select2'
-                                >
-                                  <option value='+1'>
-                                    (+01:00) West Central Africa
-                                  </option>
-                                </select>
-                              </div>
-                            </div>
-                          </div>
-                          <div className='flex_r_j_end_align_center form_buttons'>
-                            <SimpleNavigation />
-                          </div>
-                        </div>
-                      </Step>
-                      <Step id='second'>
-                        <div>
+
                           <div>
-                            <div>
-                              <div class='full_row header header2'>
-                                <p>Topics Covered</p>
-                              </div>
-                              <div class='common_input_wrapper_2'>
-                                <TagsInput
-                                  selectedTags={selectedTags}
-                                  tags={topics ? [...topics.topics] : []}
-                                />
+                            <div class='full_row header header2'>
+                              <p>Add Team Members</p>
+                            </div>
+                            <div class='file_input_wrapper'>
+                              <div class='course_link' id=''>
+                                <div class='common_input_wrapper_2'>
+                                  <DynamicInput
+                                    memberValues={memberValues}
+                                    members={team.members && [...team.members]}
+                                  />
+                                </div>
                               </div>
                             </div>
                           </div>
                         </div>
-                        <SimpleNavigation />
-                      </Step>
-                      <Step id='third'>
-                        <div>
-                          <div class='full_row header header2'>
-                            <p>Add Team Members</p>
-                          </div>
-                          <div class='file_input_wrapper'>
-                            <div class='course_link' id=''>
-                              <DynamicInput
-                                memberValues={memberValues}
-                                members={team.members && [...team.members]}
-                              />
-                            </div>
-                          </div>
-                          <SimpleNavigation />
-                        </div>
-                      </Step>
-                      <Step id='fourth'>
+                      </div>
+
+                      <div class='flex_r_j_end_align_center form_buttons'>
+                        <button class='grey_btn' id='backToStepOne'>
+                          Back
+                        </button>
+                        <button class='black_btn' id='goToStepThree'>
+                          Next
+                        </button>
+                      </div>
+                    </div>
+
+                    <div class='courseCreation_step_three'>
+                      <div class='full_row'>
                         <div>
                           <div class='full_row header header2'>
                             <p>Course Documents / Links</p>
                           </div>
-
-                          <Tabs>
-                            <TabList>
-                              <Tab>Documents</Tab>
-                              <Tab>Links</Tab>
-                            </TabList>
-                            <TabPanel>
-                              <div class='file_input_wrapper'>
-                                <div class='course_link' id=''>
-                                  <div class='common_input_wrapper_2'>
-                                    <DynamicUpload
-                                      documentSet={documentSet}
-                                      docsupload={
-                                        documents.docs && [...documents.docs]
-                                      }
-                                    />
-                                  </div>
-                                </div>
+                          <div class='file_input_wrapper'>
+                            <div class='flex_r_a_center course_navigator'>
+                              <div class='active' id='docs_form_button'>
+                                <span>Documents</span>
                               </div>
-                            </TabPanel>
-                            <TabPanel>
-                              <div class='file_input_wrapper'>
-                                <div class='course_link' id=''>
-                                  <div class='common_input_wrapper_2'>
-                                    <DynamicDocLinks
-                                      linksSet={linksSet}
-                                      doclinks={
-                                        documentlinks.links && [
-                                          ...documentlinks.links,
-                                        ]
-                                      }
-                                    />
-                                  </div>
-                                </div>
+                              <div id='link_form_button'>
+                                <span>Links</span>
                               </div>
-                            </TabPanel>
-                          </Tabs>
-
-                          <SimpleNavigation />
+                            </div>
+                            <div class='course_docs' id='course_docs_form'>
+                              <div class='common_input_wrapper_2'>
+                                <DynamicUpload
+                                  documentSet={documentSet}
+                                  docsupload={
+                                    documents.docs && [...documents.docs]
+                                  }
+                                />
+                              </div>
+                            </div>
+                            <div class='course_link' id='course_links_form'>
+                              <div class='common_input_wrapper_2'>
+                                <DynamicDocLinks
+                                  linksSet={linksSet}
+                                  doclinks={
+                                    documentlinks.links && [
+                                      ...documentlinks.links,
+                                    ]
+                                  }
+                                />
+                              </div>
+                            </div>
+                          </div>
                         </div>
-                      </Step>
-                      <Step id='fifth'>
                         <div>
                           <div class='full_row header header2'>
                             <p>Course Videos</p>
                           </div>
-                          <Tabs>
-                            <TabList>
-                              <Tab>Videos</Tab>
-                              <Tab>Links</Tab>
-                            </TabList>
-                            <TabPanel>
-                              <div class='file_input_wrapper'>
-                                <div class='course_link' id=''>
-                                  <div class='common_input_wrapper_2'>
-                                    <UploadVideo
-                                      videoSet={videoSet}
-                                      vidupload={
-                                        videos.vids && [...videos.vids]
-                                      }
-                                    />
-                                  </div>
-                                </div>
+
+                          <div class='file_input_wrapper'>
+                            <div class='flex_r_a_center course_navigator'>
+                              <div class='active' id='video_form_button'>
+                                <span>Videos</span>
                               </div>
-                            </TabPanel>
-                            <TabPanel>
-                              <div class='file_input_wrapper'>
-                                <div class='course_link' id=''>
-                                  <div class='common_input_wrapper_2'>
-                                    <VideoLinks
-                                      VidLinksSet={VidLinksSet}
-                                      vidlinks={
-                                        videolinks.vlinks && [
-                                          ...videolinks.vlinks,
-                                        ]
-                                      }
-                                    />
-                                  </div>
-                                </div>
+                              <div id='video_link_form_button'>
+                                <span>Links</span>
                               </div>
-                            </TabPanel>
-                          </Tabs>
-                          <SimpleNavigation />
+                            </div>
+                            <div class='course_docs' id='video_file_form'>
+                              <div class='common_input_wrapper_2'>
+                                <UploadVideo
+                                  videoSet={videoSet}
+                                  vidupload={videos.vids && [...videos.vids]}
+                                />
+                              </div>
+                            </div>
+                            <div class='course_link' id='video_links_form'>
+                              <div class='common_input_wrapper_2'>
+                                <VideoLinks
+                                  VidLinksSet={VidLinksSet}
+                                  vidlinks={
+                                    videolinks.vlinks && [...videolinks.vlinks]
+                                  }
+                                />
+                              </div>
+                            </div>
+                          </div>
                         </div>
-                      </Step>
-                    </Steps>
-                  </Wizard>
+                      </div>
+
+                      <div class='full_row'>
+                        <div class='label'>
+                          <p>Start Date</p>
+                        </div>
+                        <div class='common_input_wrapper_2'>
+                          <input
+                            type='date'
+                            name='date'
+                            value={date}
+                            placeholder='MM / DD / YY'
+                            onChange={(e) => onChange(e)}
+                            required
+                          />
+                        </div>
+                      </div>
+                      <div class='full_row'>
+                        <div class='flex_r_a_center time'>
+                          <div class='label'>
+                            <p>Time</p>
+                          </div>
+                          <div class='common_input_wrapper_2'>
+                            <select
+                              name='from_time'
+                              value={from_time}
+                              onChange={(e) => onChange(e)}
+                              class='search_select search_select2'
+                            >
+                              <option value='00:00'> 00:00 </option>
+                              <option value='01:00'> 01:00 </option>
+                              <option value='02:00'> 02:00 </option>
+                              <option value='03:00'> 03:00 </option>
+                              <option value='04:00 '> 04:00 </option>
+                              <option value='05:00 '> 05:00 </option>
+                              <option value='06:00'> 06:00 </option>
+                              <option value='07:00'> 07:00 </option>
+                              <option value='08:00'> 08:00 </option>
+                              <option value='09:00'> 09:00 </option>
+                              <option value='10:00'> 10:00 </option>
+                              <option value='11:00'> 11:00 </option>
+                              <option value='12:00'> 12:00 </option>
+                              <option value='13:00'> 13:00 </option>
+                              <option value='14:00'> 14:00 </option>
+                              <option value='15:00'> 15:00 </option>
+                              <option value='16:00'> 16:00 </option>
+                              <option value='17:00'> 17:00 </option>
+                              <option value='18:00'> 18:00 </option>
+                              <option value='19:00'> 19:00 </option>
+                              <option value='20:00'> 20:00 </option>
+                              <option value='21:00'> 21:00 </option>
+                              <option value='22:00'> 22:00 </option>
+                              <option value='23:00'> 23:00 </option>
+                              <option value='24:00'> 24:00 </option>
+                            </select>
+                          </div>
+                        </div>
+                        <div class='flex_r_a_center to'>
+                          <div class='label'>
+                            <p>To</p>
+                          </div>
+                          <div class='common_input_wrapper_2'>
+                            <select
+                              name='to_time'
+                              value={to_time}
+                              onChange={(e) => onChange(e)}
+                              class='search_select search_select2'
+                            >
+                              <option value='00:00'> 00:00 </option>
+                              <option value='01:00'> 01:00 </option>
+                              <option value='02:00'> 02:00 </option>
+                              <option value='03:00'> 03:00 </option>
+                              <option value='04:00 '> 04:00 </option>
+                              <option value='05:00 '> 05:00 </option>
+                              <option value='06:00'> 06:00 </option>
+                              <option value='07:00'> 07:00 </option>
+                              <option value='08:00'> 08:00 </option>
+                              <option value='09:00'> 09:00 </option>
+                              <option value='10:00'> 10:00 </option>
+                              <option value='11:00'> 11:00 </option>
+                              <option value='12:00'> 12:00 </option>
+                              <option value='13:00'> 13:00 </option>
+                              <option value='14:00'> 14:00 </option>
+                              <option value='15:00'> 15:00 </option>
+                              <option value='16:00'> 16:00 </option>
+                              <option value='17:00'> 17:00 </option>
+                              <option value='18:00'> 18:00 </option>
+                              <option value='19:00'> 19:00 </option>
+                              <option value='20:00'> 20:00 </option>
+                              <option value='21:00'> 21:00 </option>
+                              <option value='22:00'> 22:00 </option>
+                              <option value='23:00'> 23:00 </option>
+                              <option value='24:00'> 24:00 </option>
+                            </select>
+                          </div>
+                        </div>
+                      </div>
+                      <div class='full_row'>
+                        <div class='flex_r_a_center left'>
+                          <div class='label'>
+                            <p>Time Zone</p>
+                          </div>
+                          <div class='common_input_wrapper_2'>
+                            <select
+                              name='time_zone'
+                              onChange={(e) => onChange(e)}
+                              class='search_select search_select2'
+                            >
+                              <option value=''>
+                                (+01:00) West Central Africa
+                              </option>
+                            </select>
+                          </div>
+                        </div>
+                      </div>
+                      <div class='flex_r_j_end_align_center form_buttons'>
+                        <button class='grey_btn' id='backToStepOTwo'>
+                          back
+                        </button>
+                        <button
+                          className='black_btn'
+                          onClick={(e) => {
+                            onSubmit(e);
+                          }}
+                        >
+                          finish
+                        </button>
+                      </div>
+                    </div>
+                  </div>
                 </div>
-              </form>
+              </div>
             </div>
           </div>
         </section>
