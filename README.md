@@ -1,13 +1,11 @@
-#  Stevia -- A Student Coaching Application
-Coaching and Courses Platform for Student
-
-# About Project
-The project is a coaching platform where student can register for a coach with a coach attach to him to help him through the course
+#  Stevia - A Student Coaching Application
+The project is a coaching platform where student can register and find a coach that will mentor him when taking a particular course. The project is integrated with payment solution paystack and built with HTML, CSS, Javascript and PHP
 
 # Built With 
 - HTML
 - CSS (Flexbox | Grid System)
--
+- Javascript
+- PHP
 
 # Getting Started
 To get a local copy up and running follw these simple example steps:
